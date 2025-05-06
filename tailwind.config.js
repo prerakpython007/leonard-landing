@@ -3,6 +3,9 @@ module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  fontFamily: {
+  montserrat: ['Montserrat', 'sans-serif'],
+},
   theme: {
     extend: {
       keyframes: {
@@ -25,7 +28,13 @@ module.exports = {
         scroll: 'scroll 50s linear infinite',
         float: 'float 20s ease-in-out infinite',
         morph: 'morph 12s ease-in-out infinite'
-      }
+      },
+      borderWidth: {
+        '3': '3px',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [],

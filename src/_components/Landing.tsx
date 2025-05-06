@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const Landing = () => {
   const [count, setCount] = useState({ years: 0, rate: 0 });
@@ -9,6 +9,7 @@ const Landing = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const springConfig = { damping: 15, stiffness: 150 };
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const magneticX = useSpring(0, springConfig);
   const magneticY = useSpring(0, springConfig);
@@ -60,8 +61,43 @@ const Landing = () => {
     animateCount();
   }, []);
 
+  // Add mouse interaction for dots
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const dots = document.querySelectorAll('.grid-dot');
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      dots.forEach((dot: Element) => {
+        const dotElement = dot as HTMLElement;
+        const dotX = dotElement.offsetLeft;
+        const dotY = dotElement.offsetTop;
+        
+        const distance = Math.sqrt(
+          Math.pow(mouseX - dotX, 2) + Math.pow(mouseY - dotY, 2)
+        );
+        
+        if (distance < 100) {
+          const scale = 1 - distance / 100;
+          dotElement.style.transform = `scale(${1 + scale})`;
+          dotElement.style.opacity = `${0.3 + scale * 0.7}`;
+        } else {
+          dotElement.style.transform = 'scale(1)';
+          dotElement.style.opacity = '0.3';
+        }
+      });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <Container className=''>
+    <Container ref={containerRef} className=''>
       <CornerAngle className="top-left" />
       <CornerAngle className="top-right" />
       <CornerAngle className="bottom-left" />
@@ -156,23 +192,89 @@ const Landing = () => {
   );
 };
 
+const GridDots = styled.div`
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: repeat(auto-fill, 100px);
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #00ADB5;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+`;
+
 const ParticleBackground = styled.div`
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 50% 50%, rgba(0, 173, 181, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.5;
+  background-image: 
+    linear-gradient(rgba(0, 173, 181, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 173, 181, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.7;
   pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-rows: repeat(auto-fill, 100px);
+    
+    > * {
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #00ADB5;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.3;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+    }
+  }
 `;
 
 // Styled components
 const Container = styled.div`
-  background: linear-gradient(135deg, #EEEEEE 0%, #F5F5F5 100%);
+  background: #EEEEEE;
   margin-bottom: 0;
   padding-bottom: 0;
   margin-top: -2rem; // Added negative margin to pull content up
   position: relative; // Added this to handle absolute positioning
   min-height: 100vh; // Added to ensure full height
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(34, 40, 49, 0.02) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(34, 40, 49, 0.02) 2px, transparent 2px);
+    background-size: 50px 50px;
+    background-position: -1px -1px;
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+    z-index: -1;
+  }
 `;
 
 const HeroSection = styled.section`

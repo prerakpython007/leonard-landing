@@ -7,10 +7,12 @@ import Ticker from "~/_components/ticker";
 import UpperNav from "~/_components/UpperNav";
 import Experience from "~/_components/Experience";
 import Footer from "~/_components/Footer";
+import Disclaimer from "~/_components/Disclaimer";
 
 export default function HomePage() {
   return (
     <main className="bg-[#222831]">
+      <Disclaimer/>
       <UpperNav/>
       <Nav/>
       <Landing/>
