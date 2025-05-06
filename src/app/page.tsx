@@ -8,7 +8,7 @@ import UpperNav from "~/_components/UpperNav";
 
 export default function HomePage() {
   return (
-    <main className="">
+    <main className="bg-[#EEEEEE]">
       <UpperNav/>
       <Nav/>
       <Landing/>
