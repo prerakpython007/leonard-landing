@@ -6,7 +6,7 @@ const About = () => {
     <section className="bg-[#EEEEEE] py-8 px-4 md:px-16 lg:px-24 flex flex-col items-center min-h-[80vh]">
       <div className="relative text-center mb-12 w-full">
         <span className="text-4xl font-bold text-[#393E46] tracking-wider">
-          <strong className="text-[#00ADB5] mr-2">ABOUT</strong>
+          <strong className="text-[#00ADB5] mr-2">ABO UT</strong>
           US
         </span>
         <span className="absolute top-1/2 left-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
@@ -24,14 +24,14 @@ const About = () => {
             Leading Full-Service Intellectual Property Law Firm
           </h2>
           <p className="text-[#393E46] leading-relaxed mb-8">
-            Leonard Corporate Solutions Pvt. Ltd. stands as India&apos;s premier firm, 
+            Leonard Corporate Solutions Pvt. Ltd. stands as India's premier firm, 
             exclusively dedicated to intellectual property, taxation, and company laws. 
-            Based in Mumbai, Maharashtra, we&apos;ve established ourselves as industry leaders 
+            Based in Mumbai, Maharashtra, we've established ourselves as industry leaders 
             through a decade of excellence in intellectual property law.
             <br/><br/>
             We understand that intellectual property rights are only valuable when 
             protected and exploited intelligently. Our commitment lies in maximizing 
-            the value of our clients&apos; intellectual property and technology assets, 
+            the value of our clients' intellectual property and technology assets, 
             serving both multinational corporations and domestic industry leaders.
           </p>
           <button className="bg-[#00ADB5] text-white px-8 py-4 rounded font-semibold 
