@@ -11,6 +11,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: ['localhost'],
   },

@@ -24,14 +24,14 @@ const About = () => {
             Leading Full-Service Intellectual Property Law Firm
           </h2>
           <p className="text-[#393E46] leading-relaxed mb-8">
-            Leonard Corporate Solutions Pvt. Ltd. stands as India's premier firm, 
+            Leonard Corporate Solutions Pvt. Ltd. stands as India&apos;s premier firm, 
             exclusively dedicated to intellectual property, taxation, and company laws. 
-            Based in Mumbai, Maharashtra, we've established ourselves as industry leaders 
+            Based in Mumbai, Maharashtra, we&apos;ve established ourselves as industry leaders 
             through a decade of excellence in intellectual property law.
             <br/><br/>
             We understand that intellectual property rights are only valuable when 
             protected and exploited intelligently. Our commitment lies in maximizing 
-            the value of our clients' intellectual property and technology assets, 
+            the value of our clients&apos; intellectual property and technology assets, 
             serving both multinational corporations and domestic industry leaders.
           </p>
           <button className="bg-[#00ADB5] text-white px-8 py-4 rounded font-semibold 
