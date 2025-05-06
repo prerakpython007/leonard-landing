@@ -5,14 +5,15 @@
  */
 import "./src/env.js";
 
-/** @type {import("next").NextConfig} */
-const config = {
-  eslint: {
-    ignoreDuringBuilds: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  },
+  images: {
+    domains: ['localhost'],
   },
 };
 
-// next.config.js
-module.exports = config;
-
-export default config;
+export default nextConfig;
