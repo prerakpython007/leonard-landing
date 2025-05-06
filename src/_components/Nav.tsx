@@ -21,9 +21,9 @@ const Nav: React.FC = () => {
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-gray-50 to-white border-y border-gray-200 sticky top-0 z-50 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <nav className= " bg-[#EEEEEE] sticky top-0 z-50 w-full">
+      <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-16">
+        <div className="flex justify-between items-center h-24">
           {/* Mobile menu button */}
           <div className="flex md:hidden">
             <button
@@ -35,12 +35,12 @@ const Nav: React.FC = () => {
           </div>
 
           {/* Desktop Navigation - Left Side */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-12">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm uppercase tracking-wide relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+                className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
               >
                 {item.label}
               </a>
@@ -48,23 +48,23 @@ const Nav: React.FC = () => {
           </div>
 
           {/* Logo */}
-          <div className="flex items-center justify-center px-4">
-            <div className="h-14 w-auto flex items-center">
+          <div className="flex items-center justify-center px-8">
+            <div className="h-16 w-auto flex roundedfu items-center">
               <img
                 src="/lion-logo.png"
                 alt="Law Firm Logo"
-                className="h-full w-auto object-contain"
+                className="h-full w-auto  object-contain"
               />
             </div>
           </div>
 
           {/* Desktop Navigation - Right Side */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-12">
             {rightNavItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm uppercase tracking-wide relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+                className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
               >
                 {item.label}
               </a>
@@ -73,12 +73,12 @@ const Nav: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} py-4 space-y-2`}>
+        <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} py-6 space-y-4`}>
           {[...navItems, ...rightNavItems].map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="block py-2 text-gray-800 hover:text-[#00ADB5] font-medium text-sm uppercase tracking-wide"
+              className="block py-3 text-gray-800 hover:text-[#00ADB5] font-medium text-base uppercase tracking-wider"
             >
               {item.label}
             </a>

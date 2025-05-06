@@ -27,8 +27,8 @@ const Ticker = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="py-8 md:py-12 lg:py-16">
-      <div className="relative text-center mb-8 md:mb-12 w-full px-4">
+    <div className="py-8 md:py-12 bg-[#EEEEEE] lg:py-16">
+      <div className="relative text-center mb-8 md:mb-12 w-[87%] m-auto px-4">
         <span className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
           <strong className="text-[#00ADB5] mr-2">OUR</strong>
           CLIENTS
