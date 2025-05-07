@@ -13,14 +13,13 @@ export default function HomePage() {
   return (
     <main className="bg-[#222831]">
       <Disclaimer/>
-      <UpperNav/>
-      <Nav/>
+      
       <Landing/>
       <About/>
       <Ticker/>
       <Testimonials/>
       <Experience/>
-      <Footer/>
+      
     </main>
   );
 }
