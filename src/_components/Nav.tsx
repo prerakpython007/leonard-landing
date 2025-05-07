@@ -1,18 +1,29 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import Link from 'next/link';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showSecondaryNav, setShowSecondaryNav] = useState(false);
+  const [showSecondaryNav, setShowSecondaryNav] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('showSecondaryNav');
+      return saved ? JSON.parse(saved) : false;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('showSecondaryNav', JSON.stringify(showSecondaryNav));
+  }, [showSecondaryNav]);
 
   const primaryNavItems = [
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
     { label: 'About Us', href: 'about-us' },
     { label: 'Contact Us', href: 'contact' },
-    { label: 'Blogs', href: '#blogs' },
+    { label: 'Blogs', href: '/blogs' },
     { label: 'Pricing', href: '#pricing' },
   ];
 
@@ -62,13 +73,13 @@ const Nav: React.FC = () => {
                 }`}
               >
                 {primaryNavItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
@@ -81,13 +92,13 @@ const Nav: React.FC = () => {
                 }`}
               >
                 {secondaryNavItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -124,13 +135,13 @@ const Nav: React.FC = () => {
             </button>
           </div>
           {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               className="block py-3 text-gray-800 hover:text-[#00ADB5] font-medium text-base uppercase tracking-wider"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
