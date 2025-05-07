@@ -10,18 +10,18 @@ const Nav: React.FC = () => {
   const primaryNavItems = [
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'About Us', href: 'about-us' },
+    { label: 'Contact Us', href: 'contact' },
     { label: 'Blogs', href: '#blogs' },
     { label: 'Pricing', href: '#pricing' },
   ];
 
   const secondaryNavItems = [
-    { label: 'Trade Mark', href: '#trademark' },
-    { label: 'Patent', href: '#patent' },
-    { label: 'Copyright', href: '#copyright' },
+    { label: 'Trade Mark', href: 'trademark' },
+    { label: 'Patent', href: 'patent' },
+    { label: 'Copyright', href: 'copyright' },
     { label: 'Design', href: '#design' },
-    { label: 'Geographical Indications', href: '#geographical' },
+    { label: 'Geographical Indications', href: 'geographical' },
     { label: 'Legal Matters', href: '#legal' },
   ];
 
