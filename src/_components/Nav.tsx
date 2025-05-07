@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Menu, X, Grid } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,12 +95,14 @@ const Nav: React.FC = () => {
             <button
               onClick={() => setShowSecondaryNav(!showSecondaryNav)}
               className="p-2 ml-4 lg:ml-8 text-gray-700 hover:text-[#00ADB5] transition-all duration-500 h-12 flex items-center"
-              style={{
-                transform: showSecondaryNav ? 'rotate(180deg)' : 'rotate(0deg)'
-              }}
               aria-label={showSecondaryNav ? 'Show Main Menu' : 'Show Services Menu'}
             >
-              <Grid size={24} />
+              <ChevronDown
+                size={24}
+                className={`transform transition-transform duration-500 ${
+                  showSecondaryNav ? 'rotate-180' : 'rotate-0'
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -113,7 +115,12 @@ const Nav: React.FC = () => {
               className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
               aria-label={showSecondaryNav ? 'Show Main Menu' : 'Show Services Menu'}
             >
-              <Grid size={24} />
+              <ChevronDown
+                size={24}
+                className={`transform transition-transform duration-500 ${
+                  showSecondaryNav ? 'rotate-180' : 'rotate-0'
+                }`}
+              />
             </button>
           </div>
           {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (

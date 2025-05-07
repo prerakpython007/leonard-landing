@@ -47,33 +47,84 @@ const Experience = () => {
         <span className="absolute top-1/2 right-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
       </div>
 
-      <div ref={ref} className="max-w-4xl mx-auto">
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={exp.year}
-            className="relative flex gap-8 mb-12"
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
-          >
-            {/* Timeline line */}
-            <div className="hidden md:block absolute left-[145px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00ADB5] via-[#00ADB5] to-transparent" />
+      <div ref={ref} className="max-w-6xl mx-auto relative">
+        {/* Map Trail SVG */}
+        <svg 
+          className="absolute top-0 left-0 w-full h-full"
+          style={{ minHeight: '1200px' }}
+          viewBox="0 0 1000 1200"
+        >
+          <motion.path
+            d="M200 100 C 800 200, 800 400, 200 600 C -400 800, 800 800, 800 1100"
+            fill="none"
+            stroke="#393E46"
+            strokeWidth="4"
+            strokeDasharray="15 30"
+            strokeLinecap="square"
+            strokeDashoffset="0"
+            initial={{ pathLength: 0 }}
+            animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+            transition={{ duration: 2 }}
+          />
 
-            {/* Year bubble */}
-            <div className="hidden md:flex w-36 h-36 rounded-full bg-[#222831] items-center justify-center flex-shrink-0">
-              <span className="text-[#00ADB5] text-2xl font-bold">{exp.year}</span>
-            </div>
+          {/* Location Markers - Better aligned with curves */}
+          {[
+            { x: 200, y: 100 },   // Start
+            { x: 800, y: 400 },   // First curve peak
+            { x: 200, y: 600 },   // Middle dip
+            { x: 800, y: 1100 }   // End
+          ].map((pos, index) => (
+            <motion.g
+              key={index}
+              initial={{ scale: 0 }}
+              animate={inView ? { scale: 1 } : {}}
+              transition={{ delay: 1 + (index * 0.3) }}
+            >
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r="8"
+                fill="#00ADB5"
+              />
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r="16"
+                fill="#00ADB5"
+                opacity="0.2"
+              />
+            </motion.g>
+          ))}
+        </svg>
 
-            {/* Content */}
-            <div className="flex-1 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-4xl">{exp.icon}</span>
-                <h3 className="text-[#222831] text-xl font-bold">{exp.title}</h3>
+        {/* Experience Cards - Adjusted to follow curve */}
+        <div className="relative" style={{ minHeight: '1200px' }}>
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.year}
+              className="absolute w-[300px]"
+              style={{
+                left: [0, 2].includes(index) ? '50px' : 'auto',
+                right: [1, 3].includes(index) ? '50px' : 'auto',
+                top: index === 0 ? '50px' :
+                     index === 1 ? '350px' :
+                     index === 2 ? '550px' :
+                     '1050px'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.5 + (index * 0.3) }}
+            >
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-4xl">{exp.icon}</span>
+                  <h3 className="text-[#222831] text-xl font-bold">{exp.title}</h3>
+                </div>
+                <p className="text-[#393E46]">{exp.description}</p>
               </div>
-              <p className="text-[#393E46]">{exp.description}</p>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
