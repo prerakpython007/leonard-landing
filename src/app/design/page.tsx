@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, FileCheck, Gavel, Search } from "lucide-react"
+import { Palette, Brush, Layers, PenTool, Eye, Globe } from "lucide-react"
 import Link from "next/link"
 
-export default function GeographicalIndicationPage() {
+export default function DesignPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
       {/* Hero Section */}
@@ -24,7 +24,7 @@ export default function GeographicalIndicationPage() {
           >
             <span className="text-5xl md:text-6xl font-bold tracking-wider">
               <strong className="text-white mr-2 relative">
-                GEOGRAPHICAL INDICATION
+                DESIGN
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
               </strong>
               <span className="text-black">SERVICES</span>
@@ -38,15 +38,15 @@ export default function GeographicalIndicationPage() {
             transition={{ delay: 0.3 }}
             className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
           >
-            Preserving Regional Heritage with Expert GI Solutions
+            Elevating Your Brand with Innovative Design Solutions
           </motion.p>
         </div>
       </motion.section>
 
-      {/* Geographical Indication Information Section */}
+      {/* Design Information Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          {/* Geographical Indication Overview */}
+          {/* Design Overview */}
           <motion.div
             className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
@@ -55,21 +55,18 @@ export default function GeographicalIndicationPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Geographical Indication Overview</span>
+              <span className="relative z-10">Design Overview</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed">
-              Our company deals in all aspects of geographical indications. We conduct search and due diligence; assist
-              clients in registration of geographical indications and renewal. We draft sale, purchase and license
-              agreements for geographical indications and related documents. Our law firm represents clients in
-              infringement proceedings and passing off actions.
+              Our design services combine creativity and strategy to deliver visually stunning and functional solutions. From branding and graphic design to UI/UX and product design, we specialize in creating designs that resonate with your audience. Our team excels in crafting unique visual identities, user-friendly interfaces, and innovative product aesthetics, ensuring your brand stands out in a competitive market.
             </p>
             <p className="text-[#393E46] text-lg leading-relaxed mt-4">
               Contact us at{" "}
               <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
                 info@leonardsolutions.in
               </a>{" "}
-              for personalized assistance with your geographical indication needs.
+              for tailored design solutions to elevate your brand.
             </p>
           </motion.div>
 
@@ -116,24 +113,34 @@ export default function GeographicalIndicationPage() {
 
 const serviceCards = [
   {
-    icon: Search,
-    title: "GI Search & Due Diligence",
-    description: "Conduct thorough searches and due diligence to ensure the validity of geographical indications."
+    icon: Palette,
+    title: "Branding & Identity",
+    description: "Create a cohesive and memorable brand identity with logos, typography, and color schemes."
   },
   {
-    icon: FileCheck,
-    title: "GI Registration & Renewal",
-    description: "Assist clients in registering and renewing geographical indications for legal protection."
+    icon: Brush,
+    title: "Graphic Design",
+    description: "Design striking visuals for print and digital media, including posters, brochures, and social media assets."
   },
   {
-    icon: Briefcase,
-    title: "GI Licensing & Agreements",
-    description: "Draft sale, purchase, and license agreements for geographical indications."
+    icon: PenTool,
+    title: "UI/UX Design",
+    description: "Craft intuitive and engaging user interfaces for websites and apps with a focus on user experience."
   },
   {
-    icon: Gavel,
-    title: "GI Infringement & Passing Off",
-    description: "Represent clients in infringement proceedings and passing off actions to protect GI rights."
+    icon: Layers,
+    title: "Product Design",
+    description: "Develop innovative and functional product designs that blend aesthetics with practicality."
+  },
+  {
+    icon: Eye,
+    title: "Visual Storytelling",
+    description: "Tell your brand’s story through compelling illustrations, animations, and motion graphics."
+  },
+  {
+    icon: Globe,
+    title: "Web Design",
+    description: "Build responsive and visually appealing websites that enhance user engagement and brand presence."
   }
 ]
 

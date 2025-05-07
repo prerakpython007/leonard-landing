@@ -18,35 +18,54 @@ export default function AboutPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
 
   return (
-    <main className="min-h-screen bg-[#EEEEEE]">
+    <main className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
       {/* Hero Section */}
       <motion.section
         ref={sectionRef}
-        className="bg-[#00ADB5] text-white py-8 px-4 md:px-16 lg:px-24 flex flex-col items-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
+        <div className="absolute inset-0 bg-grid-white/[0.1]" />
         <div className="relative text-center mb-12 w-full">
-          <span className="text-4xl font-bold text-[#222831] tracking-wider">
-            <strong className="text-white mr-2">ABOUT</strong>
-            US
-          </span>
-          <span className="absolute top-1/2 left-10 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
-          <span className="absolute top-1/2 right-10 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative inline-block"
+          >
+            <span className="text-5xl md:text-6xl font-bold tracking-wider">
+              <strong className="text-white mr-2 relative">
+                ABOUT
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
+              </strong>
+              <span className="text-black">US</span>
+            </span>
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
+          </motion.div>
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
+          >
+            Discover Our Expertise and Commitment to Excellence
+          </motion.p>
         </div>
       </motion.section>
 
       {/* Tabs Section */}
-      <section className="py-12 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-sm overflow-hidden">
+      <section className="py-16 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden">
           {/* Tabs */}
-          <div className="flex border-b">
+          <div className="flex border-b border-gray-100/20">
             <button
               onClick={() => setActiveTab("about")}
               className={cn(
                 "flex-1 py-4 px-6 text-center font-medium text-lg transition-colors",
-                activeTab === "about" ? "text-[#00ADB5] border-b-2 border-[#00ADB5]" : "text-[#393E46] hover:text-[#00ADB5]",
+                activeTab === "about" ? "text-[#00ADB5] border-b-2 border-[#00ADB5]" : "text-[#393E46] hover:text-[#00ADB5]"
               )}
             >
               ABOUT US
@@ -55,7 +74,7 @@ export default function AboutPage() {
               onClick={() => setActiveTab("overview")}
               className={cn(
                 "flex-1 py-4 px-6 text-center font-medium text-lg transition-colors",
-                activeTab === "overview" ? "text-[#00ADB5] border-b-2 border-[#00ADB5]" : "text-[#393E46] hover:text-[#00ADB5]",
+                activeTab === "overview" ? "text-[#00ADB5] border-b-2 border-[#00ADB5]" : "text-[#393E46] hover:text-[#00ADB5]"
               )}
             >
               FIRM OVERVIEW
@@ -66,23 +85,21 @@ export default function AboutPage() {
           <div className="p-8">
             {activeTab === "about" && (
               <motion.div
-                className="space-y-6"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
                 <div className="flex items-start gap-4">
-                  <motion.div
-                    className="bg-[#00ADB5]/10 p-3 rounded-full"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Building className="h-6 w-6 text-[#00ADB5]" />
-                  </motion.div>
+                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                    <Building className="h-6 w-6" />
+                  </div>
                   <div>
-                    <h2 className="text-2xl font-bold mb-4 text-[#222831]">LEONARD CORPORATE SOLUTIONS PVT. LTD.</h2>
+                    <h2 className="text-3xl font-bold text-[#222831] mb-4 relative">
+                      <span className="relative z-10">LEONARD CORPORATE SOLUTIONS PVT. LTD.</span>
+                      <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+                    </h2>
                     <p className="text-[#393E46] text-lg leading-relaxed">
                       We have professionals who are expert in handling all the legal issues and provide appropriate
                       solutions to domestic & international customers, which include multinational, public & private limited
@@ -92,16 +109,11 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <motion.div
-                    className="bg-[#00ADB5]/10 p-3 rounded-full"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.15 }}
-                  >
-                    <Users className="h-6 w-6 text-[#00ADB5]" />
-                  </motion.div>
+                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-6 w-6" />
+                  </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2 text-[#222831]">Our Team</h3>
+                    <h3 className="text-xl font-semibold text-[#222831] mb-2">Our Team</h3>
                     <p className="text-[#393E46] text-lg leading-relaxed">
                       We have a dedicated team of lawyers, intellectual property experts, technical teams & company law
                       experts, who are highly proficient and are committed to meet the requirements as early as possible.
@@ -124,23 +136,21 @@ export default function AboutPage() {
 
             {activeTab === "overview" && (
               <motion.div
-                className="space-y-8"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
                 <div className="flex items-start gap-4">
-                  <motion.div
-                    className="bg-[#00ADB5]/10 p-3 rounded-full"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <BookOpen className="h-6 w-6 text-[#00ADB5]" />
-                  </motion.div>
+                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                    <BookOpen className="h-6 w-6" />
+                  </div>
                   <div>
-                    <h2 className="text-2xl font-bold mb-4 text-[#222831]">Our Story</h2>
+                    <h2 className="text-3xl font-bold text-[#222831] mb-4 relative">
+                      <span className="relative z-10">Our Story</span>
+                      <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+                    </h2>
                     <p className="text-[#393E46] text-lg leading-relaxed mb-4">
                       Leonard Corporate Solutions Pvt. Ltd. is India's premier firm practicing exclusively in intellectual
                       property laws, taxation and company laws with head office in Mumbai, India.
@@ -154,7 +164,7 @@ export default function AboutPage() {
                 </div>
 
                 <motion.div
-                  className="grid md:grid-cols-2 gap-6 mt-8"
+                  className="grid md:grid-cols-2 gap-8"
                   style={{ y }}
                 >
                   {[
@@ -165,17 +175,21 @@ export default function AboutPage() {
                   ].map((item, index) => (
                     <motion.div
                       key={index}
-                      className="bg-[#222831] p-6 rounded-lg text-center"
-                      initial={{ opacity: 0, y: 30 }}
+                      className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
+                      initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.15 }}
-                      whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.2 } }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
                     >
-                      <div className="flex items-center justify-center mb-4">
-                        <item.icon className="text-[#00ADB5] mr-3 h-5 w-5" />
-                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                      <div className="flex items-start gap-4">
+                        <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                          <item.icon className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-[#222831] mb-2">{item.title}</h3>
+                          <p className="text-[#393E46]/80">{item.text}</p>
+                        </div>
                       </div>
-                      <p className="text-white text-sm">{item.text}</p>
                     </motion.div>
                   ))}
                 </motion.div>

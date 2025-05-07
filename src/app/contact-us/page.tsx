@@ -27,36 +27,58 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE]">
+    <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
       {/* Hero Section */}
       <motion.section
-        className="bg-[#00ADB5] text-white py-8 px-4 md:px-16 lg:px-24 flex flex-col items-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
+        <div className="absolute inset-0 bg-grid-white/[0.1]" />
         <div className="relative text-center mb-12 w-full">
-          <span className="text-4xl font-bold text-[#222831] tracking-wider">
-            <strong className="text-white mr-2">CONTACT</strong>
-            US
-          </span>
-          <span className="absolute top-1/2 left-10 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
-          <span className="absolute top-1/2 right-10 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="relative inline-block"
+          >
+            <span className="text-5xl md:text-6xl font-bold tracking-wider">
+              <strong className="text-white mr-2 relative">
+                CONTACT
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
+              </strong>
+              <span className="text-black">US</span>
+            </span>
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
+          </motion.div>
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
+          >
+            Get in Touch with Our Expert Team
+          </motion.p>
         </div>
       </motion.section>
 
       {/* Contact Information Section */}
-      <section className="py-12 px-4 md:px-16 lg:px-24">
+      <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           {/* Contacting Us */}
           <motion.div
-            className="bg-white rounded-xl shadow-sm p-8 mb-8"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-[#222831] mb-4">Contacting Us</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Contacting Us</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
             <p className="text-[#393E46] text-lg leading-relaxed">
               Upon request, we shall provide you with access to any personal information that we have collected about you
               through our website. In the event that the personal information is not accurate, kindly contact us at{" "}
@@ -73,83 +95,55 @@ export default function ContactPage() {
 
           {/* Head Office */}
           <motion.div
-            className="bg-white rounded-xl shadow-sm p-8 mb-8"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-[#222831] mb-6">Head Office (Mumbai)</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Location */}
-              <motion.div
-                className="flex items-start gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <MapPin className="h-6 w-6 text-[#00ADB5] flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold text-[#222831]">Location</h3>
-                  <p className="text-[#393E46] text-lg">
-                    Office No. 305, Creative Industrial Estate,
-                    <br />
-                    Sunder Nagar Road No. 02, Kalina,
-                    <br />
-                    Santacruz (East), Mumbai,
-                    <br />
-                    Maharashtra, 400 098.
-                  </p>
-                </div>
-              </motion.div>
-              {/* Phone & Fax Number */}
-              <motion.div
-                className="flex items-start gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <Phone className="h-6 w-6 text-[#00ADB5] flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold text-[#222831]">Phone & Fax Number</h3>
-                  <p className="text-[#393E46] text-lg">
-                    Landline: +91-22-26652048
-                    <br />
-                    +91-22-26651538
-                    <br />
-                    Fax No: +91-22-265619248
-                    <br />
-                    Mobile: +91 9930032215
-                  </p>
-                </div>
-              </motion.div>
-              {/* Email Us */}
-              <motion.div
-                className="flex items-start gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Mail className="h-6 w-6 text-[#00ADB5] flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold text-[#222831]">Email Us</h3>
-                  <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline text-lg">
-                    info@leonardsolutions.in
-                  </a>
-                </div>
-              </motion.div>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Head Office (Mumbai)</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {contactDetails.map((detail, index) => (
+                <motion.div
+                  key={detail.title}
+                  className="group flex items-start gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                    <detail.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#222831] mb-2">{detail.title}</h3>
+                    {detail.title === "Email Us" ? (
+                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline text-lg">
+                        info@leonardsolutions.in
+                      </a>
+                    ) : (
+                      <p className="text-[#393E46]/80">{detail.text}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
           {/* Our Branches In India */}
           <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 30 }}
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-[#222831] mb-4">Our Branches In India</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Our Branches In India</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
             <motion.img
               src="/contact-map-color.png"
               alt="Indian Branches"
@@ -162,13 +156,16 @@ export default function ContactPage() {
 
           {/* International Associates */}
           <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 30 }}
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-[#222831] mb-4">International Associates (Partners)</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">International Associates (Partners)</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
             <motion.img
               src="/word-map.png"
               alt="International Associates"
@@ -181,13 +178,16 @@ export default function ContactPage() {
 
           {/* Get In Touch Form */}
           <motion.div
-            className="bg-white rounded-xl shadow-sm p-8"
-            initial={{ opacity: 0, y: 30 }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-[#222831] mb-6">Get In Touch</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Get In Touch</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="firstName" className="block text-[#222831] font-medium mb-2">
@@ -275,6 +275,24 @@ export default function ContactPage() {
     </div>
   )
 }
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    title: "Location",
+    text: "Office No. 305, Creative Industrial Estate,\nSunder Nagar Road No. 02, Kalina,\nSantacruz (East), Mumbai,\nMaharashtra, 400 098.",
+  },
+  {
+    icon: Phone,
+    title: "Phone & Fax Number",
+    text: "Landline: +91-22-26652048\n+91-22-26651538\nFax No: +91-22-265619248\nMobile: +91 9930032215",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    text: "info@leonardsolutions.in",
+  },
+]
 
 function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ")
