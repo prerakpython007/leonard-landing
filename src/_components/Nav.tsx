@@ -9,10 +9,10 @@ const Nav: React.FC = () => {
 
   const primaryNavItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: 'service' },
     { label: 'About Us', href: 'about-us' },
     { label: 'Contact Us', href: 'contact' },
-    { label: 'Blogs', href: '#blogs' },
+    { label: 'Blogs', href: 'blogs' },
     { label: 'Pricing', href: '#pricing' },
   ];
 

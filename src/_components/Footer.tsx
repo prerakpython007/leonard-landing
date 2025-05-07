@@ -30,8 +30,14 @@ const Footer = () => {
               Providing excellent legal services in intellectual property, taxation, and corporate law since 2013.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
-                <Icon key={i} className="text-[#00ADB5] hover:text-white transition-all cursor-pointer" />
+              {[
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/leonard-solutions" },
+                { Icon: Twitter, href: "https://twitter.com/leonardsolutions" },
+                { Icon: Instagram, href: "https://www.instagram.com/leonardsolutions" },
+              ].map(({ Icon, href }, i) => (
+                <Link key={i} href={href} target="_blank" rel="noopener noreferrer">
+                  <Icon className="text-[#00ADB5] hover:text-white transition-all cursor-pointer" />
+                </Link>
               ))}
             </div>
           </div>
@@ -43,11 +49,19 @@ const Footer = () => {
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00ADB5] transform origin-left scale-x-0 transition-transform group-hover:scale-x-100" />
             </h3>
             <ul className="space-y-2">
-              {['Home', 'About', 'Services', 'Experience', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link href={`#${item.toLowerCase()}`} 
-                        className="text-gray-300 hover:text-[#00ADB5] transition-colors">
-                    {item}
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'About', href: '/about-us' },
+                { name: 'Services', href: '/services' },
+                { name: 'Experience', href: '/experience' },
+                { name: 'Contact', href: '/contact' },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-300 hover:text-[#00ADB5] transition-colors"
+                  >
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -63,7 +77,7 @@ const Footer = () => {
                 'Corporate Law',
                 'Taxation',
                 'Legal Consultation',
-                'Documentation'
+                'Documentation',
               ].map((service) => (
                 <li key={service} className="text-gray-300">
                   {service}
@@ -95,8 +109,6 @@ const Footer = () => {
 
       {/* Bottom Ticker with Star */}
       <div className="w-full bg-[#1B1F27] overflow-hidden border-t border-white/10 mt-24">
-        
-
         {/* Copyright bar */}
         <div className="container mx-auto px-4 md:px-16 lg:px-24 py-6 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -122,7 +134,6 @@ const Footer = () => {
             <div key={i} className="flex items-center">
               <span className="text-[6rem] md:text-[8rem] font-bold tracking-tighter">
                 <span className="text-[#00ADB5]">LEONARD </span>
-                {/* <span className="text-white mx-4">CORPORATE</span> */}
                 <span className="text-[#EEEEEE]">SOLUTIONS</span>
               </span>
               <span className="text-[#00ADB5] text-7xl mx-12">✦</span>
