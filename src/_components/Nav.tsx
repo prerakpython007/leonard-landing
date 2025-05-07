@@ -52,13 +52,13 @@ const Nav: React.FC = () => {
 
           {/* Logo */}
           <div className="flex items-center h-full py-2">
-            <div className="h-16 md:h-20 w-auto flex items-center">
+            <Link href="/" className="h-16 md:h-20 w-auto flex items-center">
               <img
                 src="/lion-logo.png"
                 alt="Law Firm Logo"
                 className="h-full w-auto object-contain"
               />
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation - All items on right */}

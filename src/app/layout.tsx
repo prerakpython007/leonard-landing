@@ -5,6 +5,7 @@ import { Geist } from "next/font/google";
 import UpperNav from "~/_components/UpperNav";
 import Nav from "~/_components/Nav";
 import Footer from "~/_components/Footer";
+import ScrollToTop from "~/_components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -23,11 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-      <UpperNav/>
-      <Nav/>
+        <UpperNav />
+        <Nav />
         {children}
-        <Footer/>
-        </body>
+        <Footer />
+        <ScrollToTop />
+      </body>
     </html>
   );
 }
