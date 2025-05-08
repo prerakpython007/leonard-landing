@@ -1,10 +1,15 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, DollarSign } from "lucide-react"
+import { ArrowRight, IndianRupee } from "lucide-react"
 import Link from "next/link"
 
-const pricingData = {
+const pricingData: {
+  trademarks: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
+  copyright: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
+  patents: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
+  industrialDesign: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
+} = {
   trademarks: [
     {
       sNo: 1,
@@ -134,280 +139,135 @@ const pricingData = {
   ],
 }
 
+const sections = [
+  {
+    id: "trademarks",
+    title: "Trademarks",
+    data: pricingData.trademarks
+  },
+  {
+    id: "copyright",
+    title: "Copyright",
+    data: pricingData.copyright
+  },
+  {
+    id: "patents",
+    title: "Patents",
+    data: pricingData.patents
+  },
+  {
+    id: "industrialDesign",
+    title: "Industrial Design",
+    data: pricingData.industrialDesign
+  }
+] as const;
+
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+      {/* Grid Pattern Overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none" 
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px'
+        }}
+      />
+
       {/* Hero Section */}
       <motion.section
-        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 bg-grid-white/[0.1]" />
-        <div className="relative text-center mb-12 w-full">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative inline-block"
-          >
-            <span className="text-5xl md:text-6xl font-bold tracking-wider">
-              <strong className="text-white mr-2 relative">
-                PRICING
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
-              </strong>
-              <span className="text-black">DETAILS</span>
-            </span>
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-          </motion.div>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
-          >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Our Pricing
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          </h1>
+          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Transparent Pricing for Intellectual Property Services
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </motion.section>
 
       {/* Pricing Cards Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Trademarks Cards */}
-          <div>
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Trademarks</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {pricingData.trademarks.map((item, index) => (
-                <motion.div
-                  key={item.sNo}
-                  className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="p-6 relative z-10 flex flex-col h-full">
-                    <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
-                      <span className="mr-2 text-[#00ADB5] text-lg">#{item.sNo}</span> Trademark Service
-                    </h3>
-                    <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description}</p>
-                    <ul className="space-y-3 mb-6">
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
-                      </li>
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
-                      </li>
-                      <li className="flex items-center">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Total:</span>
-                        <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
-                      </li>
-                    </ul>
-                    <div className="mt-auto">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
-                      >
-                        Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-7xl mx-auto space-y-24">
+          {sections.map((section) => (
+            <div key={section.id}>
+              <motion.div
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl font-bold text-[#222831] mb-4">{section.title}</h2>
+                <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+              </motion.div>
 
-          {/* Copyright Cards */}
-          <div>
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Copyright</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {pricingData.copyright.map((item, index) => (
-                <motion.div
-                  key={item.sNo}
-                  className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="p-6 relative z-10 flex flex-col h-full">
-                    <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
-                      <span className="mr-2 text-[#00ADB5] text-lg">#{item.sNo}</span> Copyright Service
-                    </h3>
-                    <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description}</p>
-                    <ul className="space-y-3 mb-6">
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
-                      </li>
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
-                      </li>
-                      <li className="flex items-center">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Total:</span>
-                        <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
-                      </li>
-                    </ul>
-                    <div className="mt-auto">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
-                      >
-                        Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {section.data.map((item, itemIndex) => (
+                  item.description && (
+                    <motion.div
+                      key={`${section.id}-${itemIndex}`}
+                      className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: itemIndex * 0.1 }}
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="p-6 relative z-10 flex flex-col h-full">
+                        <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
+                          <span className="mr-2 text-[#00ADB5] text-lg">#{item.sNo}</span> {section.title} Service
+                        </h3>
+                        <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description}</p>
+                        <ul className="space-y-3 mb-6">
+                          <li className="flex items-center text-[#393E46]">
+                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
+                            <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
+                          </li>
+                          <li className="flex items-center text-[#393E46]">
+                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
+                            <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
+                          </li>
+                          <li className="flex items-center">
+                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
+                            <span className="font-medium">Total:</span>
+                            <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
+                          </li>
+                        </ul>
+                        <div className="mt-auto">
+                          <Link
+                            href="/contact"
+                            className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
+                          >
+                            Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
 
-          {/* Patents Cards */}
-          <div>
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Patents</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {pricingData.patents.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="p-6 relative z-10 flex flex-col h-full">
-                    <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
-                      <span className="mr-2 text-[#00ADB5] text-lg">{item.sNo ? `#${item.sNo}` : "Extra"}</span>
-                      {item.sNo ? "Patent Service" : "Additional Service"}
-                    </h3>
-                    <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description || "Additional patent-related service as per requirement."}</p>
-                    <ul className="space-y-3 mb-6">
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
-                      </li>
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
-                      </li>
-                      <li className="flex items-center">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Total:</span>
-                        <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
-                      </li>
-                    </ul>
-                    <div className="mt-auto">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
-                      >
-                        Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Industrial Design Cards */}
-          <div>
-            <motion.div
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Industrial Design</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {pricingData.industrialDesign.map((item, index) => (
-                <motion.div
-                  key={item.sNo}
-                  className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="p-6 relative z-10 flex flex-col h-full">
-                    <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
-                      <span className="mr-2 text-[#00ADB5] text-lg">#{item.sNo}</span> Design Service
-                    </h3>
-                    <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description}</p>
-                    <ul className="space-y-3 mb-6">
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
-                      </li>
-                      <li className="flex items-center text-[#393E46]">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
-                      </li>
-                      <li className="flex items-center">
-                        <DollarSign className="w-4 h-4 text-[#00ADB5] mr-2" />
-                        <span className="font-medium">Total:</span>
-                        <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
-                      </li>
-                    </ul>
-                    <div className="mt-auto">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
-                      >
-                        Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Disclaimer */}
+          {/* Disclaimer section with updated styling */}
           <motion.div
-            className="max-w-3xl mx-auto mt-12"
+            className="max-w-3xl mx-auto mt-24 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -446,8 +306,31 @@ export default function PricingPage() {
               </div>
             </div>
           </motion.div>
+
+          {/* Pricing Note */}
+          <motion.div 
+            className="text-center mt-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-[#393E46]/70 text-sm italic">
+              * All prices mentioned are subject to change. Please contact us for the most current pricing information.
+            </p>
+          </motion.div>
         </div>
       </section>
-    </main>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
+    </div>
   )
 }

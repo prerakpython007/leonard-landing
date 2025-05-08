@@ -7,6 +7,7 @@ import Nav from "~/_components/Nav";
 import Footer from "~/_components/Footer";
 import ScrollToTop from "~/_components/ScrollToTop";
 import Disclaimer from "~/_components/Disclaimer";
+import FloatingContact from "~/_components/FloatingContact";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -24,13 +25,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body className="bg-[#222831]">
+      <body className="bg-[#222831] relative">
         <Disclaimer />
         <UpperNav />
         <Nav />
         {children}
-        <Footer />
+        <FloatingContact />
         <ScrollToTop />
+        <Footer />
       </body>
     </html>
   );

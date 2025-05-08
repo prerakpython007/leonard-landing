@@ -1,0 +1,46 @@
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 20px;
+  animation: tickerAnimation 40s linear infinite;
+  will-change: transform;
+}
+
+@keyframes tickerAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 10;
+}
+
+.leftGradient {
+  left: 0;
+  background: linear-gradient(to right, #00ADB5 60%, transparent);
+}
+
+.rightGradient {
+  right: 0;
+  background: linear-gradient(to left, #00ADB5 60%, transparent);
+}
