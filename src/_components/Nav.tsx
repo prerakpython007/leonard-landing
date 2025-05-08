@@ -1,4 +1,4 @@
-"use client";
+'use client'; // Optional: Use this if you want to avoid SSR entirely
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
@@ -6,14 +6,17 @@ import Link from 'next/link';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showSecondaryNav, setShowSecondaryNav] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('showSecondaryNav');
-      return saved ? JSON.parse(saved) : false;
-    }
-    return false;
-  });
+  const [showSecondaryNav, setShowSecondaryNav] = useState(false); // Default to false for both server and client
 
+  // Read from localStorage only on the client after mount
+  useEffect(() => {
+    const saved = localStorage.getItem('showSecondaryNav');
+    if (saved) {
+      setShowSecondaryNav(JSON.parse(saved));
+    }
+  }, []); // Empty dependency array: runs once after mount
+
+  // Update localStorage when showSecondaryNav changes
   useEffect(() => {
     localStorage.setItem('showSecondaryNav', JSON.stringify(showSecondaryNav));
   }, [showSecondaryNav]);
@@ -21,10 +24,10 @@ const Nav: React.FC = () => {
   const primaryNavItems = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/service' },
-    { label: 'About Us', href: 'about-us' },
-    { label: 'Contact Us', href: 'contact-us' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Contact Us', href: '/contact-us' },
     { label: 'Blogs', href: '/blogs' },
-    { label: 'Pricing', href: 'price' },
+    { label: 'Pricing', href: '/price' }, // Fixed typo: removed space
   ];
 
   const secondaryNavItems = [
@@ -65,10 +68,10 @@ const Nav: React.FC = () => {
           <div className="hidden md:flex items-center h-full">
             <div className="relative h-full w-[600px] lg:w-[800px] xl:w-[1000px] overflow-hidden">
               {/* Primary Navigation */}
-              <div 
+              <div
                 className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav 
-                    ? '-translate-y-full opacity-0' 
+                  showSecondaryNav
+                    ? '-translate-y-full opacity-0'
                     : 'translate-y-0 opacity-100'
                 }`}
               >
@@ -84,10 +87,10 @@ const Nav: React.FC = () => {
               </div>
 
               {/* Secondary Navigation */}
-              <div 
+              <div
                 className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav 
-                    ? 'translate-y-0 opacity-100' 
+                  showSecondaryNav
+                    ? 'translate-y-0 opacity-100'
                     : 'translate-y-full opacity-0'
                 }`}
               >
