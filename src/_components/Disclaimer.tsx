@@ -3,18 +3,28 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Disclaimer = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);  // Set initial state to true
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const hasAgreed = localStorage.getItem('disclaimerAgreed');
-    if (!hasAgreed) {
-      setIsVisible(true);
+    setIsMounted(true);
+    try {
+      const hasAgreed = localStorage.getItem('disclaimerAgreed');
+      if (hasAgreed === 'true') {
+        setIsVisible(false);
+      }
+    } catch (error) {
+      console.error('Error accessing localStorage:', error);
     }
   }, []);
 
   const handleAgree = () => {
-    localStorage.setItem('disclaimerAgreed', 'true');
-    setIsVisible(false);
+    try {
+      localStorage.setItem('disclaimerAgreed', 'true');
+      setIsVisible(false);
+    } catch (error) {
+      console.error('Error setting localStorage:', error);
+    }
   };
 
   const handleDisagree = () => window.location.href = 'https://www.google.com';
@@ -27,6 +37,9 @@ const Disclaimer = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isVisible]);
+
+  // Only render content after component is mounted
+  if (!isMounted) return null;
 
   return (
     <AnimatePresence>
