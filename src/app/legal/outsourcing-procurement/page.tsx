@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, FileText, UserCheck, Package, Lock, Scale } from "lucide-react"
+import { Package, FileText, Scale, Briefcase, Shield, Users } from "lucide-react"
 import Link from "next/link"
 
-export default function LegalOfferings() {
+export default function OutsourcingProcurementPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
       {/* Hero Section */}
@@ -24,10 +24,10 @@ export default function LegalOfferings() {
           >
             <span className="text-5xl md:text-6xl font-bold tracking-wider">
               <strong className="text-white mr-2 relative">
-                LEGAL
+                OUTSOURCING &
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
               </strong>
-              <span className="text-black">OFFERINGS</span>
+              <span className="text-black">PROCUREMENT</span>
             </span>
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
@@ -38,15 +38,15 @@ export default function LegalOfferings() {
             transition={{ delay: 0.3 }}
             className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
           >
-            Tailored Legal Offerings for Your Business Needs
+            Pragmatic Legal Advice for Outsourcing and Procurement
           </motion.p>
         </div>
       </motion.section>
 
-      {/* Legal Offerings Section */}
+      {/* Outsourcing and Procurement Information Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          {/* Offerings Overview */}
+          {/* Outsourcing and Procurement Overview */}
           <motion.div
             className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
@@ -55,24 +55,31 @@ export default function LegalOfferings() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Offerings Overview</span>
+              <span className="relative z-10">Outsourcing and Procurement Overview</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed">
-              We provide a wide range of legal offerings to support your business, ensuring compliance and strategic growth.
-              Our services cover corporate governance, contract drafting, employment law, outsourcing, data protection, and
-              food safety compliance, tailored to meet your specific needs.
+              Are you looking for outsourcing advice? Since our establishment in 2008, we have specialized in providing
+              pragmatic, commercially focused legal advice to the outsourcing industry. With our unrivalled experience in IT
+              and outsourcing, we have advised outsourced and managed services providers for some of the world’s largest
+              businesses, particularly in the financial services sector and public sector procurement regulations.
+            </p>
+            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
+              We primarily represent suppliers, ensuring contractual commitments are deliverable with minimal financial risk.
+              In unequal bargaining situations, we level the playing field, bringing confidence and experience to negotiations
+              dominated by larger companies and their in-house legal teams. We also support customer-side clients procuring
+              services, leveraging our deep understanding of supplier risks to strengthen procurement teams.
             </p>
             <p className="text-[#393E46] text-lg leading-relaxed mt-4">
               Contact us at{" "}
-              <a href="mailto:contact@leonard.com" className="text-[#00ADB5] hover:underline">
-                contact@leonard.com
+              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                info@leonardsolutions.in
               </a>{" "}
-              for personalized assistance with your legal needs.
+              for expert outsourcing and procurement legal support.
             </p>
           </motion.div>
 
-          {/* Legal Offerings Cards */}
+          {/* Our Services */}
           <motion.div
             className="space-y-12"
             initial={{ opacity: 0 }}
@@ -80,60 +87,70 @@ export default function LegalOfferings() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Our Legal Offerings</h2>
+              <h2 className="text-4xl font-bold text-[#222831] mb-4">Our Services</h2>
               <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
             </div>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {legalOfferings.map((offering, index) => (
-                <Link
-                  key={offering.name}
-                  href={offering.route}
+              {serviceCards.map((service, index) => (
+                <motion.div
+                  key={service.title}
                   className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
-                  aria-label={`Learn more about ${offering.name}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
-                    className="flex items-start gap-4"
-                  >
+                  <div className="flex items-start gap-4">
                     <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
-                      <offering.icon className="h-6 w-6" />
+                      <service.icon className="h-6 w-6" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{offering.name}</h3>
-                      <p className="text-[#393E46]/80">{offering.description}</p>
+                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{service.title}</h3>
+                      <p className="text-[#393E46]/80">{service.description}</p>
                     </div>
-                  </motion.div>
-                </Link>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
-
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm"
-          aria-label="Navigate back to home page"
-        >
-          Back to Home
-        </Link>
-      </div>
     </div>
   )
 }
 
-const legalOfferings = [
-  { name: "Company Law And Legal Support", icon: Briefcase, description: "Comprehensive legal support for corporate governance.", route: "/legal/company-law" },
-  { name: "Commercial Contracts", icon: FileText, description: "Draft and review contracts to secure your business deals.", route: "/legal/commercial-contracts" },
-  { name: "Employment & HR Law", icon: UserCheck, description: "Navigate employment laws for compliant HR practices.", route: "/legal/employment-law" },
-  { name: "Outsourcing & Procurement", icon: Package, description: "Streamline outsourcing and procurement processes.", route: "/legal/outsourcing-procurement" },
-  { name: "Privacy & Data Protection", icon: Lock, description: "Ensure compliance with data protection regulations.", route: "/legal/privacy-data-protection" },
-  { name: "FSSAI Licensing", icon: Scale, description: "Obtain FSSAI licenses for food safety compliance.", route: "/legal/fssai-licensing" },
+const serviceCards = [
+  {
+    icon: Package,
+    title: "Outsourcing Advisory",
+    description: "Provide pragmatic legal advice for IT and outsourcing contracts."
+  },
+  {
+    icon: FileText,
+    title: "Contract Negotiation",
+    description: "Level the playing field in negotiations with larger companies."
+  },
+  {
+    icon: Scale,
+    title: "Risk Management",
+    description: "Minimize financial risks in supplier contractual commitments."
+  },
+  {
+    icon: Briefcase,
+    title: "Financial Services Expertise",
+    description: "Specialized advice for outsourcing in the financial sector."
+  },
+  {
+    icon: Shield,
+    title: "Public Sector Compliance",
+    description: "Navigate complex public sector procurement regulations."
+  },
+  {
+    icon: Users,
+    title: "Procurement Support",
+    description: "Strengthen customer-side procurement with supplier risk insights."
+  }
 ]
 
 function cn(...classes: (string | undefined | null | false)[]) {

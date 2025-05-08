@@ -83,24 +83,20 @@ export default function Services() {
 }
 
 const ipServices = [
-  { name: "Patents", icon: FileText, description: "Protect your inventions with robust patent strategies.", route: "/patents" },
-  { name: "Trademarks", icon: Shield, description: "Safeguard your brand identity with trademark registration.", route: "/trademarks" },
-  { name: "Copyright", icon: BookOpen, description: "Secure your creative works with copyright protection.", route: "/copyright" },
-  { name: "Industrial Designs", icon: FileCheck, description: "Protect the aesthetic aspects of your products.", route: "/industrial-designs" },
-  { name: "Geographical Indications", icon: MapPin, description: "Preserve the unique identity of regional products.", route: "/geographical-indications" },
-  { name: "Anti-Counterfeiting", icon: Gavel, description: "Combat counterfeit goods to protect your brand.", route: "/anti-counterfeiting" },
-  { name: "Domain Name Law", icon: Globe, description: "Manage and protect your online presence.", route: "/domain-name-law" },
+  { name: "Patents", icon: FileText, description: "Protect your inventions with robust patent strategies.", route: "service/patent" },
+  { name: "Trademarks", icon: Shield, description: "Safeguard your brand identity with trademark registration.", route: "service/trademark" },
+  { name: "Copyright", icon: BookOpen, description: "Secure your creative works with copyright protection.", route: "service/copyright" },
+  { name: "Industrial Designs", icon: FileCheck, description: "Protect the aesthetic aspects of your products.", route: "service/industrial" },
+  { name: "Geographical Indications", icon: MapPin, description: "Preserve the unique identity of regional products.", route: "service/geographical" },
+  { name: "Anti-Counterfeiting", icon: Gavel, description: "Combat counterfeit goods to protect your brand.", route: "service/anti-counterfeiting" },
+  { name: "Domain Name Law", icon: Globe, description: "Manage and protect your online presence.", route: "service/domain-name-law" },
 ]
 
 const otherServices = [
-  { name: "Company Law And Legal Support", icon: Briefcase, description: "Comprehensive legal support for corporate governance.", route: "/company-law" },
-  { name: "Commercial Contracts", icon: FileText, description: "Draft and review contracts to secure your business deals.", route: "/commercial-contracts" },
-  { name: "Employment & HR Law", icon: UserCheck, description: "Navigate employment laws for compliant HR practices.", route: "/employment-law" },
-  { name: "Outsourcing & Procurement", icon: Package, description: "Streamline outsourcing and procurement processes.", route: "/outsourcing-procurement" },
-  { name: "Privacy & Data Protection", icon: Lock, description: "Ensure compliance with data protection regulations.", route: "/privacy-data-protection" },
-  { name: "FSSAI Licensing", icon: Scale, description: "Obtain FSSAI licenses for food safety compliance.", route: "/fssai-licensing" },
+  { name: "Company Law", icon: Briefcase, description: "Comprehensive legal support for corporate governance.", route: "service/company-law" },
+  { name: "Commercial Contracts", icon: FileText, description: "Draft and review contracts to secure your business deals.", route: "service/commercial-contracts" },
+  { name: "Employment & HR Law", icon: UserCheck, description: "Navigate employment laws for compliant HR practices.", route: "service/employment-law" },
+  { name: "Outsourcing & Procurement", icon: Package, description: "Streamline outsourcing and procurement processes.", route: "service/outsourcing" },
+  { name: "Privacy & Data Protection", icon: Lock, description: "Ensure compliance with data protection regulations.", route: "service/privacy" },
+  { name: "FSSAI Licensing", icon: Scale, description: "Obtain FSSAI licenses for food safety compliance.", route: "service/fssai" },
 ]
-
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ")
-}
