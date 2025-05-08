@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { BookOpen, Briefcase, FileText, Gavel, Globe, Shield, MapPin, FileCheck, Scale, UserCheck, Package, Lock } from "lucide-react"
+import { BookOpen, FileText, Gavel, Globe, Shield, MapPin, FileCheck } from "lucide-react"
 import Link from "next/link"
 
 export default function Services() {
@@ -108,45 +108,6 @@ export default function Services() {
               ))}
             </div>
           </motion.div>
-
-          {/* Other Laws Services */}
-          <motion.div
-            className="space-y-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Other Laws Services</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {otherServices.map((service, index) => (
-                <Link
-                  key={service.name}
-                  href={service.route}
-                  className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
-                  aria-label={`Learn more about ${service.name}`}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
-                    className="flex items-start gap-4"
-                  >
-                    <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{service.name}</h3>
-                      <p className="text-[#393E46]/80">{service.description}</p>
-                    </div>
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -165,22 +126,13 @@ export default function Services() {
 }
 
 const ipServices = [
-  { name: "Patents", icon: FileText, description: "Protect your inventions with robust patent strategies.", route: "/patents" },
-  { name: "Trademarks", icon: Shield, description: "Safeguard your brand identity with trademark registration.", route: "/trademarks" },
-  { name: "Copyright", icon: BookOpen, description: "Secure your creative works with copyright protection.", route: "/copyright" },
-  { name: "Industrial Designs", icon: FileCheck, description: "Protect the aesthetic aspects of your products.", route: "/industrial-designs" },
-  { name: "Geographical Indications", icon: MapPin, description: "Preserve the unique identity of regional products.", route: "/geographical-indications" },
-  { name: "Anti-Counterfeiting", icon: Gavel, description: "Combat counterfeit goods to protect your brand.", route: "/anti-counterfeiting" },
-  { name: "Domain Name Law", icon: Globe, description: "Manage and protect your online presence.", route: "/domain-name-law" },
-]
-
-const otherServices = [
-  { name: "Company Law And Legal Support", icon: Briefcase, description: "Comprehensive legal support for corporate governance.", route: "/company-law" },
-  { name: "Commercial Contracts", icon: FileText, description: "Draft and review contracts to secure your business deals.", route: "/commercial-contracts" },
-  { name: "Employment & HR Law", icon: UserCheck, description: "Navigate employment laws for compliant HR practices.", route: "/employment-law" },
-  { name: "Outsourcing & Procurement", icon: Package, description: "Streamline outsourcing and procurement processes.", route: "/outsourcing-procurement" },
-  { name: "Privacy & Data Protection", icon: Lock, description: "Ensure compliance with data protection regulations.", route: "/privacy-data-protection" },
-  { name: "FSSAI Licensing", icon: Scale, description: "Obtain FSSAI licenses for food safety compliance.", route: "/fssai-licensing" },
+  { name: "Patents", icon: FileText, description: "Protect your inventions with robust patent strategies.", route: "service/patent" },
+  { name: "Trademarks", icon: Shield, description: "Safeguard your brand identity with trademark registration.", route: "service/trademark" },
+  { name: "Copyright", icon: BookOpen, description: "Secure your creative works with copyright protection.", route: "service/copyright" },
+  { name: "Industrial Designs", icon: FileCheck, description: "Protect the aesthetic aspects of your products.", route: "service/industrial" },
+  { name: "Geographical Indications", icon: MapPin, description: "Preserve the unique identity of regional products.", route: "service/geographical" },
+  { name: "Anti-Counterfeiting", icon: Gavel, description: "Combat counterfeit goods to protect your brand.", route: "service/anti-counterfeiting" },
+  { name: "Domain Name Law", icon: Globe, descrição: "Manage and protect your online presence.", route: "service/domain-name-law" },
 ]
 
 function cn(...classes: (string | undefined | null | false)[]) {

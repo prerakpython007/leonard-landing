@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
 
   const primaryNavItems = [
     { label: 'Home', href: '/' },
-    { label: 'Services', href: 'service' },
+    { label: 'Services', href: '/service' },
     { label: 'About Us', href: 'about-us' },
     { label: 'Contact Us', href: 'contact-us' },
     { label: 'Blogs', href: '/blogs' },
@@ -28,12 +28,12 @@ const Nav: React.FC = () => {
   ];
 
   const secondaryNavItems = [
-    { label: 'Trade Mark', href: 'trademark' },
-    { label: 'Patent', href: 'patent' },
-    { label: 'Copyright', href: 'copyright' },
-    { label: 'Design', href: 'design' },
-    { label: 'Geographical Indications', href: 'geographical' },
-    { label: 'Legal Matters', href: 'legal' },
+    { label: 'Trade Mark', href: '/service/trademark' },
+    { label: 'Patent', href: '/service/patent' },
+    { label: 'Copyright', href: '/service/copyright' },
+    { label: 'Design', href: '/design' },
+    { label: 'Geographical Indications', href: '/service/geographical' },
+    { label: 'Legal Matters', href: '/legal' },
   ];
 
   return (
