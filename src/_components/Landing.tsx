@@ -98,10 +98,6 @@ const Landing = () => {
 
   return (
     <Container ref={containerRef} className=''>
-      <CornerAngle className="top-left" />
-      <CornerAngle className="top-right" />
-      <CornerAngle className="bottom-left" />
-      <CornerAngle className="bottom-right" />
       <ParticleBackground />
       <HeroSection>
         <GeometricOverlay />
@@ -475,47 +471,6 @@ const StyledImage = styled.img`
   &:hover {
     transform: scale(1.15);
     filter: brightness(1.1) contrast(1.1);
-  }
-`;
-
-const CornerAngle = styled.div`
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 3px solid #00ADB5;
-  z-index: 10;
-
-  &.top-left {
-    top: 20px;
-    left: 20px;
-    border-right: none;
-    border-bottom: none;
-  }
-
-  &.top-right {
-    top: 20px;
-    right: 20px;
-    border-left: none;
-    border-bottom: none;
-  }
-
-  &.bottom-left {
-    bottom: 20px;
-    left: 20px;
-    border-right: none;
-    border-top: none;
-  }
-
-  &.bottom-right {
-    bottom: 20px;
-    right: 20px;
-    border-left: none;
-    border-top: none;
-  }
-
-  @media (max-width: 768px) {
-    width: 30px;
-    height: 30px;
   }
 `;
 

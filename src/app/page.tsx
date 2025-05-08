@@ -12,8 +12,7 @@ import Disclaimer from "~/_components/Disclaimer";
 export default function HomePage() {
   return (
     <main className="bg-[#222831]">
-      <Disclaimer/>
-      
+      <Disclaimer/>      
       <Landing/>
       <About/>
       <Ticker/>

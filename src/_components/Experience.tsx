@@ -32,95 +32,86 @@ const experiences = [
 
 const Experience = () => {
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
   return (
-    <section className="bg-[#EEEEEE] py-16 px-4 md:px-16 lg:px-24 rounded-b-[5%]">
-      <div className="relative text-center mb-16 w-full">
-        <span className="text-4xl font-bold text-[#393E46] tracking-wider">
-          <strong className="text-[#00ADB5] mr-2">OUR</strong>
-          JOURNEY
-        </span>
-        <span className="absolute top-1/2 left-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
-        <span className="absolute top-1/2 right-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
-      </div>
+    <section className="bg-gradient-to-b from-[#EEEEEE] rounded-b-[5%] to-white py-16 md:py-24 relative overflow-hidden">
+      {/* Larger and higher positioned stars */}
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[300px] md:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
+            <span className="text-[#00ADB5]">OUR</span> JOURNEY
+          </h2>
+          <div className="w-24 h-1 bg-[#00ADB5] mx-auto mt-4 rounded-full" />
+        </div>
 
-      <div ref={ref} className="max-w-6xl mx-auto relative">
-        {/* Map Trail SVG */}
-        <svg 
-          className="absolute top-0 left-0 w-full h-full"
-          style={{ minHeight: '1200px' }}
-          viewBox="0 0 1000 1200"
-        >
-          <motion.path
-            d="M200 100 C 800 200, 800 400, 200 600 C -400 800, 800 800, 800 1100"
-            fill="none"
-            stroke="#393E46"
-            strokeWidth="4"
-            strokeDasharray="15 30"
-            strokeLinecap="square"
-            strokeDashoffset="0"
-            initial={{ pathLength: 0 }}
-            animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: 2 }}
-          />
-
-          {/* Location Markers - Better aligned with curves */}
-          {[
-            { x: 200, y: 100 },   // Start
-            { x: 800, y: 400 },   // First curve peak
-            { x: 200, y: 600 },   // Middle dip
-            { x: 800, y: 1100 }   // End
-          ].map((pos, index) => (
-            <motion.g
-              key={index}
-              initial={{ scale: 0 }}
-              animate={inView ? { scale: 1 } : {}}
-              transition={{ delay: 1 + (index * 0.3) }}
-            >
-              <circle
-                cx={pos.x}
-                cy={pos.y}
-                r="8"
-                fill="#00ADB5"
-              />
-              <circle
-                cx={pos.x}
-                cy={pos.y}
-                r="16"
-                fill="#00ADB5"
-                opacity="0.2"
-              />
-            </motion.g>
-          ))}
-        </svg>
-
-        {/* Experience Cards - Adjusted to follow curve */}
-        <div className="relative" style={{ minHeight: '1200px' }}>
+        {/* Mobile Grid View */}
+        <div className="grid grid-cols-1 gap-6 md:hidden">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.year}
-              className="absolute w-[300px]"
-              style={{
-                left: [0, 2].includes(index) ? '50px' : 'auto',
-                right: [1, 3].includes(index) ? '50px' : 'auto',
-                top: index === 0 ? '50px' :
-                     index === 1 ? '350px' :
-                     index === 2 ? '550px' :
-                     '1050px'
-              }}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.5 + (index * 0.3) }}
+              transition={{ delay: 0.2 * index }}
             >
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-4xl">{exp.icon}</span>
-                  <h3 className="text-[#222831] text-xl font-bold">{exp.title}</h3>
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                <div className="flex items-center gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#00ADB5]/10 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">{exp.icon}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#00ADB5] text-sm font-semibold">{exp.year}</span>
+                    <h3 className="text-[#222831] text-lg font-bold">{exp.title}</h3>
+                  </div>
                 </div>
-                <p className="text-[#393E46]">{exp.description}</p>
+                <p className="text-gray-600 mt-3 text-sm leading-relaxed">{exp.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop Timeline View */}
+        <div ref={ref} className="hidden md:block relative">
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#00ADB5]/20" />
+          
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.year}
+              className={`flex items-center justify-${index % 2 === 0 ? 'end' : 'start'} w-full mb-16`}
+              initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.3 * index, duration: 0.5 }}
+            >
+              <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div className={`bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 ${
+                  index % 2 === 0 ? 'mr-4' : 'ml-4'
+                }`}>
+                  <div className={`flex items-center gap-4 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#00ADB5]/10 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">{exp.icon}</span>
+                    </div>
+                    <div>
+                      <span className="text-[#00ADB5] text-sm font-semibold block">{exp.year}</span>
+                      <h3 className="text-[#222831] text-lg font-bold">{exp.title}</h3>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mt-3 text-sm leading-relaxed">{exp.description}</p>
+                </div>
+              </div>
+              
+              <div className="absolute left-1/2 transform -translate-x-1/2">
+                <div className="w-4 h-4 rounded-full bg-[#00ADB5] border-4 border-white" />
               </div>
             </motion.div>
           ))}
