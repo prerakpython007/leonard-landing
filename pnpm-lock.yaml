@@ -17,6 +17,9 @@ importers:
       framer-motion:
         specifier: ^12.9.4
         version: 12.9.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      leonard-landing:
+        specifier: 'file:'
+        version: file:(@emotion/is-prop-valid@1.2.2)(gel@2.1.0)(typescript@5.8.3)
       lucide-react:
         specifier: ^0.507.0
         version: 0.507.0(react@19.1.0)
@@ -1840,6 +1843,9 @@ packages:
   language-tags@1.0.9:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
+
+  'leonard-landing@file:':
+    resolution: {directory: '', type: directory}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -4299,6 +4305,56 @@ snapshots:
   language-tags@1.0.9:
     dependencies:
       language-subtag-registry: 0.3.23
+
+  leonard-landing@file:(@emotion/is-prop-valid@1.2.2)(gel@2.1.0)(typescript@5.8.3):
+    dependencies:
+      '@t3-oss/env-nextjs': 0.12.0(typescript@5.8.3)(zod@3.24.3)
+      drizzle-orm: 0.41.0(gel@2.1.0)(postgres@3.4.5)
+      framer-motion: 12.9.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      lucide-react: 0.507.0(react@19.1.0)
+      next: 15.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      postgres: 3.4.5
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-intersection-observer: 9.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      styled-components: 6.1.17(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      zod: 3.24.3
+    transitivePeerDependencies:
+      - '@aws-sdk/client-rds-data'
+      - '@babel/core'
+      - '@cloudflare/workers-types'
+      - '@electric-sql/pglite'
+      - '@emotion/is-prop-valid'
+      - '@libsql/client'
+      - '@libsql/client-wasm'
+      - '@neondatabase/serverless'
+      - '@op-engineering/op-sqlite'
+      - '@opentelemetry/api'
+      - '@planetscale/database'
+      - '@playwright/test'
+      - '@prisma/client'
+      - '@tidbcloud/serverless'
+      - '@types/better-sqlite3'
+      - '@types/pg'
+      - '@types/sql.js'
+      - '@vercel/postgres'
+      - '@xata.io/client'
+      - babel-plugin-macros
+      - babel-plugin-react-compiler
+      - better-sqlite3
+      - bun-types
+      - expo-sqlite
+      - gel
+      - knex
+      - kysely
+      - mysql2
+      - pg
+      - prisma
+      - sass
+      - sql.js
+      - sqlite3
+      - typescript
+      - valibot
 
   levn@0.4.1:
     dependencies:
