@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const images = [
@@ -21,51 +21,30 @@ const images = [
   "/img-16.jpg", // Conference Room
 ].map((url, index) => ({ id: index, url }));
 
-const duplicatedImages = [...images, ...images]; // Duplicate for seamless loop
+// Quadruple the images for smoother infinite scroll
+const duplicatedImages = [...images, ...images, ...images, ...images];
 
-const Ticker = () => {
-  const [isHovered, setIsHovered] = useState(false);
+const scrollLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% / 2)); }
+`;
 
-  return (
-    <div className="py-8 md:py-12 bg-[#EEEEEE] lg:py-16">
-      <div className="relative text-center mb-8 md:mb-12 w-[87%] m-auto px-4">
-        <span className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
-          <strong className="text-[#00ADB5] mr-2">OUR</strong>
-          CLIENTS
-        </span>
-        <span className="absolute top-1/2 left-4 md:left-10 -translate-y-1/2 text-[#00ADB5] text-4xl md:text-5xl">✦</span>
-        <span className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[#00ADB5] text-4xl md:text-5xl">✦</span>
-      </div>
-      <TickerContainer>
-        <TickerWrapper
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          $isPaused={isHovered}
-        >
-          <TickerTrack $isPaused={isHovered}>
-            {duplicatedImages.map((image, index) => (
-              <ImageWrapper key={`${image.id}-${index}`}>
-                <TickerImage
-                  src={image.url}
-                  alt={`Legal Image ${image.id}`}
-                  loading="lazy"
-                />
-              </ImageWrapper>
-            ))}
-          </TickerTrack>
-        </TickerWrapper>
-      </TickerContainer>
-    </div>
-  );
-};
+const scrollRight = keyframes`
+  0% { transform: translateX(calc(-100% / 2)); }
+  100% { transform: translateX(0); }
+`;
 
-const scroll = keyframes`
-  0% {
-    transform: translateX(0);
+const TickerTrack = styled.div<{ $direction: string; $speed: number; $isPaused: boolean }>`
+  display: flex;
+  width: fit-content;
+  animation: ${props => props.$direction === 'right' ? scrollRight : scrollLeft} 
+    ${props => props.$speed}s linear infinite;
+  animation-play-state: ${props => props.$isPaused ? 'paused' : 'running'};
+  gap: 15px;
+  @media (min-width: 768px) {
+    gap: 20px;
   }
-  100% {
-    transform: translateX(-50%);
-  }
+  will-change: transform;
 `;
 
 const TickerContainer = styled.div`
@@ -76,14 +55,10 @@ const TickerContainer = styled.div`
     height: 180px;
   }
   overflow: hidden;
-  padding: 15px 0;
-  @media (min-width: 768px) {
-    padding: 20px 0;
-  }
-  background: #EEEEEE;
+  padding: 8px 0;
 `;
 
-const TickerWrapper = styled.div<{ $isPaused: boolean }>`
+const TickerWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -94,7 +69,7 @@ const TickerWrapper = styled.div<{ $isPaused: boolean }>`
     content: '';
     position: absolute;
     top: 0;
-    width: 150px; // Reduced gradient width
+    width: 150px;
     height: 100%;
     z-index: 2;
   }
@@ -110,23 +85,7 @@ const TickerWrapper = styled.div<{ $isPaused: boolean }>`
   }
 `;
 
-const TickerTrack = styled.div<{ $isPaused: boolean }>`
-  display: flex;
-  animation: ${scroll} 30s linear infinite;
-  @media (min-width: 768px) {
-    animation: ${scroll} 40s linear infinite;
-  }
-  animation-play-state: ${props => props.$isPaused ? 'paused' : 'running'};
-  width: fit-content;
-  gap: 15px;
-  @media (min-width: 768px) {
-    gap: 20px;
-  }
-  transform: translateZ(0);
-  will-change: transform;
-`;
-
-const ImageWrapper = styled.div`
+const ImageContainer = styled.div`
   position: relative;
   width: 100px;
   height: 100px;
@@ -134,15 +93,67 @@ const ImageWrapper = styled.div`
     width: 140px;
     height: 140px;
   }
-  border-radius: 0px;
   overflow: hidden;
+  flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
-const TickerImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+const Ticker = () => {
+  const [hoveredTicker, setHoveredTicker] = useState<number | null>(null);
+
+  const tickerRows = [
+    { direction: 'left', speed: 60 },    // Increased speed for smoother scroll
+    { direction: 'right', speed: 50 },
+    { direction: 'left', speed: 70 }
+  ];
+
+  return (
+    <div className="py-8 md:py-12 lg:py-16 relative overflow-hidden bg-[#EEEEEE]">
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[300px] md:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
+      <div className="relative text-center mb-8 md:mb-12 w-[87%] m-auto px-4">
+        <span className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
+          <strong className="text-[#00ADB5] mr-2">OUR</strong>
+          CLIENTS
+        </span>
+      </div>
+
+      <div className="space-y-4"> {/* Changed from space-y-8 to space-y-4 */}
+        {tickerRows.map((row, index) => (
+          <TickerContainer key={index}>
+            <TickerWrapper
+              onMouseEnter={() => setHoveredTicker(index)}
+              onMouseLeave={() => setHoveredTicker(null)}
+            >
+              <TickerTrack 
+                $direction={row.direction}
+                $speed={row.speed}
+                $isPaused={hoveredTicker === index}
+              >
+                {duplicatedImages.map((image, imgIndex) => (
+                  <ImageContainer key={`${image.id}-${imgIndex}`}>
+                    <img
+                      src={image.url}
+                      alt={`Legal Image ${image.id}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </ImageContainer>
+                ))}
+              </TickerTrack>
+            </TickerWrapper>
+          </TickerContainer>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Ticker;

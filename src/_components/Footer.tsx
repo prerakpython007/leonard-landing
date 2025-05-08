@@ -19,9 +19,19 @@ const tickerVariants = {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#222831] text-white relative flex flex-col justify-between pt-24">
+    <footer className="bg-[#222831] text-white relative flex flex-col justify-between pt-24 overflow-hidden">
+      <span className="absolute left-0 top-[25%] text-[#EEEEEE] text-[250px] md:text-[300px] opacity-[0.03] transform -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute left-1/2 top-[25%] text-[#EEEEEE] text-[300px] md:text-[350px] opacity-[0.02] transform -translate-x-1/2 -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute right-0 top-[25%] text-[#EEEEEE] text-[250px] md:text-[300px] opacity-[0.03] transform -translate-y-1/2">
+        ✦
+      </span>
+      
       {/* Main Content */}
-      <div className="container mx-auto px-4 md:px-16 lg:px-24">
+      <div className="container mx-auto px-4 md:px-16 lg:px-24 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">

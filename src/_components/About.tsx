@@ -13,7 +13,16 @@ const About = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="bg-[#EEEEEE] py-8 px-4 md:px-16 lg:px-24 flex flex-col items-center min-h-[80vh] overflow-hidden">
+    <section ref={sectionRef} className="bg-[#EEEEEE] py-8 px-4 md:px-16 lg:px-24 flex flex-col items-center min-h-[80vh] overflow-hidden relative">
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[300px] md:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
+        ✦
+      </span>
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+        ✦
+      </span>
       <motion.div 
         className="relative text-center mb-12 w-full"
         initial={{ opacity: 0, y: 20 }}
@@ -24,8 +33,6 @@ const About = () => {
           <strong className="text-[#00ADB5] mr-2">ABOUT</strong>
           US
         </span>
-        <span className="absolute top-1/2 left-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
-        <span className="absolute top-1/2 right-10 -translate-y-1/2 text-[#00ADB5] text-5xl hidden md:block">✦</span>
       </motion.div>
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center w-full">

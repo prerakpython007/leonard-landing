@@ -3,30 +3,31 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Disclaimer = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  // Changed to use window check for initial state
+  const [isClient, setIsClient] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const hasAgreed = localStorage.getItem('disclaimerAgreed');
-    if (!hasAgreed) {
-      setIsVisible(true);
+    setIsClient(true);
+    const hasAgreed = window.localStorage.getItem('disclaimerAgreed');
+    if (hasAgreed === 'true') {
+      setIsVisible(false);
     }
   }, []);
 
+  // Don't render anything on server
+  if (!isClient) return null;
+
   const handleAgree = () => {
-    localStorage.setItem('disclaimerAgreed', 'true');
-    setIsVisible(false);
+    try {
+      localStorage.setItem('disclaimerAgreed', 'true');
+      setIsVisible(false);
+    } catch (error) {
+      console.error('Error setting localStorage:', error);
+    }
   };
 
   const handleDisagree = () => window.location.href = 'https://www.google.com';
-
-  useEffect(() => {
-    if (isVisible) {
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isVisible]);
 
   return (
     <AnimatePresence>
@@ -35,13 +36,13 @@ const Disclaimer = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm grid place-items-center p-2 sm:p-5 z-[9999]"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-6 z-[9999] overflow-y-auto"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative bg-[#EEEEEE] p-4 sm:p-8 md:p-12 w-[98%] sm:w-[95%] md:w-[90%] lg:w-[1100px] max-w-[1100px] shadow-2xl overflow-y-auto max-h-[90vh]"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="relative bg-[#EEEEEE] p-4 md:p-8 w-full max-w-[95%] md:max-w-[85%] lg:max-w-[1000px] rounded-lg shadow-2xl max-h-[90vh] overflow-y-auto"
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]">

@@ -1,0 +1,97 @@
+/* Add your global styles here */
+
+/* Custom cursor styles */
+.custom-cursor {
+  transition: transform 0.3s ease;
+}
+
+.custom-cursor.hover {
+  transform: scale(4);
+}
+
+/* Interactive elements cursor behavior */
+a:hover, 
+button:hover {
+  cursor: none;
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+/* Custom cursor styles */
+body {
+  cursor: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a, button {
+  cursor: none;
+}
+
+/* Add hover state for interactive elements */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor {
+  transform: scale(2);
+}
+
+/* Hide default cursor on interactive elements */
+* {
+  cursor: none;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+.animate-ticker-reverse {
+  animation: ticker-reverse 30s linear infinite;
+}
+
+.animation-paused {
+  animation-play-state: paused;
+}
+
+@media (min-width: 768px) {
+  .animate-ticker {
+    animation: ticker 40s linear infinite;
+  }
+}
+
+.animation-paused {
+  animation-play-state: paused;
+}
+
+@keyframes fillAnimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.text-reveal {
+  animation: fillAnimation 1.5s ease-in-out forwards;
+}
