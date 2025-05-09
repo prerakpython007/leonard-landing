@@ -41,6 +41,16 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
   </div>
 );
 
+interface SecondaryNavItem {
+  label: string;
+  href: string;
+  dropdown?: DropdownItem[];
+}
+
+interface MobileNavItem extends SecondaryNavItem {
+  dropdown?: DropdownItem[];
+}
+
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSecondaryNav, setShowSecondaryNav] = useState(false); // Default to false for both server and client
@@ -476,9 +486,9 @@ const Nav: React.FC = () => {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            {item.dropdown && (
+                            {(item as MobileNavItem).dropdown && (
                               <MobileDropdownContent 
-                                dropdown={item.dropdown} 
+                                dropdown={(item as MobileNavItem).dropdown!}
                                 onClose={() => {
                                   setIsOpen(false);
                                   setMobileDropdowns({});
