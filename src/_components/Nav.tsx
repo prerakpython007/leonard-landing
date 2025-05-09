@@ -3,15 +3,49 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
+import type { UrlObject } from 'url';
+import { motion } from 'framer-motion';
 
 interface DropdownItem {
   title: string;
   items: { label: string; href: string }[];
 }
 
+interface MobileDropdownProps {
+  dropdown: DropdownItem[];
+  onClose: () => void;
+}
+
+const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClose }) => (
+  <div className="pl-6 pr-2 py-2 space-y-4">
+    {dropdown.map((section, idx) => (
+      <div key={idx} className="space-y-2">
+        <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2 p-2">
+          <span className="text-[#00ADB5] text-xs">✦</span>
+          {section.title}
+        </h3>
+        <div className="pl-4 space-y-1">
+          {section.items.map((subItem, subIdx) => (
+            <Link
+              key={subIdx}
+              href={subItem.href}
+              className="block p-2 text-gray-600 hover:text-[#00ADB5] text-sm rounded-lg hover:bg-white/50 transition-all"
+              onClick={onClose}
+            >
+              {subItem.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSecondaryNav, setShowSecondaryNav] = useState(false); // Default to false for both server and client
+  const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
+  const [isInteracting, setIsInteracting] = useState(false);
 
   // Read from localStorage only on the client after mount
   useEffect(() => {
@@ -27,12 +61,26 @@ const Nav: React.FC = () => {
   }, [showSecondaryNav]);
 
   useEffect(() => {
+    if (isOpen || isInteracting) return; // Don't auto-switch if menu is open or user is interacting
+
     const timer = setInterval(() => {
       setShowSecondaryNav((prev: any) => !prev);
     }, 7000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isOpen, isInteracting]);
+
+  // Add scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const primaryNavItems = [
     { label: 'Home', href: '/' },
@@ -159,38 +207,44 @@ const Nav: React.FC = () => {
     }
   ];
 
-  const secondaryNavItems = [
-    { 
-      label: 'TradeMark', 
-      href: '#',
-      dropdown: trademarkDropdown 
-    },
-    { 
-      label: 'Patent', 
-      href: '#',
-      dropdown: patentDropdown 
-    },
-    { 
-      label: 'Copyright', 
-      href: '#',
-      dropdown: copyrightDropdown 
-    },
-    { 
-      label: 'Design', 
-      href: '#',
-      dropdown: designDropdown 
-    },
-    { 
-      label: 'Geographical Indications', 
-      href: '#',
-      dropdown: geographicalDropdown 
-    },
-    { 
-      label: 'Legal Matters', 
-      href: '#',
-      dropdown: legalDropdown 
-    },
-  ];
+  interface SecondaryNavItem {
+    label: string;
+    href: string;
+    dropdown?: DropdownItem[];
+  }
+  
+  const secondaryNavItems: SecondaryNavItem[] = [
+      { 
+        label: 'TradeMark', 
+        href: '#',
+        dropdown: trademarkDropdown 
+      },
+      { 
+        label: 'Patent', 
+        href: '#',
+        dropdown: patentDropdown 
+      },
+      { 
+        label: 'Copyright', 
+        href: '#',
+        dropdown: copyrightDropdown 
+      },
+      { 
+        label: 'Design', 
+        href: '#',
+        dropdown: designDropdown 
+      },
+      { 
+        label: 'Geographical Indications', 
+        href: '#',
+        dropdown: geographicalDropdown 
+      },
+      { 
+        label: 'Legal Matters', 
+        href: '#',
+        dropdown: legalDropdown 
+      },
+    ];
 
   // Add dropdown position handler
   const getDropdownPosition = (label: string) => {
@@ -200,8 +254,19 @@ const Nav: React.FC = () => {
     return 'left-0'
   };
 
+  const toggleMobileDropdown = (label: string) => {
+    setMobileDropdowns(prev => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
+
   return (
-    <nav className="bg-[#EEEEEE] sticky top-0 z-50 w-full">
+    <nav 
+      className="bg-[#EEEEEE] sticky top-0 z-50 w-full"
+      onMouseEnter={() => setIsInteracting(true)}
+      onMouseLeave={() => setIsInteracting(false)}
+    >
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Mobile menu button */}
@@ -276,7 +341,7 @@ const Nav: React.FC = () => {
                           <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
                           
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
-                            {item.dropdown.map((column, idx) => (
+                            {Array.isArray(item.dropdown) && item.dropdown.map((column, idx) => (
                               <div key={idx}>
                                 <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
                                   <span className="text-[#00ADB5]">✦</span>
@@ -322,31 +387,106 @@ const Nav: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} py-6 space-y-4`}>
-          <div className="flex justify-end mb-4">
-            <button
-              onClick={() => setShowSecondaryNav(!showSecondaryNav)}
-              className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
-              aria-label={showSecondaryNav ? 'Show Main Menu' : 'Show Services Menu'}
-            >
-              <ChevronDown
-                size={24}
-                className={`transform transition-transform duration-500 ${
-                  showSecondaryNav ? 'rotate-180' : 'rotate-0'
-                }`}
-              />
-            </button>
-          </div>
-          {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="block py-3 text-gray-800 hover:text-[#00ADB5] font-medium text-base uppercase tracking-wider"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        <motion.div 
+          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 ${
+            isOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          onClick={() => setIsOpen(false)}
+        >
+          <motion.div
+            className="absolute left-0 top-0 bottom-0 w-[300px] bg-[#EEEEEE] shadow-2xl"
+            initial={{ x: "-100%" }}
+            animate={{ x: isOpen ? 0 : "-100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 h-full flex flex-col">
+              <div className="flex justify-between items-center mb-8">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
+                >
+                  <X size={24} />
+                </button>
+                <span className="text-[#00ADB5] text-2xl">✦</span>
+              </div>
+
+              <div className="flex justify-center mb-8">
+                <button
+                  onClick={() => setShowSecondaryNav(!showSecondaryNav)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md text-gray-700 hover:text-[#00ADB5] transition-colors"
+                >
+                  {showSecondaryNav ? 'Main Menu' : 'Services Menu'}
+                  <ChevronDown
+                    size={20}
+                    className={`transform transition-transform duration-300 ${
+                      showSecondaryNav ? 'rotate-180' : 'rotate-0'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto custom-scrollbar">
+                <div className="space-y-1">
+                  {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (
+                    <div key={item.label} className="border-b border-gray-100/50 last:border-0">
+                      {'dropdown' in item ? (
+                        <div className="py-2">
+                          <button
+                            onClick={() => toggleMobileDropdown(item.label)}
+                            className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                          >
+                            <span className="flex items-center gap-2">
+                              <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                              {item.label}
+                            </span>
+                            <ChevronDown
+                              size={18}
+                              className={`transform transition-transform duration-300 ${
+                                mobileDropdowns[item.label] ? 'rotate-180' : 'rotate-0'
+                              }`}
+                            />
+                          </button>
+                          
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ 
+                              height: mobileDropdowns[item.label] ? "auto" : 0,
+                              opacity: mobileDropdowns[item.label] ? 1 : 0
+                            }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            {item.dropdown && (
+                              <MobileDropdownContent 
+                                dropdown={item.dropdown} 
+                                onClose={() => {
+                                  setIsOpen(false);
+                                  setMobileDropdowns({});
+                                }}
+                              />
+                            )}
+                          </motion.div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </nav>
   );

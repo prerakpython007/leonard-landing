@@ -95,3 +95,22 @@ button:hover ~ .custom-cursor {
 .text-reveal {
   animation: fillAnimation 1.5s ease-in-out forwards;
 }
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #00ADB5 #EEEEEE;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #EEEEEE;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #00ADB5;
+  border-radius: 20px;
+}
