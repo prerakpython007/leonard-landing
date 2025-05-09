@@ -123,10 +123,10 @@ const Footer = () => {
         <div className="container mx-auto px-4 md:px-16 lg:px-24 py-6 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 Leonard Corporate Solutions Pvt. Ltd.
+              © 2025 Leonard Corporate Solutions Pvt. Ltd.
             </p>
             <div className="flex gap-6">
-              <Link href="/privacy" className="text-gray-400 hover:text-[#00ADB5] text-sm">
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-[#00ADB5] text-sm">
                 Privacy Policy
               </Link>
               <Link href="/terms" className="text-gray-400 hover:text-[#00ADB5] text-sm">

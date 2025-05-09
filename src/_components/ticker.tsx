@@ -40,11 +40,15 @@ const TickerTrack = styled.div<{ $direction: string; $speed: number; $isPaused: 
   animation: ${props => props.$direction === 'right' ? scrollRight : scrollLeft} 
     ${props => props.$speed}s linear infinite;
   animation-play-state: ${props => props.$isPaused ? 'paused' : 'running'};
-  gap: 15px;
+  gap: 30px; // Increased gap for more spacious, regal feel
   @media (min-width: 768px) {
-    gap: 20px;
+    gap: 40px;
   }
   will-change: transform;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
 `;
 
 const TickerContainer = styled.div`
@@ -96,15 +100,21 @@ const ImageContainer = styled.div`
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 const Ticker = () => {
   const [hoveredTicker, setHoveredTicker] = useState<number | null>(null);
 
   const tickerRows = [
-    { direction: 'left', speed: 60 },    // Increased speed for smoother scroll
-    { direction: 'right', speed: 50 },
-    { direction: 'left', speed: 70 }
+    { direction: 'left', speed: 120 },  // Slower, more elegant speed
+    { direction: 'right', speed: 140 }, // Slightly different speed for visual interest
+    { direction: 'left', speed: 160 }   // Even slower for bottom row
   ];
 
   return (

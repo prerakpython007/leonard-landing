@@ -145,7 +145,8 @@ const Landing = () => {
               </Stats>
               <Actions>
                 <PrimaryButton
-                  as={motion.button}
+                  as={motion.a}
+                  href="mailto:info@leonardsolutions.in"
                   whileHover={{ 
                     scale: 1.02, 
                     boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
@@ -397,6 +398,10 @@ const PrimaryButton = styled(motion.button)`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SecondaryButton = styled(motion.button)`

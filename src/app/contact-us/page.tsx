@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
+import IndiaMap from "~/components/IndiaMap"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -27,10 +28,13 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat scroll-smooth">
       {/* Grid Pattern Overlay */}
-      <div 
+      <motion.div 
         className="fixed inset-0 pointer-events-none" 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
@@ -64,187 +68,93 @@ export default function ContactPage() {
         </motion.div>
       </motion.section>
 
-      {/* Contact Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 space-y-24">
         <div className="max-w-6xl mx-auto">
-          {/* Contacting Us */}
+          {/* Privacy & Contact Information */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
-            initial={{ opacity: 0, y: 20 }}
+            className="bg-white/80 backdrop-blur-sm mb-10 rounded-2xl shadow-lg p-8 md:p-12 border border-white/20"
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Contacting Us</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed">
-              Upon request, we shall provide you with access to any personal information that we have collected about you
-              through our website. In the event that the personal information is not accurate, kindly contact us at{" "}
-              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
-                info@leonardsolutions.in
-              </a>{" "}
-              so that we may update this information and answer any questions that you may have.
-            </p>
-            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
-              We reserve the right to change this privacy policy at any time by posting a new or revised policy at this
-              location.
-            </p>
-          </motion.div>
-
-          {/* Head Office */}
-          <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Head Office (Mumbai)</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {contactDetails.map((detail, index) => (
-                <motion.div
-                  key={detail.title}
-                  className="group flex items-start gap-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
-                    <detail.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#222831] mb-2">{detail.title}</h3>
-                    {detail.title === "Email Us" ? (
-                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline text-lg">
-                        info@leonardsolutions.in
-                      </a>
-                    ) : (
-                      <p className="text-[#393E46]/80">{detail.text}</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Our Branches In India */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Our Branches In India</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <motion.img
-              src="/contact-map-color.png"
-              alt="Indian Branches"
-              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            />
-          </motion.div>
-
-          {/* International Associates */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">International Associates (Partners)</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <motion.img
-              src="/word-map.png"
-              alt="International Associates"
-              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            />
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-[#222831] mb-8 relative inline-block"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <span className="relative z-10">Privacy & Contact Information</span>
+              <span className="absolute bottom-0 left-0 h-3 w-full bg-[#00ADB5]/20 -z-10"></span>
+            </motion.h2>
+            <motion.div 
+              className="space-y-6 text-lg text-[#393E46] leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <p>
+                We value your privacy and are committed to protecting your personal information. Our team is here to assist you with any inquiries or concerns you may have regarding your data.
+              </p>
+              <div className="bg-[#F7F7F7] p-6 rounded-lg border-l-4 border-[#00ADB5]">
+                <p className="font-medium text-[#222831]">
+                  For any privacy-related questions or data access requests, please contact us at:{" "}
+                  <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                    info@leonardsolutions.in
+                  </a>
+                </p>
+              </div>
+              <p>
+                We maintain strict protocols to ensure the accuracy and security of your personal information. If you notice any inaccuracies in your data, our dedicated team will assist you in updating the information promptly.
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* Get In Touch Form */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 md:p-12"
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#222831] mb-8 relative inline-block">
               <span className="relative z-10">Get In Touch</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+              <span className="absolute bottom-0 left-0 h-3 w-full bg-[#00ADB5]/20 -z-10"></span>
             </h2>
+            <p className="text-lg text-[#393E46] mb-8">
+              We're here to help! Fill out the form below, and our team will get back to you promptly.
+            </p>
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="firstName" className="block text-[#222831] font-medium mb-2">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="lastName" className="block text-[#222831] font-medium mb-2">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-[#222831] font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="mobile" className="block text-[#222831] font-medium mb-2">
-                  Mobile No.
-                </label>
-                <input
-                  type="tel"
-                  id="mobile"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
+              {[
+                { name: "firstName", label: "First Name", type: "text" },
+                { name: "lastName", label: "Last Name", type: "text" },
+                { name: "email", label: "Email", type: "email" },
+                { name: "mobile", label: "Mobile No.", type: "tel" },
+              ].map((field, index) => (
+                <motion.div
+                  key={field.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor={field.name} className="block text-[#222831] font-medium mb-2">
+                    {field.label}
+                  </label>
+                  <input
+                    type={field.type}
+                    id={field.name}
+                    name={field.name}
+                    value={formData[field.name as keyof typeof formData]}
+                    onChange={handleChange}
+                    className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
+                    required
+                  />
+                </motion.div>
+              ))}
               <div className="md:col-span-2">
                 <label htmlFor="message" className="block text-[#222831] font-medium mb-2">
                   Your Message
@@ -270,29 +180,32 @@ export default function ContactPage() {
               </div>
             </form>
           </motion.div>
+
+          {/* India Map */}
+          <motion.div
+            className="mb-16 pt-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[#222831] mb-8 relative inline-block">
+              <span className="relative z-10">Our Presence Across India</span>
+              <span className="absolute bottom-0 left-0 h-3 w-full bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <p className="text-lg text-[#393E46] mb-12">
+              Explore our network of offices and partners across India
+            </p>
+            <IndiaMap />
+          </motion.div>
+
+          {/* Our Branches In India */}
+         
         </div>
       </section>
     </div>
   )
 }
-
-const contactDetails = [
-  {
-    icon: MapPin,
-    title: "Location",
-    text: "Office No. 305, Creative Industrial Estate,\nSunder Nagar Road No. 02, Kalina,\nSantacruz (East), Mumbai,\nMaharashtra, 400 098.",
-  },
-  {
-    icon: Phone,
-    title: "Phone & Fax Number",
-    text: "Landline: +91-22-26652048\n+91-22-26651538\nFax No: +91-22-265619248\nMobile: +91 9930032215",
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    text: "info@leonardsolutions.in",
-  },
-]
 
 function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ")
