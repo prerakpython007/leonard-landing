@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
-import IndiaMap from "~/components/IndiaMap"
+import Image from "next/image"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -181,26 +181,85 @@ export default function ContactPage() {
             </form>
           </motion.div>
 
-          {/* India Map */}
-          <motion.div
-            className="mb-16 pt-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#222831] mb-8 relative inline-block">
-              <span className="relative z-10">Our Presence Across India</span>
-              <span className="absolute bottom-0 left-0 h-3 w-full bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <p className="text-lg text-[#393E46] mb-12">
-              Explore our network of offices and partners across India
-            </p>
-            <IndiaMap />
+          {/* Our Branches in India */}
+          <motion.div className="mb-24 pt-16">
+            <div className="text-center mb-12 relative">
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</span>
+              <h2 className="text-5xl font-bold text-[#222831] mb-4 relative inline-block">
+                Our Branches in India
+                <span className="absolute -right-8 top-0 text-[#00ADB5] text-4xl animate-pulse">✦</span>
+              </h2>
+              <p className="text-xl text-[#393E46]/80 mt-4 max-w-2xl mx-auto">
+                Serving clients across the nation with strategic locations
+              </p>
+            </div>
+
+            <div className="relative h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-xl bg-white/80 backdrop-blur-sm">
+              <div className="absolute inset-0 bg-[#00ADB5]/5"></div>
+              <Image
+                src="/indian-map.png"
+                alt="Our Branches in India"
+                fill
+                className="object-contain p-8"
+              />
+              {/* Branch Markers */}
+              <div className="absolute inset-0 p-8">
+                {[
+                  { city: "Mumbai", position: "left-[45%] top-[60%]" },
+                  { city: "Delhi", position: "left-[45%] top-[35%]" },
+                  { city: "Bangalore", position: "left-[45%] top-[75%]" }
+                ].map((branch) => (
+                  <div key={branch.city} className={`absolute ${branch.position}`}>
+                    <div className="w-2 h-2 bg-[#00ADB5] rounded-full"></div>
+                    <span className="absolute -left-20 top-0 whitespace-nowrap text-sm font-medium text-[#222831]">
+                      {branch.city} Office
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Our Branches In India */}
-         
+          {/* International Associates */}
+          <motion.div className="pt-16">
+            <div className="text-center mb-12 relative">
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</span>
+              <h2 className="text-5xl font-bold text-[#222831] mb-4 relative inline-block">
+                International Associates
+                <span className="absolute -right-8 top-0 text-[#00ADB5] text-4xl animate-pulse">✦</span>
+              </h2>
+              <p className="text-xl text-[#393E46]/80 mt-4 max-w-2xl mx-auto">
+                Global partnerships ensuring comprehensive legal solutions
+              </p>
+            </div>
+
+            <div className="relative h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-xl bg-white/80 backdrop-blur-sm">
+              <div className="absolute inset-0 bg-[#00ADB5]/5"></div>
+              <Image
+                src="/world-map.png"
+                alt="Our International Associates"
+                fill
+                className="object-contain p-8"
+              />
+              {/* Partner Location Markers */}
+              <div className="absolute inset-0 p-8">
+                {[
+                  { country: "USA", position: "left-[25%] top-[40%]" },
+                  { country: "UK", position: "left-[45%] top-[35%]" },
+                  { country: "UAE", position: "left-[58%] top-[48%]" },
+                  { country: "Singapore", position: "left-[75%] top-[55%]" }
+                ].map((partner) => (
+                  <div key={partner.country} className={`absolute ${partner.position}`}>
+                    <div className="w-2 h-2 bg-[#00ADB5] rounded-full"></div>
+                    <span className="absolute -left-16 top-0 whitespace-nowrap text-sm font-medium text-[#222831]">
+                      {partner.country}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
     </div>
