@@ -53,7 +53,7 @@ const Experience = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
             <span className="text-[#00ADB5]">OUR</span> JOURNEY
           </h2>
-          <div className="w-24 h-1 bg-[#00ADB5] mx-auto mt-4 rounded-full" />
+          
         </div>
 
         {/* Mobile Grid View */}

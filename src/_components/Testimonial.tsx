@@ -44,6 +44,11 @@ const testimonials = [
 const TestimonialsSection = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
+  const getRotation = (index: number) => {
+    const rotations = [-3, 3, -3, 3]; // Alternating left and right rotations
+    return rotations[index] || 0;
+  };
+
   return (
     <section className="bg-[#EEEEEE] py-16 px-4 md:px-16 lg:px-24 relative overflow-hidden">
       <span className="absolute left-0 top-1/2 text-[#00ADB5] text-[200px] opacity-10 transform -translate-y-1/2">
@@ -55,10 +60,10 @@ const TestimonialsSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h3 className="text-[#00ADB5] text-lg font-semibold uppercase tracking-wider mb-4">
+          <h3 className="text-[#00ADB5] text-4xl font-bold uppercase tracking-wider mb-4">
             Testimonials
           </h3>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+          <h2 className="text-5xl md:text-6xl lg:text-lg font-bold mb-4">
             <span className="text-[#00ADB5]">What Our </span>
             <span className="text-[#222831]">Clients Say</span>
           </h2>
@@ -75,11 +80,25 @@ const TestimonialsSection = () => {
               className={`
                 bg-white p-8 rounded-2xl shadow-lg 
                 transition-all duration-300 cursor-pointer
-                ${hoveredId === testimonial.id ? 'shadow-xl scale-[1.02] -translate-y-1 z-10' : ''}
+                ${hoveredId === testimonial.id ? 'shadow-xl scale-[1.02] rotate-0 z-10' : ''}
               `}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 20, rotate: getRotation(index) }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                rotate: getRotation(index)
+              }}
+              whileHover={{ 
+                scale: 1.02, 
+                rotate: 0,
+                transition: { duration: 0.3 }
+              }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
               onMouseEnter={() => setHoveredId(testimonial.id)}
               onMouseLeave={() => setHoveredId(null)}

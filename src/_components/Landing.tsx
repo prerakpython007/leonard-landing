@@ -144,19 +144,18 @@ const Landing = () => {
                 </StatItem>
               </Stats>
               <Actions>
-                <a href="mailto:info@leonardsolutions.in">
-                  <PrimaryButton
-                    as={motion.button}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
-                      background: "linear-gradient(45deg, #00ADB5, #009ca3)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Start Consultation
-                  </PrimaryButton>
-                </a>
+                <PrimaryButton
+                  as={motion.a}
+                  href="mailto:info@leonardsolutions.in"
+                  whileHover={{ 
+                    scale: 1.02, 
+                    boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
+                    background: "linear-gradient(45deg, #00ADB5, #009ca3)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Start Consultation
+                </PrimaryButton>
                 <SecondaryButton
                   as={motion.button}
                   whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
@@ -399,6 +398,10 @@ const PrimaryButton = styled(motion.button)`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SecondaryButton = styled(motion.button)`

@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 // Image list with .png extensions, assuming transparent backgrounds
 const images = [
   "/img-1.png",  // Lady Justice (transparent PNG)
- "/img-2.png",  // Modern Courthouse (transparent PNG)
+  "/img-2.png",  // Modern Courthouse (transparent PNG)
   "/img-3.png",  // Law Books (transparent PNG)
   "/img-4.png",  // Modern Law Office (transparent PNG)
   "/img-5.png",  // Courthouse Columns (transparent PNG)
