@@ -37,48 +37,51 @@ const Experience = () => {
   });
 
   return (
-    <section className="bg-gradient-to-b from-[#EEEEEE] rounded-b-[5%] to-white py-16 md:py-24 relative overflow-hidden">
-      {/* Larger and higher positioned stars */}
-      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
-        ✦
-      </span>
-      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[300px] md:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
-        ✦
-      </span>
-      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
-        ✦
-      </span>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
-            <span className="text-[#00ADB5]">OUR</span> JOURNEY
-          </h2>
-          
-        </div>
+    <section className="bg-gradient-to-b from-[#EEEEEE] to-white py-16 md:py-24 relative overflow-hidden">
+      {/* Background Stars */}
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10">✦</span>
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10">✦</span>
 
-        {/* Mobile Grid View */}
-        <div className="grid grid-cols-1 gap-6 md:hidden">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.year}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 * index }}
-            >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                <div className="flex items-center gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#393E46] tracking-wider">
+            <span className="text-[#00ADB5] inline-block mb-2 sm:mb-0 sm:mr-2">OUR</span>
+            JOURNEY
+          </h2>
+        </motion.div>
+
+        {/* Mobile Timeline View */}
+        <div className="block md:hidden">
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={exp.year}
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 relative"
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.2 }}
+              >
+                <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#00ADB5] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">✦</span>
+                </div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-[#00ADB5]/10 rounded-full flex items-center justify-center">
                     <span className="text-2xl">{exp.icon}</span>
                   </div>
-                  <div>
-                    <span className="text-[#00ADB5] text-sm font-semibold">{exp.year}</span>
-                    <h3 className="text-[#222831] text-lg font-bold">{exp.title}</h3>
+                  <div className="flex-1">
+                    <span className="text-[#00ADB5] font-bold text-lg block mb-1">{exp.year}</span>
+                    <h3 className="text-[#222831] text-xl font-bold mb-2">{exp.title}</h3>
+                    <p className="text-[#393E46] text-sm">{exp.description}</p>
                   </div>
                 </div>
-                <p className="text-gray-600 mt-3 text-sm leading-relaxed">{exp.description}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Desktop Timeline View */}

@@ -46,6 +46,7 @@ const Nav: React.FC = () => {
   const [showSecondaryNav, setShowSecondaryNav] = useState(false); // Default to false for both server and client
   const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
   const [isInteracting, setIsInteracting] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Read from localStorage only on the client after mount
   useEffect(() => {
@@ -81,6 +82,17 @@ const Nav: React.FC = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
+
+  // Add scroll listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setScrolled(offset > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const primaryNavItems = [
     { label: 'Home', href: '/' },
@@ -262,8 +274,13 @@ const Nav: React.FC = () => {
   };
 
   return (
-    <nav 
-      className="bg-[#EEEEEE] sticky top-0 z-50 w-full"
+    <motion.nav 
+      className={`sticky top-0 w-full transition-all duration-300 z-[100] ${
+        scrolled ? 'bg-[#EEEEEE]/90 backdrop-blur-lg' : 'bg-[#EEEEEE]'
+      }`}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
       onMouseEnter={() => setIsInteracting(true)}
       onMouseLeave={() => setIsInteracting(false)}
     >
@@ -388,7 +405,7 @@ const Nav: React.FC = () => {
 
         {/* Mobile Navigation */}
         <motion.div 
-          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 ${
+          className={`md:hidden fixed inset-0 z-[9999] ${
             isOpen ? "pointer-events-auto" : "pointer-events-none"
           }`}
           initial={{ opacity: 0 }}
@@ -396,7 +413,7 @@ const Nav: React.FC = () => {
           onClick={() => setIsOpen(false)}
         >
           <motion.div
-            className="absolute left-0 top-0 bottom-0 w-[300px] bg-[#EEEEEE] shadow-2xl"
+            className="absolute left-0 top-0 bottom-0 w-[300px] bg-[#EEEEEE] z-[10000] h-[100vh] overflow-y-auto"
             initial={{ x: "-100%" }}
             animate={{ x: isOpen ? 0 : "-100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
@@ -488,7 +505,7 @@ const Nav: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
