@@ -65,8 +65,8 @@ export default function LegalOfferings() {
             </p>
             <p className="text-[#393E46] text-lg leading-relaxed mt-4">
               Contact us at{" "}
-              <a href="mailto:contact@leonard.com" className="text-[#00ADB5] hover:underline">
-                contact@leonard.com
+              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                info@leonardsolutions.in
               </a>{" "}
               for personalized assistance with your legal needs.
             </p>
