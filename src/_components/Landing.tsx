@@ -1,4 +1,5 @@
 "use client";
+
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect, useState, useRef } from 'react';
@@ -40,7 +41,7 @@ const Landing = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [magneticX, magneticY]);
 
   useEffect(() => {
     const animateCount = () => {
@@ -99,7 +100,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <Container ref={containerRef} className=''>
+    <Container ref={containerRef}>
       <ParticleBackground />
       <HeroSection>
         <GeometricOverlay />
@@ -188,79 +189,87 @@ const Landing = () => {
           </RightContent>
         </Content>
       </HeroSection>
+      <OurJourneySection>
+        <JourneyTitle>Our Journey</JourneyTitle>
+        <JourneyContent>
+          <LeftCards>
+            {[
+              {
+                year: 2013,
+                icon: "🏛️",
+                title: "Firm Establishment",
+                description: "Founded in Mumbai with a vision to provide excellent IP services."
+              },
+              {
+                year: 2018,
+                icon: "💡",
+                title: "Digital Innovation",
+                description: "Implemented AI-driven legal research and documentation systems."
+              }
+            ].map((milestone, index) => (
+              <JourneyCard
+                key={milestone.year}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <JourneyIcon>{milestone.icon}</JourneyIcon>
+                <JourneyYear>{milestone.year}</JourneyYear>
+                <JourneyCardTitle>{milestone.title}</JourneyCardTitle>
+                <JourneyDescription>{milestone.description}</JourneyDescription>
+              </JourneyCard>
+            ))}
+          </LeftCards>
+          <VerticalLine />
+          <RightCards>
+            {[
+              {
+                year: 2015,
+                icon: "🌏",
+                title: "International Expansion",
+                description: "Extended services to international clients across 25+ countries."
+              },
+              {
+                year: 2023,
+                icon: "⭐",
+                title: "Industry Leadership",
+                description: "Recognized as one of India's top IP law firms."
+              }
+            ].map((milestone, index) => (
+              <JourneyCard
+                key={milestone.year}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <JourneyIcon>{milestone.icon}</JourneyIcon>
+                <JourneyYear>{milestone.year}</JourneyYear>
+                <JourneyCardTitle>{milestone.title}</JourneyCardTitle>
+                <JourneyDescription>{milestone.description}</JourneyDescription>
+              </JourneyCard>
+            ))}
+          </RightCards>
+        </JourneyContent>
+        <JourneyButton
+          as={motion.button}
+          whileHover={{ backgroundColor: "#009ca3" }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => router.push('/about-us')}
+        >
+          Discover More
+        </JourneyButton>
+      </OurJourneySection>
     </Container>
   );
 };
 
-const GridDots = styled.div`
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 100px);
-  grid-template-rows: repeat(auto-fill, 100px);
-  pointer-events: none;
-
-  &::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    background: #00ADB5;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.3;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-`;
-
-const ParticleBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(0, 173, 181, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 173, 181, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px;
-  opacity: 0.7;
-  pointer-events: none;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
-    grid-template-rows: repeat(auto-fill, 100px);
-    
-    > * {
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: #00ADB5;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.3;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-    }
-  }
-`;
-
 // Styled components
 const Container = styled.div`
   background: #EEEEEE;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  margin-top: -2rem; // Added negative margin to pull content up
-  position: relative; // Added this to handle absolute positioning
-  min-height: 100vh; // Added to ensure full height
+  position: relative;
+  min-height: 100vh;
   isolation: isolate;
 
   &::before {
@@ -277,15 +286,24 @@ const Container = styled.div`
   }
 `;
 
+const ParticleBackground = styled.div`
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 173, 181, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 173, 181, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.7;
+  pointer-events: none;
+`;
+
 const HeroSection = styled.section`
   position: relative;
-  min-height: 85vh; // Reduced from 90vh
+  min-height: 80vh;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
-  padding-top: 12vh; // Reduced from 8vh
-  margin-bottom: 0;
-  padding-bottom: 0;
+  padding-top: 10vh;
 `;
 
 const GeometricOverlay = styled.div`
@@ -299,16 +317,16 @@ const GeometricOverlay = styled.div`
 const Content = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem; // Removed top padding
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: flex-start;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 3rem;
-    padding-top: 1rem; // Reduced padding for mobile
+    gap: 2rem;
+    padding: 1rem;
   }
 `;
 
@@ -324,16 +342,24 @@ const Eyebrow = styled.span`
   letter-spacing: 1px;
   display: block;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const MainTitle = styled.h1`
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 4vw, 4rem);
   line-height: 1.1;
   background: linear-gradient(135deg, #222831 0%, #393E46 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1.5rem;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
 `;
 
 const TitleHighlight = styled.span`
@@ -344,25 +370,37 @@ const TitleHighlight = styled.span`
 `;
 
 const SubHeading = styled.h2`
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
   color: #393E46;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const Stats = styled.div`
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  margin-bottom: 3rem;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 const StatItem = styled.div``;
 
 const StatValue = styled.div`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #222831;
   line-height: 1;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const StatLabel = styled.div`
@@ -372,7 +410,7 @@ const StatLabel = styled.div`
 `;
 
 const StatDivider = styled.div`
-  height: 50px;
+  height: 40px;
   width: 1px;
   background: linear-gradient(to bottom, transparent, #00ADB5, transparent);
 `;
@@ -392,52 +430,65 @@ const PrimaryButton = styled(motion.button)`
   background: #00ADB5;
   color: #EEEEEE;
   border: none;
-  padding: 1.2rem 2.5rem;
+  padding: 1rem 2rem;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+  }
 `;
 
 const SecondaryButton = styled(motion.button)`
   background: transparent;
   color: #222831;
   border: none;
-  padding: 1.2rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+  }
 `;
 
 const RightContent = styled.div`
   position: relative;
-  height: 550px;
-  margin-top: -2rem; // Added negative margin to pull image up
+  height: 500px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 
   @media (max-width: 1024px) {
-    display: none;
+    height: 300px;
+    display: block;
   }
 `;
 
 const DecorativeShape = styled.div`
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   background: linear-gradient(135deg, rgba(0, 173, 181, 0.15), transparent);
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation: 
     morph 8s ease-in-out infinite,
     float 6s ease-in-out infinite;
   filter: blur(2px);
+
+  @media (max-width: 1024px) {
+    width: 300px;
+    height: 300px;
+  }
 
   @keyframes morph {
     0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
@@ -454,17 +505,20 @@ const DecorativeShape = styled.div`
 const ImageWrapper = styled.div`
   position: relative;
   z-index: 2;
-  width: 400px;
-  height: 500px;
+  width: 350px;
+  height: 450px;
   overflow: hidden;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  transform-style: preserve-3d;
-  
+
   &:hover {
     transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+  }
+
+  @media (max-width: 1024px) {
+    width: 250px;
+    height: 300px;
   }
 `;
 
@@ -479,6 +533,151 @@ const StyledImage = styled.img`
   &:hover {
     transform: scale(1.15);
     filter: brightness(1.1) contrast(1.1);
+  }
+`;
+
+const OurJourneySection = styled.section`
+  padding: 4rem 2rem;
+  background: #F7F7F7;
+  text-align: center;
+`;
+
+const JourneyTitle = styled.h2`
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  color: #222831;
+  margin-bottom: 3rem;
+  font-weight: 600;
+`;
+
+const JourneyContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+`;
+
+const LeftCards = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const RightCards = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    gap: 1.5rem;
+  }
+`;
+
+const VerticalLine = styled(motion.div)`
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #00ADB5, transparent);
+  margin: 0 1rem;
+
+  @media (max-width: 768px) {
+    width: 2px;
+    height: auto;
+    margin: 0;
+    margin-right: 1rem;
+  }
+`;
+
+const JourneyCard = styled(motion.div)`
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 1.5rem;
+    text-align: left;
+  }
+`;
+
+const JourneyIcon = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const JourneyYear = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ADB5;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+`;
+
+const JourneyCardTitle = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222831;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const JourneyDescription = styled.p`
+  font-size: 0.9rem;
+  color: #393E46;
+  line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
+`;
+
+const JourneyButton = styled(motion.button)`
+  background: #00ADB5;
+  color: #EEEEEE;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
   }
 `;
 
