@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -28,13 +27,10 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat scroll-smooth">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
       {/* Grid Pattern Overlay */}
-      <motion.div 
+      <div 
         className="fixed inset-0 pointer-events-none" 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
@@ -43,34 +39,6 @@ export default function ContactPage() {
           backgroundSize: '30px 30px'
         }}
       />
-
-      {/* Background Stars */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(12)].map((_, i) => (
-          <motion.span
-            key={i}
-            className="absolute text-[#00ADB5] opacity-[0.07] text-7xl"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: [0.07, 0.03, 0.07],
-              scale: [1, 1.2, 1],
-              rotate: [0, 45, 0]
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              transform: `rotate(${Math.random() * 360}deg)`
-            }}
-          >
-            ✦
-          </motion.span>
-        ))}
-      </div>
 
       {/* Hero Section */}
       <motion.section
@@ -96,213 +64,235 @@ export default function ContactPage() {
         </motion.div>
       </motion.section>
 
-      <section className="py-20 px-4 md:px-16 lg:px-24 relative">
-        <div className="max-w-7xl mx-auto">
-          {/* Background Stars for Contact Section */}
-          <span className="absolute left-0 top-1/4 text-[#00ADB5] text-8xl opacity-10">✦</span>
-          <span className="absolute right-0 bottom-1/4 text-[#00ADB5] text-8xl opacity-10">✦</span>
-          
-          {/* Introduction Text */}
+      {/* Contact Information Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
+          {/* Contacting Us */}
           <motion.div
-            className="text-center mb-20"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#222831] mb-6">
-              Let's Work Together
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Contacting Us</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
-            <p className="text-lg md:text-xl text-[#393E46]/80 max-w-3xl mx-auto leading-relaxed">
-              Whether you're looking to protect your intellectual property, need legal consultation, 
-              or want to discuss your business needs, we're here to help. Our team of experts is 
-              ready to provide you with comprehensive solutions.
+            <p className="text-[#393E46] text-lg leading-relaxed">
+              Upon request, we shall provide you with access to any personal information that we have collected about you
+              through our website. In the event that the personal information is not accurate, kindly contact us at{" "}
+              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                info@leonardsolutions.in
+              </a>{" "}
+              so that we may update this information and answer any questions that you may have.
+            </p>
+            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
+              We reserve the right to change this privacy policy at any time by posting a new or revised policy at this
+              location.
             </p>
           </motion.div>
 
-          {/* Contact Grid with enhanced styling */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-32">
-            {/* Contact Info Section with improved layout */}
-            <motion.div
-              className="space-y-10"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-[#222831]">
-                  Get in Touch
-                </h3>
-                <p className="text-lg text-[#393E46]/80 leading-relaxed">
-                  Our dedicated team is available to assist you with any inquiries. 
-                  Reach out through your preferred channel:
-                </p>
-              </div>
-              
-              {/* Enhanced contact cards */}
-              <div className="space-y-6">
-                {[
-                  { 
-                    icon: Mail, 
-                    text: "info@leonardsolutions.in", 
-                    label: "Email us",
-                    description: "24/7 response for your queries"
-                  },
-                  { 
-                    icon: Phone, 
-                    text: "+91 1234567890", 
-                    label: "Call us",
-                    description: "Mon-Fri from 9am to 6pm"
-                  },
-                  { 
-                    icon: MapPin, 
-                    text: "Mumbai, Maharashtra, India", 
-                    label: "Visit us",
-                    description: "Corporate headquarters"
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start gap-6 p-6 bg-white/80 backdrop-blur-sm rounded-xl hover:bg-white/90 transition-all duration-300 shadow-sm hover:shadow-md"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <div className="w-12 h-12 bg-[#00ADB5]/10 rounded-xl flex items-center justify-center">
-                      <item.icon className="w-6 h-6 text-[#00ADB5]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-[#00ADB5] font-medium mb-1">{item.label}</p>
-                      <p className="text-[#222831] font-medium mb-1">{item.text}</p>
-                      <p className="text-sm text-[#393E46]/70">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-lg border border-white/20"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    { name: "firstName", label: "First Name", type: "text" },
-                    { name: "lastName", label: "Last Name", type: "text" },
-                  ].map((field) => (
-                    <div key={field.name}>
-                      <label className="text-sm font-medium text-[#222831] mb-1 block">
-                        {field.label}
-                      </label>
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        className="w-full p-3 bg-white/50 border border-[#393E46]/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5] transition-all"
-                        required
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                {[
-                  { name: "email", label: "Email", type: "email" },
-                  { name: "mobile", label: "Mobile No.", type: "tel" },
-                ].map((field) => (
-                  <div key={field.name}>
-                    <label className="text-sm font-medium text-[#222831] mb-1 block">
-                      {field.label}
-                    </label>
-                    <input
-                      type={field.type}
-                      name={field.name}
-                      className="w-full p-3 bg-white/50 border border-[#393E46]/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5] transition-all"
-                      required
-                    />
+          {/* Head Office */}
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Head Office (Mumbai)</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {contactDetails.map((detail, index) => (
+                <motion.div
+                  key={detail.title}
+                  className="group flex items-start gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                    <detail.icon className="h-6 w-6" />
                   </div>
-                ))}
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#222831] mb-2">{detail.title}</h3>
+                    {detail.title === "Email Us" ? (
+                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline text-lg">
+                        info@leonardsolutions.in
+                      </a>
+                    ) : (
+                      <p className="text-[#393E46]/80">{detail.text}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-                <div>
-                  <label className="text-sm font-medium text-[#222831] mb-1 block">
-                    Your Message
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    className="w-full p-3 bg-white/50 border border-[#393E46]/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5] transition-all"
-                    required
-                  ></textarea>
-                </div>
+          {/* Our Branches In India */}
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Our Branches In India</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <motion.img
+              src="/contact-map-color.png"
+              alt="Indian Branches"
+              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            />
+          </motion.div>
 
+          {/* International Associates */}
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">International Associates (Partners)</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <motion.img
+              src="/word-map.png"
+              alt="International Associates"
+              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            />
+          </motion.div>
+
+          {/* Get In Touch Form */}
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Get In Touch</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="firstName" className="block text-[#222831] font-medium mb-2">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="lastName" className="block text-[#222831] font-medium mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-[#222831] font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="mobile" className="block text-[#222831] font-medium mb-2">
+                  Mobile No.
+                </label>
+                <input
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
+                  required
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label htmlFor="message" className="block text-[#222831] font-medium mb-2">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5] min-h-[150px]"
+                  required
+                ></textarea>
+              </div>
+              <div className="md:col-span-2 text-center">
                 <motion.button
                   type="submit"
-                  className="w-full bg-[#00ADB5] text-white py-4 rounded-lg font-medium hover:bg-[#222831] transition-all duration-300"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
+                  className="inline-flex items-center justify-center bg-[#00ADB5] hover:bg-[#222831] text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Send Message
+                  Send Message <ArrowRight className="ml-2 h-4 w-4" />
                 </motion.button>
-              </form>
-            </motion.div>
-          </div>
-
-          {/* Maps Section with improved styling */}
-          <div className="space-y-32 relative">
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#00ADB5] text-[350px] opacity-[0.03] transform rotate-45">✦</span>
-            
-            {/* India Map */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center space-y-12"
-            >
-              <div>
-                <h2 className="text-3xl font-bold text-[#222831] mb-4">Our Presence in India</h2>
-                <p className="text-lg text-[#393E46]/80 max-w-2xl mx-auto">
-                  Strategically located offices across major cities to serve you better
-                </p>
               </div>
-              <div className="relative h-[600px] rounded-xl">
-                <Image
-                  src="/indian-map.png"
-                  alt="Our Branches in India"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-
-            {/* Global Map */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center space-y-12"
-            >
-              <div>
-                <h2 className="text-3xl font-bold text-[#222831] mb-4">Global Network</h2>
-                <p className="text-lg text-[#393E46]/80 max-w-2xl mx-auto">
-                  Connected worldwide to provide comprehensive international services
-                </p>
-              </div>
-              <div className="relative h-[600px] rounded-xl">
-                <Image
-                  src="/world-map.png"
-                  alt="Our International Associates"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-          </div>
+            </form>
+          </motion.div>
         </div>
       </section>
     </div>
   )
 }
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    title: "Location",
+    text: "Office No. 305, Creative Industrial Estate,\nSunder Nagar Road No. 02, Kalina,\nSantacruz (East), Mumbai,\nMaharashtra, 400 098.",
+  },
+  {
+    icon: Phone,
+    title: "Phone & Fax Number",
+    text: "Landline: +91-22-26652048\n+91-22-26651538\nFax No: +91-22-265619248\nMobile: +91 9930032215",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    text: "info@leonardsolutions.in",
+  },
+]
 
 function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ")

@@ -38,11 +38,11 @@ const Experience = () => {
 
   return (
     <section className="bg-gradient-to-b from-[#EEEEEE] to-white py-16 md:py-24 relative overflow-hidden">
-      {/* Background Stars */}
-      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10">✦</span>
-      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10">✦</span>
+      {/* Background Stars - Added z-index */}
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10 -z-10">✦</span>
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[150px] md:text-[300px] opacity-10 -z-10">✦</span>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -55,28 +55,28 @@ const Experience = () => {
           </h2>
         </motion.div>
 
-        {/* Mobile Timeline View */}
+        {/* Mobile Grid View */}
         <div className="block md:hidden">
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-6 px-4">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.year}
-                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 relative"
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.2 }}
+                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#00ADB5] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">✦</span>
-                </div>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-[#00ADB5]/10 rounded-full flex items-center justify-center">
                     <span className="text-2xl">{exp.icon}</span>
                   </div>
                   <div className="flex-1">
-                    <span className="text-[#00ADB5] font-bold text-lg block mb-1">{exp.year}</span>
-                    <h3 className="text-[#222831] text-xl font-bold mb-2">{exp.title}</h3>
-                    <p className="text-[#393E46] text-sm">{exp.description}</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[#00ADB5] text-xs">✦</span>
+                      <span className="text-[#00ADB5] font-bold">{exp.year}</span>
+                    </div>
+                    <h3 className="text-[#222831] text-lg font-bold mb-2">{exp.title}</h3>
+                    <p className="text-[#393E46] text-sm leading-relaxed">{exp.description}</p>
                   </div>
                 </div>
               </motion.div>
