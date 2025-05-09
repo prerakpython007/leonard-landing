@@ -2,23 +2,24 @@
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+// Image list with .png extensions, assuming transparent backgrounds
 const images = [
-  "/img-1.jpg",  // Lady Justice
-  "/img-2.jpg",  // Modern Courthouse
-  "/img-3.jpg",  // Law Books
-  "/img-4.jpg",  // Modern Law Office
-  "/img-5.jpg",  // Courthouse Columns
-  "/img-6.png",  // Meeting Room
-  "/img-7.png",  // Gavel
-  "/img-8.png",  // Law Library
-  "/img-9.jpg",  // Legal Documents
-  "/img-10.png", // Modern Building
-  "/img-11.png", // City Skyline
-  "/img-12.png", // Business Meeting
-  "/img-13.png", // Courtroom
-  "/img-14.png", // Office Space
-  "/img-15.gif", // Architecture
-  "/img-16.jpg", // Conference Room
+  "/img-1.png",  // Lady Justice (transparent PNG)
+ "/img-2.png",  // Modern Courthouse (transparent PNG)
+  "/img-3.png",  // Law Books (transparent PNG)
+  "/img-4.png",  // Modern Law Office (transparent PNG)
+  "/img-5.png",  // Courthouse Columns (transparent PNG)
+  "/img-6.png",  // Meeting Room (transparent PNG)
+  "/img-7.png",  // Gavel (transparent PNG)
+  "/img-8.png",  // Law Library (transparent PNG)
+  "/img-9.png",  // Legal Documents (transparent PNG)
+  "/img-10.png", // Modern Building (transparent PNG)
+  "/img-11.png", // City Skyline (transparent PNG)
+  "/img-12.png", // Business Meeting (transparent PNG)
+  "/img-13.png", // Courtroom (transparent PNG)
+  "/img-14.png", // Office Space (transparent PNG)
+  "/img-15.png", // Architecture (transparent PNG)
+  "/img-16.png", // Conference Room (transparent PNG)
 ].map((url, index) => ({ id: index, url }));
 
 // Quadruple the images for smoother infinite scroll
@@ -95,14 +96,15 @@ const ImageContainer = styled.div`
   }
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: none; /* No background */
+  border: none; /* No border */
 `;
 
 const Ticker = () => {
   const [hoveredTicker, setHoveredTicker] = useState<number | null>(null);
 
   const tickerRows = [
-    { direction: 'left', speed: 60 },    // Increased speed for smoother scroll
+    { direction: 'left', speed: 60 },
     { direction: 'right', speed: 50 },
     { direction: 'left', speed: 70 }
   ];
@@ -125,7 +127,7 @@ const Ticker = () => {
         </span>
       </div>
 
-      <div className="space-y-4"> {/* Changed from space-y-8 to space-y-4 */}
+      <div className="space-y-4">
         {tickerRows.map((row, index) => (
           <TickerContainer key={index}>
             <TickerWrapper
@@ -142,7 +144,7 @@ const Ticker = () => {
                     <img
                       src={image.url}
                       alt={`Legal Image ${image.id}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain border-none" /* Ensure no border */
                       loading="lazy"
                     />
                   </ImageContainer>

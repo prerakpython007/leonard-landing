@@ -144,17 +144,19 @@ const Landing = () => {
                 </StatItem>
               </Stats>
               <Actions>
-                <PrimaryButton
-                  as={motion.button}
-                  whileHover={{ 
-                    scale: 1.02, 
-                    boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
-                    background: "linear-gradient(45deg, #00ADB5, #009ca3)"
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Start Consultation
-                </PrimaryButton>
+                <a href="mailto:info@leonardsolutions.in">
+                  <PrimaryButton
+                    as={motion.button}
+                    whileHover={{ 
+                      scale: 1.02, 
+                      boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
+                      background: "linear-gradient(45deg, #00ADB5, #009ca3)"
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Start Consultation
+                  </PrimaryButton>
+                </a>
                 <SecondaryButton
                   as={motion.button}
                   whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}

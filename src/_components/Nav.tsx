@@ -216,7 +216,7 @@ const Nav: React.FC = () => {
 
           {/* Logo */}
           <div className="flex items-center h-full py-2">
-            <Link href="/" className="h-16 md:h-20 w-auto flex items-center">
+            <Link href="/" className="h-20 md:h-30 w-auto flex items-center">
               <img
                 src="/lion-logo.png"
                 alt="Law Firm Logo"
