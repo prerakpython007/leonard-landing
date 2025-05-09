@@ -18,46 +18,45 @@ export default function AboutPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+      {/* Grid Pattern Overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none" 
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px'
+        }}
+      />
+
       {/* Hero Section */}
       <motion.section
-        ref={sectionRef}
-        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 bg-grid-white/[0.1]" />
-        <div className="relative text-center mb-12 w-full">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative inline-block"
-          >
-            <span className="text-5xl md:text-6xl font-bold tracking-wider">
-              <strong className="text-white mr-2 relative">
-                ABOUT
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
-              </strong>
-              <span className="text-black">US</span>
-            </span>
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-          </motion.div>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
-          >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            About Us
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          </h1>
+          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Discover Our Expertise and Commitment to Excellence
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </motion.section>
 
-      {/* Tabs Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      {/* Rest of the content with updated styling */}
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 overflow-hidden">
           {/* Tabs */}
           <div className="flex border-b border-gray-100/20">
@@ -212,7 +211,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 

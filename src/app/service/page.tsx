@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, cubicBezier } from "framer-motion"
 import { BookOpen, Briefcase, FileText, Gavel, Shield, Globe } from "lucide-react"
 import Link from "next/link"
 import { useState, useRef } from 'react'
@@ -16,21 +16,24 @@ export default function Services() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "center start"]
   });
 
   const createLineTransforms = (lineCount: number, charsPerLine: number) => {
     const transforms = [];
     for (let i = 0; i < lineCount; i++) {
       const lineChars = [];
-      for (let j = 0; j < charsPerLine; j++) {
+      for (let j = 0; j < charsPerLine + 20; j++) { // Increased buffer for longer words
         const progress = useTransform(
           scrollYProgress,
           [
-            (i * 0.2) + (j * 0.002),
-            (i * 0.2) + (j * 0.002) + 0.1
+            Math.max(0, (i * 0.1) + (j * 0.001)), // Reduced timing gap
+            Math.min(1, (i * 0.1) + (j * 0.001) + 0.1)
           ],
-          ["#22283110", "#222831"]
+          ["#22283110", "#222831"],
+          {
+            ease: cubicBezier(0.45, 0.05, 0.55, 0.95)
+          }
         );
         lineChars.push(progress);
       }
@@ -40,10 +43,13 @@ export default function Services() {
   };
 
   const lines = [
-    "We provide comprehensive",
-    "legal solutions for your",
-    "business needs with",
-    "expertise and dedication"
+    "Welcome to our comprehensive legal services platform where",
+    "we bring together decades of expertise in intellectual",
+    "property law, corporate governance, and international",
+    "business regulations. Our team governance, and international",
+    "of dedicated professionals works tirelessly to ensure",
+    "your business interests are protected and advanced in",
+    "today's complex legal landscape"
   ];
 
   const maxChars = Math.max(...lines.map(line => line.length));
@@ -102,7 +108,7 @@ export default function Services() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative py-32 px-4 md:px-16 lg:px-24 overflow-hidden text-center"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -111,7 +117,7 @@ export default function Services() {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto"
+          className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Our Services
@@ -125,27 +131,69 @@ export default function Services() {
       </motion.section>
 
       {/* Description Section with Letter Animation */}
-      <section ref={containerRef} className="py-20 px-4 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-20 flex flex-col">
+      <section ref={containerRef} className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-[90rem] mx-auto">
+          <div className="mb-16 flex flex-col items-center space-y-6">
             {lines.map((line, lineIndex) => (
-              <div key={lineIndex} className="py-4 overflow-hidden">
-                <div className="text-6xl md:text-7xl font-bold flex flex-wrap">
-                  {line.split('').map((char, charIndex) => (
+              <motion.div 
+                key={lineIndex} 
+                className="overflow-hidden relative"
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ 
+                  y: 0, 
+                  opacity: 1,
+                  transition: {
+                    duration: 0.8,
+                    delay: lineIndex * 0.2,
+                    ease: [0.2, 0.65, 0.3, 0.9]
+                  }
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                <div className="text-2xl md:text-3xl font-bold flex flex-wrap justify-center px-4 space-x-2">
+                  {line.split(' ').map((word, wordIndex) => (
                     <motion.span
-                      key={charIndex}
-                      style={{ 
-                        color: colorTransforms[lineIndex]?.[charIndex] ?? "#22283110",
-                        transition: "color 0.2s ease",
-                        display: "inline-block",
-                        willChange: "color"
+                      key={wordIndex}
+                      className="inline-flex"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{
+                        y: 0,
+                        opacity: 1,
+                        transition: {
+                          duration: 0.5,
+                          delay: lineIndex * 0.15,
+                          ease: [0.2, 0.65, 0.3, 0.9]
+                        }
                       }}
+                      viewport={{ once: true }}
                     >
-                      {char === " " ? "\u00A0" : char}
+                      {word.split('').map((char, charIndex) => {
+                        // Improved character index calculation
+                        const previousWords = line.split(' ').slice(0, wordIndex);
+                        const previousChars = previousWords.reduce((acc, word) => acc + word.length, 0);
+                        const absoluteCharIndex = previousChars + charIndex + wordIndex;
+                        
+                        return (
+                          <motion.span
+                            key={charIndex}
+                            style={{ 
+                              color: colorTransforms[lineIndex]?.[absoluteCharIndex] ?? "#22283110",
+                              transition: "color 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)",
+                              display: "inline-block",
+                              willChange: "color",
+                              letterSpacing: "0.01em",
+                              lineHeight: "1.6"
+                            }}
+                          >
+                            {char}
+                          </motion.span>
+                        );
+                      })}
+                      {wordIndex !== line.split(' ').length - 1 && "\u00A0"}
                     </motion.span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

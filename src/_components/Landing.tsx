@@ -2,8 +2,10 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import styled from 'styled-components';
 import { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Landing = () => {
+  const router = useRouter();
   const [count, setCount] = useState({ years: 0, rate: 0 });
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -50,7 +52,7 @@ const Landing = () => {
       const timer = setInterval(() => {
         frame++;
         setCount({
-          years: Math.min(25, Math.floor((frame / totalFrames) * 25)),
+          years: Math.min(25, Math.floor((frame / totalFrames) * 11)),
           rate: Math.min(98, Math.floor((frame / totalFrames) * 98))
         });
         
@@ -110,10 +112,10 @@ const Landing = () => {
             >
               <Eyebrow>Welcome to <span className='textbor'>Leonard</span> Solutions</Eyebrow>
               <MainTitle>
-                <TitleHighlight>Justice</TitleHighlight>
-                <span> Meets</span>
+                <TitleHighlight>IPR</TitleHighlight>
+                <span> is our </span>
                 <br />
-                <span>Excellence</span>
+                <span>game</span>
               </MainTitle>
               <SubHeading>Your Premier Legal Partners</SubHeading>
               <Stats>
@@ -156,6 +158,7 @@ const Landing = () => {
                 <SecondaryButton
                   as={motion.button}
                   whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
+                  onClick={() => router.push('/about-us')}
                 >
                   Learn More →
                 </SecondaryButton>
