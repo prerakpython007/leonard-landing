@@ -12,7 +12,12 @@ interface AssignmentInfo {
   category: string; 
 }
 
-// Sample assignment data (same as in TrademarkAssignmentPage)
+// Define the interface for page props
+interface AssignmentDetailPageProps {
+  params: { id: string };
+}
+
+// Sample assignment data
 const assignmentInfo: AssignmentInfo[] = [
   {
     id: 1,
@@ -46,7 +51,7 @@ const assignmentInfo: AssignmentInfo[] = [
   }
 ]
 
-export default function AssignmentDetailPage({ params }: { params: { id: string } }) {
+export default function AssignmentDetailPage({ params }: AssignmentDetailPageProps) {
   // Convert id to number and find the assignment info
   const id = parseInt(params.id)
   const assignment = assignmentInfo.find((info) => info.id === id)
