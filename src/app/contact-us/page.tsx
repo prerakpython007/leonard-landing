@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
@@ -26,6 +26,19 @@ export default function ContactPage() {
     mobile: "",
     message: "",
   })
+
+  // Configure Leaflet icons only in the browser
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const L = require("leaflet")
+      delete (L.Icon.Default.prototype as any)._getIconUrl
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      })
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -195,7 +208,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 róelative">
               <span className="relative z-10">Get In Touch</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>

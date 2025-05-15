@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { FileText, RefreshCw, ShieldOff, Gavel, FileSignature, Palette, Layers, Copyright } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-
+ 
 export default function TrademarkPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
