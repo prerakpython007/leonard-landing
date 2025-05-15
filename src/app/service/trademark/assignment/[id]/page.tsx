@@ -9,7 +9,7 @@ interface AssignmentInfo {
   id: number;
   title: string;
   description: string;
-  category: string;
+  category: string; 
 }
 
 // Sample assignment data (same as in TrademarkAssignmentPage)
