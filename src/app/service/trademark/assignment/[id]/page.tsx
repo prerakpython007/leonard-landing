@@ -15,6 +15,7 @@ interface AssignmentInfo {
 // Define the interface for page props
 interface AssignmentDetailPageProps {
   params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 // Sample assignment data
