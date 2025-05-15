@@ -299,7 +299,7 @@ export default function ContactPage() {
               <span className="relative z-10">Our Global Locations</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
-            <MapComponent />
+            {/* <MapComponent /> */}
           </motion.div>
         </div>
       </section>
