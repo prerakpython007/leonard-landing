@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
@@ -14,14 +14,6 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { 
 
 // Import Leaflet CSS
 import "leaflet/dist/leaflet.css"
-// Fix for default marker icons in Leaflet
-import L from "leaflet"
-delete (L.Icon.Default.prototype as any)._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1..9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-})
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,6 +23,19 @@ export default function ContactPage() {
     mobile: "",
     message: "",
   })
+
+  // Configure Leaflet icons only in the browser
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const L = require("leaflet")
+      delete (L.Icon.Default.prototype as any)._getIconUrl
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      })
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -103,7 +108,7 @@ export default function ContactPage() {
               </a>{" "}
               so that we may update this information and answer any questions that you may have.
             </p>
-            <p className="text-[#393E-well6] text-lg leading-relaxed mt-4">
+            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
               We reserve the right to change this privacy policy at any time by posting a new or revised policy at this
               location.
             </p>
@@ -148,7 +153,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          Our Branches In India
+          {/* Our Branches In India */}
           <motion.div
             className="mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -200,7 +205,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 róelative">
               <span className="relative z-10">Get In Touch</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
@@ -299,7 +304,7 @@ export default function ContactPage() {
               <span className="relative z-10">Our Global Locations</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
-            {/* <MapComponent /> */}
+            <MapComponent />
           </motion.div>
         </div>
       </section>
@@ -327,6 +332,20 @@ const contactDetails = [
 
 // Map Component
 const MapComponent = () => {
+  const [asiaBounds, setAsiaBounds] = useState(null)
+
+  // Load Leaflet and set bounds only in the browser
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const L = require("leaflet")
+      const bounds = L.latLngBounds([
+        [5, 60], // Southwest corner (near southern India/Sri Lanka)
+        [40, 120], // Northeast corner (near China/Japan)
+      ])
+      setAsiaBounds(bounds)
+    }
+  }, [])
+
   // Store locations (exactly as provided in your original code)
   const stores = [
     // Indian States/Territories
@@ -342,7 +361,6 @@ const MapComponent = () => {
     { region: "Karnataka", name: "Bengaluru", lat: 12.9716, lng: 77.5946 },
     { region: "Kerala", name: "Thiruvananthapuram", lat: 8.5241, lng: 76.9366 },
     { region: "Tamil Nadu", name: "Chennai", lat: 13.0827, lng: 80.2707 },
-    
     // Global Countries
     { region: "Canada", name: "Toronto", lat: 43.6532, lng: -79.3832 },
     { region: "United Kingdom", name: "London", lat: 51.5074, lng: -0.1278 },
@@ -368,11 +386,10 @@ const MapComponent = () => {
     { region: "Australia", name: "Sydney", lat: -33.8688, lng: 151.2093 },
   ]
 
-  // Define bounds to focus on Asia, centered on India
-  const asiaBounds = L.latLngBounds([
-    [5, 60], // Southwest corner (near southern India/Sri Lanka)
-    [40, 120], // Northeast corner (near China/Japan)
-  ])
+  // Render map only when asiaBounds is available
+  if (!asiaBounds) {
+    return <div>Loading map...</div> // Fallback while bounds are being set
+  }
 
   return (
     <div className="w-full h-[600px] rounded-lg overflow-hidden">
