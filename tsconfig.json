@@ -37,6 +37,6 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-  ],
+, ".next/types/app/service/trademark/assignment/[id]/page.tsx"  ],
   "exclude": ["node_modules"]
 }
