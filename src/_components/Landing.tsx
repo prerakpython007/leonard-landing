@@ -145,18 +145,13 @@ const Landing = () => {
                 </StatItem>
               </Stats>
               <Actions>
-                <PrimaryButton
-                  as={motion.a}
-                  href="mailto:info@leonardsolutions.in"
-                  whileHover={{ 
-                    scale: 1.02, 
-                    boxShadow: "0 10px 30px rgba(0, 173, 181, 0.3)",
-                    background: "linear-gradient(45deg, #00ADB5, #009ca3)"
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                <ConsultationBtn
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@leonardsolutions.in&su=Consultation%20Request"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Start Consultation
-                </PrimaryButton>
+                </ConsultationBtn>
                 <SecondaryButton
                   as={motion.button}
                   whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
@@ -354,23 +349,35 @@ const Actions = styled.div`
   }
 `;
 
-const PrimaryButton = styled(motion.button)`
-  background: #00ADB5;
+const ConsultationBtn = styled.a`
+  background: linear-gradient(90deg, #00ADB5 0%, #009ca3 100%);
   color: #EEEEEE;
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 173, 181, 0.15);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  margin-right: 1.5rem;
+
+  &:hover, &:focus {
+    background: linear-gradient(90deg, #009ca3 0%, #00ADB5 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(0, 173, 181, 0.25);
+    color: #fff;
+  }
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 0.8rem 1.5rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    justify-content: center;
   }
 `;
 
