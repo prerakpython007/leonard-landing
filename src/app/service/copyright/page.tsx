@@ -1,37 +1,102 @@
+
 "use client"
 
 import { motion } from "framer-motion"
 import { Briefcase, FileText, Gavel, Shield, FileCheck, Scale } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function CopyrightPage() {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+
+  const serviceCards = [
+    {
+      icon: FileCheck,
+      title: "Copyright Registration",
+      description: "Secure copyright protection for your creative works through expert registration services.",
+      slug: "registration",
+    },
+    {
+      icon: FileText,
+      title: "Literary Works",
+      description: "Protect books, articles, software, and other written content with copyright registration.",
+      slug: "literary",
+    },
+    {
+      icon: Shield,
+      title: "Artistic Works",
+      description: "Safeguard paintings, photographs, designs, and other visual arts with copyright protection.",
+      slug: "artistic",
+    },
+    {
+      icon: Scale,
+      title: "Musical Works",
+      description: "Ensure copyright protection for compositions, lyrics, and recordings of musical works.",
+      slug: "musical",
+    },
+    {
+      icon: Briefcase,
+      title: "Copyright Assignment",
+      description: "Facilitate the transfer of copyright ownership through legally sound assignment agreements.",
+      slug: "assignment",
+    },
+    {
+      icon: Gavel,
+      title: "Copyright Notice",
+      description: "Implement proper copyright notices to inform others of your rights and deter infringement.",
+      slug: "notice",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+      {/* Grid Pattern Overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: "30px 30px",
+        }}
+      />
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/[0.1]" />
-        <div className="relative text-center mb-12 w-full">
-          <div className="relative inline-block">
-            <span className="text-5xl md:text-6xl font-bold tracking-wider">
-              <strong className="text-white mr-2 relative">
-                COPYRIGHT
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
-              </strong>
-              <span className="text-black">SERVICES</span>
-            </span>
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block">✦</span>
-          </div>
-          <p className="text-xl mt-6 text-white/90 max-w-2xl mx-auto">
+      <motion.section
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Copyright Services
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          </h1>
+          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Safeguarding Your Creative Works with Expertise
           </p>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Copyright Information Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20">
+          {/* Copyright Overview */}
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
               <span className="relative z-10">Copyright Overview</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
@@ -50,72 +115,69 @@ export default function CopyrightPage() {
               </a>{" "}
               for personalized assistance with your copyright needs.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-12">
+          {/* Our Services */}
+          <motion.div
+            className="space-y-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Our Services</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+              <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+                <span className="relative z-10">Our Services</span>
+                <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+              </h2>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {serviceCards.map((service, index) => (
-                <div
+                <Link
                   key={service.title}
-                  className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
+                  href={`/service/copyright/${service.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredCard(service.title)}
+                  onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white">
-                      <service.icon className="h-6 w-6" />
+                  <motion.div
+                    className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/20 relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex flex-col gap-4 relative z-10">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                        <service.icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.title}</h3>
+                        <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{service.title}</h3>
-                      <p className="text-[#393E46]/80">{service.description}</p>
-                    </div>
-                  </div>
-                </div>
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ADB5] to-[#00959c]"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  </motion.div>
+                </Link>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   )
-}
-
-const serviceCards = [
-  {
-    icon: FileCheck,
-    title: "Copyright Registration",
-    description: "Secure copyright protection for works like software, literature, and designs through expert registration."
-  },
-  {
-    icon: Shield,
-    title: "Copyright Clearance",
-    description: "Assess works to ensure they are free from infringement risks before use or publication."
-  },
-  {
-    icon: Scale,
-    title: "Anti-Counterfeiting Enforcement",
-    description: "Protect copyrights through customs measures and enforcement actions across India."
-  },
-  {
-    icon: FileText,
-    title: "Due Diligence",
-    description: "Evaluate copyright assets in contractual and transactional matters for secure deals."
-  },
-  {
-    icon: Briefcase,
-    title: "Copyright Licensing",
-    description: "Negotiate and draft licensing agreements to maximize the value of your copyrighted works."
-  },
-  {
-    icon: Gavel,
-    title: "Copyright Litigation",
-    description: "Represent clients in copyright disputes to enforce rights and defend against infringement."
-  }
-]
-
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ")
 }

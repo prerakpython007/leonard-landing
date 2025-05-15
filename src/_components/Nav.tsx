@@ -1,4 +1,4 @@
-'use client'; // Optional: Use this if you want to avoid SSR entirely
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
@@ -29,8 +29,12 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
             <Link
               key={subIdx}
               href={subItem.href}
+              data-testid={`mobile-dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
               className="block p-2 text-gray-600 hover:text-[#00ADB5] text-sm rounded-lg hover:bg-white/50 transition-all"
-              onClick={onClose}
+              onClick={() => {
+                console.log(`Mobile: Navigating to ${subItem.href}`);
+                onClose();
+              }}
             >
               {subItem.label}
             </Link>
@@ -53,26 +57,24 @@ interface MobileNavItem extends SecondaryNavItem {
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showSecondaryNav, setShowSecondaryNav] = useState(false); // Default to false for both server and client
+  const [showSecondaryNav, setShowSecondaryNav] = useState(false);
   const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
   const [isInteracting, setIsInteracting] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Read from localStorage only on the client after mount
   useEffect(() => {
     const saved = localStorage.getItem('showSecondaryNav');
     if (saved) {
       setShowSecondaryNav(JSON.parse(saved));
     }
-  }, []); // Empty dependency array: runs once after mount
+  }, []);
 
-  // Update localStorage when showSecondaryNav changes
   useEffect(() => {
     localStorage.setItem('showSecondaryNav', JSON.stringify(showSecondaryNav));
   }, [showSecondaryNav]);
 
   useEffect(() => {
-    if (isOpen || isInteracting) return; // Don't auto-switch if menu is open or user is interacting
+    if (isOpen || isInteracting) return;
 
     const timer = setInterval(() => {
       setShowSecondaryNav((prev: any) => !prev);
@@ -81,7 +83,6 @@ const Nav: React.FC = () => {
     return () => clearInterval(timer);
   }, [isOpen, isInteracting]);
 
-  // Add scroll lock when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -93,7 +94,6 @@ const Nav: React.FC = () => {
     };
   }, [isOpen]);
 
-  // Add scroll listener
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -110,7 +110,8 @@ const Nav: React.FC = () => {
     { label: 'About Us', href: '/about-us' },
     { label: 'Contact Us', href: '/contact-us' },
     { label: 'Blogs', href: '/blogs' },
-    { label: 'Pricing', href: '/price' }, // Fixed typo: removed space
+    { label: 'Pricing', href: '/price' },
+    { label: 'Resource', href: '/resource' },
   ];
 
   const trademarkDropdown: DropdownItem[] = [
@@ -229,51 +230,20 @@ const Nav: React.FC = () => {
     }
   ];
 
-  interface SecondaryNavItem {
-    label: string;
-    href: string;
-    dropdown?: DropdownItem[];
-  }
-  
   const secondaryNavItems: SecondaryNavItem[] = [
-      { 
-        label: 'TradeMark', 
-        href: '#',
-        dropdown: trademarkDropdown 
-      },
-      { 
-        label: 'Patent', 
-        href: '#',
-        dropdown: patentDropdown 
-      },
-      { 
-        label: 'Copyright', 
-        href: '#',
-        dropdown: copyrightDropdown 
-      },
-      { 
-        label: 'Design', 
-        href: '#',
-        dropdown: designDropdown 
-      },
-      { 
-        label: 'Geographical Indications', 
-        href: '#',
-        dropdown: geographicalDropdown 
-      },
-      { 
-        label: 'Legal Matters', 
-        href: '#',
-        dropdown: legalDropdown 
-      },
-    ];
+    { label: 'TradeMark', href: '/service/trademark', dropdown: trademarkDropdown },
+    { label: 'Patent', href: '/service/patent', dropdown: patentDropdown },
+    { label: 'Copyright', href: '/service/copyright', dropdown: copyrightDropdown },
+    { label: 'Design', href: '/service/design', dropdown: designDropdown },
+    { label: 'Geographical Indications', href: '/service/geographical', dropdown: geographicalDropdown },
+    { label: 'Legal Matters', href: '/service/legal', dropdown: legalDropdown },
+  ];
 
-  // Add dropdown position handler
   const getDropdownPosition = (label: string) => {
     if (label === 'Legal Matters' || label === 'Geographical Indications') {
-      return 'right-0'
+      return 'right-0';
     }
-    return 'left-0'
+    return 'left-0';
   };
 
   const toggleMobileDropdown = (label: string) => {
@@ -296,7 +266,6 @@ const Nav: React.FC = () => {
     >
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Mobile menu button */}
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -306,7 +275,6 @@ const Nav: React.FC = () => {
             </button>
           </div>
 
-          {/* Logo */}
           <div className="flex items-center h-full py-2">
             <Link href="/" className="h-20 md:h-30 w-auto flex items-center">
               <img
@@ -317,10 +285,8 @@ const Nav: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation - All items on right */}
           <div className="hidden md:flex items-center h-full">
             <div className="relative h-full w-[600px] lg:w-[800px] xl:w-[1000px]">
-              {/* Primary Navigation */}
               <div
                 className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
                   showSecondaryNav
@@ -339,7 +305,6 @@ const Nav: React.FC = () => {
                 ))}
               </div>
 
-              {/* Secondary Navigation */}
               <div
                 className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
                   showSecondaryNav
@@ -353,6 +318,7 @@ const Nav: React.FC = () => {
                       <Link
                         href={item.href}
                         className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                        onClick={() => console.log(`Parent: Navigating to ${item.href}`)}
                       >
                         {item.label}
                       </Link>
@@ -379,7 +345,9 @@ const Nav: React.FC = () => {
                                     <li key={subIdx}>
                                       <Link
                                         href={subItem.href}
+                                        data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
                                         className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
+                                        onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
                                       >
                                         <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
                                         {subItem.label}
@@ -413,7 +381,6 @@ const Nav: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <motion.div 
           className={`md:hidden fixed inset-0 z-[9999] ${
             isOpen ? "pointer-events-auto" : "pointer-events-none"

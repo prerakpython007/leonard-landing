@@ -98,7 +98,7 @@ export default function CopyrightArtisticPage() {
               Artistic copyright, governed by the Copyright Act, 1957 in India, secures exclusive rights for creators of original visual works, including paintings, photographs, and digital art. Registering your artwork strengthens your ability to prevent unauthorized use and ensures your creative legacy is protected. BrandSecure offers expert assistance to streamline the copyright registration process, keeping your artistic creations safe.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

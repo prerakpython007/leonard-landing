@@ -98,7 +98,7 @@ export default function TrademarkOppositionPage() {
               After a trademark application is accepted, it’s published in the Trademark Journal for four months, allowing anyone to oppose its registration. This critical phase determines whether the trademark proceeds to registration or faces challenges. At BrandSecure, we provide expert guidance to handle trademark opposition in India, ensuring a smooth resolution for applicants or opponents.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -147,7 +147,7 @@ export default function TrademarkOppositionPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/opposition/${info.id}`}
+                      href={`/service/trademark/opposition/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore

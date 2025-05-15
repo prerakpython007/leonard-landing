@@ -1,110 +1,104 @@
 "use client"
 
-import { motion, useScroll, useTransform, cubicBezier } from "framer-motion"
-import { BookOpen, Briefcase, FileText, Gavel, Shield, Globe } from "lucide-react"
+import { motion } from "framer-motion"
+import { BookOpen, Briefcase, FileText, Gavel, Shield, Globe, UserCheck, Package, Lock, Scale } from "lucide-react"
 import Link from "next/link"
-import { useState, useRef } from 'react'
+import { useState } from "react"
 
 export default function Services() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "center start"]
-  });
-
-  const createLineTransforms = (lineCount: number, charsPerLine: number) => {
-    const transforms = [];
-    for (let i = 0; i < lineCount; i++) {
-      const lineChars = [];
-      for (let j = 0; j < charsPerLine + 20; j++) { // Increased buffer for longer words
-        const progress = useTransform(
-          scrollYProgress,
-          [
-            Math.max(0, (i * 0.1) + (j * 0.001)), // Reduced timing gap
-            Math.min(1, (i * 0.1) + (j * 0.001) + 0.1)
-          ],
-          ["#22283110", "#222831"],
-          {
-            ease: cubicBezier(0.45, 0.05, 0.55, 0.95)
-          }
-        );
-        lineChars.push(progress);
-      }
-      transforms.push(lineChars);
-    }
-    return transforms;
-  };
-
-  const lines = [
-    "Welcome to our comprehensive legal services platform where",
-    "we bring together decades of expertise in intellectual",
-    "property law, corporate governance, and international",
-    "business regulations. Our team governance, and international",
-    "of dedicated professionals works tirelessly to ensure",
-    "your business interests are protected and advanced in",
-    "today's complex legal landscape"
-  ];
-
-  const maxChars = Math.max(...lines.map(line => line.length));
-  const colorTransforms = createLineTransforms(lines.length, maxChars);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   const services = [
-    { name: "Patents", icon: FileText, description: "Protect your inventions with robust patent strategies.", route: "service/patent" },
-    { name: "Trademarks", icon: Shield, description: "Safeguard your brand identity with trademark registration.", route: "service/trademark" },
-    { name: "Copyright", icon: BookOpen, description: "Secure your creative works with copyright protection.", route: "service/copyright" },
-    { name: "Company Law", icon: Briefcase, description: "Comprehensive legal support for corporate governance.", route: "service/company-law" },
-    { name: "Legal Consulting", icon: Gavel, description: "Expert legal guidance for your business needs.", route: "service/consulting" },
-    { name: "International Law", icon: Globe, description: "Navigate global legal landscapes effectively.", route: "service/international" },
-  ];
+    {
+      name: "Patents",
+      icon: FileText,
+      description: "Secure your innovations with expert patent filing and protection strategies.",
+      route: "service/patent",
+    },
+    {
+      name: "Trademarks",
+      icon: Shield,
+      description: "Protect your brand with comprehensive trademark registration and enforcement.",
+      route: "service/trademark",
+    },
+    {
+      name: "Copyright",
+      icon: BookOpen,
+      description: "Safeguard your creative works through robust copyright solutions.",
+      route: "service/copyright",
+    },
+    {
+      name: "Company Law",
+      icon: Briefcase,
+      description: "Navigate corporate governance with tailored legal support.",
+      route: "service/company-law",
+    },
+    {
+      name: "Legal Consulting",
+      icon: Gavel,
+      description: "Receive expert guidance for complex business and legal challenges.",
+      route: "service/consulting",
+    },
+    {
+      name: "International Law",
+      icon: Globe,
+      description: "Manage global legal requirements with confidence and precision.",
+      route: "service/international",
+    },
+  ]
+
+  const otherServices = [
+    {
+      name: "Company Law And Legal Support",
+      icon: Briefcase,
+      description: "Comprehensive legal support for corporate governance.",
+      route: "service/legal/company-law-and-legal-support",
+    },
+    {
+      name: "Commercial Contracts",
+      icon: FileText,
+      description: "Draft and review contracts to secure your business deals.",
+      route: "service/legal/commercial-contracts",
+    },
+    {
+      name: "Employment & HR Law",
+      icon: UserCheck,
+      description: "Navigate employment laws for compliant HR practices.",
+      route: "service/legal/employment-hr-law",
+    },
+    {
+      name: "Outsourcing & Procurement",
+      icon: Package,
+      description: "Streamline outsourcing and procurement processes.",
+      route: "service/legal/outsourcing-procurement",
+    },
+    {
+      name: "Privacy & Data Protection",
+      icon: Lock,
+      description: "Ensure compliance with data protection regulations.",
+      route: "service/legal/privacy-data-protection",
+    },
+    {
+      name: "FSSAI Licensing",
+      icon: Scale,
+      description: "Obtain FSSAI licenses for food safety compliance.",
+      route: "service/legal/fssai-licensing",
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat" onMouseMove={handleMouseMove}>
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: "30px 30px",
         }}
       />
-
-      {/* Hover Blob */}
-      {hoveredCard && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1,
-            transition: {
-              type: "spring",
-              stiffness: 260,
-              damping: 20
-            }
-          }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed pointer-events-none z-50 px-6 py-3 rounded-full font-medium backdrop-blur-sm"
-          style={{
-            left: mousePosition.x,
-            top: mousePosition.y,
-            transform: 'translate(-50%, -50%)',
-            background: 'rgba(0, 173, 181, 0.9)',
-            boxShadow: '0 8px 32px rgba(0, 173, 181, 0.2)',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
-          }}
-        >
-          <span className="relative z-10 text-white tracking-wider">View</span>
-        </motion.div>
-      )}
 
       {/* Hero Section */}
       <motion.section
@@ -125,85 +119,43 @@ export default function Services() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Empowering businesses with comprehensive legal solutions
+            Comprehensive Legal Solutions for Your Business
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Description Section with Letter Animation */}
-      <section ref={containerRef} className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-[90rem] mx-auto">
-          <div className="mb-16 flex flex-col items-center space-y-6">
-            {lines.map((line, lineIndex) => (
-              <motion.div 
-                key={lineIndex} 
-                className="overflow-hidden relative"
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ 
-                  y: 0, 
-                  opacity: 1,
-                  transition: {
-                    duration: 0.8,
-                    delay: lineIndex * 0.2,
-                    ease: [0.2, 0.65, 0.3, 0.9]
-                  }
-                }}
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                <div className="text-2xl md:text-3xl font-bold flex flex-wrap justify-center px-4 space-x-2">
-                  {line.split(' ').map((word, wordIndex) => (
-                    <motion.span
-                      key={wordIndex}
-                      className="inline-flex"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{
-                        y: 0,
-                        opacity: 1,
-                        transition: {
-                          duration: 0.5,
-                          delay: lineIndex * 0.15,
-                          ease: [0.2, 0.65, 0.3, 0.9]
-                        }
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      {word.split('').map((char, charIndex) => {
-                        // Improved character index calculation
-                        const previousWords = line.split(' ').slice(0, wordIndex);
-                        const previousChars = previousWords.reduce((acc, word) => acc + word.length, 0);
-                        const absoluteCharIndex = previousChars + charIndex + wordIndex;
-                        
-                        return (
-                          <motion.span
-                            key={charIndex}
-                            style={{ 
-                              color: colorTransforms[lineIndex]?.[absoluteCharIndex] ?? "#22283110",
-                              transition: "color 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)",
-                              display: "inline-block",
-                              willChange: "color",
-                              letterSpacing: "0.01em",
-                              lineHeight: "1.6"
-                            }}
-                          >
-                            {char}
-                          </motion.span>
-                        );
-                      })}
-                      {wordIndex !== line.split(' ').length - 1 && "\u00A0"}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Our Expertise Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+              <span className="relative z-10">Our Expertise</span>
+              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed">
+              We provide a wide range of legal services designed to protect and advance your business interests. From intellectual property to corporate governance, our team of experts is committed to delivering tailored solutions that meet your unique needs. For inquiries about our services, please contact us at{" "}
+              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                info@leonardsolutions.in
+              </a>.
+            </p>
+            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
+              We reserve the right to update or modify our service offerings at any time. Any changes will be reflected on this page.
+            </p>
+          </motion.div>
 
-      {/* Services Grid */}
-      <section className="py-20 px-4 sm:px-6 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          {/* Services Grid */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             {services.map((service, index) => (
               <Link
@@ -214,8 +166,9 @@ export default function Services() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <motion.div
-                  className="h-full bg-white/90 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#00ADB5]/20 relative overflow-hidden"
+                  className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/20 relative overflow-hidden"
                   whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <div className="flex flex-col gap-4 relative z-10">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
@@ -223,10 +176,10 @@ export default function Services() {
                     </div>
                     <div>
                       <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.name}</h3>
-                      <p className="text-[#393E46]/70 text-sm md:text-base">{service.description}</p>
+                      <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
                     </div>
                   </div>
-                  <motion.div 
+                  <motion.div
                     className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ADB5] to-[#00959c]"
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
@@ -235,6 +188,76 @@ export default function Services() {
                 </motion.div>
               </Link>
             ))}
+          </motion.div>
+
+          {/* Other Services Section */}
+          <motion.div
+            className="mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+                <span className="relative z-10">Other Services</span>
+                <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                Explore our additional legal services tailored to support your business operations and compliance needs. Contact us at{" "}
+                <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                  info@leonardsolutions.in
+                </a>{" "}
+                for personalized assistance.
+              </p>
+            </motion.div>
+
+            {/* Other Services Grid */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {otherServices.map((service, index) => (
+                <Link
+                  key={service.name}
+                  href={service.route}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredCard(service.name)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <motion.div
+                    className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/20 relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex flex-col gap-4 relative z-10">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                        <service.icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.name}</h3>
+                        <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ADB5] to-[#00959c]"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  </motion.div>
+                </Link>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -251,12 +274,3 @@ export default function Services() {
     </div>
   )
 }
-
-// Add this CSS at the start of your global CSS file or in a style tag
-const styles = `
-  @keyframes fillText {
-    to {
-      background-size: 100% 100%;
-    }
-  }
-`;

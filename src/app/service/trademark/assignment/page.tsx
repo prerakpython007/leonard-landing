@@ -98,7 +98,7 @@ export default function TrademarkAssignmentPage() {
               A trademark, like any valuable asset, can be sold, licensed, or transferred through a trademark assignment. This process, governed by Section 37 of the Trademarks Act, 1999, allows the trademark owner (assignor) to pass ownership rights to another party (assignee). At BrandSecure, we simplify the trademark assignment process, helping you monetize your brand or acquire established trademark rights with ease.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -147,7 +147,7 @@ export default function TrademarkAssignmentPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/assignment/${info.id}`}
+                      href={`/service/trademark/assignment/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore
@@ -210,7 +210,7 @@ export default function TrademarkAssignmentPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Assignment without Goodwill</h3>
+              <h3 className="text-xl font-bold text-[#222831 politik mb-3">Assignment without Goodwill</h3>
               <p className="text-[#393E46]/80">Transfers the trademark but restricts the assignee from using it for products or services already associated with the assignor’s brand.</p>
             </motion.div>
           </div>
@@ -312,7 +312,7 @@ export default function TrademarkAssignmentPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py plurality-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

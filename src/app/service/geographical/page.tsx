@@ -1,50 +1,92 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, FileCheck, Gavel, Search } from "lucide-react"
+import { Briefcase, FileCheck, Gavel, Search, Globe, BookOpen } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
 
 export default function GeographicalIndicationPage() {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+
+  const serviceCards = [
+    {
+      icon: Briefcase,
+      title: "GI Services",
+      description: "Comprehensive support for all aspects of geographical indication protection and management.",
+      slug: "gi-services",
+    },
+    {
+      icon: FileCheck,
+      title: "GI Registration",
+      description: "Assist in registering geographical indications to secure legal protection for regional products.",
+      slug: "registration",
+    },
+    {
+      icon: Gavel,
+      title: "GI Protection",
+      description: "Safeguard geographical indications against misuse and unauthorized use.",
+      slug: "protection",
+    },
+    {
+      icon: Search,
+      title: "GI Enforcement",
+      description: "Enforce GI rights through legal actions to combat infringement and passing off.",
+      slug: "enforcement",
+    },
+    {
+      icon: BookOpen,
+      title: "GI Consultation",
+      description: "Provide expert advice to strategize and optimize your GI portfolio.",
+      slug: "consultation",
+    },
+    {
+      icon: Globe,
+      title: "International GI",
+      description: "Manage global registration and protection of geographical indications worldwide.",
+      slug: "international",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+      {/* Grid Pattern Overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: "30px 30px",
+        }}
+      />
+
       {/* Hero Section */}
       <motion.section
-        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 bg-grid-white/[0.1]" />
-        <div className="relative text-center mb-12 w-full">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative inline-block"
-          >
-            <span className="text-5xl md:text-6xl font-bold tracking-wider">
-              <strong className="text-white mr-2 relative">
-                GEOGRAPHICAL INDICATION
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
-              </strong>
-              <span className="text-black">SERVICES</span>
-            </span>
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-          </motion.div>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
-          >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Geographical Indication Services
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          </h1>
+          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Preserving Regional Heritage with Expert GI Solutions
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </motion.section>
 
       {/* Geographical Indication Information Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           {/* Geographical Indication Overview */}
           <motion.div
@@ -59,10 +101,7 @@ export default function GeographicalIndicationPage() {
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed">
-              Our company deals in all aspects of geographical indications. We conduct search and due diligence; assist
-              clients in registration of geographical indications and renewal. We draft sale, purchase and license
-              agreements for geographical indications and related documents. Our law firm represents clients in
-              infringement proceedings and passing off actions.
+              Our expertise in geographical indications ensures comprehensive protection for products tied to specific regions. We offer services ranging from registration and enforcement to consultation and international protection, helping clients preserve the unique identity and heritage of their regional products. Our team is dedicated to safeguarding your GI rights with strategic and legal excellence.
             </p>
             <p className="text-[#393E46] text-lg leading-relaxed mt-4">
               Contact us at{" "}
@@ -76,67 +115,64 @@ export default function GeographicalIndicationPage() {
           {/* Our Services */}
           <motion.div
             className="space-y-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Our Services</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+              <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+                <span className="relative z-10">Our Services</span>
+                <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+              </h2>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {serviceCards.map((service, index) => (
-                <motion.div
+                <Link
                   key={service.title}
-                  className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+                  href={`/service/geographical/${service.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredCard(service.title)}
+                  onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="h-6 w-6" />
+                  <motion.div
+                    className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/20 relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex flex-col gap-4 relative z-10">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                        <service.icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.title}</h3>
+                        <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{service.title}</h3>
-                      <p className="text-[#393E46]/80">{service.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ADB5] to-[#00959c]"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   )
-}
-
-const serviceCards = [
-  {
-    icon: Search,
-    title: "GI Search & Due Diligence",
-    description: "Conduct thorough searches and due diligence to ensure the validity of geographical indications."
-  },
-  {
-    icon: FileCheck,
-    title: "GI Registration & Renewal",
-    description: "Assist clients in registering and renewing geographical indications for legal protection."
-  },
-  {
-    icon: Briefcase,
-    title: "GI Licensing & Agreements",
-    description: "Draft sale, purchase, and license agreements for geographical indications."
-  },
-  {
-    icon: Gavel,
-    title: "GI Infringement & Passing Off",
-    description: "Represent clients in infringement proceedings and passing off actions to protect GI rights."
-  }
-]
-
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ")
 }

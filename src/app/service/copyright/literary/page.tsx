@@ -98,7 +98,7 @@ export default function CopyrightLiteraryPage() {
               Literary copyright, under the Copyright Act, 1957 in India, safeguards original written works, including novels, poems, articles, and scripts. By registering your literary work, you gain exclusive rights to reproduce, distribute, and adapt it, protecting your creative legacy from unauthorized use. BrandSecure offers expert guidance to streamline the copyright registration process, ensuring your literary works are legally protected.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

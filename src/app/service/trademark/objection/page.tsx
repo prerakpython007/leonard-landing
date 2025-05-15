@@ -242,7 +242,7 @@ export default function TrademarkObjectionPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/objection/${info.id}`}
+                      href={`/service/trademark/objection/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore
@@ -506,7 +506,7 @@ export default function TrademarkObjectionPage() {
               Secure your brand with BrandSecure’s expert objection handling services. Take the first step to keep your trademark application on track today.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

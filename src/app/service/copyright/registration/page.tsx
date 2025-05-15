@@ -98,7 +98,7 @@ export default function CopyrightRegistrationPage() {
               Copyright registration, governed by the Copyright Act, 1957 in India, secures exclusive rights for creators of original works, such as literature, music, films, and software. Registration strengthens legal protection, enabling creators to enforce their rights against infringement. At BrandSecure, we simplify the copyright registration process, ensuring your creative assets are safeguarded efficiently.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

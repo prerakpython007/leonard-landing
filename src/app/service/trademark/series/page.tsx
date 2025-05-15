@@ -98,7 +98,7 @@ export default function SeriesTrademarkPage() {
               A series trademark, governed by Section 15 of the Trademarks Act, 1999, allows businesses to register multiple similar trademarks under a single application. These marks share core distinctive elements but vary in minor, non-distinctive aspects like color or descriptions. At BrandSecure, we streamline the series trademark process, offering cost-effective and comprehensive protection for your brand variations.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -147,7 +147,7 @@ export default function SeriesTrademarkPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/series-trademark/${info.id}`}
+                      href={`/service/trademark/series/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore

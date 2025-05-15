@@ -98,7 +98,7 @@ export default function LogoDesigningPage() {
               A logo is the cornerstone of your brand’s identity, creating instant recognition and shaping how customers perceive your business. At BrandSecure, we specialize in designing visually striking and legally protected logos tailored to your vision. Our team of expert designers and trademark professionals ensures your logo stands out while being safeguarded through trademark registration. Start building your brand’s legacy today.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -147,7 +147,7 @@ export default function LogoDesigningPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/logo-design/${info.id}`}
+                      href={`/service/trademark/logo-design/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore

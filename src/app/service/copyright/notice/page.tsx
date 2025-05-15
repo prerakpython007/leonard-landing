@@ -98,7 +98,7 @@ export default function CopyrightNoticePage() {
               A copyright notice, while not mandatory under the Copyright Act, 1957 in India, serves as a powerful tool to assert ownership over your creative works, such as books, music, or artwork. It informs the public of your rights and deters potential infringers. BrandSecure helps you craft and place effective copyright notices to protect your intellectual property with clarity and confidence.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

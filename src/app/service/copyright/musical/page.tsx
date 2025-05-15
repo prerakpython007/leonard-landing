@@ -98,7 +98,7 @@ export default function CopyrightMusicalPage() {
               Musical copyright, governed by the Copyright Act, 1957 in India, safeguards original musical compositions, including melodies, lyrics, and sound recordings. Registering your music ensures you retain exclusive rights to perform, reproduce, and distribute your work, protecting it from unauthorized use. BrandSecure provides expert support to simplify the copyright registration process, keeping your musical creations secure.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

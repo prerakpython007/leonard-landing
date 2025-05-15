@@ -98,7 +98,7 @@ export default function TrademarkRenewalPage() {
               A trademark sets your business apart by protecting its unique symbols, logos, or names, marked with an ® symbol. In India, trademarks are valid for ten years under the Trade Marks Act, 1999. Renewing your trademark ensures continued legal protection, preventing competitors from using similar marks. At BrandSecure, we streamline the online trademark renewal process, helping businesses and individuals maintain their brand identity effortlessly.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -147,7 +147,7 @@ export default function TrademarkRenewalPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
-                      href={`/renewal/${info.id}`}
+                      href={`/service/trademark/renewal/${info.id}`}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore
