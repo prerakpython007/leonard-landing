@@ -111,7 +111,7 @@ const Nav: React.FC = () => {
     { label: 'Contact Us', href: '/contact-us' },
     { label: 'Blogs', href: '/blogs' },
     { label: 'Pricing', href: '/price' },
-    { label: 'Resource', href: '/resource' },
+    { label: 'Resources', href: '/resource' },
   ];
 
   const trademarkDropdown: DropdownItem[] = [
