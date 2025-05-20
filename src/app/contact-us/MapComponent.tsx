@@ -10,7 +10,7 @@ const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLa
 const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false })
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false })
 
-export default function MapComponent() {
+const MapComponent = () => {
   const [isMounted, setIsMounted] = useState(false)
   const [asiaBounds, setAsiaBounds] = useState<L.LatLngBounds | null>(null)
 
@@ -95,3 +95,5 @@ export default function MapComponent() {
     </div>
   )
 }
+
+export default MapComponent

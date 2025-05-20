@@ -3,23 +3,33 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 const blogs = [
   {
     id: 1,
-    title: "Building Your Dream Home",
-    excerpt: "Discover the essential steps to creating your perfect living space...",
-    image: "/blog1.jpg",
+    title: "Understanding Intellectual Property Rights in the Digital Age",
+    excerpt: "A comprehensive guide to protecting your digital assets and innovations in today's fast-paced technological landscape...",
+    image: "/blog-1.png",
     date: "2024-01-15",
+    category: "IP Rights"
   },
   {
     id: 2,
-    title: "Modern Interior Design Trends",
-    excerpt: "Explore the latest trends in contemporary home design...",
-    image: "/blog2.jpg",
+    title: "Trademark Registration: A Step-by-Step Guide",
+    excerpt: "Everything you need to know about the trademark registration process, from initial search to final registration...",
+    image: "/blog-2.png",
     date: "2024-01-10",
+    category: "Trademarks"
   },
-  // Add more blog posts as needed
+  {
+    id: 3,
+    title: "Patent Filing Strategies for Startups",
+    excerpt: "Essential strategies and best practices for startups looking to protect their innovations through patents...",
+    image: "/blog-3.webp",
+    date: "2024-01-05",
+    category: "Patents"
+  }
 ]
 
 export default function BlogsPage() {
@@ -37,13 +47,19 @@ export default function BlogsPage() {
         }}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section with Corner Angles */}
       <motion.section
         className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -63,54 +79,71 @@ export default function BlogsPage() {
 
       {/* Blog Posts Section */}
       <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-[#222831] mb-4">Latest Blog Posts</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogs.map((blog, index) => (
               <motion.div
                 key={blog.id}
-                className="group bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20 overflow-hidden"
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-white/95 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="relative h-48">
+                {/* Decorative elements */}
+                <div className="absolute top-0 left-0 w-20 h-20 bg-[#00ADB5]/5 rounded-br-[100px]" />
+                <div className="absolute top-4 left-4 w-2 h-2 bg-[#00ADB5] rounded-full" />
+                
+                <div className="relative h-56 overflow-hidden">
                   <Image
                     src={blog.image}
                     alt={blog.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-2 rounded-lg text-white">
-                      <span className="text-sm">{new Date(blog.date).toLocaleDateString()}</span>
-                    </div>
-                    <span className="mx-2 text-[#393E46]/80">•</span>
-                    <span className="text-[#393E46]/80 text-sm">5 min read</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute top-4 right-4">
+                    <span className="px-4 py-1 bg-white/90 text-[#00ADB5] rounded-full text-sm font-medium">
+                      {blog.category}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-[#222831] mb-3">{blog.title}</h3>
-                  <p className="text-[#393E46]/80 mb-4">{blog.excerpt}</p>
+                </div>
+
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-4 text-sm text-[#393E46]/70">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#00ADB5]" />
+                      <span>{new Date(blog.date).toLocaleDateString('en-US', { 
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-[#00ADB5]" />
+                      <span>5 min read</span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 line-clamp-2">{blog.title}</h3>
+                  <p className="text-[#393E46]/80 mb-6 line-clamp-3">{blog.excerpt}</p>
+
                   <Link
                     href={`/blogs/${blog.id}`}
-                    className="inline-flex items-center text-[#00ADB5] hover:text-[#222831] transition-colors duration-300"
+                    className="inline-flex items-center text-[#222831] hover:text-[#00ADB5] transition-colors duration-300 font-medium group/link"
                   >
-                    Read More
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Read Article
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </motion.div>

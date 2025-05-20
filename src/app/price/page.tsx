@@ -4,12 +4,8 @@ import { motion } from "framer-motion"
 import { ArrowRight, IndianRupee } from "lucide-react"
 import Link from "next/link"
 
-const pricingData: {
-  trademarks: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
-  copyright: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
-  patents: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
-  industrialDesign: { sNo: number | null; description: string; govFee: string; ourFee: string; total: string }[];
-} = {
+// Pricing data
+const pricingData = {
   trademarks: [
     {
       sNo: 1,
@@ -164,26 +160,33 @@ const sections = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
-      {/* Grid Pattern Overlay */}
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[150px] font-montserrat">
+      {/* Grid Pattern */}
       <div 
-        className="fixed inset-0 pointer-events-none" 
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+            linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
+          willChange: 'transform'
         }}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section with Corner Angles */}
       <motion.section
         className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles only for title section */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -214,7 +217,6 @@ export default function PricingPage() {
                 viewport={{ once: true }}
               >
                 <h2 className="text-4xl font-bold text-[#222831] mb-4">{section.title}</h2>
-                <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -222,41 +224,51 @@ export default function PricingPage() {
                   item.description && (
                     <motion.div
                       key={`${section.id}-${itemIndex}`}
-                      className="group relative bg-gradient-to-b from-white to-gray-50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-clip-border bg-gradient-to-r from-[#00ADB5]/30 to-[#00959c]/30 overflow-hidden"
+                      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-white/95 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-300"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: itemIndex * 0.1 }}
                       whileHover={{ y: -5 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#00ADB5]/10 to-[#00959c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="p-6 relative z-10 flex flex-col h-full">
-                        <h3 className="text-2xl font-bold text-[#222831] mb-3 flex items-center">
-                          <span className="mr-2 text-[#00ADB5] text-lg">#{item.sNo}</span> {section.title} Service
-                        </h3>
-                        <p className="text-[#393E46]/80 mb-4 leading-relaxed text-sm flex-grow">{item.description}</p>
-                        <ul className="space-y-3 mb-6">
-                          <li className="flex items-center text-[#393E46]">
-                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
-                            <span className="font-medium">Gov’t Fee:</span> <span className="ml-2">{item.govFee}</span>
-                          </li>
-                          <li className="flex items-center text-[#393E46]">
-                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
-                            <span className="font-medium">Our Fee:</span> <span className="ml-2">{item.ourFee}</span>
-                          </li>
-                          <li className="flex items-center">
-                            <IndianRupee className="w-4 h-4 text-[#00ADB5] mr-2" />
-                            <span className="font-medium">Total:</span>
-                            <span className="ml-2 bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] font-bold text-lg">{item.total}</span>
-                          </li>
-                        </ul>
-                        <div className="mt-auto">
-                          <Link
-                            href="/contact-us"
-                            className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
-                          >
-                            Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                          </Link>
+                      {/* Decorative elements */}
+                      <div className="absolute top-0 left-0 w-20 h-20 bg-[#00ADB5]/5 rounded-br-[100px]" />
+                      <div className="absolute top-4 left-4 w-2 h-2 bg-[#00ADB5] rounded-full" />
+                      
+                      <div className="p-8 relative">
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-10 h-10 rounded-xl bg-[#00ADB5]/10 flex items-center justify-center">
+                            <span className="text-[#00ADB5] font-bold">#{item.sNo}</span>
+                          </div>
+                          <h3 className="text-lg font-medium text-[#222831] flex-1">
+                            {section.title} Service
+                          </h3>
                         </div>
+                        
+                        <p className="text-[#393E46]/80 mb-6 text-sm">{item.description}</p>
+                        
+                        <div className="space-y-3 mb-6">
+                          <div className="flex justify-between items-center p-3 bg-[#F8F9FA] rounded-lg">
+                            <span className="text-[#393E46]/70 text-sm">Gov't Fee</span>
+                            <span className="text-[#222831] font-medium">{item.govFee}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-[#F8F9FA] rounded-lg">
+                            <span className="text-[#393E46]/70 text-sm">Our Fee</span>
+                            <span className="text-[#222831] font-medium">{item.ourFee}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-4 bg-[#00ADB5]/5 rounded-lg">
+                            <span className="text-[#222831] font-bold">Total</span>
+                            <span className="text-[#00ADB5] font-bold text-xl">{item.total}</span>
+                          </div>
+                        </div>
+                        
+                        <Link
+                          href="/contact"
+                          className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-[#00ADB5] transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
+                        >
+                          <span className="relative z-10">Get in Touch</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
+                          <div className="absolute inset-0 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                        </Link>
                       </div>
                     </motion.div>
                   )
@@ -265,42 +277,43 @@ export default function PricingPage() {
             </div>
           ))}
 
-          {/* Disclaimer section with updated styling */}
+          {/* Disclaimer section with corner angles */}
           <motion.div
-            className="max-w-3xl mx-auto mt-24 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-white/20"
+            className="max-w-3xl mx-auto mt-24 p-8 relative"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="border-t border-gray-200 pt-8">
-              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00ADB5] to-[#00959c] mb-6 flex items-center justify-center">
+            {/* Corner Angles */}
+            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-[#222831] mb-8 flex items-center justify-center gap-3">
                 Disclaimer
-                <span className="ml-3 text-[#00ADB5] animate-pulse">✦</span>
+                <span className="text-[#00ADB5] animate-pulse">✦</span>
               </h2>
-              <div className="space-y-6 text-center">
-                <p className="text-[#393E46] text-lg leading-relaxed relative">
-                  <span className="absolute inset-0 bg-[#00ADB5]/5 rounded-lg -z-10"></span>
-                  <strong className="font-semibold text-[#222831]">Patent application charges for each sheet of specification (after 30 pages):</strong>
-                </p>
-                <p className="text-[#393E46] text-lg leading-relaxed relative">
-                  <span className="absolute inset-0 bg-[#00ADB5]/5 rounded-lg -z-10"></span>
-                  Gov’t Fees: <span className="font-semibold text-[#00ADB5]">₹800.00</span>
+              <div className="space-y-6">
+                <p className="text-[#393E46] text-lg leading-relaxed">
+                  <strong className="font-semibold text-[#222831] block mb-3">
+                    Patent application charges for each sheet of specification (after 30 pages):
+                  </strong>
+                  Gov't Fees: <span className="font-semibold text-[#00ADB5]">₹800.00</span>
                   <br />
                   Our Fees: <span className="font-semibold text-[#00ADB5]">₹1500.00</span>
                 </p>
-                <p className="text-[#393E46] text-lg leading-relaxed relative">
-                  <span className="absolute inset-0 bg-[#00ADB5]/5 rounded-lg -z-10"></span>
-                  <strong className="font-semibold text-[#222831]">Patent application charges for each claim (in addition to 10 claims):</strong>
-                </p>
-                <p className="text-[#393E46] text-lg leading-relaxed relative">
-                  <span className="absolute inset-0 bg-[#00ADB5]/5 rounded-lg -z-10"></span>
-                  Gov’t Fees: <span className="font-semibold text-[#00ADB5]">₹160.00</span>
+                <p className="text-[#393E46] text-lg leading-relaxed">
+                  <strong className="font-semibold text-[#222831] block mb-3">
+                    Patent application charges for each claim (in addition to 10 claims):
+                  </strong>
+                  Gov't Fees: <span className="font-semibold text-[#00ADB5]">₹160.00</span>
                   <br />
                   Our Fees: <span className="font-semibold text-[#00ADB5]">₹300.00</span>
                 </p>
-                <p className="text-[#393E46] text-lg leading-relaxed italic relative">
-                  <span className="absolute inset-0 bg-[#00ADB5]/5 rounded-lg -z-10"></span>
+                <p className="text-[#393E46]/80 text-lg leading-relaxed italic mt-8">
                   These fees are the minimum charges for the activity described. Subject to change without notice.
                 </p>
               </div>

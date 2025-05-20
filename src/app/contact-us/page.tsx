@@ -1,19 +1,18 @@
-'use client';
+"use client";
 
+// Remove individual react-leaflet imports
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 
-// Dynamically import react-leaflet components to avoid SSR issues
-const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
-
-// Dynamically import MapComponent to ensure it only loads client-side
-const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
+// Only import MapComponent dynamically
+const MapComponent = dynamic(() => import("./MapComponent"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[400px] animate-pulse rounded-xl bg-gray-100" />
+  ),
+});
 
 // Import Leaflet CSS
 import "leaflet/dist/leaflet.css";
@@ -34,9 +33,11 @@ export default function ContactPage() {
       const L = require("leaflet");
       delete (L.Icon.Default.prototype as any)._getIconUrl;
       L.Icon.Default.mergeOptions({
-        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        iconRetinaUrl:
+          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
         iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+        shadowUrl:
+          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       });
     }
   }, []);
@@ -51,22 +52,30 @@ export default function ContactPage() {
     }
   }, [showPopup]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    setFormData({ firstName: "", lastName: "", email: "", mobile: "", message: "" });
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobile: "",
+      message: "",
+    });
     setShowPopup(true);
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="font-montserrat relative min-h-screen rounded-b-[5%] bg-[#EEEEEE]">
       {/* Grid Pattern Overlay */}
       <div
-        className="fixed inset-0 pointer-events-none"
+        className="pointer-events-none fixed inset-0"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
@@ -79,83 +88,118 @@ export default function ContactPage() {
       {/* Popup Confirmation */}
       {showPopup && (
         <motion.div
-          className="fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[1000] flex items-center gap-2"
+          className="fixed top-4 right-4 z-[1000] flex items-center gap-2 rounded-lg bg-white p-4 shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-[#00ADB5] text-2xl">✦</span>
-          <p className="text-[#222831] font-medium">Your message was sent successfully!</p>
+          <span className="text-2xl text-[#00ADB5]">✦</span>
+          <p className="font-medium text-[#222831]">
+            Your message was sent successfully!
+          </p>
         </motion.div>
       )}
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative flex h-[80vh] items-center justify-center overflow-hidden px-4 md:px-16 lg:px-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles for Hero Section */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute right-8 bottom-8 hidden h-12 w-12 border-r-2 border-b-2 border-[#00ADB5] lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="mx-auto max-w-7xl text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="relative inline-block text-6xl font-extrabold tracking-tight text-[#222831] md:text-8xl">
             Contact Us
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 animate-pulse text-5xl text-[#00ADB5] opacity-50">
+              ✦
+            </span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 animate-pulse text-5xl text-[#00ADB5] opacity-50">
+              ✦
+            </span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-light text-[#393E46]/80">
             Get in Touch with Our Expert Team
           </p>
         </motion.div>
       </motion.section>
 
       {/* Contact Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="px-4 py-32 md:px-16 lg:px-24">
+        <div className="mx-auto max-w-6xl">
           {/* Contacting Us */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            className="mb-12 relative px-8 py-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Contacting Us</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            {/* Corner Angles */}
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="mb-6 text-3xl font-bold text-[#222831]">
+              Contacting Us
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed">
-              Upon request, we shall provide you with access to any personal information that we have collected about you
-              through our website. In the event that the personal information is not accurate, kindly contact us at{" "}
-              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+
+            <p className="text-lg leading-relaxed text-[#393E46]">
+              At Leonard Corporate Solutions, your privacy and data security
+              matter most to us. If you’d like to access any personal
+              information we have collected about you through our website, just
+              reach out! If you notice any inaccuracies or want to update your
+              details, please email us at{" "}
+              <a
+                href="mailto:info@leonardsolutions.in"
+                className="text-[#00ADB5] hover:underline"
+              >
                 info@leonardsolutions.in
               </a>{" "}
-              so that we may update this information and answer any questions that you may have.
+              We’re here to answer your questions and ensure your information is
+              accurate and up-to-date.
             </p>
-            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
-              We reserve the right to change this privacy policy at any time by posting a new or revised policy at this
-              location.
+            <p className="mt-4 text-lg leading-relaxed text-[#393E46]">
+              We take your privacy seriously and are committed to protecting
+              your personal data in compliance with applicable laws. Please note
+              that we reserve the right to update or modify our Privacy Policy
+              at any time. Changes will be posted here to keep you informed.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-[#393E46]">
+              For any queries related to your personal data, privacy concerns, or our legal policies, don’t hesitate to contact Leonard Corporate Solutions at <a
+                href="mailto:info@leonardsolutions.in"
+                className="text-[#00ADB5] hover:underline"
+              >
+                info@leonardsolutions.in
+              </a>{" "}
             </p>
           </motion.div>
 
           {/* Head Office */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            className="mb-12 rounded-2xl border border-white/20 bg-white/80 p-8 shadow-lg backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
+            <h2 className="relative mb-6 text-3xl font-bold text-[#222831]">
               <span className="relative z-10">Head Office (Mumbai)</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+              <span className="absolute bottom-0 left-0 -z-10 h-3 w-20 bg-[#00ADB5]/20"></span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid gap-8 md:grid-cols-3">
               {contactDetails.map((detail, index) => (
                 <motion.div
                   key={detail.title}
@@ -164,13 +208,18 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="transform rounded-lg bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 text-white transition-transform duration-300 group-hover:scale-110">
                     <detail.icon className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-[#222831] mb-2">{detail.title}</h3>
+                    <h3 className="mb-2 text-lg font-semibold text-[#222831]">
+                      {detail.title}
+                    </h3>
                     {detail.title === "Email Us" ? (
-                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline text-lg">
+                      <a
+                        href="mailto:info@leonardsolutions.in"
+                        className="text-lg text-[#00ADB5] hover:underline"
+                      >
                         info@leonardsolutions.in
                       </a>
                     ) : (
@@ -184,112 +233,136 @@ export default function ContactPage() {
 
           {/* Get In Touch Form */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12"
+            className="mb-12 relative px-8 py-12 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Get In Touch</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="firstName" className="block text-[#222831] font-medium mb-2">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="lastName" className="block text-[#222831] font-medium mb-2">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-[#222831] font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="mobile" className="block text-[#222831] font-medium mb-2">
-                  Mobile No.
-                </label>
-                <input
-                  type="tel"
-                  id="mobile"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
-                  required
-                />
-              </div>
-              <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-[#222831] font-medium mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-[#393E46]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5] min-h-[150px]"
-                  required
-                ></textarea>
-              </div>
-              <div className="md:col-span-2 text-center">
-                <motion.button
-                  type="submit"
-                  className="inline-flex items-center justify-center bg-[#00ADB5] hover:bg-[#222831] text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:-translate-y-0.5"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Send Message <ArrowRight className="ml-2 h-4 w-4" />
-                </motion.button>
-              </div>
-            </form>
+            {/* Decorative Background Elements */}
+            <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
+            <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
+            
+            {/* Corner Angles */}
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="relative">
+              <h2 className="mb-8 text-3xl font-bold text-[#222831] text-center">
+                Get In Touch
+              </h2>
+              <p className="text-center text-[#393E46]/80 mb-12 max-w-2xl mx-auto">
+                Have questions or need assistance? We're here to help! Fill out the form below and our team will get back to you shortly.
+              </p>
+
+              <form onSubmit={handleSubmit} className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+                {/* Form fields with enhanced styling */}
+                <div className="group">
+                  <label htmlFor="firstName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div className="group">
+                  <label htmlFor="lastName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div className="group">
+                  <label htmlFor="email" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div className="group">
+                  <label htmlFor="mobile" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                    Mobile No.
+                  </label>
+                  <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div className="md:col-span-2 group">
+                  <label htmlFor="message" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="min-h-[150px] w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    required
+                  ></textarea>
+                </div>
+                <div className="text-center md:col-span-2">
+                  <motion.button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#00ADB5] to-[#00959c] px-8 py-4 font-medium text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:to-[#00ADB5]"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Send Message <ArrowRight className="ml-2 h-5 w-5" />
+                  </motion.button>
+                </div>
+              </form>
+            </div>
           </motion.div>
 
           {/* Leaflet Map */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8"
+            className="relative px-8 py-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Our Global Locations</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            {/* Corner Angles */}
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="mb-8 text-3xl font-bold text-[#222831]">
+              Our Global Locations
             </h2>
-            <MapComponent />
+
+            <div className="rounded-xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm">
+              <MapComponent />
+            </div>
           </motion.div>
         </div>
       </section>
