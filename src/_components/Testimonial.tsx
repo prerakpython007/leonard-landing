@@ -9,8 +9,8 @@ const testimonials = [
     position: "CEO, Wilson Enterprises",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200",
     rating: 5,
-    text: "The legal expertise and professionalism demonstrated by the team was exceptional. They handled our corporate litigation with remarkable precision and dedication.",
-    tag: "Corporate Law"
+    text: "“The legal expertise and strategic insight provided by Leonard Corporate Solutions was exceptional. Their team managed our corporate litigation with professionalism, precision, and efficiency.”",
+    tag: "Corporate Law Services"
   },
   { 
     id: 2,
@@ -18,8 +18,8 @@ const testimonials = [
     position: "CFO, Tech Innovations",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=200&h=200",
     rating: 5,
-    text: "Outstanding service! Their attention to detail in handling our intellectual property matters was impressive.",
-    tag: "IP Law"
+    text: "“Outstanding service and attention to detail. Leonard Corporate Solutions expertly managed our trademark and patent filings, ensuring our IP assets were fully protected.”",
+    tag: "Intellectual Property Law"
   },
   { 
     id: 3,
@@ -27,8 +27,8 @@ const testimonials = [
     position: "Founder, StartUp Hub",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=200&h=200",
     rating: 5,
-    text: "Their expertise in startup law proved invaluable during our company's formation and funding rounds.",
-    tag: "Startup Law"
+    text: "“Their in-depth knowledge of startup law was instrumental during our incorporation and fundraising stages. Leonard's legal team provided clarity and confidence at every step.”",
+    tag: "Startup Legal Advisory"
   },
   { 
     id: 4,
@@ -36,8 +36,8 @@ const testimonials = [
     position: "Director, Global Solutions",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=200&h=200",
     rating: 5,
-    text: "Exceptional guidance through complex international legal matters. Highly recommended!",
-    tag: "International Law"
+    text: "“We received comprehensive legal support for complex cross-border matters. Leonard Corporate Solutions navigated international compliance with unmatched professionalism.”",
+    tag: "International Legal Services"
   }
 ];
 
@@ -65,10 +65,10 @@ const TestimonialsSection = () => {
           </h3>
           <h2 className="text-5xl md:text-6xl lg:text-lg font-bold mb-4">
             <span className="text-[#00ADB5]">What Our </span>
-            <span className="text-[#222831]">Clients Say</span>
+            <span className="text-[#222831]">Clients Say Say About Leonard Corporate Solutions</span>
           </h2>
           <p className="text-[#393E46] text-lg max-w-2xl mx-auto">
-            Trusted by industry leaders and businesses across the nation
+            Trusted by industry leaders, startups, and global businesses for intellectual property, corporate, and international legal services.
           </p>
         </div>
 
