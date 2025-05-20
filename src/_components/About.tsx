@@ -1,6 +1,8 @@
-"use client";
+'use client';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -58,10 +60,12 @@ const About = () => {
             the value of our clients' intellectual property and technology assets, 
             serving both multinational corporations and domestic industry leaders.
           </p>
-          <button className="bg-[#00ADB5] text-white px-8 py-4 rounded font-semibold 
-            transition-all duration-300 hover:bg-[#222831] hover:-translate-y-0.5">
-            Read More
-          </button>
+          <Link href="/about-us">
+            <button className="bg-[#00ADB5] text-white px-8 py-4 rounded font-semibold 
+              transition-all duration-300 hover:bg-[#222831] hover:-translate-y-0.5">
+              Read More
+            </button>
+          </Link>
         </motion.div>
 
         <motion.div

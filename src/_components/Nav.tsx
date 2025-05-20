@@ -114,136 +114,65 @@ const Nav: React.FC = () => {
     { label: 'Resource', href: '/resource' },
   ];
 
-  const trademarkDropdown: DropdownItem[] = [
+  const nationalDropdown: DropdownItem[] = [
     {
-      title: "Trademark",
+      title: "Intellectual Property Services",
       items: [
-        { label: "Trademark Registration", href: "/service/trademark/registration" },
-        { label: "Trademark Renewal", href: "/service/trademark/renewal" },
-        { label: "Trademark Objection", href: "/service/trademark/objection" },
-        { label: "Trademark Opposition", href: "/service/trademark/opposition" },
-        { label: "Trademark Assignment", href: "/service/trademark/assignment" },
-        { label: "Logo Design", href: "/service/trademark/logo-design" },
-        { label: "Series Trademark", href: "/service/trademark/series" },
+        { label: "Trademark Services", href: "/service/national/trademark" },
+        { label: "Patent Services", href: "/service/national/patent" },
+        { label: "Copyright Services", href: "/service/national/copyright" },
+        { label: "Design IP", href: "/service/national/design" },
+        { label: "Geographical Indications (GI)", href: "/service/national/geographical-indications" },
+        { label: "Domain Name Law", href: "/service/national/domain-name" },
+        { label: "Anti-Counterfeiting & Brand Protection", href: "/service/national/anti-counterfeiting" },
       ]
     },
     {
-      title: "Copyright",
+      title: "Business Legal Services",
       items: [
-        { label: "Copyright Registration", href: "/service/copyright/registration" },
+        { label: "Corporate Legal Services", href: "/service/national/corporate-legal" },
+        { label: "Startup Legal Support", href: "/service/national/startup-legal" },
+        { label: "Business Law & Compliance", href: "/service/national/business-law" },
+        { label: "Investment & Fundraising Legal", href: "/service/national/investment-legal" },
+        { label: "Litigation & Dispute Resolution", href: "/service/national/litigation" },
       ]
     }
   ];
 
-  const patentDropdown: DropdownItem[] = [
+  const internationalDropdown: DropdownItem[] = [
     {
-      title: "Patent Services",
+      title: "International IP Filing",
       items: [
-        { label: "Patent Registration", href: "/service/patent/registration" },
-        { label: "Patent Search", href: "/service/patent/search" },
-        { label: "Patent Drafting", href: "/service/patent/drafting" },
-        { label: "Patent Opposition", href: "/service/patent/opposition" },
-        { label: "Patent Licensing", href: "/service/patent/licensing" },
+        { label: "International Trademark Filing via Madrid Protocol", href: "/service/international/trademark-madrid" },
+        { label: "National Filings in USA, EU, UK, UAE, Australia, etc.", href: "/service/international/national-filings" },
+        { label: "International Patent Filing via PCT Application", href: "/service/international/patent-pct" },
+        { label: "National Phase Entry", href: "/service/international/patent-national-phase" },
+        { label: "Global Copyright Filing (as per Berne Convention)", href: "/service/international/copyright-berne" },
+        { label: "International Design Protection under Hague System", href: "/service/international/design-hague" },
       ]
     },
     {
-      title: "Additional Services",
+      title: "Global Legal & Brand Services",
       items: [
-        { label: "International Patent", href: "/service/patent/international" },
-        { label: "Patent Consultation", href: "/service/patent/consultation" },
-      ]
-    }
-  ];
-
-  const copyrightDropdown: DropdownItem[] = [
-    {
-      title: "Copyright Services",
-      items: [
-        { label: "Copyright Registration", href: "/service/copyright/registration" },
-        { label: "Literary Works", href: "/service/copyright/literary" },
-        { label: "Artistic Works", href: "/service/copyright/artistic" },
-        { label: "Musical Works", href: "/service/copyright/musical" },
-      ]
-    },
-    {
-      title: "Other Services",
-      items: [
-        { label: "Copyright Assignment", href: "/service/copyright/assignment" },
-        { label: "Copyright Notice", href: "/service/copyright/notice" },
-      ]
-    }
-  ];
-
-  const designDropdown: DropdownItem[] = [
-    {
-      title: "Design Registration",
-      items: [
-        { label: "Industrial Designs", href: "/service/design/industrial" },
-        { label: "Fashion Designs", href: "/service/design/fashion" },
-        { label: "Textile Designs", href: "/service/design/textile" },
-        { label: "Surface Designs", href: "/service/design/surface" },
-      ]
-    },
-    {
-      title: "Design Services",
-      items: [
-        { label: "Design Search", href: "/service/design/search" },
-        { label: "Design Renewal", href: "/service/design/renewal" },
-      ]
-    }
-  ];
-
-  const geographicalDropdown: DropdownItem[] = [
-    {
-      title: "GI Services",
-      items: [
-        { label: "GI Registration", href: "/service/geographical/registration" },
-        { label: "GI Protection", href: "/service/geographical/protection" },
-        { label: "GI Enforcement", href: "/service/geographical/enforcement" },
-      ]
-    },
-    {
-      title: "Additional Services",
-      items: [
-        { label: "GI Consultation", href: "/service/geographical/consultation" },
-        { label: "International GI", href: "/service/geographical/international" },
-      ]
-    }
-  ];
-
-  const legalDropdown: DropdownItem[] = [
-    {
-      title: "Legal Services",
-      items: [
-        { label: "IP Litigation", href: "/service/legal/ip-litigation" },
-        { label: "Legal Consultation", href: "/service/legal/consultation" },
-        { label: "Contract Review", href: "/service/legal/contract-review" },
-        { label: "Legal Documentation", href: "/service/legal/documentation" },
-      ]
-    },
-    {
-      title: "Other Services",
-      items: [
-        { label: "Due Diligence", href: "/service/legal/due-diligence" },
-        { label: "Legal Notices", href: "/service/legal/notices" },
+        { label: "Cross-Border Brand & Legal Consulting", href: "/service/international/brand-consulting" },
+        { label: "Trademark & Patent Portfolio Management for Multinationals", href: "/service/international/portfolio-management" },
+        { label: "Market Entry Legal Strategy for Foreign Businesses in India", href: "/service/international/market-entry-india" },
+        { label: "Legal Support for Indian Startups Going Global", href: "/service/international/startup-global" },
+        { label: "IP Watch Services in Multiple Jurisdictions", href: "/service/international/ip-watch" },
+        { label: "Anti-Counterfeiting for Exporters", href: "/service/international/anti-counterfeiting" },
+        { label: "Customs Watch Listing in International Markets", href: "/service/international/customs-watch" },
+        { label: "Cease & Desist + Enforcement in Foreign Jurisdictions", href: "/service/international/enforcement" },
       ]
     }
   ];
 
   const secondaryNavItems: SecondaryNavItem[] = [
-    { label: 'TradeMark', href: '/service/trademark', dropdown: trademarkDropdown },
-    { label: 'Patent', href: '/service/patent', dropdown: patentDropdown },
-    { label: 'Copyright', href: '/service/copyright', dropdown: copyrightDropdown },
-    { label: 'Design', href: '/service/design', dropdown: designDropdown },
-    { label: 'Geographical Indications', href: '/service/geographical', dropdown: geographicalDropdown },
-    { label: 'Legal Matters', href: '/service/legal', dropdown: legalDropdown },
+    { label: 'National Services', href: '/service/national', dropdown: nationalDropdown },
+    { label: 'International Services', href: '/service/international', dropdown: internationalDropdown },
   ];
 
   const getDropdownPosition = (label: string) => {
-    if (label === 'Legal Matters' || label === 'Geographical Indications') {
-      return 'right-0';
-    }
-    return 'left-0';
+    return 'right-0'; // Align dropdowns to the right of the parent link
   };
 
   const toggleMobileDropdown = (label: string) => {
@@ -306,63 +235,65 @@ const Nav: React.FC = () => {
               </div>
 
               <div
-                className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
+                className={`absolute w-full h-full flex items-center justify-end transition-all duration-500 ease-in-out transform ${
                   showSecondaryNav
                     ? 'translate-y-0 opacity-100'
                     : 'translate-y-full opacity-0'
                 }`}
               >
-                {secondaryNavItems.map((item) => (
-                  <div key={item.label} className="relative group">
-                    <div className="flex items-center gap-1">
-                      <Link
-                        href={item.href}
-                        className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
-                        onClick={() => console.log(`Parent: Navigating to ${item.href}`)}
-                      >
-                        {item.label}
-                      </Link>
+                <div className="flex items-center gap-4">
+                  {secondaryNavItems.map((item) => (
+                    <div key={item.label} className="relative group">
+                      <div className="flex items-center gap-1">
+                        <Link
+                          href={item.href}
+                          className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                          onClick={() => console.log(`Parent: Navigating to ${item.href}`)}
+                        >
+                          {item.label}
+                        </Link>
+                        {item.dropdown && (
+                          <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
+                        )}
+                      </div>
+                      
                       {item.dropdown && (
-                        <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
-                      )}
-                    </div>
-                    
-                    {item.dropdown && (
-                      <div className={`absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ${getDropdownPosition(item.label)} top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] z-[9999]`}>
-                        <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
-                          <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                          <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                          
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
-                            {Array.isArray(item.dropdown) && item.dropdown.map((column, idx) => (
-                              <div key={idx}>
-                                <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
-                                  <span className="text-[#00ADB5]">✦</span>
-                                  {column.title}
-                                </h3>
-                                <ul className="space-y-1.5 sm:space-y-2">
-                                  {column.items.map((subItem, subIdx) => (
-                                    <li key={subIdx}>
-                                      <Link
-                                        href={subItem.href}
-                                        data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
-                                        className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
-                                        onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
-                                      >
-                                        <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
-                                        {subItem.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
+                        <div className={`absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ${getDropdownPosition(item.label)} top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]`}>
+                          <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
+                            <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                            <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
+                              {Array.isArray(item.dropdown) && item.dropdown.map((column, idx) => (
+                                <div key={idx}>
+                                  <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
+                                    <span className="text-[#00ADB5]">✦</span>
+                                    {column.title}
+                                  </h3>
+                                  <ul className="space-y-1.5 sm:space-y-2">
+                                    {column.items.map((subItem, subIdx) => (
+                                      <li key={subIdx}>
+                                        <Link
+                                          href={subItem.href}
+                                          data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
+                                          className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
+                                          onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
+                                        >
+                                          <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
+                                          {subItem.label}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 

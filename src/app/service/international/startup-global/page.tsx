@@ -1,11 +1,12 @@
+
 'use client';
 
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 
-// Define the interface for trademark info
-interface TrademarkInfo {
+// Define the interface for Legal Support info
+interface LegalSupportInfo {
   id: number;
   title: string;
   description: string;
@@ -13,84 +14,84 @@ interface TrademarkInfo {
   detailedContent: string;
 }
 
-const trademarkInfo: TrademarkInfo[] = [
+const legalSupportInfo: LegalSupportInfo[] = [
   {
     id: 1,
-    title: "Understanding Trademarks",
-    description: "A trademark is a unique symbol, design, or expression that sets your products or services apart from competitors. It includes logos, brand names, slogans, and other identifiable features.",
-    category: "Trademark Basics",
+    title: "What is Global Legal Support?",
+    description: "Legal support for Indian startups going global involves tailored solutions to navigate international IP laws, compliance, and business regulations.",
+    category: "Support Basics",
     detailedContent: `
-      • A trademark is a unique sign, logo, word, or phrase identifying your goods/services.
-      • Ensures brand recognition and consumer trust.
-      • Includes word marks (e.g., brand names), logos, slogans, sounds, or shapes.
-      • Registered for specific classes under the Nice Classification system.
-      • Provides legal protection against misuse.
-      • Enhances market presence and brand reputation.
+      • Guides startups on international IP protection.
+      • Ensures compliance with foreign regulatory frameworks.
+      • Supports business setup in global markets.
+      • Mitigates risks of IP infringement or legal disputes.
+      • Facilitates cross-border contracts and licensing.
+      • Aligns legal strategies with global expansion goals.
     `,
   },
   {
     id: 2,
-    title: "Why Register a Trademark?",
-    description: "Trademark registration secures your exclusive rights to use the mark, protects against unauthorized use, and allows legal action against infringements, ensuring brand protection.",
-    category: "Legal Protection",
+    title: "Benefits of Legal Support",
+    description: "Legal support enables Indian startups to protect their brand, comply with global laws, and compete effectively in international markets.",
+    category: "Advantages",
     detailedContent: `
-      • Grants exclusive rights to use the mark in registered classes.
-      • Enables legal action against infringers for damages or injunctions.
-      • Offers nationwide protection in India.
-      • Increases brand credibility and valuation.
-      • Supports international filings via Madrid Protocol.
-      • Prevents customer confusion from similar marks.
+      • Secures IP assets in multiple jurisdictions.
+      • Reduces legal and financial risks abroad.
+      • Enhances brand credibility in global markets.
+      • Simplifies compliance with diverse regulations.
+      • Supports seamless market entry and growth.
+      • Strengthens competitive positioning globally.
     `,
   },
   {
     id: 3,
-    title: "Trademark Registration Process",
-    description: "The process involves conducting a trademark search, filing an application, examination by the trademark office, publication in the journal, and final registration if unopposed.",
+    title: "Global Expansion Process",
+    description: "The process includes assessing legal needs, securing IP, setting up operations, and ensuring compliance in target markets.",
     category: "Process Guide",
     detailedContent: `
-      • Conduct a search to check for existing similar marks.
-      • File application online with mark details and class.
-      • Registrar examines for compliance with Trade Marks Act.
-      • Respond to objections within 30 days if raised.
-      • Mark published in Trademark Journal for 90 days.
-      • Registered with certificate if no oppositions.
+      • Evaluate legal and IP requirements for target markets.
+      • Register trademarks, patents, or copyrights internationally.
+      • Select appropriate business structures (e.g., subsidiary).
+      • Obtain necessary regulatory approvals in foreign jurisdictions.
+      • Establish operations with tax and labor compliance.
+      • Monitor and enforce IP rights globally.
     `,
   },
   {
     id: 4,
-    title: "Trademark Maintenance",
-    description: "Post-registration, trademarks need periodic renewals every ten years and active use to maintain validity. Monitoring for infringements is key to protecting your rights.",
-    category: "Trademark Management",
+    title: "IP Protection Globally",
+    description: "Protecting IP internationally involves leveraging treaties like Madrid, PCT, and Hague to secure startup assets in key markets.",
+    category: "IP Management",
     detailedContent: `
-      • Renew every 10 years using Form TM-R.
-      • Use mark actively to avoid cancellation after 5 years.
-      • Monitor market and journal for infringements.
-      • Take legal action against unauthorized use.
-      • Update registry for ownership or address changes.
-      • Maintain records of use (e.g., invoices).
+      • File trademarks via the Madrid Protocol.
+      • Secure patents through the PCT or national filings.
+      • Register designs under the Hague System.
+      • Monitor global markets for IP infringements.
+      • Enforce IP rights through legal action if needed.
+      • Leverage international treaties for cost-effective protection.
     `,
   },
   {
     id: 5,
-    title: "Global Trademark Protection",
-    description: "Safeguarding your trademark internationally requires filing in each country or using systems like the Madrid Protocol for efficient multi-country registration.",
-    category: "Global Trademarks",
+    title: "Challenges of Going Global",
+    description: "Indian startups face challenges like complex foreign regulations, high IP costs, and cultural barriers when expanding globally.",
+    category: "Considerations",
     detailedContent: `
-      • File directly in each country’s trademark office.
-      • Use Madrid Protocol for single application in 128 countries.
-      • Leverage regional systems like EUIPO for EU protection.
-      • Conduct international searches for mark availability.
-      • Ensure mark is culturally appropriate.
-      • Monitor global markets for infringements.
+      • Diverse legal and regulatory environments.
+      • High costs of multi-jurisdictional IP filings.
+      • Cultural and market differences in foreign countries.
+      • Challenges in enforcing IP rights abroad.
+      • Need for local expertise in target markets.
+      • Risk of brand dilution without proper strategy.
     `,
   },
 ];
 
-export default function TrademarkRegistrationPage() {
+export default function LegalSupportIndianStartupsGlobalPage() {
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedInfo, setSelectedInfo] = useState<TrademarkInfo | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<LegalSupportInfo | null>(null);
 
-  const handleExploreClick = (info: TrademarkInfo) => {
+  const handleExploreClick = (info: LegalSupportInfo) => {
     console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
@@ -126,7 +127,7 @@ export default function TrademarkRegistrationPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -176,12 +177,12 @@ export default function TrademarkRegistrationPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Registration
+            Legal Support for Indian Startups Going Global
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Brand Identity with Expert Trademark Solutions
+            Expand Globally with Confidence
           </p>
         </motion.div>
       </motion.section>
@@ -196,15 +197,15 @@ export default function TrademarkRegistrationPage() {
             viewport={{ once: true }}
             className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Protect Your Brand with Trademark Registration</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-4">Take Your Startup Global</h2>
             <p className="text-[#393E46]/80 mb-6">
-              In today’s competitive market, your brand’s unique elements—logos, slogans, or packaging—define its identity. Trademark registration ensures these elements remain exclusive to your business, whether you’re a startup, an established company, or an individual entrepreneur. At BrandSecure, we specialize in guiding you through the online trademark registration process in India, safeguarding your intellectual property and enhancing your market presence.
+              Indian startups aiming for global markets face complex legal and IP challenges. At BrandSecure, we provide expert legal support to help startups protect their intellectual property, comply with international regulations, and establish a strong presence abroad. Our tailored solutions empower Indian startups to scale confidently and succeed globally.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Trademark Info Section */}
+      {/* Legal Support Info Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -214,12 +215,12 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Trademark Essentials</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Legal Support Essentials</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trademarkInfo.map((info: TrademarkInfo, index: number) => (
+            {legalSupportInfo.map((info: LegalSupportInfo, index: number) => (
               <motion.div
                 key={info.id}
                 className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
@@ -257,7 +258,7 @@ export default function TrademarkRegistrationPage() {
         </div>
       </section>
 
-      {/* Types of Trademarks Section */}
+      {/* Key Legal Services Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -267,7 +268,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Types of Trademark Registrations</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Legal Services for Global Expansion</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -277,8 +278,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Product Mark</h3>
-              <p className="text-[#393E46]/80">Used for tangible goods, product marks identify the origin of products and uphold a company’s reputation. These fall under classes 1-34.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">IP Registration</h3>
+              <p className="text-[#393E46]/80">Secure trademarks, patents, and designs in global markets using international treaties.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,8 +287,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Service Mark</h3>
-              <p className="text-[#393E46]/80">Service marks distinguish service providers, covering classes 35-45, and help differentiate services in the market.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Regulatory Compliance</h3>
+              <p className="text-[#393E46]/80">Navigate foreign regulations for business setup, tax, and labor compliance.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -295,8 +296,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Collective Mark</h3>
-              <p className="text-[#393E46]/80">Represents a group’s products or services, protected by associations or public institutions for collective use.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Business Structure Setup</h3>
+              <p className="text-[#393E46]/80">Establish subsidiaries, branches, or joint ventures in target markets.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -304,8 +305,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Certification Mark</h3>
-              <p className="text-[#393E46]/80">Indicates product quality, origin, or standards, commonly used for packaged goods, toys, and electronics.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Contract Drafting</h3>
+              <p className="text-[#393E46]/80">Draft cross-border agreements for partnerships, licensing, and distribution.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -313,8 +314,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Shape Mark</h3>
-              <p className="text-[#393E46]/80">Protects unique product shapes that are distinctive and recognizable to consumers as brand-specific.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">IP Enforcement</h3>
+              <p className="text-[#393E46]/80">Support enforcement actions against IP infringements in global markets.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -322,14 +323,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Sound Mark</h3>
-              <p className="text-[#393E46]/80">Distinctive sounds, like audio mnemonics or jingles, associated with a brand’s products or services.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Market Entry Strategy</h3>
+              <p className="text-[#393E46]/80">Develop legal strategies for entering key markets like the US, EU, or ASEAN.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Registration Process Section */}
+      {/* Global Expansion Process Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -339,7 +340,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Register a Trademark in India</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Expand Globally</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="space-y-6">
@@ -349,8 +350,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Trademark Search</h3>
-              <p className="text-[#393E46]/80">Conduct a thorough search to ensure your trademark is unique and avoid conflicts with existing marks.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Legal and Market Assessment</h3>
+              <p className="text-[#393E46]/80">Evaluate legal, IP, and market requirements for target countries.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -358,8 +359,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Application Filing</h3>
-              <p className="text-[#393E46]/80">Submit the application with the Trademark Registrar, including the Vienna Codification for figurative elements.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">2. IP Protection</h3>
+              <p className="text-[#393E46]/80">Secure trademarks, patents, or designs in target markets.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -367,8 +368,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Examination</h3>
-              <p className="text-[#393E46]/80">The Registrar reviews the application for accuracy and may raise objections, which can be addressed by the applicant.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Business Setup</h3>
+              <p className="text-[#393E46]/80">Establish a compliant business entity in target jurisdictions.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -376,8 +377,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Journal Publication</h3>
-              <p className="text-[#393E46]/80">Approved trademarks are published in the Trademark Journal for 90 days, allowing public objections.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Regulatory Approvals</h3>
+              <p className="text-[#393E46]/80">Obtain necessary permits and comply with local regulations.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -385,14 +386,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Registration</h3>
-              <p className="text-[#393E46]/80">If no objections are raised, the trademark is registered, and the certificate is issued, allowing use of the ® symbol.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Ongoing Support</h3>
+              <p className="text-[#393E46]/80">Monitor IP and compliance for sustained global operations.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Eligibility and Documents Section */}
+      {/* Eligibility and Requirements Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -402,7 +403,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Required Documents</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Who Can Benefit?</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <motion.div
@@ -410,24 +411,23 @@ export default function TrademarkRegistrationPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
+            <h3 className="text-xl font-bold text-[#222831] mb-3">Eligible Startups</h3>
             <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Individuals</li>
-              <li>Joint owners</li>
-              <li>Proprietorship firms</li>
-              <li>Partnership firms (up to 10 partners)</li>
-              <li>Limited Liability Partnerships (LLPs)</li>
-              <li>Indian and foreign companies</li>
-              <li>Trusts and societies</li>
+              <li>Indian startups planning global expansion</li>
+              <li>Businesses with IP assets like trademarks or patents</li>
+              <li>Tech, e-commerce, or consumer startups targeting global markets</li>
+              <li>Startups seeking international licensing or partnerships</li>
+              <li>Companies needing compliance with foreign regulations</li>
             </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents vary by applicant type but generally include:</p>
+            <h3 className="text-xl font-bold text-[#222831] mb-3">Requirements for Engagement</h3>
+            <p className="text-[#393E46]/80 mb-4">Requirements vary by case but generally include:</p>
             <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>PAN card and Aadhar card (for individuals and proprietorships)</li>
-              <li>Incorporation certificate and company PAN card (for companies and LLPs)</li>
-              <li>Partnership deed (for partnership firms)</li>
-              <li>Trust deed (for trusts)</li>
-              <li>MSME certificate and logo (if applicable)</li>
+              <li>Details of IP assets and business objectives</li>
+              <li>Information on target markets and expansion plans</li>
+              <li>Documentation for existing IP registrations</li>
+              <li>Details of proposed business structures abroad</li>
+              <li>Engagement agreement for legal services</li>
+              <li>Proof of payment for consulting fees</li>
             </ul>
           </motion.div>
         </div>
@@ -442,9 +442,9 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Brand?</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Go Global?</h2>
             <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Safeguard your business identity with BrandSecure’s expert trademark registration services. Start today and ensure your brand’s exclusivity in India’s competitive market.
+              Partner with BrandSecure for expert legal support to protect your IP and navigate global markets, empowering your Indian startup to succeed internationally. Start today.
             </p>
             <a
               href="/contact-us"

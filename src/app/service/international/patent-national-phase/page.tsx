@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 
-// Define the interface for trademark info
-interface TrademarkInfo {
+// Define the interface for National Phase Entry info
+interface NationalPhaseInfo {
   id: number;
   title: string;
   description: string;
@@ -13,84 +13,84 @@ interface TrademarkInfo {
   detailedContent: string;
 }
 
-const trademarkInfo: TrademarkInfo[] = [
+const nationalPhaseInfo: NationalPhaseInfo[] = [
   {
     id: 1,
-    title: "Understanding Trademarks",
-    description: "A trademark is a unique symbol, design, or expression that sets your products or services apart from competitors. It includes logos, brand names, slogans, and other identifiable features.",
-    category: "Trademark Basics",
+    title: "What is National Phase Entry?",
+    description: "National Phase Entry is the stage in the PCT process where an international patent application is submitted to individual countries for patent examination.",
+    category: "Basics",
     detailedContent: `
-      • A trademark is a unique sign, logo, word, or phrase identifying your goods/services.
-      • Ensures brand recognition and consumer trust.
-      • Includes word marks (e.g., brand names), logos, slogans, sounds, or shapes.
-      • Registered for specific classes under the Nice Classification system.
-      • Provides legal protection against misuse.
-      • Enhances market presence and brand reputation.
+      • Follows the international phase of a PCT application.
+      • Typically occurs within 30/31 months from the priority date.
+      • Each country examines the application per its patent laws.
+      • Requires compliance with national formalities and fees.
+      • Determines whether a patent is granted in each country.
+      • Managed independently by national or regional patent offices.
     `,
   },
   {
     id: 2,
-    title: "Why Register a Trademark?",
-    description: "Trademark registration secures your exclusive rights to use the mark, protects against unauthorized use, and allows legal action against infringements, ensuring brand protection.",
-    category: "Legal Protection",
+    title: "Benefits of National Phase Entry",
+    description: "National Phase Entry allows applicants to pursue patent protection in multiple countries while leveraging the PCT’s initial international phase.",
+    category: "Advantages",
     detailedContent: `
-      • Grants exclusive rights to use the mark in registered classes.
-      • Enables legal action against infringers for damages or injunctions.
-      • Offers nationwide protection in India.
-      • Increases brand credibility and valuation.
-      • Supports international filings via Madrid Protocol.
-      • Prevents customer confusion from similar marks.
+      • Extends the timeline for deciding target countries (up to 30/31 months).
+      • Uses international search and examination reports to inform decisions.
+      • Allows tailored strategies for each country’s patent system.
+      • Reduces initial costs by delaying national filings.
+      • Enables amendments to claims before national examination.
+      • Facilitates global patent portfolio management.
     `,
   },
   {
     id: 3,
-    title: "Trademark Registration Process",
-    description: "The process involves conducting a trademark search, filing an application, examination by the trademark office, publication in the journal, and final registration if unopposed.",
+    title: "National Phase Entry Process",
+    description: "The process involves submitting the PCT application to national patent offices, paying fees, and meeting country-specific requirements.",
     category: "Process Guide",
     detailedContent: `
-      • Conduct a search to check for existing similar marks.
-      • File application online with mark details and class.
-      • Registrar examines for compliance with Trade Marks Act.
-      • Respond to objections within 30 days if raised.
-      • Mark published in Trademark Journal for 90 days.
-      • Registered with certificate if no oppositions.
+      • Select countries for national phase entry within deadlines.
+      • Submit the PCT application to each national patent office.
+      • Pay national phase fees and any translation costs.
+      • Provide required documents (e.g., specifications, claims).
+      • Respond to office actions or objections during examination.
+      • Secure patent grants in approving countries.
     `,
   },
   {
     id: 4,
-    title: "Trademark Maintenance",
-    description: "Post-registration, trademarks need periodic renewals every ten years and active use to maintain validity. Monitoring for infringements is key to protecting your rights.",
-    category: "Trademark Management",
+    title: "Managing National Phase Patents",
+    description: "Post-national phase, patents require maintenance fees, compliance with local laws, and monitoring to remain valid in each country.",
+    category: "Patent Management",
     detailedContent: `
-      • Renew every 10 years using Form TM-R.
-      • Use mark actively to avoid cancellation after 5 years.
-      • Monitor market and journal for infringements.
-      • Take legal action against unauthorized use.
-      • Update registry for ownership or address changes.
-      • Maintain records of use (e.g., invoices).
+      • Pay annual maintenance fees in each country.
+      • Monitor patent status and deadlines for renewals.
+      • Comply with local patent laws and regulations.
+      • Address oppositions or invalidity challenges promptly.
+      • Maintain records of invention use or licensing.
+      • Enforce patent rights against infringements.
     `,
   },
   {
     id: 5,
-    title: "Global Trademark Protection",
-    description: "Safeguarding your trademark internationally requires filing in each country or using systems like the Madrid Protocol for efficient multi-country registration.",
-    category: "Global Trademarks",
+    title: "Challenges of National Phase Entry",
+    description: "National Phase Entry involves complexities like varying national laws, high costs, and the need for precise compliance with deadlines.",
+    category: "Considerations",
     detailedContent: `
-      • File directly in each country’s trademark office.
-      • Use Madrid Protocol for single application in 128 countries.
-      • Leverage regional systems like EUIPO for EU protection.
-      • Conduct international searches for mark availability.
-      • Ensure mark is culturally appropriate.
-      • Monitor global markets for infringements.
+      • Differing patentability standards across countries.
+      • High costs for fees, translations, and local agents.
+      • Strict deadlines for entering national phase (30/31 months).
+      • Potential for rejections or oppositions in some countries.
+      • Need for accurate translations of patent documents.
+      • Requires strategic selection of target countries.
     `,
   },
 ];
 
-export default function TrademarkRegistrationPage() {
+export default function NationalPhaseEntryPage() {
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedInfo, setSelectedInfo] = useState<TrademarkInfo | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<NationalPhaseInfo | null>(null);
 
-  const handleExploreClick = (info: TrademarkInfo) => {
+  const handleExploreClick = (info: NationalPhaseInfo) => {
     console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
@@ -126,7 +126,7 @@ export default function TrademarkRegistrationPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -176,12 +176,12 @@ export default function TrademarkRegistrationPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Registration
+            National Phase Entry 
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Brand Identity with Expert Trademark Solutions
+            Secure Your Patent Rights in Individual Countries
           </p>
         </motion.div>
       </motion.section>
@@ -196,15 +196,15 @@ export default function TrademarkRegistrationPage() {
             viewport={{ once: true }}
             className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Protect Your Brand with Trademark Registration</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-4">Transition to National Patent Protection</h2>
             <p className="text-[#393E46]/80 mb-6">
-              In today’s competitive market, your brand’s unique elements—logos, slogans, or packaging—define its identity. Trademark registration ensures these elements remain exclusive to your business, whether you’re a startup, an established company, or an individual entrepreneur. At BrandSecure, we specialize in guiding you through the online trademark registration process in India, safeguarding your intellectual property and enhancing your market presence.
+              National Phase Entry is a critical step in the PCT process, where your international patent application is submitted to individual countries for examination and potential patent grants. At BrandSecure, we guide inventors and businesses through this phase, ensuring compliance with national requirements to secure your intellectual property globally.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Trademark Info Section */}
+      {/* National Phase Info Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -214,12 +214,12 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Trademark Essentials</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">National Phase Essentials</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trademarkInfo.map((info: TrademarkInfo, index: number) => (
+            {nationalPhaseInfo.map((info: NationalPhaseInfo, index: number) => (
               <motion.div
                 key={info.id}
                 className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
@@ -257,7 +257,7 @@ export default function TrademarkRegistrationPage() {
         </div>
       </section>
 
-      {/* Types of Trademarks Section */}
+      {/* Key Countries Considerations Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -267,7 +267,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Types of Trademark Registrations</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Countries: National Phase Considerations</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -277,8 +277,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Product Mark</h3>
-              <p className="text-[#393E46]/80">Used for tangible goods, product marks identify the origin of products and uphold a company’s reputation. These fall under classes 1-34.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">United States</h3>
+              <p className="text-[#393E46]/80">Requires detailed compliance with USPTO rules, including inventor declarations and proof of novelty.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,8 +286,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Service Mark</h3>
-              <p className="text-[#393E46]/80">Service marks distinguish service providers, covering classes 35-45, and help differentiate services in the market.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">European Patent Office</h3>
+              <p className="text-[#393E46]/80">Allows a single entry for multiple European countries, but requires translations for validation.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -295,8 +295,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Collective Mark</h3>
-              <p className="text-[#393E46]/80">Represents a group’s products or services, protected by associations or public institutions for collective use.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">China</h3>
+              <p className="text-[#393E46]/80">Demands accurate Chinese translations and strict adherence to CNIPA’s patentability criteria.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -304,8 +304,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Certification Mark</h3>
-              <p className="text-[#393E46]/80">Indicates product quality, origin, or standards, commonly used for packaged goods, toys, and electronics.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">India</h3>
+              <p className="text-[#393E46]/80">Requires national phase entry within 31 months, with specific forms and fee structures.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -313,8 +313,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Shape Mark</h3>
-              <p className="text-[#393E46]/80">Protects unique product shapes that are distinctive and recognizable to consumers as brand-specific.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Japan</h3>
+              <p className="text-[#393E46]/80">JPO requires Japanese translations and rigorous examination for novelty and inventive step.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -322,14 +322,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Sound Mark</h3>
-              <p className="text-[#393E46]/80">Distinctive sounds, like audio mnemonics or jingles, associated with a brand’s products or services.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">South Korea</h3>
+              <p className="text-[#393E46]/80">KIPO emphasizes technical compliance and may require local representation for objections.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Registration Process Section */}
+      {/* National Phase Process Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -339,7 +339,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Register a Trademark in India</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Enter the National Phase</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="space-y-6">
@@ -349,8 +349,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Trademark Search</h3>
-              <p className="text-[#393E46]/80">Conduct a thorough search to ensure your trademark is unique and avoid conflicts with existing marks.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Select Target Countries</h3>
+              <p className="text-[#393E46]/80">Choose countries for patent protection based on market strategy and PCT deadlines.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -358,8 +358,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Application Filing</h3>
-              <p className="text-[#393E46]/80">Submit the application with the Trademark Registrar, including the Vienna Codification for figurative elements.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Submit National Phase Application</h3>
+              <p className="text-[#393E46]/80">File the PCT application with each national patent office within 30/31 months.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -367,8 +367,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Examination</h3>
-              <p className="text-[#393E46]/80">The Registrar reviews the application for accuracy and may raise objections, which can be addressed by the applicant.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Pay Fees and Provide Translations</h3>
+              <p className="text-[#393E46]/80">Pay national fees and submit translations of the application as required.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -376,8 +376,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Journal Publication</h3>
-              <p className="text-[#393E46]/80">Approved trademarks are published in the Trademark Journal for 90 days, allowing public objections.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Comply with National Requirements</h3>
+              <p className="text-[#393E46]/80">Meet country-specific formalities, such as inventor declarations or additional forms.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -385,14 +385,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Registration</h3>
-              <p className="text-[#393E46]/80">If no objections are raised, the trademark is registered, and the certificate is issued, allowing use of the ® symbol.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Undergo National Examination</h3>
+              <p className="text-[#393E46]/80">Respond to office actions and secure patent grants based on national examinations.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Eligibility and Documents Section */}
+      {/* Eligibility and Requirements Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -402,7 +402,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Required Documents</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Requirements</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <motion.div
@@ -410,24 +410,23 @@ export default function TrademarkRegistrationPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
+            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Enter the National Phase?</h3>
             <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Individuals</li>
-              <li>Joint owners</li>
-              <li>Proprietorship firms</li>
-              <li>Partnership firms (up to 10 partners)</li>
-              <li>Limited Liability Partnerships (LLPs)</li>
-              <li>Indian and foreign companies</li>
-              <li>Trusts and societies</li>
+              <li>Applicants with a filed PCT international application</li>
+              <li>Businesses with a registered office in a PCT member country</li>
+              <li>Individuals or entities with residency in a PCT member country</li>
+              <li>Universities or research institutions with PCT applications</li>
+              <li>Assignees of a PCT application meeting national eligibility</li>
             </ul>
             <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents vary by applicant type but generally include:</p>
+            <p className="text-[#393E46]/80 mb-4">Documents vary by country but generally include:</p>
             <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>PAN card and Aadhar card (for individuals and proprietorships)</li>
-              <li>Incorporation certificate and company PAN card (for companies and LLPs)</li>
-              <li>Partnership deed (for partnership firms)</li>
-              <li>Trust deed (for trusts)</li>
-              <li>MSME certificate and logo (if applicable)</li>
+              <li>Copy of the PCT international application</li>
+              <li>Translations of patent specification and claims</li>
+              <li>National phase entry forms (country-specific)</li>
+              <li>Power of Attorney (if using a local agent)</li>
+              <li>Proof of payment of national phase fees</li>
+              <li>Inventor declarations or priority documents (if required)</li>
             </ul>
           </motion.div>
         </div>
@@ -442,9 +441,9 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Brand?</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Secure Your Patents Globally?</h2>
             <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Safeguard your business identity with BrandSecure’s expert trademark registration services. Start today and ensure your brand’s exclusivity in India’s competitive market.
+              Navigate the National Phase Entry process with BrandSecure’s expert guidance to secure your patent rights in key markets. Start today to protect your innovation worldwide.
             </p>
             <a
               href="/contact-us"

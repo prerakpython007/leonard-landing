@@ -3,20 +3,23 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Disclaimer = () => {
-  // Changed to use window check for initial state
   const [isClient, setIsClient] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    console.log('useEffect running, checking localStorage');
     setIsClient(true);
     const hasAgreed = window.localStorage.getItem('disclaimerAgreed');
+    console.log('hasAgreed:', hasAgreed);
     if (hasAgreed === 'true') {
       setIsVisible(false);
     }
   }, []);
 
-  // Don't render anything on server
-  if (!isClient) return null;
+  if (!isClient) {
+    console.log('Server-side rendering, returning null');
+    return null;
+  }
 
   const handleAgree = () => {
     try {
@@ -44,7 +47,6 @@ const Disclaimer = () => {
             exit={{ scale: 0.95, opacity: 0 }}
             className="relative bg-[#EEEEEE] p-4 md:p-8 w-full max-w-[95%] md:max-w-[85%] lg:max-w-[1000px] rounded-lg shadow-2xl max-h-[90vh] overflow-y-auto"
           >
-            {/* Background Pattern */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
               <div className="absolute inset-0" style={{ 
                 backgroundImage: `
@@ -65,13 +67,11 @@ const Disclaimer = () => {
               </svg>
             </div>
 
-            {/* Corner Stars */}
             <span className="absolute top-4 left-4 text-[#00ADB5] text-4xl">✦</span>
             <span className="absolute top-4 right-4 text-[#393E46] text-4xl">✦</span>
             <span className="absolute bottom-4 left-4 text-[#393E46] text-4xl">✦</span>
             <span className="absolute bottom-4 right-4 text-[#00ADB5] text-4xl">✦</span>
 
-            {/* Title with gradient */}
             <div className="text-center mb-4 sm:mb-8">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-light tracking-wider uppercase relative inline-block">
                 <span className="text-[#00ADB5] font-extrabold">
@@ -80,7 +80,6 @@ const Disclaimer = () => {
               </h2>
             </div>
 
-            {/* Content */}
             <div className="text-[#393E46] font-bold space-y-4 sm:space-y-6 font-montserrat text-xs sm:text-sm md:text-base leading-relaxed">
               <p>
                 As per the rules of the Bar Council of India, we are not permitted to solicit work and advertise through website except as permitted under the aforesaid rules. The information provided under this website is solely available for informational purposes only and should not be interpreted as soliciting or advertisement.
@@ -104,10 +103,8 @@ const Disclaimer = () => {
               </ul>
             </div>
 
-            {/* Divider line */}
             <div className="w-full h-[1px] bg-[#393E46] my-8 opacity-20"></div>
 
-            {/* Buttons */}
             <div className="flex flex-col sm:flex-row justify-end items-center gap-4 mt-6 sm:mt-8">
               <motion.button
                 whileHover={{ scale: 1.02 }}

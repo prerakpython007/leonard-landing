@@ -1,7 +1,8 @@
-
-"use client";
+'use client';
 
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { X } from "lucide-react";
 import Link from "next/link";
 
 // Define the interface for resource information
@@ -11,8 +12,10 @@ interface ResourceInfo {
   description: string;
   category: string;
   link: string;
+  detailedLinks: { purpose: string; link: string }[];
 }
 
+// Define the detailed links for each resource category
 const resourceInfo: ResourceInfo[] = [
   {
     id: 1,
@@ -20,6 +23,13 @@ const resourceInfo: ResourceInfo[] = [
     description: "Register, search, and manage trademarks through Intellectual Property India’s official portal.",
     category: "Trademark",
     link: "https://ipindia.gov.in/trade-marks.htm",
+    detailedLinks: [
+      { purpose: "Trademark Public Search", link: "https://ipindiaonline.gov.in/tmrpublicsearch/frmrpublicsearch.aspx" },
+      { purpose: "Trademark Status Check (TMR Application Status)", link: "https://ipindiaonline.gov.in/eregister/eregister.aspx" },
+      { purpose: "Trademark Class Finder (Nice Classification)", link: "https://ipindia.gov.in/tmr_classification.htm" },
+      { purpose: "Trademark E-Filing Portal", link: "https://ipindiaonline.gov.in/trademarkefiling/user/frmLoginNew.aspx" },
+      { purpose: "TM Journal", link: "https://ipindia.gov.in/journal-tm.htm" },
+    ],
   },
   {
     id: 2,
@@ -27,6 +37,13 @@ const resourceInfo: ResourceInfo[] = [
     description: "Protect your creative works by registering with the Copyright Office India.",
     category: "Copyright",
     link: "https://copyright.gov.in/",
+    detailedLinks: [
+      { purpose: "Official Copyright Website", link: "https://copyright.gov.in" },
+      { purpose: "Online Registration", link: "https://copyright.gov.in/UserRegistration/frmLoginPage.aspx" },
+      { purpose: "Status of Copyright Application", link: "https://copyright.gov.in/Status/Status.aspx" },
+      { purpose: "Copyright Rules & FAQs", link: "https://copyright.gov.in/frmFAQs.aspx" },
+      { purpose: "Literary Work Registration Guide", link: "https://copyright.gov.in/Documents/LiteraryWork.pdf" },
+    ],
   },
   {
     id: 3,
@@ -34,6 +51,13 @@ const resourceInfo: ResourceInfo[] = [
     description: "File and search patents using Intellectual Property India’s e-filing and search tools.",
     category: "Patent",
     link: "https://ipindia.gov.in/patents.htm",
+    detailedLinks: [
+      { purpose: "Patent Search (InPASS 2.0)", link: "https://ipindiaservices.gov.in/publicsearch" },
+      { purpose: "Patent E-Filing Portal", link: "https://ipindiaonline.gov.in/epatentfiling/" },
+      { purpose: "Status of Patent Applications", link: "https://ipindiaonline.gov.in/eregister/eregister.aspx" },
+      { purpose: "Patent Agent Examination Info", link: "https://ipindia.gov.in/writereaddata/Portal/IPExam/examinations" },
+      { purpose: "Patent Office Manual & Guidelines", link: "https://ipindia.gov.in/ipr-policy.htm" },
+    ],
   },
   {
     id: 4,
@@ -41,6 +65,13 @@ const resourceInfo: ResourceInfo[] = [
     description: "Protect regional products with the Geographical Indications Registry.",
     category: "GI",
     link: "https://ipindia.gov.in/gi.htm",
+    detailedLinks: [
+      { purpose: "GI Registry India", link: "https://ipindia.gov.in/gi.htm" },
+      { purpose: "GI Application Status", link: "https://search.ipindia.gov.in/GIRPublic/ApplicationStatus" },
+      { purpose: "GI Application Forms", link: "https://ipindia.gov.in/forms-gi.htm" },
+      { purpose: "GI Products List", link: "https://ipindia.gov.in/writereaddata/Portal/Images/pdf/GI_Products_List.pdf" },
+      { purpose: "GI FAQs", link: "https://ipindia.gov.in/faq-gi.htm" },
+    ],
   },
   {
     id: 5,
@@ -48,6 +79,13 @@ const resourceInfo: ResourceInfo[] = [
     description: "Register industrial designs via Intellectual Property India’s design wing.",
     category: "Design",
     link: "https://ipindia.gov.in/designs.htm",
+    detailedLinks: [
+      { purpose: "Design E-Filing", link: "https://ipindiaonline.gov.in/designefiling/" },
+      { purpose: "Design Search Database", link: "https://search.ipindia.gov.in/DesignApplicationSearch/" },
+      { purpose: "Design Classification (Locarno)", link: "https://ipindia.gov.in/design-classification.htm" },
+      { purpose: "Design Journal", link: "https://ipindia.gov.in/utility-models-designs-journal.htm" },
+      { purpose: "Design Manual", link: "https://ipindia.gov.in/writereaddata/Portal/Images/pdf/ManualDesigns_06March2019.pdf" },
+    ],
   },
   {
     id: 6,
@@ -55,10 +93,38 @@ const resourceInfo: ResourceInfo[] = [
     description: "Access IP facilitation for startups, including fee concessions and guidance.",
     category: "Startup",
     link: "https://www.startupindia.gov.in/content/sih/en/startupgov/startup_india_ipr.html",
+    detailedLinks: [
+      { purpose: "WIPO", link: "https://www.wipo.int" },
+      { purpose: "PCT Filing Portal (India)", link: "https://www.ipindia.gov.in/pct.htm" },
+      { purpose: "Madrid Protocol (India Guide)", link: "https://ipindia.gov.in/wipo.htm" },
+    ],
   },
 ];
 
 export default function GovernmentResourcesPage() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedResource, setSelectedResource] = useState<ResourceInfo | null>(null);
+
+  const handleExploreClick = (resource: ResourceInfo) => {
+    setSelectedResource(resource);
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelectedResource(null);
+  };
+
+  // Icons for categories
+  const categoryIcons: { [key: string]: string } = {
+    Trademark: "🏷️",
+    Copyright: "📄",
+    Patent: "🧠",
+    GI: "🗺️",
+    Design: "🌐",
+    Startup: "🌍",
+  };
+
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
       {/* Grid Pattern Overlay */}
@@ -72,6 +138,53 @@ export default function GovernmentResourcesPage() {
           backgroundSize: "30px 30px",
         }}
       />
+
+      {/* Popup */}
+      {showPopup && selectedResource && (
+        <motion.div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={closePopup}
+        >
+          <motion.div
+            className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={closePopup}
+              className="absolute top-4 right-4 text-[#393E46] hover:text-[#00ADB5]"
+            >
+              <X size={24} />
+            </button>
+            <h2 className="text-2xl font-bold text-[#222831] mb-4 flex items-center gap-2">
+              <span>{categoryIcons[selectedResource.category]}</span>
+              {selectedResource.category} Resources
+            </h2>
+            <div className="space-y-4">
+              {selectedResource.detailedLinks.map((linkItem, index) => (
+                <div key={index} className="border-b border-gray-100 pb-2">
+                  <p className="text-[#393E46] font-medium">{linkItem.purpose}</p>
+                  <Link
+                    href={linkItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00ADB5] hover:text-[#222831] text-sm break-all"
+                  >
+                    {linkItem.link}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Hero Section */}
       <motion.section
@@ -151,10 +264,8 @@ export default function GovernmentResourcesPage() {
                   <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Visit Portal</span>
-                    <Link
-                      href={info.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => handleExploreClick(info)}
                       className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
                     >
                       Explore
@@ -166,7 +277,7 @@ export default function GovernmentResourcesPage() {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -249,4 +360,3 @@ export default function GovernmentResourcesPage() {
     </div>
   );
 }
-

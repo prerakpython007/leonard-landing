@@ -151,13 +151,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <motion.button
-                className="inline-flex items-center px-8 py-4 bg-[#00ADB5] text-white rounded-lg hover:bg-[#222831] transition-colors duration-300 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Learn More <ArrowRight className="ml-2 h-5 w-5" />
-              </motion.button>
+             
             </motion.div>
 
             {/* Image Section - Now Second with Decorative Elements */}

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { X } from "lucide-react";
 
-// Define the interface for trademark info
-interface TrademarkInfo {
+// Define the interface for Berne Convention info
+interface BerneConventionInfo {
   id: number;
   title: string;
   description: string;
@@ -13,84 +13,84 @@ interface TrademarkInfo {
   detailedContent: string;
 }
 
-const trademarkInfo: TrademarkInfo[] = [
+const berneConventionInfo: BerneConventionInfo[] = [
   {
     id: 1,
-    title: "Understanding Trademarks",
-    description: "A trademark is a unique symbol, design, or expression that sets your products or services apart from competitors. It includes logos, brand names, slogans, and other identifiable features.",
-    category: "Trademark Basics",
+    title: "What is the Berne Convention?",
+    description: "The Berne Convention is an international treaty that establishes minimum standards for copyright protection across member countries, ensuring automatic protection for creative works.",
+    category: "Berne Basics",
     detailedContent: `
-      • A trademark is a unique sign, logo, word, or phrase identifying your goods/services.
-      • Ensures brand recognition and consumer trust.
-      • Includes word marks (e.g., brand names), logos, slogans, sounds, or shapes.
-      • Registered for specific classes under the Nice Classification system.
-      • Provides legal protection against misuse.
-      • Enhances market presence and brand reputation.
+      • Administered by the World Intellectual Property Organization (WIPO).
+      • Covers over 180 member countries.
+      • Grants automatic copyright protection without registration.
+      • Ensures protection for at least 50 years after the author’s death.
+      • Recognizes moral and economic rights of creators.
+      • Facilitates cross-border copyright enforcement.
     `,
   },
   {
     id: 2,
-    title: "Why Register a Trademark?",
-    description: "Trademark registration secures your exclusive rights to use the mark, protects against unauthorized use, and allows legal action against infringements, ensuring brand protection.",
-    category: "Legal Protection",
+    title: "Benefits of the Berne Convention",
+    description: "The Berne Convention simplifies global copyright protection by providing automatic rights, harmonized standards, and reciprocal treatment in member countries.",
+    category: "Advantages",
     detailedContent: `
-      • Grants exclusive rights to use the mark in registered classes.
-      • Enables legal action against infringers for damages or injunctions.
-      • Offers nationwide protection in India.
-      • Increases brand credibility and valuation.
-      • Supports international filings via Madrid Protocol.
-      • Prevents customer confusion from similar marks.
+      • Automatic protection upon creation of a work.
+      • No formal registration required in most member countries.
+      • Reciprocal protection in all Berne member countries.
+      • Harmonized minimum standards for copyright duration.
+      • Supports enforcement against unauthorized use.
+      • Protects both economic and moral rights of creators.
     `,
   },
   {
     id: 3,
-    title: "Trademark Registration Process",
-    description: "The process involves conducting a trademark search, filing an application, examination by the trademark office, publication in the journal, and final registration if unopposed.",
+    title: "Copyright Filing Process",
+    description: "While the Berne Convention grants automatic protection, voluntary registration in some countries can enhance enforcement and legal clarity.",
     category: "Process Guide",
     detailedContent: `
-      • Conduct a search to check for existing similar marks.
-      • File application online with mark details and class.
-      • Registrar examines for compliance with Trade Marks Act.
-      • Respond to objections within 30 days if raised.
-      • Mark published in Trademark Journal for 90 days.
-      • Registered with certificate if no oppositions.
+      • Create and fix the work in a tangible medium.
+      • Automatic protection applies in Berne member countries.
+      • Optionally register in countries like the US for legal benefits.
+      • Submit application to national copyright office (if registering).
+      • Provide copies of the work and pay applicable fees.
+      • Receive registration certificate for enforcement purposes.
     `,
   },
   {
     id: 4,
-    title: "Trademark Maintenance",
-    description: "Post-registration, trademarks need periodic renewals every ten years and active use to maintain validity. Monitoring for infringements is key to protecting your rights.",
-    category: "Trademark Management",
+    title: "Managing Global Copyrights",
+    description: "Copyright holders must monitor usage, enforce rights, and manage licensing to maintain protection across Berne member countries.",
+    category: "Copyright Management",
     detailedContent: `
-      • Renew every 10 years using Form TM-R.
-      • Use mark actively to avoid cancellation after 5 years.
-      • Monitor market and journal for infringements.
-      • Take legal action against unauthorized use.
-      • Update registry for ownership or address changes.
-      • Maintain records of use (e.g., invoices).
+      • Monitor unauthorized use of copyrighted works globally.
+      • Enforce rights through cease-and-desist letters or litigation.
+      • License works for commercial use in different countries.
+      • Maintain records of creation and ownership.
+      • Renew registrations in countries requiring it (e.g., US).
+      • Stay informed about local copyright laws for enforcement.
     `,
   },
   {
     id: 5,
-    title: "Global Trademark Protection",
-    description: "Safeguarding your trademark internationally requires filing in each country or using systems like the Madrid Protocol for efficient multi-country registration.",
-    category: "Global Trademarks",
+    title: "Challenges of Global Copyright",
+    description: "Global copyright protection faces challenges like varying national laws, enforcement difficulties, and digital piracy issues.",
+    category: "Considerations",
     detailedContent: `
-      • File directly in each country’s trademark office.
-      • Use Madrid Protocol for single application in 128 countries.
-      • Leverage regional systems like EUIPO for EU protection.
-      • Conduct international searches for mark availability.
-      • Ensure mark is culturally appropriate.
-      • Monitor global markets for infringements.
+      • Differences in copyright duration and exceptions across countries.
+      • Enforcement challenges in jurisdictions with weak legal systems.
+      • Digital piracy and unauthorized online distribution.
+      • Costs of litigation in multiple countries.
+      • Complexity of licensing across borders.
+      • Need for local expertise in some jurisdictions.
     `,
   },
 ];
 
-export default function TrademarkRegistrationPage() {
+export default function GlobalCopyrightFilingPage() {
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedInfo, setSelectedInfo] = useState<TrademarkInfo | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<BerneConventionInfo | null>(null);
 
-  const handleExploreClick = (info: TrademarkInfo) => {
+  const handleExploreClick = (info: BerneConventionInfo) => {
     console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
@@ -126,7 +126,7 @@ export default function TrademarkRegistrationPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -176,12 +176,12 @@ export default function TrademarkRegistrationPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Registration
+            Global Copyright Filing 
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Brand Identity with Expert Trademark Solutions
+            Protect Your Creative Works Worldwide
           </p>
         </motion.div>
       </motion.section>
@@ -196,15 +196,15 @@ export default function TrademarkRegistrationPage() {
             viewport={{ once: true }}
             className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Protect Your Brand with Trademark Registration</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-4">Safeguard Your Creative Works Globally</h2>
             <p className="text-[#393E46]/80 mb-6">
-              In today’s competitive market, your brand’s unique elements—logos, slogans, or packaging—define its identity. Trademark registration ensures these elements remain exclusive to your business, whether you’re a startup, an established company, or an individual entrepreneur. At BrandSecure, we specialize in guiding you through the online trademark registration process in India, safeguarding your intellectual property and enhancing your market presence.
+              The Berne Convention ensures automatic copyright protection for creative works across over 180 member countries, simplifying global intellectual property management. At BrandSecure, we assist creators and businesses in understanding and leveraging the Berne Convention, with optional registration services to enhance enforcement in key jurisdictions.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Trademark Info Section */}
+      {/* Berne Convention Info Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -214,12 +214,12 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Trademark Essentials</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Berne Convention Essentials</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trademarkInfo.map((info: TrademarkInfo, index: number) => (
+            {berneConventionInfo.map((info: BerneConventionInfo, index: number) => (
               <motion.div
                 key={info.id}
                 className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
@@ -257,7 +257,7 @@ export default function TrademarkRegistrationPage() {
         </div>
       </section>
 
-      {/* Types of Trademarks Section */}
+      {/* Berne Convention Member Countries Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -267,7 +267,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Types of Trademark Registrations</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Berne Convention Member Countries</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -277,8 +277,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Product Mark</h3>
-              <p className="text-[#393E46]/80">Used for tangible goods, product marks identify the origin of products and uphold a company’s reputation. These fall under classes 1-34.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">United States</h3>
+              <p className="text-[#393E46]/80">Offers voluntary copyright registration through the US Copyright Office for enhanced legal benefits.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -286,8 +286,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Service Mark</h3>
-              <p className="text-[#393E46]/80">Service marks distinguish service providers, covering classes 35-45, and help differentiate services in the market.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">European Union</h3>
+              <p className="text-[#393E46]/80">Provides automatic protection across EU member states with harmonized copyright laws.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -295,8 +295,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Collective Mark</h3>
-              <p className="text-[#393E46]/80">Represents a group’s products or services, protected by associations or public institutions for collective use.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">India</h3>
+              <p className="text-[#393E46]/80">Grants automatic protection but allows voluntary registration for evidentiary purposes.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -304,8 +304,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Certification Mark</h3>
-              <p className="text-[#393E46]/80">Indicates product quality, origin, or standards, commonly used for packaged goods, toys, and electronics.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Japan</h3>
+              <p className="text-[#393E46]/80">Ensures automatic copyright protection with strong enforcement mechanisms.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -313,8 +313,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Shape Mark</h3>
-              <p className="text-[#393E46]/80">Protects unique product shapes that are distinctive and recognizable to consumers as brand-specific.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Australia</h3>
+              <p className="text-[#393E46]/80">Provides automatic protection under the Berne Convention with no formal registration required.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -322,14 +322,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Sound Mark</h3>
-              <p className="text-[#393E46]/80">Distinctive sounds, like audio mnemonics or jingles, associated with a brand’s products or services.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">Brazil</h3>
+              <p className="text-[#393E46]/80">Offers automatic copyright protection with optional registration for legal clarity.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Registration Process Section */}
+      {/* Copyright Filing Process Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -339,7 +339,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Register a Trademark in India</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Secure Copyright Protection</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <div className="space-y-6">
@@ -349,8 +349,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Trademark Search</h3>
-              <p className="text-[#393E46]/80">Conduct a thorough search to ensure your trademark is unique and avoid conflicts with existing marks.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Create and Fix the Work</h3>
+              <p className="text-[#393E46]/80">Produce an original work and fix it in a tangible medium (e.g., written, recorded).</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -358,8 +358,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Application Filing</h3>
-              <p className="text-[#393E46]/80">Submit the application with the Trademark Registrar, including the Vienna Codification for figurative elements.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Automatic Protection</h3>
+              <p className="text-[#393E46]/80">Gain automatic copyright protection in Berne member countries upon creation.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -367,8 +367,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Examination</h3>
-              <p className="text-[#393E46]/80">The Registrar reviews the application for accuracy and may raise objections, which can be addressed by the applicant.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Consider Voluntary Registration</h3>
+              <p className="text-[#393E46]/80">Optionally register in countries like the US or India for legal advantages.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -376,8 +376,8 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Journal Publication</h3>
-              <p className="text-[#393E46]/80">Approved trademarks are published in the Trademark Journal for 90 days, allowing public objections.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Submit Registration Application</h3>
+              <p className="text-[#393E46]/80">File an application with the national copyright office, including work copies and fees.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -385,14 +385,14 @@ export default function TrademarkRegistrationPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-white p-6 rounded-xl shadow-lg"
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Registration</h3>
-              <p className="text-[#393E46]/80">If no objections are raised, the trademark is registered, and the certificate is issued, allowing use of the ® symbol.</p>
+              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Enforce Your Rights</h3>
+              <p className="text-[#393E46]/80">Monitor and enforce your copyright through legal action or licensing agreements.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Eligibility and Documents Section */}
+      {/* Eligibility and Requirements Section */}
       <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -402,7 +402,7 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Required Documents</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Requirements</h2>
             <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
           </motion.div>
           <motion.div
@@ -410,24 +410,23 @@ export default function TrademarkRegistrationPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
+            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Claim Copyright?</h3>
             <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Individuals</li>
-              <li>Joint owners</li>
-              <li>Proprietorship firms</li>
-              <li>Partnership firms (up to 10 partners)</li>
-              <li>Limited Liability Partnerships (LLPs)</li>
-              <li>Indian and foreign companies</li>
-              <li>Trusts and societies</li>
+              <li>Creators of original literary, artistic, or musical works</li>
+              <li>Businesses or organizations owning copyrighted works</li>
+              <li>Assignees or licensees of copyrighted works</li>
+              <li>Individuals or entities in Berne member countries</li>
+              <li>Collaborators or joint authors of creative works</li>
             </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents vary by applicant type but generally include:</p>
+            <h3 className="text-xl font-bold text-[#222831] mb-3">Requirements for Protection</h3>
+            <p className="text-[#393E46]/80 mb-4">Requirements vary by country but generally include:</p>
             <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>PAN card and Aadhar card (for individuals and proprietorships)</li>
-              <li>Incorporation certificate and company PAN card (for companies and LLPs)</li>
-              <li>Partnership deed (for partnership firms)</li>
-              <li>Trust deed (for trusts)</li>
-              <li>MSME certificate and logo (if applicable)</li>
+              <li>Original work fixed in a tangible medium</li>
+              <li>Copy of the work for registration (if applicable)</li>
+              <li>Creator’s details (name, nationality, address)</li>
+              <li>Application form for voluntary registration</li>
+              <li>Proof of payment of registration fees (if applicable)</li>
+              <li>Power of Attorney (if using an agent)</li>
             </ul>
           </motion.div>
         </div>
@@ -442,9 +441,9 @@ export default function TrademarkRegistrationPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Brand?</h2>
+            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Creative Works?</h2>
             <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Safeguard your business identity with BrandSecure’s expert trademark registration services. Start today and ensure your brand’s exclusivity in India’s competitive market.
+              Secure your copyright globally with BrandSecure’s expert guidance under the Berne Convention. Start today to safeguard your creative assets worldwide.
             </p>
             <a
               href="/contact-us"

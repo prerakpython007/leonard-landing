@@ -1,22 +1,22 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
-import Link from "next/link"
-import dynamic from "next/dynamic"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 // Dynamically import react-leaflet components to avoid SSR issues
-const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false })
-const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false })
-const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false })
-const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false })
+const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
 // Dynamically import MapComponent to ensure it only loads client-side
-const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false })
+const MapComponent = dynamic(() => import("./MapComponent"), { ssr: false });
 
 // Import Leaflet CSS
-import "leaflet/dist/leaflet.css"
+import "leaflet/dist/leaflet.css";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,30 +25,42 @@ export default function ContactPage() {
     email: "",
     mobile: "",
     message: "",
-  })
+  });
+  const [showPopup, setShowPopup] = useState(false);
 
   // Configure Leaflet icons only in the browser
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const L = require("leaflet")
-      delete (L.Icon.Default.prototype as any)._getIconUrl
+      const L = require("leaflet");
+      delete (L.Icon.Default.prototype as any)._getIconUrl;
       L.Icon.Default.mergeOptions({
         iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
         iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-      })
+      });
     }
-  }, [])
+  }, []);
+
+  // Auto-hide popup after 3 seconds
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showPopup]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    setFormData({ firstName: "", lastName: "", email: "", mobile: "", message: "" })
-  }
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    setFormData({ firstName: "", lastName: "", email: "", mobile: "", message: "" });
+    setShowPopup(true);
+  };
 
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
@@ -63,6 +75,20 @@ export default function ContactPage() {
           backgroundSize: "30px 30px",
         }}
       />
+
+      {/* Popup Confirmation */}
+      {showPopup && (
+        <motion.div
+          className="fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-[1000] flex items-center gap-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <span className="text-[#00ADB5] text-2xl">✦</span>
+          <p className="text-[#222831] font-medium">Your message was sent successfully!</p>
+        </motion.div>
+      )}
 
       {/* Hero Section */}
       <motion.section
@@ -156,50 +182,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Our Branches In India */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Our Branches In India</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <motion.img
-              src="/contact-map-color.png"
-              alt="Indian Branches"
-              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            />
-          </motion.div>
-
-          {/* International Associates */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">International Associates (Partners)</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <motion.img
-              src="/word-map.png"
-              alt="International Associates"
-              className="max-w-4xl w-full h-auto rounded-lg mx-auto"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            />
-          </motion.div>
-
           {/* Get In Touch Form */}
           <motion.div
             className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12"
@@ -208,7 +190,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 róelative">
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
               <span className="relative z-10">Get In Touch</span>
               <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
             </h2>
@@ -312,7 +294,7 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 const contactDetails = [
@@ -331,4 +313,4 @@ const contactDetails = [
     title: "Email Us",
     text: "info@leonardsolutions.in",
   },
-]
+];
