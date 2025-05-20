@@ -251,7 +251,7 @@ export default function PricingPage() {
                         </ul>
                         <div className="mt-auto">
                           <Link
-                            href="/contact"
+                            href="/contact-us"
                             className="inline-flex items-center justify-center w-full bg-gradient-to-br from-[#00ADB5] to-[#00959c] hover:bg-gradient-to-br hover:from-[#00959c] hover:to-[#222831] text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#00ADB5]/50"
                           >
                             Get Started <ArrowRight className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
