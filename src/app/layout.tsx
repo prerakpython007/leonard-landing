@@ -5,7 +5,7 @@ import UpperNav from "~/_components/UpperNav";
 import Nav from "~/_components/Nav";
 import Footer from "~/_components/Footer";
 import ScrollToTop from "~/_components/ScrollToTop";
-import Disclaimer from "~/_components/Disclaimer";
+
 import FloatingContact from "~/_components/FloatingContact";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="bg-[#222831] relative">
-        <Disclaimer />
+
         <UpperNav />
         <Nav />
         {children}
