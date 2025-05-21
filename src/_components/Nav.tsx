@@ -118,23 +118,23 @@ const Nav: React.FC = () => {
     {
       title: "Intellectual Property Services",
       items: [
-        { label: "Trademark Services", href: "/service/national/trademark" },
-        { label: "Patent Services", href: "/service/national/patent" },
-        { label: "Copyright Services", href: "/service/national/copyright" },
-        { label: "Design IP", href: "/service/national/design" },
-        { label: "Geographical Indications (GI)", href: "/service/national/geographical-indications" },
-        { label: "Domain Name Law", href: "/service/national/domain-name" },
-        { label: "Anti-Counterfeiting & Brand Protection", href: "/service/national/anti-counterfeiting" },
+        { label: "Trademark Services", href: "/service/trademark" },
+        { label: "Patent Services", href: "/service/patent" },
+        { label: "Copyright Services", href: "/service/copyright" },
+        { label: "Design IP", href: "/service/design" },
+        { label: "Geographical Indications (GI)", href: "/service/geographical" },
+        { label: "Domain Name Law", href: "/service/domain" },
+        { label: "Anti-Counterfeiting & Brand Protection", href: "/service/anti-counterfeiting" },
       ]
     },
     {
       title: "Business Legal Services",
       items: [
-        { label: "Corporate Legal Services", href: "/service/national/corporate-legal" },
-        { label: "Startup Legal Support", href: "/service/national/startup-legal" },
-        { label: "Business Law & Compliance", href: "/service/national/business-law" },
-        { label: "Investment & Fundraising Legal", href: "/service/national/investment-legal" },
-        { label: "Litigation & Dispute Resolution", href: "/service/national/litigation" },
+        { label: "Corporate Legal Services", href: "/service/corporate" },
+        { label: "Startup Legal Support", href: "/service/startup" },
+        { label: "Business Law & Compliance", href: "/service/business-law" },
+        { label: "Investment & Fundraising Legal", href: "/service/investment" },
+        { label: "Litigation & Dispute Resolution", href: "/service/litigation" },
       ]
     }
   ];

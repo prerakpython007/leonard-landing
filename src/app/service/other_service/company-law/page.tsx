@@ -1,158 +1,216 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { Briefcase, FileText, Scale, FileCheck, Building, Users, Shield } from "lucide-react"
-import Link from "next/link"
+import { motion } from 'framer-motion';
+import { Scale, FileText, Shield, Briefcase, Lock, Gavel } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
-export default function CompanyLawPage() {
+export default function BusinessLawCompliancePage() {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  const serviceCards = [
+    {
+      icon: Scale,
+      title: 'Regulatory Compliance Audits',
+      description: 'Conduct thorough audits to ensure your business meets all regulatory requirements.',
+      route: '#compliance-audits',
+    },
+    {
+      icon: FileText,
+      title: 'Contract Management',
+      description: 'Draft, review, and manage contracts to secure your business transactions.',
+      route: '#contract-management',
+    },
+    {
+      icon: Shield,
+      title: 'Risk Assessment & Mitigation',
+      description: 'Identify and address legal risks to protect your business operations.',
+      route: '#risk-assessment',
+    },
+    {
+      icon: Briefcase,
+      title: 'Corporate Policy Development',
+      description: 'Create compliant policies to govern your business operations effectively.',
+      route: '#policy-development',
+    },
+    {
+      icon: Lock,
+      title: 'Data Protection Compliance',
+      description: 'Ensure compliance with GDPR, DPDP, and other data protection regulations.',
+      route: '#data-protection',
+    },
+    {
+      icon: Gavel,
+      title: 'Dispute Resolution Support',
+      description: 'Navigate business disputes with expert legal guidance and representation.',
+      route: '#dispute-resolution',
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#EEEEEE] via-white to-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+      {/* Grid Pattern Overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px',
+        }}
+      />
+
       {/* Hero Section */}
       <motion.section
-        className="relative bg-gradient-to-r from-[#00ADB5] to-[#00959c] text-white py-16 px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 bg-grid-white/[0.1]" />
-        <div className="relative text-center mb-12 w-full">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative inline-block"
-          >
-            <span className="text-5xl md:text-6xl font-bold tracking-wider">
-              <strong className="text-white mr-2 relative">
-                COMPANY LAW
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-white/20 rounded-full"></span>
-              </strong>
-              <span className="text-black">SERVICES</span>
-            </span>
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-white text-5xl hidden md:block animate-pulse">✦</span>
-          </motion.div>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl mt-6 text-white/90 max-w-2xl mx-auto"
-          >
-            Comprehensive Legal Support for Corporate Governance
-          </motion.p>
-        </div>
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Business Law & Compliance
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          </h1>
+          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+            Ensure Your Operations Are Legally Compliant with Expert Guidance
+          </p>
+        </motion.div>
       </motion.section>
 
-      {/* Company Law Information Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          {/* Company Law Overview */}
+      {/* Business Law & Compliance Information Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
+        <div className="max-w-6xl mx-auto relative">
+          {/* Business Law & Compliance Overview */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            className="mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Company Law Overview</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed">
-              We offer expert compliance and advisory services for company law matters, Securities and Exchange Board of
-              India (SEBI) regulations, and other corporate laws. Our services include representation before the Registrar
-              of Companies and other authorities, as well as the preparation of various commercial and legal documentation.
-              From incorporation to dissolution, we provide end-to-end support to ensure your business operates within the
-              legal framework.
-            </p>
-            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
-              Contact us at{" "}
-              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
-                info@leonardsolutions.in
-              </a>{" "}
-              for tailored assistance with your corporate legal needs.
-            </p>
+            <div className="relative max-w-3xl mx-auto px-8">
+              {/* Corner Angles */}
+              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+              <div className="text-center space-y-6">
+                <h2 className="text-4xl font-bold mb-4 relative inline-block">
+                  <span className="text-[#00ADB5]">Business Law &</span>{' '}
+                  <span className="text-[#393E46]">Compliance Overview</span>
+                </h2>
+                <p className="text-[#393E46] text-lg leading-relaxed">
+                  At Leonard Corporate Solutions, we provide expert business law and compliance services to ensure your operations run smoothly and adhere to all legal requirements. Our tailored guidance helps businesses of all sizes navigate complex regulations with confidence.
+                </p>
+                <p className="text-[#393E46] text-lg leading-relaxed">
+                  From regulatory audits to contract management, our team delivers strategic solutions to keep your business legally sound and competitive.
+                </p>
+                <p className="text-[#393E46] text-lg font-medium">
+                  📩 Need expert business law support? Reach out at{' '}
+                  <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                    info@leonardsolutions.in
+                  </a>
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Our Services */}
+          {/* Our Services Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Our Business Law</span>{' '}
+              <span className="text-[#00ADB5]">& Compliance Services</span>
+            </h2>
+          </div>
+
+          {/* Services Grid */}
           <motion.div
-            className="space-y-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-[#222831] mb-4">Our Services</h2>
-              <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {serviceCards.map((service, index) => (
+            {serviceCards.map((service, index) => (
+              <Link
+                key={service.title}
+                href={service.route}
+                className="group relative"
+                onMouseEnter={() => setHoveredCard(service.title)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
                 <motion.div
-                  key={service.title}
-                  className="group bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/20"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+                  className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 rounded-lg text-white transform group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="h-6 w-6" />
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                      <service.icon className="h-7 w-7" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-[#222831] mb-2">{service.title}</h3>
-                      <p className="text-[#393E46]/80">{service.description}</p>
+                      <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-[#393E46]/80 text-base leading-relaxed">
+                        {service.description}
+                      </p>
                     </div>
                   </div>
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 </motion.div>
-              ))}
+              </Link>
+            ))}
+          </motion.div>
+
+          {/* Closing Message */}
+          <motion.div
+            className="mt-32 relative max-w-3xl mx-auto px-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative py-12">
+              {/* Corner Angles */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+              <p className="text-[#393E46] text-lg text-center leading-relaxed">
+                At Leonard Corporate Solutions, our business law and compliance services are designed to keep your operations secure and compliant. We adapt to your needs, providing expert guidance to drive your business forward.
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
-  )
-}
-
-const serviceCards = [
-  {
-    icon: Building,
-    title: "Company Incorporation",
-    description: "Incorporate companies and LLPs in India and abroad with seamless compliance."
-  },
-  {
-    icon: FileCheck,
-    title: "Entity Conversion",
-    description: "Convert companies or partnerships into LLPs and vice versa efficiently."
-  },
-  {
-    icon: FileText,
-    title: "Regulatory Filings",
-    description: "Handle e-filing of documents and returns with regulatory authorities."
-  },
-  {
-    icon: Shield,
-    title: "Secretarial Compliance",
-    description: "Ensure compliance with secretarial records and regulatory requirements."
-  },
-  {
-    icon: Users,
-    title: "Corporate Meetings",
-    description: "Organize and conduct board and shareholder meetings with legal compliance."
-  },
-  {
-    icon: Scale,
-    title: "Mergers & Acquisitions",
-    description: "Provide advisory for mergers, amalgamations, and joint ventures."
-  },
-  {
-    icon: Briefcase,
-    title: "Compliance Audits",
-    description: "Design legal compliance frameworks and conduct thorough audits."
-  }
-]
-
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ")
+  );
 }
