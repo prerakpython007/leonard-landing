@@ -1,8 +1,10 @@
+
 'use client';
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 // Define the interface for Berne Convention info
 interface BerneConventionInfo {
@@ -16,9 +18,9 @@ interface BerneConventionInfo {
 const berneConventionInfo: BerneConventionInfo[] = [
   {
     id: 1,
-    title: "What is the Berne Convention?",
-    description: "The Berne Convention is an international treaty that establishes minimum standards for copyright protection across member countries, ensuring automatic protection for creative works.",
-    category: "Berne Basics",
+    title: 'What is the Berne Convention?',
+    description: 'The Berne Convention is an international treaty that establishes minimum standards for copyright protection across member countries, ensuring automatic protection for creative works.',
+    category: 'Berne Basics',
     detailedContent: `
       • Administered by the World Intellectual Property Organization (WIPO).
       • Covers over 180 member countries.
@@ -30,9 +32,9 @@ const berneConventionInfo: BerneConventionInfo[] = [
   },
   {
     id: 2,
-    title: "Benefits of the Berne Convention",
-    description: "The Berne Convention simplifies global copyright protection by providing automatic rights, harmonized standards, and reciprocal treatment in member countries.",
-    category: "Advantages",
+    title: 'Benefits of the Berne Convention',
+    description: 'The Berne Convention simplifies global copyright protection by providing automatic rights, harmonized standards, and reciprocal treatment in member countries.',
+    category: 'Advantages',
     detailedContent: `
       • Automatic protection upon creation of a work.
       • No formal registration required in most member countries.
@@ -44,9 +46,9 @@ const berneConventionInfo: BerneConventionInfo[] = [
   },
   {
     id: 3,
-    title: "Copyright Filing Process",
-    description: "While the Berne Convention grants automatic protection, voluntary registration in some countries can enhance enforcement and legal clarity.",
-    category: "Process Guide",
+    title: 'Copyright Filing Process',
+    description: 'While the Berne Convention grants automatic protection, voluntary registration in some countries can enhance enforcement and legal clarity.',
+    category: 'Process Guide',
     detailedContent: `
       • Create and fix the work in a tangible medium.
       • Automatic protection applies in Berne member countries.
@@ -58,9 +60,9 @@ const berneConventionInfo: BerneConventionInfo[] = [
   },
   {
     id: 4,
-    title: "Managing Global Copyrights",
-    description: "Copyright holders must monitor usage, enforce rights, and manage licensing to maintain protection across Berne member countries.",
-    category: "Copyright Management",
+    title: 'Managing Global Copyrights',
+    description: 'Copyright holders must monitor usage, enforce rights, and manage licensing to maintain protection across Berne member countries.',
+    category: 'Copyright Management',
     detailedContent: `
       • Monitor unauthorized use of copyrighted works globally.
       • Enforce rights through cease-and-desist letters or litigation.
@@ -72,9 +74,9 @@ const berneConventionInfo: BerneConventionInfo[] = [
   },
   {
     id: 5,
-    title: "Challenges of Global Copyright",
-    description: "Global copyright protection faces challenges like varying national laws, enforcement difficulties, and digital piracy issues.",
-    category: "Considerations",
+    title: 'Challenges of Global Copyright',
+    description: 'Global copyright protection faces challenges like varying national laws, enforcement difficulties, and digital piracy issues.',
+    category: 'Considerations',
     detailedContent: `
       • Differences in copyright duration and exceptions across countries.
       • Enforcement challenges in jurisdictions with weak legal systems.
@@ -91,7 +93,6 @@ export default function GlobalCopyrightFilingPage() {
   const [selectedInfo, setSelectedInfo] = useState<BerneConventionInfo | null>(null);
 
   const handleExploreClick = (info: BerneConventionInfo) => {
-    console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -102,16 +103,16 @@ export default function GlobalCopyrightFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
 
@@ -126,7 +127,7 @@ export default function GlobalCopyrightFilingPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -169,6 +170,12 @@ export default function GlobalCopyrightFilingPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -176,7 +183,7 @@ export default function GlobalCopyrightFilingPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Global Copyright Filing 
+            Global Copyright
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
@@ -187,70 +194,81 @@ export default function GlobalCopyrightFilingPage() {
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Safeguard Your Creative Works Globally</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              The Berne Convention ensures automatic copyright protection for creative works across over 180 member countries, simplifying global intellectual property management. At BrandSecure, we assist creators and businesses in understanding and leveraging the Berne Convention, with optional registration services to enhance enforcement in key jurisdictions.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Safeguard Your</span>{' '}
+                <span className="text-[#393E46]">Creative Works</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                The Berne Convention ensures automatic copyright protection for creative works across over 180 member countries, simplifying global intellectual property management. At BrandSecure, we assist creators and businesses in understanding and leveraging the Berne Convention, with optional registration services to enhance enforcement in key jurisdictions.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to secure your copyright today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Berne Convention Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Berne Convention Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mbV2 mb-4">
+              <span className="text-[#222831]">Berne Convention</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {berneConventionInfo.map((info: BerneConventionInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <button
-                      onClick={() => handleExploreClick(info)}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -258,154 +276,83 @@ export default function GlobalCopyrightFilingPage() {
       </section>
 
       {/* Berne Convention Member Countries Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Berne Convention Member Countries</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">United States</h3>
-              <p className="text-[#393E46]/80">Offers voluntary copyright registration through the US Copyright Office for enhanced legal benefits.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">European Union</h3>
-              <p className="text-[#393E46]/80">Provides automatic protection across EU member states with harmonized copyright laws.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">India</h3>
-              <p className="text-[#393E46]/80">Grants automatic protection but allows voluntary registration for evidentiary purposes.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Japan</h3>
-              <p className="text-[#393E46]/80">Ensures automatic copyright protection with strong enforcement mechanisms.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Australia</h3>
-              <p className="text-[#393E46]/80">Provides automatic protection under the Berne Convention with no formal registration required.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Brazil</h3>
-              <p className="text-[#393E46]/80">Offers automatic copyright protection with optional registration for legal clarity.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Key Berne Convention</span>{' '}
+              <span className="text-[#00ADB5]">Member Countries</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              { country: 'United States', description: 'Offers voluntary copyright registration through the US Copyright Office for enhanced legal benefits.' },
+              { country: 'European Union', description: 'Provides automatic protection across EU member states with harmonized copyright laws.' },
+              { country: 'India', description: 'Grants automatic protection but allows voluntary registration for evidentiary purposes.' },
+              { country: 'Japan', description: 'Ensures automatic copyright protection with strong enforcement mechanisms.' },
+              { country: 'Australia', description: 'Provides automatic protection under the Berne Convention with no formal registration required.' },
+              { country: 'Brazil', description: 'Offers automatic copyright protection with optional registration for legal clarity.' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.country}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{item.country}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Copyright Filing Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Secure Copyright Protection</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Create and Fix the Work</h3>
-              <p className="text-[#393E46]/80">Produce an original work and fix it in a tangible medium (e.g., written, recorded).</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Automatic Protection</h3>
-              <p className="text-[#393E46]/80">Gain automatic copyright protection in Berne member countries upon creation.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Consider Voluntary Registration</h3>
-              <p className="text-[#393E46]/80">Optionally register in countries like the US or India for legal advantages.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Submit Registration Application</h3>
-              <p className="text-[#393E46]/80">File an application with the national copyright office, including work copies and fees.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Enforce Your Rights</h3>
-              <p className="text-[#393E46]/80">Monitor and enforce your copyright through legal action or licensing agreements.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How to Secure</span>{' '}
+              <span className="text-[#00ADB5]">Copyright Protection</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              { step: '1. Create and Fix the Work', description: 'Produce an original work and fix it in a tangible medium (e.g., written, recorded).' },
+              { step: '2. Automatic Protection', description: 'Gain automatic copyright protection in Berne member countries upon creation.' },
+              { step: '3. Consider Voluntary Registration', description: 'Optionally register in countries like the US or India for legal advantages.' },
+              { step: '4. Submit Registration Application', description: 'File an application with the national copyright office, including work copies and fees.' },
+              { step: '5. Enforce Your Rights', description: 'Monitor and enforce your copyright through legal action or licensing agreements.' },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Eligibility and</span>{' '}
+              <span className="text-[#00ADB5]">Requirements</span>
+            </h2>
+          </div>
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Requirements</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
+            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -425,27 +372,35 @@ export default function GlobalCopyrightFilingPage() {
               <li>Copy of the work for registration (if applicable)</li>
               <li>Creator’s details (name, nationality, address)</li>
               <li>Application form for voluntary registration</li>
-              <li>Proof of payment of registration fees (if applicable)</li>
-              <li>Power of Attorney (if using an agent)</li>
             </ul>
           </motion.div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Creative Works?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Secure your copyright globally with BrandSecure’s expert guidance under the Berne Convention. Start today to safeguard your creative assets worldwide.
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
+              <span className="text-[#393E46]">Your Creative Works?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+              Secure your copyright globally with BrandSecure’s expert guidance under the Berne Convention. Start today to safeguard your creative assets and ensure worldwide protection.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
@@ -453,10 +408,20 @@ export default function GlobalCopyrightFilingPage() {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

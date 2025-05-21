@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import Link from 'next/link';
 import { useState } from "react";
 import { X } from "lucide-react";
 
@@ -102,16 +103,16 @@ export default function InternationalTrademarkFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
 
@@ -126,7 +127,7 @@ export default function InternationalTrademarkFilingPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -169,6 +170,12 @@ export default function InternationalTrademarkFilingPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -181,76 +188,87 @@ export default function InternationalTrademarkFilingPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Protect Your Brand Globally with the Madrid Protocol
+            Protect Your Brand Globally
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Secure Your Brand Worldwide</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              Expanding your brand internationally requires robust trademark protection. The Madrid Protocol simplifies this by allowing a single application to secure trademark rights in multiple countries. At BrandSecure, we provide expert guidance to navigate the Madrid Protocol process, ensuring your brand is protected efficiently across global markets.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Secure Your Brand</span>{' '}
+                <span className="text-[#393E46]">Worldwide</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                Expanding your brand internationally requires robust trademark protection. The Madrid Protocol simplifies this by allowing a single application to secure trademark rights in multiple countries. At BrandSecure, we provide expert guidance to navigate the Madrid Protocol process, ensuring your brand is protected efficiently across global markets.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to protect your brand globally today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Madrid Protocol Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Madrid Protocol Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Madrid Protocol</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {madridProtocolInfo.map((info: MadridProtocolInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <button
-                      onClick={() => handleExploreClick(info)}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -258,154 +276,116 @@ export default function InternationalTrademarkFilingPage() {
       </section>
 
       {/* Madrid Protocol Member Countries Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Madrid Protocol Member Countries</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">European Union</h3>
-              <p className="text-[#393E46]/80">Covers all 27 EU member states through a single designation via the European Union Intellectual Property Office (EUIPO).</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">United States</h3>
-              <p className="text-[#393E46]/80">Requires compliance with USPTO standards, including proof of use in commerce for registration.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">China</h3>
-              <p className="text-[#393E46]/80">Involves careful subclass selection under the Nice Classification for effective trademark protection.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">India</h3>
-              <p className="text-[#393E46]/80">Allows international filings based on a national trademark application or registration.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Japan</h3>
-              <p className="text-[#393E46]/80">Requires distinctiveness checks and may involve local representation for objections.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Australia</h3>
-              <p className="text-[#393E46]/80">Offers efficient protection with examination by IP Australia for compliance.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Key Madrid Protocol</span>{' '}
+              <span className="text-[#00ADB5]">Member Countries</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              {
+                title: 'European Union',
+                description: 'Covers all 27 EU member states through a single designation via the European Union Intellectual Property Office (EUIPO).',
+              },
+              {
+                title: 'United States',
+                description: 'Requires compliance with USPTO standards, including proof of use in commerce for registration.',
+              },
+              {
+                title: 'China',
+                description: 'Involves careful subclass selection under the Nice Classification for effective trademark protection.',
+              },
+              {
+                title: 'India',
+                description: 'Allows international filings based on a national trademark application or registration.',
+              },
+              {
+                title: 'Japan',
+                description: 'Requires distinctiveness checks and may involve local representation for objections.',
+              },
+              {
+                title: 'Australia',
+                description: 'Offers efficient protection with examination by IP Australia for compliance.',
+              },
+            ].map((country, index) => (
+              <motion.div
+                key={country.title}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{country.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{country.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Filing Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to File via the Madrid Protocol</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Establish Base Application</h3>
-              <p className="text-[#393E46]/80">File or secure a trademark registration in your home country to serve as the foundation for international filing.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Submit International Application</h3>
-              <p className="text-[#393E46]/80">File the application through your national trademark office, specifying the target countries for protection.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. WIPO Examination</h3>
-              <p className="text-[#393E46]/80">WIPO reviews the application for formalities and forwards it to the designated countries.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. National Review</h3>
-              <p className="text-[#393E46]/80">Each designated country examines the application based on its trademark laws, potentially issuing refusals.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Grant of Protection</h3>
-              <p className="text-[#393E46]/80">Approved countries grant trademark protection, allowing use of the mark in those jurisdictions.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How to File via</span>{' '}
+              <span className="text-[#00ADB5]">Madrid Protocol</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              {
+                step: '1. Establish Base Application',
+                description: 'File or secure a trademark registration in your home country to serve as the foundation for international filing.',
+              },
+              {
+                step: '2. Submit International Application',
+                description: 'File the application through your national trademark office, specifying the target countries for protection.',
+              },
+              {
+                step: '3. WIPO Examination',
+                description: 'WIPO reviews the application for formalities and forwards it to the designated countries.',
+              },
+              {
+                step: '4. National Review',
+                description: 'Each designated country examines the application based on its trademark laws, potentially issuing refusals.',
+              },
+              {
+                step: '5. Grant of Protection',
+                description: 'Approved countries grant trademark protection, allowing use of the mark in those jurisdictions.',
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Eligibility &</span>{' '}
+              <span className="text-[#00ADB5]">Requirements</span>
+            </h2>
+          </div>
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Requirements</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
+            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -433,19 +413,29 @@ export default function InternationalTrademarkFilingPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Go Global with Your Brand?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Go</span>{' '}
+              <span className="text-[#393E46]">Global?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
               Secure your trademark internationally with BrandSecure’s expert Madrid Protocol filing services. Start today to protect your brand across global markets.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
@@ -453,10 +443,20 @@ export default function InternationalTrademarkFilingPage() {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

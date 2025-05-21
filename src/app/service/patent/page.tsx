@@ -1,12 +1,12 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { BookOpen, Briefcase, FileSearch, Gavel, Globe, Search, FileText } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import { BookOpen, Briefcase, FileSearch, Gavel, Globe, Search, FileText } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function PatentPage() {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   // Define slug mapping for cleaner URLs
   const serviceSlugs: { [key: string]: string } = {
@@ -17,7 +17,7 @@ export default function PatentPage() {
     "Patent Licensing": "licensing",
     "International Patent": "international",
     "Patent Consultation": "consultation",
-  }
+  };
 
   const serviceCards = [
     {
@@ -55,10 +55,10 @@ export default function PatentPage() {
       title: "Patent Consultation",
       description: "Receive expert advice to strategize and optimize your patent portfolio.",
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -78,6 +78,12 @@ export default function PatentPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -90,7 +96,7 @@ export default function PatentPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Protecting Your Innovations with Strategic Excellence
+            Protect Your Innovations
           </p>
         </motion.div>
       </motion.section>
@@ -100,49 +106,57 @@ export default function PatentPage() {
         <div className="max-w-6xl mx-auto">
           {/* Patent Overview */}
           <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 mb-12 border border-white/20"
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-              <span className="relative z-10">Patent Overview</span>
-              <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed">
-              For many of our clients, their patent portfolio is their most important asset and is critical to their
-              success. We are therefore proud to be recognized as a team of professionals with extensive technical depth
-              and strategic expertise. Our recognized strength in patent law and our ability to provide superior service is
-              the basis for our having prepared and filed more patent applications than any other firm in India and
-              overseas. But our patent practice is not limited to acquiring patent rights. We recognize that obtaining
-              strong patents without a developed strategy can result in both increased risks and missed opportunities.
-            </p>
-            <p className="text-[#393E46] text-lg leading-relaxed mt-4">
-              Contact us at{" "}
-              <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
-                info@leonardsolutions.in
-              </a>{" "}
-              for personalized assistance with your patent needs.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Patent</span>{' '}
+                <span className="text-[#393E46]">Overview</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                For many of our clients, their patent portfolio is their most important asset and is critical to their
+                success. We are proud to be recognized as a team of professionals with extensive technical depth
+                and strategic expertise. Our strength in patent law and our ability to provide superior service is
+                the basis for our having prepared and filed more patent applications than any other firm in India and
+                overseas. But our patent practice is not limited to acquiring patent rights. We recognize that obtaining
+                strong patents without a developed strategy can result in both increased risks and missed opportunities.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                for personalized assistance with your patent needs.
+              </p>
+            </div>
           </motion.div>
 
           {/* Our Services */}
           <motion.div
-            className="space-y-12"
+            className="mt-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#222831] mb-6 relative">
-                <span className="relative z-10">Our Services</span>
-                <span className="absolute bottom-0 left-0 h-3 w-20 bg-[#00ADB5]/20 -z-10"></span>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">
+                <span className="text-[#222831]">Our</span>{' '}
+                <span className="text-[#00ADB5]">Services</span>
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
               {serviceCards.map((service, index) => (
                 <Link
                   key={service.title}
@@ -152,25 +166,21 @@ export default function PatentPage() {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <motion.div
-                    className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/20 relative overflow-hidden"
+                    className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="flex flex-col gap-4 relative z-10">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                    <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                    <div className="flex flex-col gap-5 relative z-10">
+                      <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center text-white">
                         <service.icon className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.title}</h3>
-                        <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
+                        <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">{service.title}</h3>
+                        <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
                       </div>
                     </div>
-                    <motion.div
-                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#00ADB5] to-[#00959c]"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    />
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                   </motion.div>
                 </Link>
               ))}
@@ -189,5 +199,5 @@ export default function PatentPage() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

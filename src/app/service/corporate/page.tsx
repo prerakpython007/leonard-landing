@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -87,14 +86,14 @@ export default function CorporateLegalServicesPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Navigate company law, regulatory compliance, and governance with precision and clarity
+            Empowering Your Business with Strategic Legal Solutions
           </p>
         </motion.div>
       </motion.section>
 
       {/* Corporate Legal Services Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
-        <div className="max-w-6xl mx-auto relative">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           {/* Corporate Legal Services Overview */}
           <motion.div
             className="mb-24"
@@ -111,21 +110,19 @@ export default function CorporateLegalServicesPage() {
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <div className="text-center space-y-6">
-                <h2 className="text-4xl font-bold mb-4 relative inline-block">
+                <h2 className="text-4xl font-bold mb-4">
                   <span className="text-[#00ADB5]">Corporate Legal</span>{' '}
-                  <span className="text-[#393E46]">Services Overview</span>
+                  <span className="text-[#393E46]">Services</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  At Leonard Corporate Solutions, we provide comprehensive corporate legal services to help businesses thrive in a complex regulatory environment. From company formation to governance and compliance, our expert team delivers precise, actionable legal solutions tailored to your needs.
-                </p>
-                <p className="text-[#393E46] text-lg leading-relaxed">
-                  Whether you're a startup, SME, or multinational, we ensure your operations are legally sound, compliant, and positioned for growth with strategic legal support.
+                  Leonard Corporate Solutions provides comprehensive corporate legal services, from company formation to governance and compliance. Our expert team delivers tailored solutions to ensure your business is legally sound and positioned for growth, regardless of size or industry.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
-                  📩 Need tailored corporate legal support? Reach out at{' '}
+                  📩 Contact us at{' '}
                   <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
                     info@leonardsolutions.in
-                  </a>
+                  </a>{' '}
+                  for tailored corporate legal support.
                 </p>
               </div>
             </div>
@@ -134,7 +131,7 @@ export default function CorporateLegalServicesPage() {
           {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our Corporate Legal</span>{' '}
+              <span className="text-[#222831]">Our Corporate</span>{' '}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
           </div>
@@ -151,19 +148,21 @@ export default function CorporateLegalServicesPage() {
               <Link
                 key={service.title}
                 href={service.route}
+                data-testid={`service-link-${service.title}`}
                 className="group relative"
                 onMouseEnter={() => setHoveredCard(service.title)}
                 onMouseLeave={() => setHoveredCard(null)}
+                aria-label={`Learn more about ${service.title}`}
               >
                 <motion.div
                   className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                   whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                   <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
-                      <service.icon className="h-7 w-7" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                      <service.icon className="h-6 w-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
@@ -174,7 +173,13 @@ export default function CorporateLegalServicesPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    data-testid={`service-underline-${service.title}`}
+                  />
                 </motion.div>
               </Link>
             ))}
@@ -190,13 +195,13 @@ export default function CorporateLegalServicesPage() {
           >
             <div className="relative py-12">
               {/* Corner Angles */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                At Leonard Corporate Solutions, our corporate legal services are designed to empower your business with clarity and confidence. We evolve with your needs, ensuring robust legal frameworks that drive success.
+                Leonard Corporate Solutions empowers your business with tailored corporate legal services, ensuring clarity, compliance, and confidence for sustainable growth.
               </p>
             </div>
           </motion.div>
@@ -207,7 +212,9 @@ export default function CorporateLegalServicesPage() {
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"
+          data-testid="back-to-home-link"
           className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+          aria-label="Navigate back to home page"
         >
           <span className="mr-2">←</span> Back to Home
         </Link>

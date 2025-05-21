@@ -86,14 +86,14 @@ export default function StartupLegalSupportPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            From incorporation to investor agreements — everything your startup needs to stay legally sound
+            Build a Strong Legal Foundation
           </p>
         </motion.div>
       </motion.section>
 
       {/* Startup Legal Support Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
-        <div className="max-w-6xl mx-auto relative">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           {/* Startup Legal Support Overview */}
           <motion.div
             className="mb-24"
@@ -110,21 +110,19 @@ export default function StartupLegalSupportPage() {
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <div className="text-center space-y-6">
-                <h2 className="text-4xl font-bold mb-4 relative inline-block">
+                <h2 className="text-4xl font-bold mb-4">
                   <span className="text-[#00ADB5]">Startup Legal</span>{' '}
-                  <span className="text-[#393E46]">Support Overview</span>
+                  <span className="text-[#393E46]">Support</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  At Leonard Corporate Solutions, we empower startups with comprehensive legal support to build a strong foundation for growth. From incorporation to investor agreements, our expert team ensures your startup remains legally sound and ready to scale.
-                </p>
-                <p className="text-[#393E46] text-lg leading-relaxed">
-                  Whether you're launching a new venture or preparing for funding, we provide tailored legal solutions to protect your interests and drive success.
+                  BrandSecure empowers startups with tailored legal support, from incorporation to IP protection, ensuring a solid foundation for growth and compliance.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
-                  📩 Need startup legal support? Reach out at{' '}
-                  <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
-                    info@leonardsolutions.in
-                  </a>
+                  📩 Contact us at{' '}
+                  <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                    info@brandsecure.in
+                  </a>{' '}
+                  for personalized startup legal solutions.
                 </p>
               </div>
             </div>
@@ -133,8 +131,8 @@ export default function StartupLegalSupportPage() {
           {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our Startup Legal</span>{' '}
-              <span className="text-[#00ADB5]">Services</span>
+              <span className="text-[#222831]">Our Startup</span>{' '}
+              <span className="text-[#00ADB5]">Legal Services</span>
             </h2>
           </div>
 
@@ -157,12 +155,12 @@ export default function StartupLegalSupportPage() {
                 <motion.div
                   className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                   whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                   <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
-                      <service.icon className="h-7 w-7" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
+                      <service.icon className="h-6 w-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
@@ -173,7 +171,12 @@ export default function StartupLegalSupportPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
                 </motion.div>
               </Link>
             ))}
@@ -189,13 +192,13 @@ export default function StartupLegalSupportPage() {
           >
             <div className="relative py-12">
               {/* Corner Angles */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                At Leonard Corporate Solutions, our startup legal services are crafted to support your entrepreneurial journey. We evolve with your business, providing the legal foundation you need to succeed.
+                BrandSecure’s startup legal services are designed to support your entrepreneurial journey, providing the legal foundation needed to thrive.
               </p>
             </div>
           </motion.div>

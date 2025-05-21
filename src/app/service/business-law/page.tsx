@@ -13,37 +13,37 @@ export default function BusinessLawCompliancePage() {
       icon: Scale,
       title: 'Regulatory Compliance Audits',
       description: 'Conduct thorough audits to ensure your business meets all regulatory requirements.',
-      route: '#compliance-audits',
+      route: '/services/business-law/#compliance-audits',
     },
     {
       icon: FileText,
       title: 'Contract Management',
       description: 'Draft, review, and manage contracts to secure your business transactions.',
-      route: '#contract-management',
+      route: '/services/business-law/#contract-management',
     },
     {
       icon: Shield,
       title: 'Risk Assessment & Mitigation',
       description: 'Identify and address legal risks to protect your business operations.',
-      route: '#risk-assessment',
+      route: '/services/business-law/#risk-assessment',
     },
     {
       icon: Briefcase,
       title: 'Corporate Policy Development',
       description: 'Create compliant policies to govern your business operations effectively.',
-      route: '#policy-development',
+      route: '/services/business-law/#policy-development',
     },
     {
       icon: Lock,
       title: 'Data Protection Compliance',
       description: 'Ensure compliance with GDPR, DPDP, and other data protection regulations.',
-      route: '#data-protection',
+      route: '/services/business-law/#data-protection',
     },
     {
       icon: Gavel,
       title: 'Dispute Resolution Support',
       description: 'Navigate business disputes with expert legal guidance and representation.',
-      route: '#dispute-resolution',
+      route: '/services/business-law/#dispute-resolution',
     },
   ];
 
@@ -86,7 +86,7 @@ export default function BusinessLawCompliancePage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Ensure your operations are legally compliant with expert business law guidance
+            Ensure Your Operations Are Legally Compliant with Expert Guidance
           </p>
         </motion.div>
       </motion.section>
@@ -115,10 +115,10 @@ export default function BusinessLawCompliancePage() {
                   <span className="text-[#393E46]">Compliance Overview</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  At Leonard Corporate Solutions, we provide expert business law and compliance services to ensure your operations run smoothly and adhere to all legal requirements. Our tailored guidance helps businesses of all sizes navigate complex regulations with confidence.
+                  At Leonard Corporate Solutions, we provide expert business law and compliance services to ensure your operations adhere to all legal requirements. Our tailored guidance helps businesses of all sizes navigate complex regulations with confidence.
                 </p>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  From regulatory audits to contract management, our team delivers strategic solutions to keep your business legally sound and competitive.
+                  From regulatory audits to dispute resolution, our team delivers strategic solutions to keep your business legally sound and competitive in the Indian market.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
                   📩 Need expert business law support? Reach out at{' '}
@@ -134,7 +134,7 @@ export default function BusinessLawCompliancePage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">Our Business Law</span>{' '}
-              <span className="text-[#00ADB5]">Services</span>
+              <span className="text-[#00ADB5]">& Compliance Services</span>
             </h2>
           </div>
 
@@ -146,7 +146,7 @@ export default function BusinessLawCompliancePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {serviceCards.map((service, index) => (
+            {serviceCards.map((service) => (
               <Link
                 key={service.title}
                 href={service.route}
@@ -195,7 +195,7 @@ export default function BusinessLawCompliancePage() {
               <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                At Leonard Corporate Solutions, our business law and compliance services are designed to keep your operations secure and compliant. We adapt to your needs, providing expert guidance to drive your business forward.
+                At Leonard Corporate Solutions, our business law and compliance services safeguard your operations while fostering growth. We provide strategic, tailored solutions to ensure compliance and mitigate risks, empowering your business to thrive.
               </p>
             </div>
           </motion.div>

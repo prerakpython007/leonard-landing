@@ -1,9 +1,10 @@
 
 'use client';
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 // Define the interface for Legal Support info
 interface LegalSupportInfo {
@@ -17,9 +18,9 @@ interface LegalSupportInfo {
 const legalSupportInfo: LegalSupportInfo[] = [
   {
     id: 1,
-    title: "What is Global Legal Support?",
-    description: "Legal support for Indian startups going global involves tailored solutions to navigate international IP laws, compliance, and business regulations.",
-    category: "Support Basics",
+    title: 'What is Global Legal Support?',
+    description: 'Legal support for Indian startups going global involves tailored solutions to navigate international IP laws, compliance, and business regulations.',
+    category: 'Support Basics',
     detailedContent: `
       • Guides startups on international IP protection.
       • Ensures compliance with foreign regulatory frameworks.
@@ -31,9 +32,9 @@ const legalSupportInfo: LegalSupportInfo[] = [
   },
   {
     id: 2,
-    title: "Benefits of Legal Support",
-    description: "Legal support enables Indian startups to protect their brand, comply with global laws, and compete effectively in international markets.",
-    category: "Advantages",
+    title: 'Benefits of Legal Support',
+    description: 'Legal support enables Indian startups to protect their brand, comply with global laws, and compete effectively in international markets.',
+    category: 'Advantages',
     detailedContent: `
       • Secures IP assets in multiple jurisdictions.
       • Reduces legal and financial risks abroad.
@@ -45,9 +46,9 @@ const legalSupportInfo: LegalSupportInfo[] = [
   },
   {
     id: 3,
-    title: "Global Expansion Process",
-    description: "The process includes assessing legal needs, securing IP, setting up operations, and ensuring compliance in target markets.",
-    category: "Process Guide",
+    title: 'Global Expansion Process',
+    description: 'The process includes assessing legal needs, securing IP, setting up operations, and ensuring compliance in target markets.',
+    category: 'Process Guide',
     detailedContent: `
       • Evaluate legal and IP requirements for target markets.
       • Register trademarks, patents, or copyrights internationally.
@@ -59,9 +60,9 @@ const legalSupportInfo: LegalSupportInfo[] = [
   },
   {
     id: 4,
-    title: "IP Protection Globally",
-    description: "Protecting IP internationally involves leveraging treaties like Madrid, PCT, and Hague to secure startup assets in key markets.",
-    category: "IP Management",
+    title: 'IP Protection Globally',
+    description: 'Protecting IP internationally involves leveraging treaties like Madrid, PCT, and Hague to secure startup assets in key markets.',
+    category: 'IP Management',
     detailedContent: `
       • File trademarks via the Madrid Protocol.
       • Secure patents through the PCT or national filings.
@@ -73,9 +74,9 @@ const legalSupportInfo: LegalSupportInfo[] = [
   },
   {
     id: 5,
-    title: "Challenges of Going Global",
-    description: "Indian startups face challenges like complex foreign regulations, high IP costs, and cultural barriers when expanding globally.",
-    category: "Considerations",
+    title: 'Challenges of Going Global',
+    description: 'Indian startups face challenges like complex foreign regulations, high IP costs, and cultural barriers when expanding globally.',
+    category: 'Considerations',
     detailedContent: `
       • Diverse legal and regulatory environments.
       • High costs of multi-jurisdictional IP filings.
@@ -92,7 +93,6 @@ export default function LegalSupportIndianStartupsGlobalPage() {
   const [selectedInfo, setSelectedInfo] = useState<LegalSupportInfo | null>(null);
 
   const handleExploreClick = (info: LegalSupportInfo) => {
-    console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -103,16 +103,16 @@ export default function LegalSupportIndianStartupsGlobalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
 
@@ -127,7 +127,7 @@ export default function LegalSupportIndianStartupsGlobalPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -170,6 +170,12 @@ export default function LegalSupportIndianStartupsGlobalPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -177,7 +183,7 @@ export default function LegalSupportIndianStartupsGlobalPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Legal Support for Indian Startups Going Global
+            Global Legal Support
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
@@ -188,70 +194,81 @@ export default function LegalSupportIndianStartupsGlobalPage() {
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Take Your Startup Global</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              Indian startups aiming for global markets face complex legal and IP challenges. At BrandSecure, we provide expert legal support to help startups protect their intellectual property, comply with international regulations, and establish a strong presence abroad. Our tailored solutions empower Indian startups to scale confidently and succeed globally.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Take Your Startup</span>{' '}
+                <span className="text-[#393E46]">Global</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                Indian startups aiming for global markets face complex legal and IP challenges. At BrandSecure, we provide expert legal support to help startups protect their intellectual property, comply with international regulations, and establish a strong presence abroad. Our tailored solutions empower Indian startups to scale confidently and succeed globally.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to expand your startup globally today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Legal Support Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Legal Support Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Legal Support</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {legalSupportInfo.map((info: LegalSupportInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <button
-                      onClick={() => handleExploreClick(info)}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -259,154 +276,116 @@ export default function LegalSupportIndianStartupsGlobalPage() {
       </section>
 
       {/* Key Legal Services Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Legal Services for Global Expansion</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">IP Registration</h3>
-              <p className="text-[#393E46]/80">Secure trademarks, patents, and designs in global markets using international treaties.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Regulatory Compliance</h3>
-              <p className="text-[#393E46]/80">Navigate foreign regulations for business setup, tax, and labor compliance.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Business Structure Setup</h3>
-              <p className="text-[#393E46]/80">Establish subsidiaries, branches, or joint ventures in target markets.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Contract Drafting</h3>
-              <p className="text-[#393E46]/80">Draft cross-border agreements for partnerships, licensing, and distribution.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">IP Enforcement</h3>
-              <p className="text-[#393E46]/80">Support enforcement actions against IP infringements in global markets.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Market Entry Strategy</h3>
-              <p className="text-[#393E46]/80">Develop legal strategies for entering key markets like the US, EU, or ASEAN.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Key Legal</span>{' '}
+              <span className="text-[#00ADB5]">Services</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              {
+                title: 'IP Registration',
+                description: 'Secure trademarks, patents, and designs in global markets using international treaties.',
+              },
+              {
+                title: 'Regulatory Compliance',
+                description: 'Navigate foreign regulations for business setup, tax, and labor compliance.',
+              },
+              {
+                title: 'Business Structure Setup',
+                description: 'Establish subsidiaries, branches, or joint ventures in target markets.',
+              },
+              {
+                title: 'Contract Drafting',
+                description: 'Draft cross-border agreements for partnerships, licensing, and distribution.',
+              },
+              {
+                title: 'IP Enforcement',
+                description: 'Support enforcement actions against IP infringements in global markets.',
+              },
+              {
+                title: 'Market Entry Strategy',
+                description: 'Develop legal strategies for entering key markets like the US, EU, or ASEAN.',
+              },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Global Expansion Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Expand Globally</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Legal and Market Assessment</h3>
-              <p className="text-[#393E46]/80">Evaluate legal, IP, and market requirements for target countries.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. IP Protection</h3>
-              <p className="text-[#393E46]/80">Secure trademarks, patents, or designs in target markets.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Business Setup</h3>
-              <p className="text-[#393E46]/80">Establish a compliant business entity in target jurisdictions.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Regulatory Approvals</h3>
-              <p className="text-[#393E46]/80">Obtain necessary permits and comply with local regulations.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Ongoing Support</h3>
-              <p className="text-[#393E46]/80">Monitor IP and compliance for sustained global operations.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How to Expand</span>{' '}
+              <span className="text-[#00ADB5]">Globally</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              {
+                step: '1. Legal and Market Assessment',
+                description: 'Evaluate legal, IP, and market requirements for target countries.',
+              },
+              {
+                step: '2. IP Protection',
+                description: 'Secure trademarks, patents, or designs in target markets.',
+              },
+              {
+                step: '3. Business Setup',
+                description: 'Establish a compliant business entity in target jurisdictions.',
+              },
+              {
+                step: '4. Regulatory Approvals',
+                description: 'Obtain necessary permits and comply with local regulations.',
+              },
+              {
+                step: '5. Ongoing Support',
+                description: 'Monitor IP and compliance for sustained global operations.',
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Who Can</span>{' '}
+              <span className="text-[#00ADB5]">Benefit?</span>
+            </h2>
+          </div>
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Who Can Benefit?</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
+            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -426,27 +405,35 @@ export default function LegalSupportIndianStartupsGlobalPage() {
               <li>Information on target markets and expansion plans</li>
               <li>Documentation for existing IP registrations</li>
               <li>Details of proposed business structures abroad</li>
-              <li>Engagement agreement for legal services</li>
-              <li>Proof of payment for consulting fees</li>
             </ul>
           </motion.div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Go Global?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Partner with BrandSecure for expert legal support to protect your IP and navigate global markets, empowering your Indian startup to succeed internationally. Start today.
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Go</span>{' '}
+              <span className="text-[#393E46]">Global?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+              Partner with BrandSecure for expert legal support to protect your IP and navigate global markets, empowering your Indian startup to succeed internationally with confidence.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
@@ -454,10 +441,20 @@ export default function LegalSupportIndianStartupsGlobalPage() {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

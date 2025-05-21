@@ -1,7 +1,9 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
+import { X } from "lucide-react";
 
 // Define the interface for international patent info
 interface InternationalPatentInfo {
@@ -9,6 +11,7 @@ interface InternationalPatentInfo {
   title: string;
   description: string;
   category: string;
+  detailedContent: string;
 }
 
 const internationalPatentInfo: InternationalPatentInfo[] = [
@@ -16,48 +19,148 @@ const internationalPatentInfo: InternationalPatentInfo[] = [
     id: 1,
     title: "What is an International Patent?",
     description: "International patents protect inventions across multiple countries through coordinated filing strategies like the PCT.",
-    category: "Global Basics"
+    category: "Global Basics",
+    detailedContent: `
+      • Facilitates patent protection in multiple countries via a single process.
+      • Utilizes the Patent Cooperation Treaty (PCT) for streamlined filings.
+      • Depends on a national or regional patent application as a base.
+      • Administered by the World Intellectual Property Organization (WIPO).
+      • Requires compliance with each country’s patent laws during national phase.
+      • Simplifies management of global patent applications.
+    `,
   },
   {
     id: 2,
     title: "Benefits of Global Protection",
     description: "Safeguards your invention worldwide, enabling market expansion and international competitiveness.",
-    category: "Advantages"
+    category: "Advantages",
+    detailedContent: `
+      • Protects your invention from unauthorized use in multiple markets.
+      • Enhances competitiveness by securing exclusive rights globally.
+      • Supports safe market expansion without risk of imitation.
+      • Increases the commercial value of your intellectual property.
+      • Deters potential infringers through international enforcement.
+      • Facilitates licensing and partnerships in global markets.
+    `,
   },
   {
     id: 3,
     title: "Filing Options",
     description: "Use the Patent Cooperation Treaty (PCT) or Paris Convention for streamlined international filings.",
-    category: "Requirements"
+    category: "Requirements",
+    detailedContent: `
+      • Patent Cooperation Treaty (PCT): Single application for up to 153 countries.
+      • Paris Convention: Allows filing in member countries within 12 months.
+      • Direct national filings for non-PCT countries.
+      • Requires a base patent application in the home country.
+      • Involves international search and preliminary examination (PCT).
+      • Must meet specific documentation and fee requirements.
+    `,
   },
   {
     id: 4,
     title: "Filing Process",
     description: "File a PCT application, enter national phases, and comply with each country’s patent laws.",
-    category: "Procedure"
+    category: "Procedure",
+    detailedContent: `
+      • File a PCT application through a national patent office or WIPO.
+      • Undergo an international search to assess patentability.
+      • Receive an International Preliminary Report on Patentability (optional).
+      • Enter national phase in desired countries within 30–31 months.
+      • Comply with local patent laws and respond to examinations.
+      • Secure patent grants in approving countries.
+    `,
   },
   {
     id: 5,
     title: "Global Strategies",
     description: "Tailored strategies ensure cost-effective protection in key markets, maximizing your patent’s value.",
-    category: "Protection"
-  }
-]
+    category: "Protection",
+    detailedContent: `
+      • Identifies key markets for patent protection based on business goals.
+      • Balances cost and coverage through selective country filings.
+      • Optimizes filing timelines using PCT or Paris Convention.
+      • Leverages international search reports to refine applications.
+      • Aligns patent strategy with commercialization and licensing plans.
+      • Monitors and enforces patents in multiple jurisdictions.
+    `,
+  },
+];
 
 export default function InternationalPatentPage() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedInfo, setSelectedInfo] = useState<InternationalPatentInfo | null>(null);
+
+  const handleExploreClick = (info: InternationalPatentInfo) => {
+    setSelectedInfo(info);
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelectedInfo(null);
+  };
+
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
+
+      {/* Popup */}
+      {showPopup && selectedInfo && (
+        <motion.div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={closePopup}
+        >
+          <motion.div
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{ scrollbarWidth: 'thin', scrollbarColor: '#00ADB5 #222831' }}
+          >
+            <style>{`
+              ::-webkit-scrollbar { width: 8px; }
+              ::-webkit-scrollbar-track { background: #222831; border-radius: 4px; }
+              ::-webkit-scrollbar-thumb { background: #00ADB5; border-radius: 4px; }
+              ::-webkit-scrollbar-thumb:hover { background: #008b91; }
+            `}</style>
+            <button
+              onClick={closePopup}
+              className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
+            >
+              <X size={32} />
+            </button>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
+            <div className="text-[#393E46]/85 text-lg leading-relaxed">
+              {selectedInfo.detailedContent.split('\n').map((line, index) => {
+                line = line.trim();
+                if (!line) return null;
+                return (
+                  <p key={index} className="mb-2">
+                    {line.startsWith('•') ? line : `• ${line}`}
+                  </p>
+                );
+              })}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Hero Section */}
       <motion.section
@@ -66,6 +169,12 @@ export default function InternationalPatentPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -78,85 +187,87 @@ export default function InternationalPatentPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Protect Your Invention Globally with Expert Guidance
+            Protect Your Invention Globally
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Secure Global Protection with International Patents</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              International patent protection allows you to safeguard your invention across multiple countries, ensuring global market exclusivity. Through mechanisms like the Patent Cooperation Treaty (PCT) or Paris Convention, BrandSecure streamlines the complex process of international filings, tailoring strategies to protect your innovation in key markets efficiently.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Secure Your</span>{' '}
+                <span className="text-[#393E46]">Invention Globally</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                International patent protection allows you to safeguard your invention across multiple countries, ensuring global market exclusivity. Through mechanisms like the Patent Cooperation Treaty (PCT) or Paris Convention, BrandSecure streamlines the complex process of international filings, tailoring strategies to protect your innovation in key markets efficiently.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to protect your invention today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* International Patent Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">International Patent Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">International Patent</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {internationalPatentInfo.map((info: InternationalPatentInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <Link
-                      href={`/international-patent/${info.id}`}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -164,119 +275,114 @@ export default function InternationalPatentPage() {
       </section>
 
       {/* Filing Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">International Patent Filing Process</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. File PCT Application</h3>
-              <p className="text-[#393E46]/80">Submit a Patent Cooperation Treaty (PCT) application to initiate international protection.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. International Search</h3>
-              <p className="text-[#393E46]/80">An international search authority reviews prior art to assess patentability.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. National Phase Entry</h3>
-              <p className="text-[#393E46]/80">Enter the national phase in desired countries, filing applications with local patent offices.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Compliance and Grant</h3>
-              <p className="text-[#393E46]/80">Comply with each country’s patent laws, respond to examinations, and secure grants.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">International Patent</span>{' '}
+              <span className="text-[#00ADB5]">Filing Process</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              {
+                step: '1. File PCT Application',
+                description: 'Submit a Patent Cooperation Treaty (PCT) application to initiate international protection.',
+              },
+              {
+                step: '2. International Search',
+                description: 'An international search authority reviews prior art to assess patentability.',
+              },
+              {
+                step: '3. National Phase Entry',
+                description: 'Enter the national phase in desired countries, filing applications with local patent offices.',
+              },
+              {
+                step: '4. Compliance and Grant',
+                description: 'Comply with each country’s patent laws, respond to examinations, and secure grants.',
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Why Choose International Patents?</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Global Market Protection</h3>
-              <p className="text-[#393E46]/80">Secure your invention in multiple countries to prevent unauthorized use worldwide.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Market Expansion</h3>
-              <p className="text-[#393E46]/80">Enable safe entry into international markets with protected intellectual property.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Cost-Effective Strategy</h3>
-              <p className="text-[#393E46]/80">Streamlined filings through PCT reduce costs compared to individual country applications.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Why Choose</span>{' '}
+              <span className="text-[#00ADB5]">International Patents?</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              {
+                title: 'Global Market Protection',
+                description: 'Secure your invention in multiple countries to prevent unauthorized use worldwide.',
+              },
+              {
+                title: 'Market Expansion',
+                description: 'Enable safe entry into international markets with protected intellectual property.',
+              },
+              {
+                title: 'Cost-Effective Strategy',
+                description: 'Streamlined filings through PCT reduce costs compared to individual country applications.',
+              },
+            ].map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{benefit.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{benefit.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Protect Your Invention Globally?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
+              <span className="text-[#393E46]">Globally?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
               Expand your patent protection worldwide with BrandSecure’s expert international patent services. Contact us today to secure your innovation in key global markets.
             </p>
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
@@ -287,6 +393,16 @@ export default function InternationalPatentPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
-  )
+  );
 }

@@ -1,8 +1,10 @@
+
 'use client';
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 // Define the interface for Market Entry info
 interface MarketEntryInfo {
@@ -16,9 +18,9 @@ interface MarketEntryInfo {
 const marketEntryInfo: MarketEntryInfo[] = [
   {
     id: 1,
-    title: "What is Market Entry Strategy?",
-    description: "A market entry legal strategy for India involves tailored legal and IP solutions to ensure compliance and protection for foreign businesses.",
-    category: "Strategy Basics",
+    title: 'What is Market Entry Strategy?',
+    description: 'A market entry legal strategy for India involves tailored legal and IP solutions to ensure compliance and protection for foreign businesses.',
+    category: 'Strategy Basics',
     detailedContent: `
       • Addresses India’s regulatory and IP frameworks.
       • Ensures compliance with FDI policies and sectoral caps.
@@ -30,9 +32,9 @@ const marketEntryInfo: MarketEntryInfo[] = [
   },
   {
     id: 2,
-    title: "Benefits of Legal Strategy",
-    description: "A robust legal strategy minimizes risks, ensures compliance, and strengthens IP protection for foreign businesses in India.",
-    category: "Advantages",
+    title: 'Benefits of Legal Strategy',
+    description: 'A robust legal strategy minimizes risks, ensures compliance, and strengthens IP protection for foreign businesses in India.',
+    category: 'Advantages',
     detailedContent: `
       • Simplifies compliance with Indian laws and regulations.
       • Protects IP assets from infringement or misuse.
@@ -44,9 +46,9 @@ const marketEntryInfo: MarketEntryInfo[] = [
   },
   {
     id: 3,
-    title: "Market Entry Process",
-    description: "The process involves assessing legal requirements, securing IP, setting up operations, and ensuring ongoing compliance in India.",
-    category: "Process Guide",
+    title: 'Market Entry Process',
+    description: 'The process involves assessing legal requirements, securing IP, setting up operations, and ensuring ongoing compliance in India.',
+    category: 'Process Guide',
     detailedContent: `
       • Assess regulatory and IP requirements for India.
       • Secure trademarks, patents, or copyrights as needed.
@@ -58,9 +60,9 @@ const marketEntryInfo: MarketEntryInfo[] = [
   },
   {
     id: 4,
-    title: "IP Protection in India",
-    description: "Protecting IP in India involves registering trademarks, patents, and designs while monitoring for infringements in a dynamic market.",
-    category: "IP Management",
+    title: 'IP Protection in India',
+    description: 'Protecting IP in India involves registering trademarks, patents, and designs while monitoring for infringements in a dynamic market.',
+    category: 'IP Management',
     detailedContent: `
       • Register trademarks with the Indian Trademark Office.
       • File patents via national or PCT routes.
@@ -72,9 +74,9 @@ const marketEntryInfo: MarketEntryInfo[] = [
   },
   {
     id: 5,
-    title: "Challenges of Market Entry",
-    description: "Foreign businesses face challenges like complex regulations, cultural differences, and IP enforcement issues in India.",
-    category: "Considerations",
+    title: 'Challenges of Market Entry',
+    description: 'Foreign businesses face challenges like complex regulations, cultural differences, and IP enforcement issues in India.',
+    category: 'Considerations',
     detailedContent: `
       • Complex and evolving regulatory environment.
       • Variations in state-level compliance requirements.
@@ -91,7 +93,6 @@ export default function MarketEntryLegalStrategyIndiaPage() {
   const [selectedInfo, setSelectedInfo] = useState<MarketEntryInfo | null>(null);
 
   const handleExploreClick = (info: MarketEntryInfo) => {
-    console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -102,16 +103,16 @@ export default function MarketEntryLegalStrategyIndiaPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
 
@@ -126,7 +127,7 @@ export default function MarketEntryLegalStrategyIndiaPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -169,6 +170,12 @@ export default function MarketEntryLegalStrategyIndiaPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -176,7 +183,7 @@ export default function MarketEntryLegalStrategyIndiaPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Market Entry Legal Strategy for Foreign Businesses in India
+            Market Entry
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
@@ -187,70 +194,81 @@ export default function MarketEntryLegalStrategyIndiaPage() {
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Thrive in India’s Dynamic Market</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              Entering the Indian market requires navigating complex legal, regulatory, and IP landscapes. At BrandSecure, we provide foreign businesses with tailored market entry legal strategies to ensure compliance, protect intellectual property, and establish a strong foothold in India. Our expertise helps you succeed in one of the world’s fastest-growing economies.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Thrive in India’s</span>{' '}
+                <span className="text-[#393E46]">Dynamic Market</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                Entering the Indian market requires navigating complex legal, regulatory, and IP landscapes. At BrandSecure, we provide foreign businesses with tailored market entry legal strategies to ensure compliance, protect intellectual property, and establish a strong foothold in India. Our expertise helps you succeed in one of the world’s fastest-growing economies.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to start your Indian journey today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Market Entry Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Market Entry Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Market Entry</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {marketEntryInfo.map((info: MarketEntryInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <button
-                      onClick={() => handleExploreClick(info)}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -258,154 +276,83 @@ export default function MarketEntryLegalStrategyIndiaPage() {
       </section>
 
       {/* Key Legal Services Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Legal Services for Market Entry</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">IP Registration</h3>
-              <p className="text-[#393E46]/80">Secure trademarks, patents, and designs with India’s IP offices for robust protection.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">FDI Compliance</h3>
-              <p className="text-[#393E46]/80">Navigate India’s FDI policies and sectoral regulations for smooth investment.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Business Setup</h3>
-              <p className="text-[#393E46]/80">Establish LLPs, subsidiaries, or joint ventures with full legal compliance.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Tax and Labor Compliance</h3>
-              <p className="text-[#393E46]/80">Ensure adherence to GST, corporate tax, and labor laws for operations.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Contract Drafting</h3>
-              <p className="text-[#393E46]/80">Draft compliant agreements for partnerships, licensing, and distribution.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Dispute Resolution</h3>
-              <p className="text-[#393E46]/80">Provide legal support for resolving IP or commercial disputes in India.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Key Legal</span>{' '}
+              <span className="text-[#00ADB5]">Services</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              { title: 'IP Registration', description: 'Secure trademarks, patents, and designs with India’s IP offices for robust protection.' },
+              { title: 'FDI Compliance', description: 'Navigate India’s FDI policies and sectoral regulations for smooth investment.' },
+              { title: 'Business Setup', description: 'Establish LLPs, subsidiaries, or joint ventures with full legal compliance.' },
+              { title: 'Tax and Labor Compliance', description: 'Ensure adherence to GST, corporate tax, and labor laws for operations.' },
+              { title: 'Contract Drafting', description: 'Draft compliant agreements for partnerships, licensing, and distribution.' },
+              { title: 'Dispute Resolution', description: 'Provide legal support for resolving IP or commercial disputes in India.' },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Market Entry Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How to Enter the Indian Market</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Market and Legal Assessment</h3>
-              <p className="text-[#393E46]/80">Evaluate India’s regulatory, IP, and market requirements for your business.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. IP Protection</h3>
-              <p className="text-[#393E46]/80">Register trademarks, patents, or designs to safeguard your brand in India.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Business Structure Setup</h3>
-              <p className="text-[#393E46]/80">Establish a compliant business entity, such as an LLP or subsidiary.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Regulatory Approvals</h3>
-              <p className="text-[#393E46]/80">Obtain necessary approvals, including FDI, tax, or sector-specific licenses.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Ongoing Compliance</h3>
-              <p className="text-[#393E46]/80">Maintain compliance with IP, tax, and labor laws for sustained operations.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How to Enter</span>{' '}
+              <span className="text-[#00ADB5]">the Indian Market</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              { step: '1. Market and Legal Assessment', description: 'Evaluate India’s regulatory, IP, and market requirements for your business.' },
+              { step: '2. IP Protection', description: 'Register trademarks, patents, or designs to safeguard your brand in India.' },
+              { step: '3. Business Structure Setup', description: 'Establish a compliant business entity, such as an LLP or subsidiary.' },
+              { step: '4. Regulatory Approvals', description: 'Obtain necessary approvals, including FDI, tax, or sector-specific licenses.' },
+              { step: '5. Ongoing Compliance', description: 'Maintain compliance with IP, tax, and labor laws for sustained operations.' },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Who Can</span>{' '}
+              <span className="text-[#00ADB5]">Benefit?</span>
+            </h2>
+          </div>
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Who Can Benefit?</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
+            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -425,27 +372,35 @@ export default function MarketEntryLegalStrategyIndiaPage() {
               <li>Information on target sectors and market entry plans</li>
               <li>Documentation for IP registration (if applicable)</li>
               <li>Details of proposed business structure in India</li>
-              <li>Engagement agreement for legal services</li>
-              <li>Proof of payment for consulting fees</li>
             </ul>
           </motion.div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Enter the Indian Market?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Partner with BrandSecure for expert legal strategies to navigate India’s regulatory and IP landscape, ensuring a successful market entry. Start today.
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Enter</span>{' '}
+              <span className="text-[#393E46]">the Indian Market?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+              Partner with BrandSecure for expert legal strategies to navigate India’s regulatory and IP landscape, ensuring a successful market entry. Start today to establish your brand in one of the world’s fastest-growing economies.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
@@ -453,10 +408,20 @@ export default function MarketEntryLegalStrategyIndiaPage() {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

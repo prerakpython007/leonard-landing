@@ -1,8 +1,10 @@
+
 'use client';
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 // Define the interface for Anti-Counterfeiting info
 interface AntiCounterfeitingInfo {
@@ -16,9 +18,9 @@ interface AntiCounterfeitingInfo {
 const antiCounterfeitingInfo: AntiCounterfeitingInfo[] = [
   {
     id: 1,
-    title: "What are Anti-Counterfeiting Measures?",
-    description: "Anti-counterfeiting measures protect IP by detecting, preventing, and enforcing against unauthorized use of trademarks, patents, and designs.",
-    category: "Measure Basics",
+    title: 'What are Anti-Counterfeiting Measures?',
+    description: 'Anti-counterfeiting measures protect IP by detecting, preventing, and enforcing against unauthorized use of trademarks, patents, and designs.',
+    category: 'Measure Basics',
     detailedContent: `
       • Monitors markets for counterfeit goods and IP misuse.
       • Implements legal and technological solutions to deter counterfeiting.
@@ -30,9 +32,9 @@ const antiCounterfeitingInfo: AntiCounterfeitingInfo[] = [
   },
   {
     id: 2,
-    title: "Benefits of Anti-Counterfeiting",
-    description: "Effective measures reduce financial losses, strengthen brand integrity, and enhance consumer safety across markets.",
-    category: "Advantages",
+    title: 'Benefits of Anti-Counterfeiting',
+    description: 'Effective measures reduce financial losses, strengthen brand integrity, and enhance consumer safety across markets.',
+    category: 'Advantages',
     detailedContent: `
       • Minimizes revenue loss from counterfeit sales.
       • Enhances brand credibility and market trust.
@@ -44,9 +46,9 @@ const antiCounterfeitingInfo: AntiCounterfeitingInfo[] = [
   },
   {
     id: 3,
-    title: "Anti-Counterfeiting Process",
-    description: "The process involves monitoring, investigating, enforcing, and educating to combat counterfeiting effectively.",
-    category: "Process Guide",
+    title: 'Anti-Counterfeiting Process',
+    description: 'The process involves monitoring, investigating, enforcing, and educating to combat counterfeiting effectively.',
+    category: 'Process Guide',
     detailedContent: `
       • Monitor markets and online platforms for counterfeits.
       • Investigate suspected counterfeiting activities.
@@ -58,9 +60,9 @@ const antiCounterfeitingInfo: AntiCounterfeitingInfo[] = [
   },
   {
     id: 4,
-    title: "Technology in Counterfeiting Prevention",
-    description: "Advanced technologies like AI, blockchain, and holograms enhance detection and prevention of counterfeit goods.",
-    category: "Technology Integration",
+    title: 'Technology in Counterfeiting Prevention',
+    description: 'Advanced technologies like AI, blockchain, and holograms enhance detection and prevention of counterfeit goods.',
+    category: 'Technology Integration',
     detailedContent: `
       • AI tools scan e-commerce and social media for fakes.
       • Blockchain ensures product authenticity and traceability.
@@ -72,9 +74,9 @@ const antiCounterfeitingInfo: AntiCounterfeitingInfo[] = [
   },
   {
     id: 5,
-    title: "Challenges of Anti-Counterfeiting",
-    description: "Combating counterfeiting involves navigating complex supply chains, evolving technologies, and jurisdictional differences.",
-    category: "Considerations",
+    title: 'Challenges of Anti-Counterfeiting',
+    description: 'Combating counterfeiting involves navigating complex supply chains, evolving technologies, and jurisdictional differences.',
+    category: 'Considerations',
     detailedContent: `
       • Sophisticated counterfeiting networks and technologies.
       • Variations in IP enforcement across jurisdictions.
@@ -91,7 +93,6 @@ export default function AntiCounterfeitingMeasuresPage() {
   const [selectedInfo, setSelectedInfo] = useState<AntiCounterfeitingInfo | null>(null);
 
   const handleExploreClick = (info: AntiCounterfeitingInfo) => {
-    console.log("Explore clicked for:", info.title);
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -102,16 +103,16 @@ export default function AntiCounterfeitingMeasuresPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '30px 30px',
         }}
       />
 
@@ -126,7 +127,7 @@ export default function AntiCounterfeitingMeasuresPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-6xl w-full max-h-[98vh] overflow-y-auto p-10 border border-[#00ADB5]/20 shadow-2xl"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -169,6 +170,12 @@ export default function AntiCounterfeitingMeasuresPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Corner Angles */}
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -187,70 +194,81 @@ export default function AntiCounterfeitingMeasuresPage() {
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Combat Counterfeiting Effectively</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              Counterfeiting poses a significant threat to brand integrity and consumer safety. At BrandSecure, our anti-counterfeiting measures combine advanced technology, legal expertise, and global enforcement to detect and eliminate counterfeit goods, protecting your IP and maintaining trust in your brand worldwide.
-            </p>
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="text-center space-y-6">
+              <h2 className="text-4xl font-bold mb-4">
+                <span className="text-[#00ADB5]">Combat</span>{' '}
+                <span className="text-[#393E46]">Counterfeiting Effectively</span>
+              </h2>
+              <p className="text-[#393E46] text-lg leading-relaxed">
+                Counterfeiting threatens brand integrity and consumer safety. At BrandSecure, our anti-counterfeiting measures combine advanced technology, legal expertise, and global enforcement to detect and eliminate counterfeit goods, protecting your intellectual property and maintaining trust in your brand worldwide.
+              </p>
+              <p className="text-[#393E46] text-lg font-medium">
+                📩 Contact us at{' '}
+                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                  info@brandsecure.in
+                </a>{' '}
+                to start protecting your brand today.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Anti-Counterfeiting Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Anti-Counterfeiting Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Anti-Counterfeiting</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {antiCounterfeitingInfo.map((info: AntiCounterfeitingInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
-                      {info.category}
-                    </span>
+                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <div className="flex flex-col gap-5 relative z-10">
+                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                    {info.category}
                   </div>
                   <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-sm font-medium text-[#393E46]">Learn More</span>
-                    <button
-                      onClick={() => handleExploreClick(info)}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
-                    >
-                      Explore
-                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -258,154 +276,83 @@ export default function AntiCounterfeitingMeasuresPage() {
       </section>
 
       {/* Key Services Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Key Anti-Counterfeiting Services</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Market Monitoring</h3>
-              <p className="text-[#393E46]/80">Track physical and online markets for counterfeit goods and IP misuse.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Investigative Services</h3>
-              <p className="text-[#393E46]/80">Conduct investigations to identify counterfeit sources and networks.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Enforcement Actions</h3>
-              <p className="text-[#393E46]/80">Issue takedowns, seizures, and legal actions against counterfeiters.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Technology Integration</h3>
-              <p className="text-[#393E46]/80">Use AI, blockchain, and holograms to prevent and detect counterfeits.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Customs Collaboration</h3>
-              <p className="text-[#393E46]/80">Work with global customs to intercept counterfeit goods at borders.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Training and Awareness</h3>
-              <p className="text-[#393E46]/80">Educate stakeholders on identifying and reporting counterfeits.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Key Anti-Counterfeiting</span>{' '}
+              <span className="text-[#00ADB5]">Services</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              { title: 'Market Monitoring', description: 'Track physical and online markets for counterfeit goods and IP misuse.' },
+              { title: 'Investigative Services', description: 'Conduct investigations to identify counterfeit sources and networks.' },
+              { title: 'Enforcement Actions', description: 'Issue takedowns, seizures, and legal actions against counterfeiters.' },
+              { title: 'Technology Integration', description: 'Use AI, blockchain, and holograms to prevent and detect counterfeits.' },
+              { title: 'Customs Collaboration', description: 'Work with global customs to intercept counterfeit goods at borders.' },
+              { title: 'Training and Awareness', description: 'Educate stakeholders on identifying and reporting counterfeits.' },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Anti-Counterfeiting Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">How Anti-Counterfeiting Works</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Risk Assessment</h3>
-              <p className="text-[#393E46]/80">Identify IP assets and markets at risk of counterfeiting.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Monitoring Setup</h3>
-              <p className="text-[#393E46]/80">Deploy tools to track counterfeits in markets and online platforms.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Investigation</h3>
-              <p className="text-[#393E46]/80">Investigate suspected counterfeiting activities and sources.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Enforcement</h3>
-              <p className="text-[#393E46]/80">Execute takedowns, seizures, or legal actions against counterfeiters.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">5. Prevention</h3>
-              <p className="text-[#393E46]/80">Implement technologies and training to deter future counterfeiting.</p>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How Anti-Counterfeiting</span>{' '}
+              <span className="text-[#00ADB5]">Works</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              { step: '1. Risk Assessment', description: 'Identify IP assets and markets at risk of counterfeiting.' },
+              { step: '2. Monitoring Setup', description: 'Deploy tools to track counterfeits in markets and online platforms.' },
+              { step: '3. Investigation', description: 'Investigate suspected counterfeiting activities and sources.' },
+              { step: '4. Enforcement', description: 'Execute takedowns, seizures, or legal actions against counterfeiters.' },
+              { step: '5. Prevention', description: 'Implement technologies and training to deter future counterfeiting.' },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Who Can</span>{' '}
+              <span className="text-[#00ADB5]">Benefit?</span>
+            </h2>
+          </div>
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Who Can Benefit?</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
+            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -426,26 +373,35 @@ export default function AntiCounterfeitingMeasuresPage() {
               <li>Business objectives for brand protection</li>
               <li>Documentation of existing IP registrations</li>
               <li>Engagement agreement for anti-counterfeiting services</li>
-              <li>Proof of payment for service fees</li>
             </ul>
           </motion.div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
           <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Fight Counterfeiting?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Partner with BrandSecure for expert anti-counterfeiting measures to protect your IP and brand from counterfeit threats worldwide. Start today.
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Fight</span>{' '}
+              <span className="text-[#393E46]">Counterfeiting?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+              Partner with BrandSecure for expert anti-counterfeiting measures to protect your intellectual property and brand from counterfeit threats worldwide. Start today to safeguard your market presence.
             </p>
-            <a
+            <Link
               href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
@@ -453,10 +409,20 @@ export default function AntiCounterfeitingMeasuresPage() {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

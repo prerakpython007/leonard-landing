@@ -1,49 +1,89 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
-import { Globe, FileText, Shield, Scale, FileCheck, Briefcase } from 'lucide-react';
+import { 
+  Shield, PenTool, BookOpen, Scale, MapPin, Globe, AlertTriangle, Briefcase, 
+  UserCheck, DollarSign, Gavel, FileText 
+} from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function DomainNameLawPage() {
+export default function NationalServices() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  const serviceCards = [
+  const nationalServices = [
     {
-      icon: FileCheck,
-      title: 'Domain Dispute Resolution',
-      description: 'Resolve domain name disputes efficiently using streamlined, cost-effective procedures.',
-      route: '#domain-dispute-resolution',
-    },
-    {
+      name: 'Trademark Services',
       icon: Shield,
-      title: 'Brand Protection',
-      description: 'Safeguard your brand by addressing improper domain name use globally.',
-      route: '#brand-protection',
+      description: 'Protect your brand name, logo, and tagline with expert registration, enforcement, and litigation support.',
+      route: '/service/trademark',
     },
     {
+      name: 'Patent Services',
+      icon: PenTool,
+      description: 'Safeguard your inventions with professional drafting, filing, prosecution, and patent litigation.',
+      route: '/service/patent',
+    },
+    {
+      name: 'Copyright Services',
+      icon: BookOpen,
+      description: 'Secure your creative work across digital, media, and tech with bulletproof copyright protection.',
+      route: '/service/copyright',
+    },
+    {
+      name: 'Design IP',
       icon: Scale,
-      title: 'Litigation Support',
-      description: 'Expert representation in court for complex domain name disputes.',
-      route: '#litigation-support',
+      description: 'Protect the aesthetic value of your products with industrial design registration and legal protection.',
+      route: '/service/design',
     },
     {
-      icon: Briefcase,
-      title: 'Portfolio Management',
-      description: 'Manage and strengthen your domain name portfolio as part of your IP strategy.',
-      route: '#portfolio-management',
+      name: 'Geographical Indications',
+      icon: MapPin,
+      description: 'Register and protect GI tags to preserve and promote regional specialties.',
+      route: '/service/geographical',
     },
     {
-      icon: FileText,
-      title: 'Claimant & Defendant Advocacy',
-      description: 'Balanced expertise in representing both claimants and defendants in domain name proceedings.',
-      route: '#advocacy',
-    },
-    {
+      name: 'Domain Name Law',
       icon: Globe,
-      title: 'Global Enforcement',
-      description: 'Enforce your domain name rights against infringers worldwide.',
-      route: '#global-enforcement',
+      description: 'Defend your digital identity through domain dispute resolution and cybersquatting actions.',
+      route: '/service/domain',
+    },
+    {
+      name: 'Anti-Counterfeiting',
+      icon: AlertTriangle,
+      description: 'Combat fakes with strategic cease & desist, customs watchlisting, and enforcement support.',
+      route: '/service/anti-counterfeiting',
+    },
+    {
+      name: 'Corporate Legal Services',
+      icon: Briefcase,
+      description: 'Navigate company law, regulatory compliance, and governance with precision and clarity.',
+      route: '/service/corporate',
+    },
+    {
+      name: 'Startup Legal Support',
+      icon: UserCheck,
+      description: 'From incorporation to investor agreements — everything your startup needs to stay legally sound.',
+      route: '/service/startup',
+    },
+    {
+      name: 'Business Law & Compliance',
+      icon: FileText,
+      description: 'Ensure your operations are legally compliant with expert business law guidance.',
+      route: '/service/business-law',
+    },
+    {
+      name: 'Investment & Fundraising',
+      icon: DollarSign,
+      description: 'Legal advisory for venture capital, angel rounds, SAFE notes, and investor relations.',
+      route: '/service/investment',
+    },
+    {
+      name: 'Litigation & Disputes',
+      icon: Gavel,
+      description: 'Resolve commercial disputes swiftly — from pre-litigation notices to courtroom representation.',
+      route: '/service/litigation',
     },
   ];
 
@@ -81,20 +121,20 @@ export default function DomainNameLawPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Domain Name Law
+            National Services
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Protecting Your Digital Identity with Precision
+            Expert Legal & IP Solutions for Businesses in India
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Domain Name Law Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          {/* Domain Name Law Overview */}
+      {/* National Services Information Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
+        <div className="max-w-6xl mx-auto relative">
+          {/* National Services Overview */}
           <motion.div
             className="mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -110,19 +150,21 @@ export default function DomainNameLawPage() {
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <div className="text-center space-y-6">
-                <h2 className="text-4xl font-bold mb-4">
-                  <span className="text-[#00ADB5]">Domain Name</span>{' '}
-                  <span className="text-[#393E46]">Law</span>
+                <h2 className="text-4xl font-bold mb-4 relative inline-block">
+                  <span className="text-[#00ADB5]">National</span>{' '}
+                  <span className="text-[#393E46]">Services Overview</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  Leonard Corporate Solutions specializes in resolving domain name disputes swiftly and cost-effectively. Our team, experienced in representing both claimants and defendants, provides strategic advice to protect your brand and enforce your domain name rights globally.
+                  At Leonard Corporate Solutions, we provide comprehensive legal and intellectual property services tailored to businesses operating in India. From protecting your brand to ensuring regulatory compliance, our expert team delivers strategic solutions to fuel your growth and safeguard your operations.
+                </p>
+                <p className="text-[#393E46] text-lg leading-relaxed">
+                  Our services are designed to evolve with your business, offering clarity and precision in navigating India’s legal landscape.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
-                  📩 Contact us at{' '}
+                  📩 Need tailored legal support? Reach out at{' '}
                   <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
                     info@leonardsolutions.in
-                  </a>{' '}
-                  for expert domain name law support.
+                  </a>
                 </p>
               </div>
             </div>
@@ -131,7 +173,7 @@ export default function DomainNameLawPage() {
           {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our Domain</span>{' '}
+              <span className="text-[#222831]">Our National</span>{' '}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
           </div>
@@ -144,42 +186,34 @@ export default function DomainNameLawPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {serviceCards.map((service, index) => (
+            {nationalServices.map((service) => (
               <Link
-                key={service.title}
+                key={service.name}
                 href={service.route}
-                data-testid={`service-link-${service.title}`}
                 className="group relative"
-                onMouseEnter={() => setHoveredCard(service.title)}
+                onMouseEnter={() => setHoveredCard(service.name)}
                 onMouseLeave={() => setHoveredCard(null)}
-                aria-label={`Learn more about ${service.title}`}
               >
                 <motion.div
                   className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                   whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                   <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
-                      <service.icon className="h-6 w-6" />
+                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                      <service.icon className="h-7 w-7" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                        {service.title}
+                        {service.name}
                       </h3>
                       <p className="text-[#393E46]/80 text-base leading-relaxed">
                         {service.description}
                       </p>
                     </div>
                   </div>
-                  <motion.div
-                    className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    data-testid={`service-underline-${service.title}`}
-                  />
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 </motion.div>
               </Link>
             ))}
@@ -195,13 +229,13 @@ export default function DomainNameLawPage() {
           >
             <div className="relative py-12">
               {/* Corner Angles */}
-              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                Leonard Corporate Solutions protects your digital identity with tailored legal expertise, ensuring swift dispute resolution and robust global protection for your domain names.
+                At Leonard Corporate Solutions, our national services empower Indian businesses with robust legal and IP solutions. We provide strategic guidance to protect your innovation, ensure compliance, and resolve disputes, tailored to your unique needs.
               </p>
             </div>
           </motion.div>
@@ -212,9 +246,7 @@ export default function DomainNameLawPage() {
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"
-          data-testid="back-to-home-link"
           className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-          aria-label="Navigate back to home page"
         >
           <span className="mr-2">←</span> Back to Home
         </Link>
