@@ -13,37 +13,37 @@ export default function LitigationDisputesPage() {
       icon: Gavel,
       title: 'Courtroom Representation',
       description: 'Expert legal representation in court to defend your business interests.',
-      route: '#courtroom-representation',
+      route: '/service/litigation/courtroom-representation',
     },
     {
       icon: FileText,
       title: 'Pre-Litigation Notices',
       description: 'Draft and manage pre-litigation notices to resolve disputes early.',
-      route: '#pre-litigation-notices',
+      route: '/service/litigation/pre-litigation',
     },
     {
       icon: Scale,
       title: 'Alternative Dispute Resolution',
       description: 'Resolve disputes efficiently through mediation and arbitration.',
-      route: '#alternative-dispute-resolution',
+      route: '/service/litigation/alternative-dispute',
     },
     {
       icon: Shield,
       title: 'Commercial Dispute Strategy',
       description: 'Develop strategic plans to address complex commercial disputes.',
-      route: '#dispute-strategy',
+      route: '/service/litigation/commercial-dispute',
     },
     {
       icon: UserCheck,
       title: 'Contract Dispute Resolution',
       description: 'Handle breaches of contract with precise legal interventions.',
-      route: '#contract-disputes',
+      route: '/service/litigation/contract-dispute',
     },
     {
       icon: Briefcase,
       title: 'Settlement Negotiations',
       description: 'Negotiate favorable settlements to avoid prolonged litigation.',
-      route: '#settlement-negotiations',
+      route: '/service/litigation/settlement-negotiations',
     },
   ];
 

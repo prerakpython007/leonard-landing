@@ -7,33 +7,33 @@ import Link from 'next/link';
 export default function GIServicesPage() {
   const features = [
     {
-      title: 'GI Application Support',
-      description: 'Comprehensive assistance in preparing and filing GI applications, ensuring all requirements are met.',
+      title: 'Registration Support',
+      description: 'Comprehensive assistance with GI registration and documentation.',
       icon: FileCheck
     },
     {
-      title: 'Documentation Review',
-      description: 'Thorough review of historical evidence, product specifications, and geographical linkage documentation.',
-      icon: Search
-    },
-    {
-      title: 'Legal Compliance',
-      description: 'Ensuring adherence to all legal requirements and regulations for GI protection.',
-      icon: Scale
-    },
-    {
-      title: 'Market Protection',
-      description: 'Safeguarding your GI rights in the market and preventing unauthorized use.',
+      title: 'Protection Strategy',
+      description: 'Effective strategies for GI protection and enforcement.',
       icon: Shield
     },
     {
-      title: 'Global Protection',
-      description: 'International registration and protection strategies for geographical indications.',
+      title: 'Expert Consultation',
+      description: 'Professional consultation for optimizing your GI portfolio.',
+      icon: Scale
+    },
+    {
+      title: 'Global Management',
+      description: 'International GI management for worldwide protection.',
       icon: Globe
     },
     {
-      title: 'Risk Assessment',
-      description: 'Evaluation of potential risks and challenges to your GI protection.',
+      title: 'Documentation',
+      description: 'Complete support with GI documentation and compliance.',
+      icon: Search
+    },
+    {
+      title: 'Rights Enforcement',
+      description: 'Robust enforcement of your GI rights and interests.',
       icon: BadgeAlert
     }
   ];
@@ -51,7 +51,7 @@ export default function GIServicesPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -69,12 +69,12 @@ export default function GIServicesPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            GI Services
+            Comprehensive GI Services
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Comprehensive Geographical Indication Services for Your Products
+            Protect Your Regional Products with Expert GI Services
           </p>
         </motion.div>
       </motion.section>
@@ -99,11 +99,20 @@ export default function GIServicesPage() {
 
               <div className="text-[#393E46] space-y-6">
                 <p className="text-lg leading-relaxed">
-                  Our GI services encompass everything from initial application support to long-term protection strategies. We help producers and organizations secure and maintain geographical indication rights for their unique regional products.
+                  At Leonard Corporate Solutions, we offer end-to-end Geographical Indications (GI) services to help you protect and manage your regional products. Whether you're looking to register a new GI, enforce your rights, or expand internationally, our expert team is here to support you every step of the way.
                 </p>
-                <p className="text-lg leading-relaxed">
-                  With extensive experience in GI protection, we ensure your products' geographical identity remains protected while maximizing their market potential.
-                </p>
+                <h3 className="text-2xl font-bold text-[#222831] mt-8 mb-4">Why Choose Our GI Services?</h3>
+                <ul className="space-y-4 list-none pl-5">
+                  <li className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    Holistic Support: We cover every aspect of GI management, from registration to enforcement.
+                  </li>
+                  <li className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    Expert Guidance: Our team has extensive experience in GI laws and regulations worldwide.
+                  </li>
+                  <li className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    Tailored Solutions: We customize our services to meet the unique needs of your regional products.
+                  </li>
+                </ul>
               </div>
             </div>
           </motion.div>
@@ -127,6 +136,13 @@ export default function GIServicesPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Call to Action */}
+          <motion.div className="mt-16 text-center">
+            <p className="text-lg text-[#393E46]">
+              Protect your regional heritage and ensure the authenticity of your products with our comprehensive GI services. Contact us today to get started!
+            </p>
+          </motion.div>
         </div>
       </section>
 

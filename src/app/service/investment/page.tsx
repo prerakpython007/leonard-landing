@@ -13,37 +13,37 @@ export default function InvestmentFundraisingPage() {
       icon: DollarSign,
       title: 'Venture Capital Advisory',
       description: 'Navigate VC funding rounds with expert legal guidance on terms and negotiations.',
-      route: '#venture-capital',
+      route: '/service/investment/venture-capital',
     },
     {
       icon: FileText,
       title: 'Angel Investment Agreements',
       description: 'Draft and review agreements for angel funding to secure your startup’s growth.',
-      route: '#angel-investment',
+      route: '/service/investment/angel-investment',
     },
     {
       icon: Package,
       title: 'SAFE Notes & Convertible Notes',
       description: 'Structure SAFE and convertible note agreements for flexible fundraising.',
-      route: '#safe-notes',
+      route: '/service/investment/safe-notes',
     },
     {
       icon: Briefcase,
       title: 'Investor Relations Support',
       description: 'Manage investor communications and compliance with clear legal strategies.',
-      route: '#investor-relations',
+      route: '/service/investment/investor-relations',
     },
     {
       icon: Scale,
       title: 'Due Diligence Support',
       description: 'Prepare for investor due diligence with comprehensive legal documentation.',
-      route: '#due-diligence',
+      route: '/service/investment/due-diligence',
     },
     {
       icon: UserCheck,
       title: 'Equity Structuring',
       description: 'Design equity plans to align founder, investor, and employee interests.',
-      route: '#equity-structuring',
+      route: '/service/investment/equity-structuring',
     },
   ];
 

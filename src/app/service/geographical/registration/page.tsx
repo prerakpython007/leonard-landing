@@ -101,6 +101,40 @@ export default function GIRegistrationPage() {
     setSelectedInfo(null);
   };
 
+  const features = [
+    {
+      title: 'Legal Protection',
+      description: 'Prevent unauthorized use of your product\'s name.',
+    },
+    {
+      title: 'Market Advantage',
+      description: 'Enhance your product\'s value and authenticity in the market.',
+    },
+    {
+      title: 'Cultural Preservation',
+      description: 'Safeguard your region\'s heritage and traditions.',
+    }
+  ];
+
+  const registrationSteps = [
+    {
+      title: 'Assessment',
+      description: 'We evaluate your product\'s eligibility for GI status.'
+    },
+    {
+      title: 'Documentation',
+      description: 'We help prepare and submit all required documents.'
+    },
+    {
+      title: 'Liaison',
+      description: 'We work with regulatory authorities to ensure smooth approval.'
+    },
+    {
+      title: 'Follow-Up',
+      description: 'We provide ongoing support to maintain your GI status.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
@@ -164,7 +198,7 @@ export default function GIRegistrationPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -181,234 +215,85 @@ export default function GIRegistrationPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             GI Registration
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Region’s Unique Products with Expert GI Registration
+            Secure Legal Protection for Regional Products
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section */}
+      {/* Main Content */}
       <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="relative max-w-3xl mx-auto px-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+        <div className="max-w-6xl mx-auto space-y-32">
+          {/* Overview */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
             {/* Corner Angles */}
             <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
             <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Protect Your</span>{' '}
-                <span className="text-[#393E46]">Regional Heritage</span>
-              </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                GI registration, governed by the Geographical Indications of Goods (Registration and Protection) Act, 1999 in India, safeguards products like Darjeeling Tea or Kancheepuram Silk by linking them to their geographical origin. At DesignSecure, we simplify the registration process, ensuring authenticity and exclusivity for your region’s unique products.
-              </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@designsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@designsecure.in
-                </a>{' '}
-                to start protecting your regional products today.
+            <div className="text-[#393E46] space-y-6">
+              <p className="text-lg leading-relaxed">
+                Registering a Geographical Indication (GI) is the first step to legally protecting your regional products. At Leonard Corporate Solutions, we streamline the GI registration process, ensuring your products gain the recognition and protection they deserve.
               </p>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* GI Registration Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">GI Registration</span>{' '}
-              <span className="text-[#00ADB5]">Essentials</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {giRegistrationInfo.map((info: GIRegistrationInfo, index: number) => (
+          {/* Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
               <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Types of GI Products Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Types of</span>{' '}
-              <span className="text-[#00ADB5]">GI Products</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {[
-              { title: 'Agricultural Products', description: 'E.g., Darjeeling Tea, Alphonso Mango, linked to specific regions.' },
-              { title: 'Handicrafts', description: 'E.g., Banarasi Saree, Madhubani Paintings with regional significance.' },
-              { title: 'Manufactured Goods', description: 'E.g., Kolhapuri Chappal, Mysore Silk with unique regional traits.' },
-              { title: 'Foodstuffs', description: 'E.g., Bikaneri Bhujia, Nagpur Orange tied to specific regions.' },
-            ].map((product, index) => (
-              <motion.div
-                key={product.title}
+                key={index}
                 className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{product.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{product.description}</p>
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{feature.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Registration Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">GI</span>{' '}
-              <span className="text-[#00ADB5]">Registration Process</span>
+          {/* Registration Process */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#00ADB5]">Our GI</span>{' '}
+              <span className="text-[#222831]">Registration Process</span>
             </h2>
-          </div>
-          <div className="space-y-8">
-            {[
-              { step: '1. Identify the Product', description: 'Confirm the product’s unique qualities and link to its geographical origin.' },
-              { step: '2. Application Filing', description: 'Submit evidence of origin, product specs, and producer details to the GI Registry.' },
-              { step: '3. Examination', description: 'The GI Registry reviews for compliance and authenticity.' },
-              { step: '4. Registration', description: 'If approved, the GI is registered for 10 years, renewable.' },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility and Documents Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Eligibility and</span>{' '}
-              <span className="text-[#00ADB5]">Required Documents</span>
-            </h2>
-          </div>
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Associations of producers</li>
-              <li>Trade organizations</li>
-              <li>Local authorities</li>
-              <li>Producer groups</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Proof of origin (historical data, maps)</li>
-              <li>Product specifications</li>
-              <li>Applicant details (association or group)</li>
-              <li>Power of attorney (if applicable)</li>
-            </ul>
+            <div className="space-y-6">
+              {registrationSteps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <h3 className="text-xl font-bold text-[#222831] mb-3">{step.title}</h3>
+                  <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
-              <span className="text-[#393E46]">Your Regional Products?</span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Protect your region’s unique products with DesignSecure’s expert GI registration services. Start today to ensure authenticity and exclusivity for your regional heritage.
+          {/* Call to Action */}
+          <motion.div className="relative max-w-3xl mx-auto px-8 text-center">
+            <p className="text-lg text-[#393E46]">
+              Ready to register your Geographical Indication? Let us handle the process for you. Contact us now!
             </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Back to Home Link */}
+      {/* Back Link */}
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"
