@@ -422,7 +422,7 @@ export default function CopyrightArtisticPage() {
               Secure your paintings, photographs, or digital art with Leonard Corporate Solutions’ expert artistic copyright services. Start today to ensure your visual creations remain exclusively yours.
             </p>
             <Link
-              href="/service/copyright/artistic"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

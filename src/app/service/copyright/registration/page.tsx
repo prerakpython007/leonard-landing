@@ -393,7 +393,7 @@ export default function CopyrightRegistrationPage() {
               Secure your original works with Leonard Corporate Solutions’ expert copyright registration services. Start today to ensure your creative assets are legally protected and ready to thrive.
             </p>
             <Link
-              href="/service/copyright/registration"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

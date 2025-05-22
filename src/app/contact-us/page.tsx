@@ -1,12 +1,10 @@
 "use client";
 
-// Remove individual react-leaflet imports
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, X } from "lucide-react";
 import dynamic from "next/dynamic";
 
-// Only import MapComponent dynamically
 const MapComponent = dynamic(() => import("./MapComponent"), {
   ssr: false,
   loading: () => (
@@ -14,7 +12,6 @@ const MapComponent = dynamic(() => import("./MapComponent"), {
   ),
 });
 
-// Import Leaflet CSS
 import "leaflet/dist/leaflet.css";
 
 export default function ContactPage() {
@@ -27,7 +24,6 @@ export default function ContactPage() {
   });
   const [showPopup, setShowPopup] = useState(false);
 
-  // Configure Leaflet icons only in the browser
   useEffect(() => {
     if (typeof window !== "undefined") {
       const L = require("leaflet");
@@ -42,7 +38,6 @@ export default function ContactPage() {
     }
   }, []);
 
-  // Auto-hide popup after 3 seconds
   useEffect(() => {
     if (showPopup) {
       const timer = setTimeout(() => {
@@ -71,6 +66,10 @@ export default function ContactPage() {
     setShowPopup(true);
   };
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="font-montserrat relative min-h-screen rounded-b-[5%] bg-[#EEEEEE]">
       {/* Grid Pattern Overlay */}
@@ -85,19 +84,33 @@ export default function ContactPage() {
         }}
       />
 
-      {/* Popup Confirmation */}
+      {/* Centered Popup Confirmation */}
       {showPopup && (
         <motion.div
-          className="fixed top-4 right-4 z-[1000] flex items-center gap-2 rounded-lg bg-white p-4 shadow-lg"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-2xl text-[#00ADB5]">✦</span>
-          <p className="font-medium text-[#222831]">
-            Your message was sent successfully!
-          </p>
+          <motion.div
+            className="relative flex flex-col items-center gap-4 rounded-xl bg-white p-8 shadow-2xl max-w-lg w-full mx-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <button
+              onClick={handleClosePopup}
+              className="absolute top-4 right-4 text-[#393E46] hover:text-[#00ADB5] transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <span className="text-4xl text-[#00ADB5]">✦</span>
+            <p className="text-xl font-semibold text-[#222831] text-center">
+              Your message was sent successfully!
+            </p>
+          </motion.div>
         </motion.div>
       )}
 
@@ -108,7 +121,6 @@ export default function ContactPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Corner Angles for Hero Section */}
         <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
         <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
         <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
@@ -138,7 +150,6 @@ export default function ContactPage() {
       {/* Contact Information Section */}
       <section className="px-4 py-32 md:px-16 lg:px-24">
         <div className="mx-auto max-w-6xl">
-          {/* Contacting Us */}
           <motion.div
             className="mb-12 relative px-8 py-12"
             initial={{ opacity: 0, y: 20 }}
@@ -146,7 +157,6 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
             <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
             <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -155,7 +165,6 @@ export default function ContactPage() {
             <h2 className="mb-6 text-3xl font-bold text-[#222831]">
               Contacting Us
             </h2>
-
             <p className="text-lg leading-relaxed text-[#393E46]">
               At Leonard Corporate Solutions, your privacy and data security
               matter most to us. If you’d like to access any personal
@@ -178,7 +187,8 @@ export default function ContactPage() {
               at any time. Changes will be posted here to keep you informed.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-[#393E46]">
-              For any queries related to your personal data, privacy concerns, or our legal policies, don’t hesitate to contact Leonard Corporate Solutions at <a
+              For any queries related to your personal data, privacy concerns, or our legal policies, don’t hesitate to contact Leonard Corporate Solutions at{" "}
+              <a
                 href="mailto:info@leonardsolutions.in"
                 className="text-[#00ADB5] hover:underline"
               >
@@ -187,7 +197,6 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
-          {/* Head Office */}
           <motion.div
             className="mb-12 rounded-2xl border border-white/20 bg-white/80 p-8 shadow-lg backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
@@ -231,7 +240,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Get In Touch Form */}
           <motion.div
             className="mb-12 relative px-8 py-12 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
@@ -239,11 +247,9 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Decorative Background Elements */}
             <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
             <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
             
-            {/* Corner Angles */}
             <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
             <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -258,7 +264,6 @@ export default function ContactPage() {
               </p>
 
               <form onSubmit={handleSubmit} className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-                {/* Form fields with enhanced styling */}
                 <div className="group">
                   <label htmlFor="firstName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
                     First Name
@@ -342,7 +347,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Leaflet Map */}
           <motion.div
             className="relative px-8 py-12"
             initial={{ opacity: 0, y: 20 }}
@@ -350,7 +354,6 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
             <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
             <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -359,7 +362,6 @@ export default function ContactPage() {
             <h2 className="mb-8 text-3xl font-bold text-[#222831]">
               Our Global Locations
             </h2>
-
             <div className="rounded-xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm">
               <MapComponent />
             </div>

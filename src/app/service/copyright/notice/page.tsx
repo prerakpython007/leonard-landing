@@ -423,7 +423,7 @@ export default function CopyrightNoticePage() {
               Protect your creative works with a clear and effective copyright notice. Contact Leonard Corporate Solutions today for expert guidance on crafting and placing notices to safeguard your intellectual property.
             </p>
             <Link
-              href="/service/copyright/notice"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

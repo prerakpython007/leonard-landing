@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -6,57 +5,57 @@ import { FileText, Shield, Scale, Briefcase, Clock, Upload, BookOpen, CheckCircl
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function FSSAILicensingPage() {
+export default function EmploymentLawPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const serviceCards = [
     {
       icon: CheckCircle,
-      title: '14-Digital FSSAI License',
-      description: 'Obtain your 14-digit FSSAI license number with ease.',
-      route: '#digital-fssai-license',
+      title: 'Compliance Audits',
+      description: 'Comprehensive audits to ensure compliance with employment laws.',
+      route: '#compliance-audits',
     },
     {
       icon: Briefcase,
-      title: 'Eligibility Consultation',
-      description: 'Expert guidance to determine your FSSAI licensing requirements.',
-      route: '#eligibility-consultation',
+      title: 'Policy Drafting',
+      description: 'Customized workplace policies to meet legal requirements.',
+      route: '#policy-drafting',
     },
     {
       icon: FileText,
-      title: 'Application Drafting',
-      description: 'Professionally drafted applications for FSSAI registration.',
-      route: '#application-drafting',
+      title: 'Contract Preparation',
+      description: 'Professionally drafted employment contracts and agreements.',
+      route: '#contract-preparation',
     },
     {
       icon: BookOpen,
-      title: 'Product Category Clarification',
-      description: 'Clear guidance on categorizing your food products.',
-      route: '#product-category',
+      title: 'Legal Advisory',
+      description: 'Expert guidance on employment law regulations and disputes.',
+      route: '#legal-advisory',
     },
     {
       icon: Upload,
-      title: 'Online Application Submission',
-      description: 'Seamless submission for Central, State, or Basic Registration.',
-      route: '#application-submission',
+      title: 'Document Filing',
+      description: 'Seamless submission of required legal documents to authorities.',
+      route: '#document-filing',
     },
     {
       icon: Clock,
-      title: 'Timely Follow-ups',
-      description: 'Regular follow-ups with the FSSAI department to ensure progress.',
-      route: '#timely-followups',
+      title: 'Dispute Resolution',
+      description: 'Timely resolution of workplace disputes and grievances.',
+      route: '#dispute-resolution',
     },
     {
       icon: Shield,
-      title: 'FSSAI Renewal',
-      description: 'Hassle-free renewals before your license expires.',
-      route: '#fssai-renewal',
+      title: 'Employee Training',
+      description: 'Training programs to ensure compliance awareness.',
+      route: '#employee-training',
     },
     {
       icon: Scale,
-      title: 'Legal Documentation',
-      description: 'Comprehensive legal documentation support as needed.',
-      route: '#legal-documentation',
+      title: 'Regulatory Updates',
+      description: 'Stay updated with the latest employment law changes.',
+      route: '#regulatory-updates',
     },
   ];
 
@@ -94,20 +93,20 @@ export default function FSSAILicensingPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            FSSAI Licensing
+            Employment Law
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Comprehensive FSSAI Licensing Solutions for Your Business
+            Expert Employment Law Solutions for Your Business
           </p>
         </motion.div>
       </motion.section>
 
-      {/* FSSAI Licensing Information Section */}
+      {/* Employment Law Information Section */}
       <section className="py-32 px-4 md:px-16 lg:px-24 relative">
         <div className="max-w-6xl mx-auto relative">
-          {/* FSSAI Licensing Overview */}
+          {/* Employment Law Overview */}
           <motion.div
             className="mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -124,21 +123,21 @@ export default function FSSAILicensingPage() {
 
               <div className="text-center space-y-6">
                 <h2 className="text-4xl font-bold mb-4 relative inline-block">
-                  <span className="text-[#00ADB5]">FSSAI</span>{' '}
-                  <span className="text-[#393E46]">Licensing Overview</span>
+                  <span className="text-[#00ADB5]">Employment Law</span>{' '}
+                  <span className="text-[#393E46]">Overview</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  At Leonard Corporate Solutions, we provide end-to-end solutions to meet all your FSSAI (Food Safety and Standards Authority of India) licensing needs. Our expert team ensures seamless compliance with FSSAI regulations, helping food businesses of all sizes obtain and maintain their licenses efficiently.
+                  At Leonard Corporate Solutions, we offer comprehensive employment law services to ensure your business complies with all relevant labor regulations. Our expert team provides tailored solutions to navigate complex employment laws, safeguarding your organization and employees.
                 </p>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  From eligibility consultation to timely renewals, we handle every aspect of the licensing process with precision and care.
+                  From drafting contracts to resolving disputes, we handle every aspect of employment law with professionalism and precision.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
                   📩 Contact us at{' '}
                   <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
                     info@leonardsolutions.in
                   </a>{' '}
-                  for tailored FSSAI licensing support.
+                  for expert employment law support.
                 </p>
               </div>
             </div>
@@ -147,8 +146,8 @@ export default function FSSAILicensingPage() {
           {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our FSSAI</span>{' '}
-              <span className="text-[#00ADB5]">Licensing Services</span>
+              <span className="text-[#222831]">Our Employment</span>{' '}
+              <span className="text-[#00ADB5]">Law Services</span>
             </h2>
           </div>
 
@@ -209,7 +208,7 @@ export default function FSSAILicensingPage() {
               <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                At Leonard Corporate Solutions, our FSSAI licensing services streamline compliance for your food business. We provide expert support to ensure your licensing process is efficient, compliant, and hassle-free, allowing you to focus on growth.
+                At Leonard Corporate Solutions, our employment law services ensure your business remains compliant and protected. We provide expert support to streamline legal processes, allowing you to focus on building a thriving workplace.
               </p>
             </div>
           </motion.div>

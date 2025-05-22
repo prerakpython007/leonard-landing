@@ -422,7 +422,7 @@ export default function CopyrightAssignmentPage() {
               Transfer your creative rights with confidence using Leonard Corporate Solutions’ expert copyright assignment services. Start today to draft a clear and legally sound agreement tailored to your needs.
             </p>
             <Link
-              href="/service/copyright/assignment"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

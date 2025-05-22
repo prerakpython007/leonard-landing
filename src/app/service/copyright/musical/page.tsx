@@ -423,7 +423,7 @@ export default function CopyrightMusicalPage() {
               Secure your songs, lyrics, or recordings with Leonard Corporate Solutions’ expert musical copyright services. Start today to ensure your musical creations remain exclusively yours.
             </p>
             <Link
-              href="/service/copyright/musical"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

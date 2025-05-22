@@ -416,7 +416,7 @@ export default function TrademarkRegistrationPage() {
               Safeguard your business identity with Leonard Corporate Solutions’ expert trademark registration services. Start today to ensure your brand’s exclusivity in India’s competitive market.
             </p>
             <a
-              href="/service/trademark/registration"
+              href="/contact-us"
               className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started

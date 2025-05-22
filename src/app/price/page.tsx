@@ -262,7 +262,7 @@ export default function PricingPage() {
                         </div>
                         
                         <Link
-                          href="/contact"
+                          href="/contact-us"
                           className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-[#00ADB5] transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
                         >
                           <span className="relative z-10">Get in Touch</span>
