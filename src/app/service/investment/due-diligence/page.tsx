@@ -4,46 +4,28 @@ import { motion } from 'framer-motion';
 import { Search, FileText, Scale, Shield, AlertTriangle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
-	{
-		icon: Search,
-		title: 'Comprehensive Review',
-		description: 'Thorough analysis of business operations.',
-	},
+const diligenceServices = [
 	{
 		icon: FileText,
-		title: 'Documentation Review',
-		description: 'Detailed review of legal documents.',
-	},
-	{
-		icon: Scale,
-		title: 'Risk Assessment',
-		description: 'Evaluation of legal and business risks.',
-	},
-	{
-		icon: Shield,
-		title: 'Compliance Check',
-		description: 'Verification of regulatory compliance.',
+		title: 'Document Preparation',
+		description: 'We compile all necessary legal and financial documents.',
 	},
 	{
 		icon: AlertTriangle,
-		title: 'Issue Identification',
-		description: 'Early detection of potential problems.',
+		title: 'Risk Assessment',
+		description: 'We identify and address potential red flags before investors do.',
 	},
 	{
-		icon: CheckCircle,
-		title: 'Reporting',
-		description: 'Comprehensive due diligence reports.',
+		icon: Search,
+		title: 'Process Guidance',
+		description: 'We guide you through the due diligence process step-by-step.',
 	},
 ];
 
-const dueDiligencePoints = [
-	'Legal documentation review',
-	'Corporate structure analysis',
-	'Compliance verification',
-	'Risk assessment',
-	'Financial review support',
-	'Recommendations report',
+const diligenceBenefits = [
+	'Impress investors with organized and transparent documentation',
+	'Reduce delays in the funding process by addressing issues early',
+	'Build credibility with thorough preparation',
 ];
 
 export default function DueDiligencePage() {
@@ -70,7 +52,7 @@ export default function DueDiligencePage() {
 
 				<motion.div className="max-w-7xl mx-auto text-center">
 					<h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-						Due Diligence
+						Due Diligence Support
 						<span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">
 							✦
 						</span>
@@ -79,7 +61,7 @@ export default function DueDiligencePage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Comprehensive Investment Due Diligence Support
+						Prepare for Investor Due Diligence with Confidence
 					</p>
 				</motion.div>
 			</motion.section>
@@ -87,10 +69,69 @@ export default function DueDiligencePage() {
 			{/* Main Content */}
 			<section className="py-32 px-4 md:px-16 lg:px-24">
 				<div className="max-w-6xl mx-auto space-y-32">
-					{/* Overview and Features sections following standard pattern */}
-					{/* ... Add the overview section with dueDiligencePoints */}
-					{/* ... Add the features grid section */}
-					{/* ... Add the additional information section */}
+					{/* Overview */}
+					<motion.div className="relative max-w-3xl mx-auto px-8">
+						{/* ...existing corner angles... */}
+
+						<div className="text-[#393E46] space-y-6">
+							<p className="text-lg leading-relaxed">
+								Investor due diligence can make or break a funding round. At Leonard Corporate Solutions, we provide due diligence support, helping you prepare comprehensive legal documentation to ensure a smooth funding process for your startup in India and beyond.
+							</p>
+						</div>
+					</motion.div>
+
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our Due</span>{' '}
+							<span className="text-[#222831]">Diligence Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{diligenceServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
+					</div>
+
+					{/* Benefits Section */}
+					<motion.div className="relative max-w-3xl mx-auto px-8">
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Benefits of</span>{' '}
+							<span className="text-[#222831]">Due Diligence Support</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{diligenceBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Ace your due diligence. Contact us for due diligence support services today!
+							</p>
+						</div>
+					</motion.div>
 				</div>
 			</section>
 

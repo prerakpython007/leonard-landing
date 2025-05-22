@@ -4,46 +4,28 @@ import { motion } from 'framer-motion';
 import { FileText, DollarSign, Shield, HandshakeIcon, Scale, Search } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
+const angelServices = [
 	{
 		icon: FileText,
 		title: 'Agreement Drafting',
-		description: 'Expert drafting of angel investment agreements.',
-	},
-	{
-		icon: DollarSign,
-		title: 'Investment Terms',
-		description: 'Structuring of investment terms and conditions.',
-	},
-	{
-		icon: Shield,
-		title: 'Rights Protection',
-		description: 'Protection of founder and investor rights.',
+		description: 'We create clear, investor-friendly agreements for angel funding.',
 	},
 	{
 		icon: HandshakeIcon,
-		title: 'Negotiation Support',
-		description: 'Expert investment negotiation guidance.',
+		title: 'Review & Negotiation',
+		description: 'We review terms and negotiate to balance founder and investor interests.',
 	},
 	{
-		icon: Scale,
-		title: 'Valuation Terms',
-		description: 'Fair valuation and equity terms.',
-	},
-	{
-		icon: Search,
-		title: 'Due Diligence',
-		description: 'Comprehensive due diligence support.',
+		icon: Shield,
+		title: 'Compliance Check',
+		description: 'We ensure agreements meet legal and regulatory standards.',
 	},
 ];
 
-const angelPoints = [
-	'Investment agreement drafting',
-	'Term negotiation',
-	'Rights and obligations',
-	'Valuation structuring',
-	'Exit provisions',
-	'Compliance verification',
+const angelBenefits = [
+	'Attract angel investors with professional and transparent agreements',
+	'Protect your startup\'s equity and control during early funding',
+	'Build a strong foundation for future funding rounds',
 ];
 
 export default function AngelInvestmentPage() {
@@ -71,7 +53,7 @@ export default function AngelInvestmentPage() {
 
 				<motion.div className="max-w-7xl mx-auto text-center">
 					<h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-						Angel Investment
+						Angel Investment Agreements
 						<span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">
 							✦
 						</span>
@@ -80,7 +62,7 @@ export default function AngelInvestmentPage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Strategic Angel Investment Agreement Services
+						Secure Angel Funding with Robust Agreements
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,57 +80,60 @@ export default function AngelInvestmentPage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our angel investment agreement services help structure and document
-								early-stage investments effectively. We ensure clear terms and
-								protect both angel investor and startup interests.
+								Angel investors can provide the early funding your startup needs to grow. At Leonard Corporate Solutions, we draft and review angel investment agreements to ensure your startup secures funding while protecting your interests in India and internationally.
 							</p>
-							<ul className="space-y-4 list-none pl-5">
-								{angelPoints.map((item, index) => (
-									<li
-										key={index}
-										className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
-									>
-										{item}
-									</li>
-								))}
-							</ul>
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our Angel</span>{' '}
+							<span className="text-[#222831]">Investment Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{angelServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Expert</span>{' '}
-								<span className="text-[#222831]">Investment Support</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our angel investment services can help
-								structure and document your early-stage investments effectively.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Why Angel</span>{' '}
+							<span className="text-[#222831]">Agreements Matter</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{angelBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Secure angel funding confidently. Contact us for angel investment agreement services!
 							</p>
 						</div>
 					</motion.div>

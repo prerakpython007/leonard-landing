@@ -5,46 +5,28 @@ import { Scale, Search, FileCheck, AlertTriangle, Shield, FileText } from 'lucid
 import Link from 'next/link';
 
 export default function ComplianceAuditsPage() {
-  const features = [
+  const auditBenefits = [
+    'Avoid fines and legal risks by ensuring full compliance',
+    'Build trust with stakeholders through transparent operations',
+    'Stay ahead of regulatory changes with proactive audits'
+  ];
+
+  const auditServices = [
     {
       icon: Search,
-      title: "Audit Process",
-      description: "Comprehensive regulatory compliance evaluation."
-    },
-    {
-      icon: FileCheck,
-      title: "Documentation Review",
-      description: "Thorough review of compliance documentation."
-    },
-    {
-      icon: Scale,
-      title: "Compliance Assessment",
-      description: "Evaluation of regulatory requirements."
+      title: "Comprehensive Review",
+      description: "We assess your operations against applicable regulations."
     },
     {
       icon: AlertTriangle,
       title: "Gap Analysis",
-      description: "Identification of compliance gaps."
-    },
-    {
-      icon: Shield,
-      title: "Risk Management",
-      description: "Compliance risk assessment and mitigation."
+      description: "We identify areas of non-compliance and provide actionable solutions."
     },
     {
       icon: FileText,
       title: "Reporting",
-      description: "Detailed compliance audit reports."
+      description: "We deliver detailed reports with recommendations for compliance."
     }
-  ];
-
-  const auditPoints = [
-    'Regulatory compliance review',
-    'Documentation assessment',
-    'Process evaluation',
-    'Risk identification',
-    'Compliance recommendations',
-    'Implementation guidance'
   ];
 
   return (
@@ -68,12 +50,12 @@ export default function ComplianceAuditsPage() {
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Compliance Audits
+            Regulatory Compliance Audits
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Comprehensive Regulatory Compliance Evaluation
+            Ensure Compliance with Thorough Regulatory Audits
           </p>
         </motion.div>
       </motion.section>
@@ -91,23 +73,16 @@ export default function ComplianceAuditsPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our compliance audit services provide thorough evaluation of your business operations against regulatory requirements. We help identify gaps, assess risks, and ensure comprehensive compliance across all aspects of your business.
+                Staying compliant with regulations is critical to avoid penalties and legal issues. At Leonard Corporate Solutions, we conduct thorough regulatory compliance audits to ensure your business meets all legal standards in India and internationally.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {auditPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {auditServices.map((service, index) => (
               <motion.div
-                key={feature.title}
+                key={service.title}
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -115,25 +90,32 @@ export default function ComplianceAuditsPage() {
               >
                 <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                 <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
+                  <service.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
+                  {service.title}
                 </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
+                <p className="text-[#393E46]/80">{service.description}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Compliance Solutions</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our compliance audit services can help ensure your business meets all regulatory requirements effectively.
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#00ADB5]">Benefits of</span>{' '}
+              <span className="text-[#222831]">Compliance Audits</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {auditBenefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 text-center">
+              <p className="text-lg font-medium text-[#393E46]">
+                Ensure your business is compliant. Contact us for regulatory audit services today!
               </p>
             </div>
           </motion.div>

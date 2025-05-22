@@ -81,12 +81,12 @@ export default function BusinessLawCompliancePage() {
           className="max-w-7xl mx-auto text-center"
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Business Law & Compliance
+            Business Law & Compliance Services
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Ensure Your Operations Are Legally Compliant with Expert Guidance
+            Ensure Legal Security for Your Business Operations
           </p>
         </motion.div>
       </motion.section>
