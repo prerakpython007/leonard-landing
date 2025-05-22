@@ -1,55 +1,25 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Search, Globe, AlertTriangle, Lock, FileCheck } from 'lucide-react';
+import { Shield, Search, Globe } from 'lucide-react';
 import Link from 'next/link';
 
 export default function BrandProtectionPage() {
   const features = [
     {
       icon: Search,
-      title: "Brand Monitoring",
-      description: "Continuous surveillance of domain registrations and online presence for brand infringement."
+      title: "Domain Monitoring",
+      description: "We track domain registrations to identify potential misuse."
     },
     {
       icon: Shield,
-      title: "Preventive Protection",
-      description: "Proactive measures to prevent domain name abuse and cybersquatting."
+      title: "Cease & Desist Actions",
+      description: "We issue legal notices to stop unauthorized domain use."
     },
     {
       icon: Globe,
-      title: "Global Coverage",
-      description: "Worldwide brand protection across multiple jurisdictions and TLDs."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Threat Detection",
-      description: "Early warning system for potential domain name misuse and brand abuse."
-    },
-    {
-      icon: Lock,
-      title: "Domain Security",
-      description: "Enhanced security measures to protect your domain portfolio."
-    },
-    {
-      icon: FileCheck,
-      title: "Compliance Management",
-      description: "Ensure adherence to international brand protection standards."
-    }
-  ];
-
-  const brandProtectionDetails = [
-    {
-      title: "Domain Name Monitoring",
-      content: "Our comprehensive monitoring system tracks domain registrations worldwide, identifying potential threats to your brand. We use advanced algorithms to detect variations, typos, and similar domains that could be used for brand abuse."
-    },
-    {
-      title: "Enforcement Strategy",
-      content: "We develop and implement custom enforcement strategies to combat unauthorized use of your brand online. This includes takedown procedures, cease and desist actions, and coordinated legal responses."
-    },
-    {
-      title: "Preventive Measures",
-      content: "Proactive domain registration strategies and defensive registrations help prevent cybersquatting and brand abuse before they occur. We identify and secure key domains across relevant TLDs."
+      title: "Global Reach",
+      description: "Our services extend to international jurisdictions to protect your brand worldwide."
     }
   ];
 
@@ -79,15 +49,15 @@ export default function BrandProtectionPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Safeguarding Your Digital Brand Identity
+            Safeguard Your Brand from Domain Name Misuse
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Content Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
+      {/* Main Content */}
+      <section className="py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto space-y-32">
-          {/* Overview Section */}
+          {/* Overview */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             {/* Corner Angles */}
             <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
@@ -96,32 +66,14 @@ export default function BrandProtectionPage() {
             <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Comprehensive</span>{' '}
-                <span className="text-[#222831]">Brand Protection</span>
-              </h2>
               <p className="text-lg leading-relaxed">
-                Our brand protection services offer comprehensive solutions to safeguard your digital assets and brand identity. We employ advanced monitoring systems and legal expertise to protect your brand from unauthorized use and domain abuse.
+                Your brand's online identity is critical. At Leonard Corporate Solutions, we provide comprehensive brand protection services to address improper domain name use globally, ensuring your intellectual property remains secure.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {[
-                  'Domain name monitoring and protection',
-                  'Anti-cybersquatting measures',
-                  'Brand abuse prevention',
-                  'Online brand enforcement',
-                  'Domain recovery services',
-                  'Strategic brand protection planning'
-                ].map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -142,52 +94,11 @@ export default function BrandProtectionPage() {
             ))}
           </div>
 
-          {/* Detailed Sections */}
-          {brandProtectionDetails.map((detail, index) => (
-            <motion.div 
-              key={detail.title}
-              className="relative max-w-3xl mx-auto px-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              {/* Corner Angles */}
-              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-              <div className="text-[#393E46] space-y-6">
-                <h2 className="text-3xl font-bold mb-6">
-                  <span className="text-[#00ADB5]">{detail.title}</span>
-                </h2>
-                <p className="text-lg leading-relaxed">{detail.content}</p>
-              </div>
-            </motion.div>
-          ))}
-
           {/* Call to Action */}
-          <motion.div 
-            className="relative max-w-3xl mx-auto px-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold mb-6">
-                <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
-                <span className="text-[#222831]">Your Brand?</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us today to discuss your brand protection needs and develop a customized strategy for your business.
-              </p>
-              <p className="text-lg font-medium">
-                📩 Email us at{' '}
-                <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
-                  info@leonardsolutions.in
-                </a>
+              <p className="text-lg leading-relaxed text-center">
+                Secure your brand's online reputation. Reach out for expert brand protection services!
               </p>
             </div>
           </motion.div>

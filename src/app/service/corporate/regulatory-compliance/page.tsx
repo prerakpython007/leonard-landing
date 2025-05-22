@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Scale, Shield, FileCheck, AlertTriangle, BookOpen, Search } from 'lucide-react';
+import { Search, Scale, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export default function RegulatoryCompliancePage() {
   const features = [
     {
+      icon: Search,
+      title: "Compliance Audits",
+      description: "We assess your business for regulatory gaps and risks."
+    },
+    {
       icon: Scale,
-      title: "Compliance Assessment",
-      description: "Comprehensive evaluation of regulatory requirements."
+      title: "Industry-Specific Strategies",
+      description: "We develop compliance plans tailored to your sector."
     },
     {
       icon: Shield,
-      title: "Risk Management",
-      description: "Identification and mitigation of compliance risks."
-    },
-    {
-      icon: FileCheck,
-      title: "Documentation",
-      description: "Maintenance of required regulatory documentation."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Violation Prevention",
-      description: "Proactive measures to prevent regulatory violations."
-    },
-    {
-      icon: BookOpen,
-      title: "Policy Development",
-      description: "Creation of compliance policies and procedures."
-    },
-    {
-      icon: Search,
-      title: "Compliance Monitoring",
-      description: "Ongoing monitoring of regulatory compliance."
+      title: "Ongoing Support",
+      description: "We keep you updated on regulatory changes and ensure adherence."
     }
   ];
 
-  const compliancePoints = [
-    'Regulatory compliance audits',
-    'Risk assessment and management',
-    'Policy implementation',
-    'Staff training programs',
-    'Compliance monitoring',
-    'Regulatory reporting'
+  const benefits = [
+    'Avoid penalties and legal issues with proactive compliance',
+    'Build trust with stakeholders by operating within the law',
+    'Focus on growth while we handle your compliance needs'
   ];
 
   return (
@@ -91,49 +73,59 @@ export default function RegulatoryCompliancePage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our regulatory compliance services help businesses navigate complex regulatory requirements and maintain compliance across all operations. We provide comprehensive support to ensure your business meets all legal obligations.
+                Staying compliant with ever-changing regulations can be challenging. At Leonard Corporate Solutions, we provide tailored regulatory compliance strategies to ensure your business meets all legal requirements in India and international markets.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {compliancePoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our</span>{' '}
+              <span className="text-[#00ADB5]">Compliance Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Benefits of</span>{' '}
+              <span className="text-[#00ADB5]">Regulatory Compliance</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Compliance Services</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our regulatory compliance services can help your business maintain compliance and manage regulatory risks effectively.
+              <p className="text-lg leading-relaxed text-center">
+                Stay compliant and avoid risks. Contact us for regulatory compliance support!
               </p>
             </div>
           </motion.div>

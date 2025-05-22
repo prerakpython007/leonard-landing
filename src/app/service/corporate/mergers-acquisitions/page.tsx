@@ -1,52 +1,34 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { UserCheck, Search, FileText, Scale, Briefcase, HandshakeIcon } from 'lucide-react';
+import { Search, FileText, Settings } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
-	{
-		icon: Search,
-		title: 'Due Diligence',
-		description: 'Comprehensive review of target companies.',
-	},
-	{
-		icon: FileText,
-		title: 'Transaction Documentation',
-		description: 'Preparation of M&A documentation.',
-	},
-	{
-		icon: Scale,
-		title: 'Deal Structuring',
-		description: 'Strategic structuring of M&A transactions.',
-	},
-	{
-		icon: Briefcase,
-		title: 'Asset Assessment',
-		description: 'Evaluation of assets and liabilities.',
-	},
-	{
-		icon: UserCheck,
-		title: 'Integration Planning',
-		description: 'Post-merger integration strategy.',
-	},
-	{
-		icon: HandshakeIcon,
-		title: 'Negotiation Support',
-		description: 'Expert support in deal negotiations.',
-	},
-];
-
-const maPoints = [
-	'Transaction structuring',
-	'Due diligence process',
-	'Deal negotiation',
-	'Documentation preparation',
-	'Regulatory compliance',
-	'Post-merger integration',
-];
-
 export default function MergersAcquisitionsPage() {
+	const features = [
+		{
+			icon: Search,
+			title: 'Due Diligence',
+			description: 'We conduct thorough legal and financial due diligence to identify risks.',
+		},
+		{
+			icon: FileText,
+			title: 'Transaction Support',
+			description: 'We draft and negotiate M&A agreements to protect your interests.',
+		},
+		{
+			icon: Settings,
+			title: 'Integration Assistance',
+			description: 'We help integrate operations post-transaction for seamless transitions.',
+		},
+	];
+
+	const benefits = [
+		'Minimize risks with thorough due diligence and legal oversight',
+		'Ensure smooth transactions with expert negotiation and drafting',
+		'Achieve successful integration for long-term growth',
+	];
+
 	return (
 		<div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
 			{/* Grid Pattern */}
@@ -57,7 +39,7 @@ export default function MergersAcquisitionsPage() {
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-					backgroundSize: '30px 30px'
+					backgroundSize: '30px 30px',
 				}}
 			/>
 
@@ -80,7 +62,7 @@ export default function MergersAcquisitionsPage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Expert Legal Support for M&A Transactions
+						Seamless Legal Support for Mergers & Acquisitions
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,58 +80,64 @@ export default function MergersAcquisitionsPage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our M&A services provide comprehensive legal support throughout the
-								entire transaction process. From due diligence to post-merger
-								integration, we ensure your transactions are structured effectively
-								and executed smoothly.
+								Mergers and acquisitions (M&A) require careful legal planning to ensure success. At Leonard Corporate Solutions, we provide comprehensive legal support for M&A transactions, from due diligence to integration, in India and international markets.
 							</p>
-							<ul className="space-y-4 list-none pl-5">
-								{maPoints.map((item, index) => (
-									<li
-										key={index}
-										className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
-									>
-										{item}
-									</li>
-								))}
-							</ul>
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div className="space-y-8">
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#222831]">Our M&A</span>{' '}
+							<span className="text-[#00ADB5]">Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{features.map((feature, index) => (
+								<motion.div
+									key={feature.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<feature.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{feature.title}
+									</h3>
+									<p className="text-[#393E46]/80">{feature.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
+					<motion.div className="relative max-w-3xl mx-auto px-8">
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#222831]">Benefits of</span>{' '}
+							<span className="text-[#00ADB5]">M&A Support</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{benefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+					</motion.div>
+
+					{/* Call to Action */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
 						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Strategic</span>{' '}
-								<span className="text-[#222831]">M&A Support</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our M&A services can help ensure
-								successful transactions and seamless integrations for your business.
+							<p className="text-lg leading-relaxed text-center">
+								Navigate M&A with confidence. Contact us for expert legal support today!
 							</p>
 						</div>
 					</motion.div>

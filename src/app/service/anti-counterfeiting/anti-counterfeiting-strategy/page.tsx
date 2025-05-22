@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Shield, Target, LineChart, Users, Settings } from 'lucide-react';
+import { Search, Settings, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AntiCounterfeitingStrategyPage() {
   const features = [
     {
-      icon: Shield,
-      title: "Protection Planning",
-      description: "Comprehensive anti-counterfeiting strategy development and implementation."
-    },
-    {
-      icon: Target,
+      icon: Search,
       title: "Risk Assessment",
-      description: "Strategic evaluation of counterfeiting risks and vulnerabilities."
-    },
-    {
-      icon: LineChart,
-      title: "Market Analysis",
-      description: "In-depth market research and counterfeiting trend analysis."
+      description: "We identify vulnerabilities in your supply chain and markets."
     },
     {
       icon: Settings,
-      title: "Process Integration",
-      description: "Integration of anti-counterfeiting measures into business operations."
+      title: "Custom Solutions",
+      description: "We create strategies tailored to your brand's specific needs."
     },
     {
-      icon: Users,
-      title: "Stakeholder Coordination",
-      description: "Coordination with internal and external stakeholders."
-    },
-    {
-      icon: Briefcase,
-      title: "Business Alignment",
-      description: "Alignment of anti-counterfeiting strategy with business objectives."
+      icon: Shield,
+      title: "Proactive Measures",
+      description: "We implement monitoring and enforcement to prevent counterfeiting."
     }
   ];
 
-  const strategyPoints = [
-    'Comprehensive risk assessment',
-    'Strategic planning and development',
-    'Implementation roadmap',
-    'Resource allocation planning',
-    'Performance metrics definition',
-    'Strategy review and optimization'
+  const benefits = [
+    'Stay ahead of counterfeiters with proactive protection',
+    'Minimize the impact of fakes on your brand and revenue',
+    'Strengthen your overall IP protection framework'
   ];
 
   return (
@@ -68,12 +50,12 @@ export default function AntiCounterfeitingStrategyPage() {
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Strategic Planning
+            Anti-Counterfeiting Strategy
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Comprehensive Anti-Counterfeiting Strategy Development
+            Proactively Combat Counterfeiting with Tailored Strategies
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function AntiCounterfeitingStrategyPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our strategic planning services help businesses develop and implement comprehensive anti-counterfeiting strategies. We create tailored solutions that address your specific needs and challenges while maximizing protection effectiveness.
+                A proactive approach is key to combating counterfeiting. At Leonard Corporate Solutions, we develop tailored anti-counterfeiting strategies to protect your brand from fake products in India and international markets.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {strategyPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Strategy Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">How We Build</span>{' '}
+              <span className="text-[#00ADB5]">Your Strategy</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Why You Need</span>{' '}
+              <span className="text-[#00ADB5]">a Strategy</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Strategic</span>{' '}
-                <span className="text-[#222831]">Solutions</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our strategic planning services can help protect your intellectual property and business interests from counterfeiting threats.
+              <p className="text-lg leading-relaxed text-center">
+                Protect your brand proactively. Contact us to develop your anti-counterfeiting strategy!
               </p>
             </div>
           </motion.div>

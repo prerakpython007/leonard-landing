@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Globe, FileCheck, AlertTriangle, Users, BadgeCheck } from 'lucide-react';
+import { FileCheck, Users, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CustomsEnforcementPage() {
   const features = [
     {
-      icon: Shield,
-      title: "Border Protection",
-      description: "Strategic border control measures to intercept counterfeit goods."
-    },
-    {
-      icon: Globe,
-      title: "International Coordination",
-      description: "Collaboration with customs authorities worldwide."
-    },
-    {
       icon: FileCheck,
-      title: "Documentation Support",
-      description: "Complete assistance with customs recordation and filings."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Analysis",
-      description: "Identifying high-risk shipments and trade routes."
+      title: "Customs Registration",
+      description: "We register your IP with customs authorities to enable seizures."
     },
     {
       icon: Users,
-      title: "Authority Liaison",
-      description: "Direct coordination with customs officials and agencies."
+      title: "Training & Collaboration",
+      description: "We train customs officials to identify your counterfeit products."
     },
     {
-      icon: BadgeCheck,
-      title: "Verification Services",
-      description: "Product authentication for customs officials."
+      icon: Shield,
+      title: "Seizure Coordination",
+      description: "We work with authorities to seize and destroy fake goods."
     }
   ];
 
-  const customsPoints = [
-    'Customs recordation programs',
-    'Border seizure assistance',
-    'Training for customs officials',
-    'Import/Export monitoring',
-    'Customs authority coordination',
-    'Seizure documentation support'
+  const benefits = [
+    'Block counterfeit goods before they reach consumers',
+    'Strengthen your brand\'s protection at international borders',
+    'Deter counterfeiters by disrupting their supply chains'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function CustomsEnforcementPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Border Protection Against Counterfeit Goods
+            Stop Counterfeit Goods with Customs Enforcement
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function CustomsEnforcementPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our customs enforcement services provide comprehensive support in working with customs authorities worldwide to prevent the import and export of counterfeit goods. We help businesses establish and maintain effective border protection measures.
+                Prevent counterfeit goods from entering markets by collaborating with customs authorities. At Leonard Corporate Solutions, we provide customs enforcement services to seize fake products at borders, safeguarding your brand in India and internationally.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {customsPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Process Section */}
+          <motion.div className="relative px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Customs</span>{' '}
+              <span className="text-[#00ADB5]">Enforcement Process</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Why Customs</span>{' '}
+              <span className="text-[#00ADB5]">Enforcement Matters</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Border</span>{' '}
-                <span className="text-[#222831]">Protection</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our customs enforcement services can help protect your intellectual property rights at international borders.
+              <p className="text-lg leading-relaxed text-center">
+                Secure your brand at the border. Contact us for customs enforcement support today!
               </p>
             </div>
           </motion.div>

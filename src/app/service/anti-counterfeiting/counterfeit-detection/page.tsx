@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Search, AlertTriangle, FileCheck, Eye, Briefcase } from 'lucide-react';
+import { BrainCog, LineChart, Microscope } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CounterfeitDetectionPage() {
-  const features = [
+  const detectionFeatures = [
     {
-      icon: Search,
-      title: "Market Surveillance",
-      description: "Comprehensive monitoring of physical and online marketplaces for counterfeit products."
+      icon: BrainCog,
+      title: "Technology-Driven Analysis",
+      description: "We leverage AI and machine learning to spot fake products."
     },
     {
-      icon: Eye,
+      icon: LineChart,
+      title: "Supply Chain Tracking",
+      description: "We trace the origins of counterfeit goods to uncover their sources."
+    },
+    {
+      icon: Microscope,
       title: "Product Authentication",
-      description: "Advanced techniques to identify genuine products from counterfeits."
-    },
-    {
-      icon: Shield,
-      title: "Brand Protection",
-      description: "Proactive measures to protect your brand from counterfeiters."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Assessment",
-      description: "Evaluation of potential counterfeiting threats and vulnerabilities."
-    },
-    {
-      icon: FileCheck,
-      title: "Documentation",
-      description: "Detailed documentation of counterfeit instances for legal action."
-    },
-    {
-      icon: Briefcase,
-      title: "Strategic Planning",
-      description: "Development of detection and prevention strategies."
+      description: "We verify product authenticity through forensic analysis."
     }
   ];
 
-  const detectionPoints = [
-    'Advanced product authentication methods',
-    'Digital tracking and tracing systems',
-    'Market surveillance programs',
-    'Supply chain monitoring',
-    'Online marketplace scanning',
-    'Intelligence gathering and analysis'
+  const benefits = [
+    'Protect your brand\'s reputation and customer trust',
+    'Reduce revenue loss caused by counterfeit sales',
+    'Gain actionable insights to take down counterfeiters'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function CounterfeitDetectionPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Advanced Solutions for Identifying Counterfeit Products
+            Identify Counterfeit Products Threatening Your Brand
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function CounterfeitDetectionPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our counterfeit detection services employ cutting-edge technologies and methodologies to identify and track counterfeit products. We help businesses protect their brands through comprehensive monitoring and advanced authentication techniques.
+                Counterfeit products can damage your brand's reputation and revenue. At Leonard Corporate Solutions, we use advanced techniques to identify and track counterfeit goods, ensuring your brand remains protected in India and worldwide.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {detectionPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">How We</span>{' '}
+              <span className="text-[#00ADB5]">Detect Counterfeits</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {detectionFeatures.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#00ADB5]">Benefits of</span>{' '}
+              <span className="text-[#222831]">Counterfeit Detection</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Advanced</span>{' '}
-                <span className="text-[#222831]">Detection Solutions</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our advanced counterfeit detection services can help protect your brand and maintain product authenticity in the market.
+              <p className="text-lg leading-relaxed text-center">
+                Don't let fakes harm your brand. Contact us for expert counterfeit detection services!
               </p>
             </div>
           </motion.div>

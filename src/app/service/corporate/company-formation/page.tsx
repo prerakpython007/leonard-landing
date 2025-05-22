@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Building, FileText, Settings, Users, Scale } from 'lucide-react';
+import { Building, FileText, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CompanyFormationPage() {
   const features = [
     {
       icon: Building,
-      title: "Entity Selection",
-      description: "Expert guidance on choosing the optimal business structure."
+      title: "Structure Selection",
+      description: "We help you choose the best business structure for your goals."
     },
     {
       icon: FileText,
-      title: "Documentation",
-      description: "Comprehensive preparation of all required legal documents."
+      title: "Incorporation Process",
+      description: "We handle registration, documentation, and filings with ROC."
     },
     {
-      icon: Scale,
-      title: "Legal Compliance",
-      description: "Ensuring adherence to all regulatory requirements."
-    },
-    {
-      icon: Settings,
-      title: "Process Management",
-      description: "End-to-end handling of formation procedures."
-    },
-    {
-      icon: Users,
-      title: "Stakeholder Setup",
-      description: "Structuring of shareholder and director arrangements."
-    },
-    {
-      icon: Briefcase,
-      title: "Business Planning",
-      description: "Strategic advice on corporate structure and governance."
+      icon: Shield,
+      title: "Compliance Setup",
+      description: "We ensure your business meets all legal and regulatory requirements."
     }
   ];
 
-  const formationPoints = [
-    'Company incorporation services',
-    'Business structure optimization',
-    'Regulatory compliance setup',
-    'Corporate governance framework',
-    'Stakeholder agreement drafting',
-    'Post-incorporation support'
+  const benefits = [
+    'Minimize legal and financial risks with the right structure',
+    'Ensure compliance with Indian and international business laws',
+    'Build a strong foundation for future growth and investment'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function CompanyFormationPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Guidance for Business Structure & Formation
+            Start Your Business with Expert Formation & Structuring
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function CompanyFormationPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our company formation services provide comprehensive support for businesses at every stage of establishment. We guide you through the entire process, from choosing the right structure to ensuring full compliance with all legal requirements.
+                Setting up a business requires careful planning and legal expertise. At Leonard Corporate Solutions, we provide expert guidance on company formation and structuring, helping you choose the right structure—whether Proprietorship, Partnership, OPC, LLP, or Pvt Ltd—and ensuring compliance with all legal requirements in India and beyond.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {formationPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Company</span>{' '}
+              <span className="text-[#00ADB5]">Formation Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Benefits of</span>{' '}
+              <span className="text-[#00ADB5]">Proper Structuring</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Formation Services</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our company formation services can help establish your business on a solid legal foundation for sustainable growth.
+              <p className="text-lg leading-relaxed text-center">
+                Set up your business for success. Contact us for company formation services today!
               </p>
             </div>
           </motion.div>

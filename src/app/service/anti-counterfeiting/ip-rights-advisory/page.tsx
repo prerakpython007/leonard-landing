@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, Shield, BookOpen, Scale, CheckCircle, Settings } from 'lucide-react';
+import { Search, FileCheck, Target } from 'lucide-react';
 import Link from 'next/link';
 
 export default function IPRightsAdvisoryPage() {
   const features = [
     {
-      icon: Shield,
-      title: "Rights Protection",
-      description: "Strategic IP portfolio protection against counterfeiting."
+      icon: Search,
+      title: "IP Audit",
+      description: "We assess your current IP portfolio for gaps and opportunities."
     },
     {
-      icon: BookOpen,
-      title: "Legal Advisory",
-      description: "Expert guidance on IP rights and anti-counterfeiting laws."
+      icon: FileCheck,
+      title: "Registration Support",
+      description: "We assist in registering trademarks, patents, and designs."
     },
     {
-      icon: Scale,
-      title: "Risk Assessment",
-      description: "Evaluation of IP vulnerabilities and protection needs."
-    },
-    {
-      icon: CheckCircle,
-      title: "Portfolio Review",
-      description: "Comprehensive IP portfolio analysis and optimization."
-    },
-    {
-      icon: Settings,
-      title: "Strategy Development",
-      description: "Custom IP protection strategies and implementation."
-    },
-    {
-      icon: FileText,
-      title: "Documentation",
-      description: "Thorough IP documentation and maintenance support."
+      icon: Target,
+      title: "Enforcement Strategies",
+      description: "We develop plans to leverage your IP against counterfeiters."
     }
   ];
 
-  const advisoryPoints = [
-    'IP portfolio assessment',
-    'Rights protection strategy',
-    'Registration assistance',
-    'Portfolio management',
-    'Enforcement planning',
-    'Compliance guidance'
+  const benefits = [
+    'Build a robust IP foundation to deter counterfeiters',
+    'Enhance your legal standing in anti-counterfeiting actions',
+    'Protect your brand\'s long-term value and reputation'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function IPRightsAdvisoryPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Strategic IP Portfolio Management & Protection
+            Strengthen Your IP Portfolio to Fight Counterfeiting
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function IPRightsAdvisoryPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our IP Rights Advisory services provide comprehensive guidance on protecting and managing your intellectual property portfolio against counterfeiting. We help businesses develop robust IP strategies and implement effective protection measures.
+                A strong IP portfolio is your first line of defense against counterfeiters. At Leonard Corporate Solutions, our IP rights advisory services help you enhance your intellectual property to improve enforcement and protect your brand.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {advisoryPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our IP</span>{' '}
+              <span className="text-[#00ADB5]">Advisory Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Benefits of</span>{' '}
+              <span className="text-[#00ADB5]">IP Rights Advisory</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">IP Guidance</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our IP Rights Advisory services can help strengthen your intellectual property portfolio and enhance protection against counterfeiting.
+              <p className="text-lg leading-relaxed text-center">
+                Strengthen your IP to fight fakes. Contact us for expert IP rights advisory!
               </p>
             </div>
           </motion.div>

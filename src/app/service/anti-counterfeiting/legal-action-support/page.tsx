@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Scale, Shield, Gavel, FileText, ClipboardCheck, BookOpen } from 'lucide-react';
+import { Mail, Gavel, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LegalActionSupportPage() {
   const features = [
     {
-      icon: Scale,
-      title: "Legal Strategy",
-      description: "Strategic planning and execution of anti-counterfeiting legal actions."
+      icon: Mail,
+      title: "Cease & Desist Notices",
+      description: "We draft and send notices to stop counterfeiters."
     },
     {
       icon: Gavel,
-      title: "Court Proceedings",
-      description: "Expert representation in anti-counterfeiting litigation."
+      title: "Litigation Support",
+      description: "We represent you in court to pursue legal remedies."
     },
     {
       icon: Shield,
-      title: "Rights Enforcement",
-      description: "Aggressive enforcement of intellectual property rights."
-    },
-    {
-      icon: FileText,
-      title: "Case Documentation",
-      description: "Comprehensive case preparation and evidence gathering."
-    },
-    {
-      icon: ClipboardCheck,
-      title: "Compliance Support",
-      description: "Ensuring adherence to legal requirements and procedures."
-    },
-    {
-      icon: BookOpen,
-      title: "Legal Advisory",
-      description: "Expert guidance on anti-counterfeiting legal matters."
+      title: "Injunctions & Damages",
+      description: "We seek injunctions and compensation for damages caused by fakes."
     }
   ];
 
-  const legalPoints = [
-    'Civil and criminal proceedings',
-    'Injunctive relief applications',
-    'Evidence collection and preservation',
-    'Damage assessment and recovery',
-    'Settlement negotiations',
-    'Post-judgment enforcement'
+  const benefits = [
+    'Deter future counterfeiting through strong legal precedents',
+    'Recover losses caused by counterfeit sales',
+    'Protect your brand\'s integrity and market position'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function LegalActionSupportPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Legal Support Against Counterfeiters
+            Pursue Legal Action to Combat Counterfeiters
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function LegalActionSupportPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our legal action support services provide comprehensive assistance in pursuing legal remedies against counterfeiters. We combine technical expertise with legal acumen to build strong cases and achieve effective results.
+                Taking legal action against counterfeiters is essential to protect your brand's reputation. At Leonard Corporate Solutions, we provide expert legal action support to enforce your IP rights and stop counterfeit activities in India and worldwide.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {legalPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Legal</span>{' '}
+              <span className="text-[#00ADB5]">Action Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Benefits of</span>{' '}
+              <span className="text-[#00ADB5]">Legal Action</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Legal</span>{' '}
-                <span className="text-[#222831]">Expertise</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to discuss how our legal action support services can help protect your intellectual property rights and combat counterfeiting effectively.
+              <p className="text-lg leading-relaxed text-center">
+                Fight back against counterfeiters. Contact us for legal action support today!
               </p>
             </div>
           </motion.div>

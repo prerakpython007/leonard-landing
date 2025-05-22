@@ -86,7 +86,7 @@ export default function StartupLegalSupportPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Build a Strong Legal Foundation
+            Protect & Grow Your Startup with Comprehensive Legal Support
           </p>
         </motion.div>
       </motion.section>
