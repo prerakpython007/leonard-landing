@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import { X } from "lucide-react";
@@ -89,6 +89,7 @@ const objectionInfo: ObjectionInfo[] = [
 
 export default function TrademarkObjectionPage() {
   const [showPopup, setShowPopup] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState<ObjectionInfo | null>(null);
 
   const handleExploreClick = (info: ObjectionInfo) => {
@@ -100,6 +101,23 @@ export default function TrademarkObjectionPage() {
     setShowPopup(false);
     setSelectedInfo(null);
   };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // Check if all fields are filled
+    const isComplete = Array.from(formData.values()).every(value => value !== '');
+    
+    if (isComplete) {
+      setShowThankYou(true);
+      form.reset();
+    }
+  };
+
+  // Add close handler for thank you popup
+  const handleCloseThankYou = () => setShowThankYou(false);
 
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
@@ -161,6 +179,36 @@ export default function TrademarkObjectionPage() {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Thank You Popup */}
+      <AnimatePresence>
+        {showThankYou && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1001] bg-black/60 backdrop-blur-sm flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl p-8 shadow-2xl border-2 border-[#00ADB5] relative"
+            >
+              <span className="absolute -top-4 -left-4 text-[#00ADB5] text-4xl">✦</span>
+              <span className="absolute -bottom-4 -right-4 text-[#00ADB5] text-4xl">✦</span>
+              <h3 className="text-2xl font-bold text-[#222831] mb-2">Thank You!</h3>
+              <p className="text-[#393E46] mb-6">We'll get back to you shortly.</p>
+              <button
+                onClick={handleCloseThankYou}
+                className="w-full px-4 py-2 bg-[#222831] text-white font-medium rounded-full hover:bg-[#00ADB5] transition-colors duration-300"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <motion.section
@@ -259,11 +307,13 @@ export default function TrademarkObjectionPage() {
               transition={{ duration: 0.5 }}
               className="bg-white p-8 rounded-xl shadow-md border border-[#00ADB5]/10"
             >
-              <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-[#222831] font-medium mb-1" htmlFor="fullName">Full Name</label>
                   <input
+                    required
                     type="text"
+                    name="fullName"
                     id="fullName"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00ADB5]"
                     placeholder="Enter your full name"
@@ -272,7 +322,9 @@ export default function TrademarkObjectionPage() {
                 <div>
                   <label className="block text-[#222831] font-medium mb-1" htmlFor="emailAddress">Email Address</label>
                   <input
+                    required
                     type="email"
+                    name="emailAddress"
                     id="emailAddress"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00ADB5]"
                     placeholder="Enter your email address"
@@ -281,7 +333,9 @@ export default function TrademarkObjectionPage() {
                 <div>
                   <label className="block text-[#222831] font-medium mb-1" htmlFor="mobileNumber">Mobile Number</label>
                   <input
+                    required
                     type="tel"
+                    name="mobileNumber"
                     id="mobileNumber"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00ADB5]"
                     placeholder="Enter your mobile number (without 0 or +91)"
@@ -290,7 +344,9 @@ export default function TrademarkObjectionPage() {
                 <div>
                   <label className="block text-[#222831] font-medium mb-1" htmlFor="region">State/Region</label>
                   <input
+                    required
                     type="text"
+                    name="region"
                     id="region"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00ADB5]"
                     placeholder="Enter your state or region"
@@ -310,11 +366,12 @@ export default function TrademarkObjectionPage() {
                   </select>
                 </div>
                 <button
+                  type="submit"
                   className="w-full px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
                 >
                   Submit Inquiry
                 </button>
-              </div>
+              </form>
             </motion.div>
           </div>
         </div>

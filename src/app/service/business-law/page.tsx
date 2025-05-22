@@ -13,37 +13,37 @@ export default function BusinessLawCompliancePage() {
       icon: Scale,
       title: 'Regulatory Compliance Audits',
       description: 'Conduct thorough audits to ensure your business meets all regulatory requirements.',
-      route: '/services/business-law/#compliance-audits',
+      route: '/service/business-law/compliance-audits',
     },
     {
       icon: FileText,
       title: 'Contract Management',
       description: 'Draft, review, and manage contracts to secure your business transactions.',
-      route: '/services/business-law/#contract-management',
+      route: '/service/business-law/contract-management',
     },
     {
       icon: Shield,
       title: 'Risk Assessment & Mitigation',
       description: 'Identify and address legal risks to protect your business operations.',
-      route: '/services/business-law/#risk-assessment',
+      route: '/service/business-law/risk-assessment',
     },
     {
       icon: Briefcase,
       title: 'Corporate Policy Development',
       description: 'Create compliant policies to govern your business operations effectively.',
-      route: '/services/business-law/#policy-development',
+      route: '/service/business-law/policy-development',
     },
     {
       icon: Lock,
       title: 'Data Protection Compliance',
       description: 'Ensure compliance with GDPR, DPDP, and other data protection regulations.',
-      route: '/services/business-law/#data-protection',
+      route: '/service/business-law/data-protection',
     },
     {
       icon: Gavel,
       title: 'Dispute Resolution Support',
       description: 'Navigate business disputes with expert legal guidance and representation.',
-      route: '/services/business-law/#dispute-resolution',
+      route: '/service/business-law/dispute-resolution',
     },
   ];
 
