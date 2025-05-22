@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -14,37 +13,37 @@ export default function AntiCounterfeitingPage() {
       icon: Shield,
       title: 'Counterfeit Detection',
       description: 'Identify and track counterfeit products threatening your brand using advanced techniques.',
-      route: '/service/anti-counterfeiting/#counterfeit-detection',
+      route: '/service/anti-counterfeiting/counterfeit-detection',
     },
     {
       icon: FileCheck,
       title: 'Customs Enforcement',
       description: 'Collaborate with customs authorities to seize counterfeit goods at borders.',
-      route: '/service/anti-counterfeiting/#customs-enforcement',
+      route: '/service/anti-counterfeiting/customs-enforcement',
     },
     {
       icon: Scale,
       title: 'Legal Action Support',
       description: 'Pursue legal action against counterfeiters to protect your brand and reputation.',
-      route: '/service/anti-counterfeiting/#legal-action-support',
+      route: '/service/anti-counterfeiting/legal-action-support',
     },
     {
       icon: Briefcase,
       title: 'Anti-Counterfeiting Strategy',
       description: 'Develop tailored strategies to proactively combat counterfeiting threats.',
-      route: '/service/anti-counterfeiting/#anti-counterfeiting-strategy',
+      route: '/service/anti-counterfeiting/anti-counterfeiting-strategy',
     },
     {
       icon: FileText,
       title: 'IP Rights Advisory',
       description: 'Strengthen your IP portfolio to enhance enforcement against counterfeiters.',
-      route: '/service/anti-counterfeiting/#ip-rights-advisory',
+      route: '/service/anti-counterfeiting/ip-rights-advisory',
     },
     {
       icon: AlertTriangle,
       title: 'Market Monitoring',
       description: 'Monitor markets and online platforms to detect and address counterfeiting activities.',
-      route: '/service/anti-counterfeiting/#market-monitoring',
+      route: '/service/anti-counterfeiting/market-monitoring',
     },
   ];
 

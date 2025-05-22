@@ -13,37 +13,37 @@ export default function CorporateLegalServicesPage() {
       icon: Briefcase,
       title: 'Company Formation & Structuring',
       description: 'Expert guidance on incorporating companies, choosing the right structure, and ensuring legal compliance.',
-      route: '#company-formation',
+      route: '/service/corporate/company-formation',
     },
     {
       icon: FileText,
       title: 'Contract Drafting & Review',
       description: 'Draft and review airtight commercial contracts to protect your business interests.',
-      route: '#contract-drafting',
+      route: '/service/corporate/contract-drafting',
     },
     {
       icon: Scale,
       title: 'Regulatory Compliance',
       description: 'Navigate complex regulations with tailored compliance strategies for your industry.',
-      route: '#regulatory-compliance',
+      route: '/service/corporate/regulatory-compliance',
     },
     {
       icon: Shield,
       title: 'Corporate Governance',
       description: 'Implement robust governance frameworks to ensure transparency and accountability.',
-      route: '#corporate-governance',
+      route: '/service/corporate/corporate-governance',
     },
     {
       icon: UserCheck,
       title: 'Mergers & Acquisitions',
       description: 'Legal support for M&A transactions, due diligence, and integration processes.',
-      route: '#mergers-acquisitions',
+      route: '/service/corporate/mergers-acquisitions',
     },
     {
       icon: Package,
       title: 'Shareholder Agreements',
       description: 'Craft precise shareholder agreements to align interests and prevent disputes.',
-      route: '#shareholder-agreements',
+      route: '/service/corporate/shareholder-agreements',
     },
   ];
 

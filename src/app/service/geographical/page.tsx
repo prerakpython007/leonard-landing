@@ -13,7 +13,7 @@ export default function GeographicalIndicationPage() {
       icon: Briefcase,
       title: "GI Services",
       description: "Comprehensive support for all aspects of geographical indication protection and management.",
-      slug: "gi-services",
+      slug: "gi-services", // This slug already matches our new page
     },
     {
       icon: FileCheck,
@@ -127,7 +127,7 @@ export default function GeographicalIndicationPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {serviceCards.map((service, index) => (
                 <Link
                   key={service.title}
@@ -141,12 +141,13 @@ export default function GeographicalIndicationPage() {
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="flex flex-col gap-4 relative z-10">
+                    <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                    <div className="flex flex-col group-hover:text-white gap-4 relative z-10">
                       <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
                         <service.icon className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-lg md:text-xl font-bold text-[#222831] mb-2">{service.title}</h3>
+                        <h3 className="text-lg md:text-xl font-bold text-[#222831] group-hover:text-[#00ADB5] transition-colors duration-300 mb-2">{service.title}</h3>
                         <p className="text-[#393E46]/80 text-sm md:text-base">{service.description}</p>
                       </div>
                     </div>

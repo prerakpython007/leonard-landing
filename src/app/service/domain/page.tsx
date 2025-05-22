@@ -13,37 +13,37 @@ export default function DomainNameLawPage() {
       icon: FileCheck,
       title: 'Domain Dispute Resolution',
       description: 'Resolve domain name disputes efficiently using streamlined, cost-effective procedures.',
-      route: '#domain-dispute-resolution',
+      route: '/service/domain/dispute-resolution',
     },
     {
       icon: Shield,
       title: 'Brand Protection',
       description: 'Safeguard your brand by addressing improper domain name use globally.',
-      route: '#brand-protection',
+      route: '/service/domain/brand-protection',
     },
     {
       icon: Scale,
       title: 'Litigation Support',
       description: 'Expert representation in court for complex domain name disputes.',
-      route: '#litigation-support',
+      route: '/service/domain/litigation-support',
     },
     {
       icon: Briefcase,
       title: 'Portfolio Management',
       description: 'Manage and strengthen your domain name portfolio as part of your IP strategy.',
-      route: '#portfolio-management',
+      route: '/service/domain/portfolio-management',
     },
     {
       icon: FileText,
       title: 'Claimant & Defendant Advocacy',
       description: 'Balanced expertise in representing both claimants and defendants in domain name proceedings.',
-      route: '#advocacy',
+      route: '/service/domain/advocacy',
     },
     {
       icon: Globe,
       title: 'Global Enforcement',
       description: 'Enforce your domain name rights against infringers worldwide.',
-      route: '#global-enforcement',
+      route: '/service/domain/global-enforcement',
     },
   ];
 
