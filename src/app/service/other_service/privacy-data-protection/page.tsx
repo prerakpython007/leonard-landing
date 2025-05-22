@@ -13,37 +13,37 @@ export default function PrivacyDataProtectionPage() {
       icon: Lock,
       title: 'Privacy Policy Drafting',
       description: 'Craft comprehensive privacy policies tailored to your business.',
-      route: '#privacy-policy-drafting',
+      route: '/service/other_service/privacy-data-protection/privacy-policy-drafting',
     },
     {
       icon: FileText,
       title: 'Data Processor Compliance',
       description: 'Ensure contracts meet data processor obligations.',
-      route: '#data-processor-compliance',
+      route: '/service/other_service/privacy-data-protection/data-processor-compliance',
     },
     {
       icon: Scale,
       title: 'Regulatory Advisory',
       description: 'Navigate complex data protection laws with expert guidance.',
-      route: '#regulatory-advisory',
+      route: '/service/other_service/privacy-data-protection/regulatory-advisory',
     },
     {
       icon: Globe,
       title: 'Global Compliance',
       description: 'Advise on multi-national data protection obligations.',
-      route: '#global-compliance',
+      route: '/service/other_service/privacy-data-protection/global-compliance',
     },
     {
       icon: Shield,
       title: 'E-commerce & SaaS Support',
       description: 'Help e-commerce and SaaS providers meet privacy standards.',
-      route: '#ecommerce-saas-support',
+      route: '/service/other_service/privacy-data-protection/ecommerce-saas-support',
     },
     {
       icon: Users,
       title: 'Staff Training Workshops',
       description: 'Deliver tailored data protection training for all staff levels.',
-      route: '#staff-training',
+      route: '/service/other_service/privacy-data-protection/staff-training',
     },
   ];
 
@@ -59,7 +59,6 @@ export default function PrivacyDataProtectionPage() {
 
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -71,14 +70,12 @@ export default function PrivacyDataProtectionPage() {
         }}
       />
 
-      {/* Hero Section */}
       <motion.section
         className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Corner Angles */}
         <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
         <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
         <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
@@ -101,10 +98,8 @@ export default function PrivacyDataProtectionPage() {
         </motion.div>
       </motion.section>
 
-      {/* Privacy and Data Protection Information Section */}
       <section className="py-32 px-4 md:px-16 lg:px-24 relative">
         <div className="max-w-6xl mx-auto relative">
-          {/* Privacy and Data Protection Overview */}
           <motion.div
             className="mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -113,7 +108,6 @@ export default function PrivacyDataProtectionPage() {
             viewport={{ once: true }}
           >
             <div className="relative max-w-3xl mx-auto px-8">
-              {/* Corner Angles */}
               <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
               <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
               <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -141,7 +135,6 @@ export default function PrivacyDataProtectionPage() {
             </div>
           </motion.div>
 
-          {/* Key Areas of Expertise */}
           <div className="mb-24">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">
@@ -157,7 +150,6 @@ export default function PrivacyDataProtectionPage() {
               viewport={{ once: true }}
             >
               <div className="relative bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10">
-                {/* Corner Angles */}
                 <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
                 <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
                 <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -185,7 +177,6 @@ export default function PrivacyDataProtectionPage() {
             </motion.div>
           </div>
 
-          {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">Our Privacy</span>{' '}
@@ -193,7 +184,6 @@ export default function PrivacyDataProtectionPage() {
             </h2>
           </div>
 
-          {/* Services Grid */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
             initial={{ opacity: 0, y: 20 }}
@@ -234,7 +224,6 @@ export default function PrivacyDataProtectionPage() {
             ))}
           </motion.div>
 
-          {/* Closing Message */}
           <motion.div
             className="mt-32 relative max-w-3xl mx-auto px-8"
             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +232,6 @@ export default function PrivacyDataProtectionPage() {
             viewport={{ once: true }}
           >
             <div className="relative py-12">
-              {/* Corner Angles */}
               <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
               <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
               <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
@@ -257,7 +245,6 @@ export default function PrivacyDataProtectionPage() {
         </div>
       </section>
 
-      {/* Back to Home Link */}
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -13,37 +14,37 @@ export default function OutsourcingProcurementPage() {
       icon: Package,
       title: 'Outsourcing Advisory',
       description: 'Provide pragmatic legal advice for IT and outsourcing contracts.',
-      route: '#outsourcing-advisory',
+      route: '/service/other_service/outsourcing-procurement/outsourcing-advisory',
     },
     {
       icon: FileText,
       title: 'Contract Negotiation',
       description: 'Level the playing field in negotiations with larger companies.',
-      route: '#contract-negotiation',
+      route: '/service/other_service/outsourcing-procurement/contract-negotiation',
     },
     {
       icon: Scale,
       title: 'Risk Management',
       description: 'Minimize financial risks in supplier contractual commitments.',
-      route: '#risk-management',
+      route: '/service/other_service/outsourcing-procurement/risk-management',
     },
     {
       icon: Briefcase,
       title: 'Financial Services Expertise',
       description: 'Specialized advice for outsourcing in the financial sector.',
-      route: '#financial-services',
+      route: '/service/other_service/outsourcing-procurement/financial-services-expertise',
     },
     {
       icon: Shield,
       title: 'Public Sector Compliance',
       description: 'Navigate complex public sector procurement regulations.',
-      route: '#public-sector-compliance',
+      route: '/service/other_service/outsourcing-procurement/public-sector-compliance',
     },
     {
       icon: Users,
       title: 'Procurement Support',
       description: 'Strengthen customer-side procurement with supplier risk insights.',
-      route: '#procurement-support',
+      route: '/service/other_service/outsourcing-procurement/procurement-support',
     },
   ];
 
@@ -199,6 +200,42 @@ export default function OutsourcingProcurementPage() {
                 At Leonard Corporate Solutions, our outsourcing and procurement services empower your business with pragmatic legal advice and robust contract strategies. We leverage our expertise to minimize risks and enhance your negotiation outcomes.
               </p>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {/* Corner Angles */}
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#00ADB5]">Ready to Optimize</span>{' '}
+              <span className="text-[#393E46]">Your Outsourcing?</span>
+            </h2>
+            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+              Partner with Leonard Corporate Solutions for expert legal advice and strategic support in outsourcing and procurement. Start today to minimize risks and strengthen your contracts.
+            </p>
+            <Link
+              href="/service/outsourcing-procurement"
+              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+            >
+              Get Started
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </motion.div>
         </div>
       </section>

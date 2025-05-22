@@ -13,37 +13,37 @@ export default function CommercialContractsPage() {
       icon: FileText,
       title: 'Contract Drafting',
       description: 'Draft precise and tailored commercial contracts for various industries.',
-      route: '#contract-drafting',
+      route: '/service/other_service/commercial_contracts/contract-drafting',
     },
     {
       icon: PenTool,
       title: 'Contract Negotiation',
       description: 'Negotiate terms to secure favorable agreements for your business.',
-      route: '#contract-negotiation',
+      route: '/service/other_service/commercial_contracts/contract-negotiation',
     },
     {
       icon: Scale,
       title: 'Dispute Resolution',
       description: 'Resolve contract disputes through settlement or litigation support.',
-      route: '#dispute-resolution',
+      route: '/service/other_service/commercial_contracts/dispute-resolution',
     },
     {
       icon: Briefcase,
       title: 'Industry-Specific Expertise',
       description: 'Leverage our deep knowledge in specific sectors for customized contracts.',
-      route: '#industry-expertise',
+      route: '/service/other_service/commercial_contracts/industry-expertise',
     },
     {
       icon: Shield,
       title: 'Pre-contractual Agreements',
       description: 'Prepare NDAs, MOUs, and Letters of Intent to protect your interests.',
-      route: '#pre-contractual-agreements',
+      route: '/service/other_service/commercial_contracts/pre-contractual-agreements',
     },
     {
       icon: Users,
       title: 'Cross-disciplinary Support',
       description: 'Integrate corporate and employment law expertise for comprehensive contracts.',
-      route: '#cross-disciplinary-support',
+      route: '/service/other_service/commercial_contracts/cross-disciplinary-support',
     },
   ];
 

@@ -13,50 +13,40 @@ export default function EmploymentLawPage() {
       icon: CheckCircle,
       title: 'Compliance Audits',
       description: 'Comprehensive audits to ensure compliance with employment laws.',
-      route: '#compliance-audits',
+      route: '/service/other_service/employment-law/compliance-audits',
     },
     {
       icon: Briefcase,
       title: 'Policy Drafting',
       description: 'Customized workplace policies to meet legal requirements.',
-      route: '#policy-drafting',
+      route: '/service/other_service/employment-law/policy-drafting',
     },
     {
       icon: FileText,
       title: 'Contract Preparation',
       description: 'Professionally drafted employment contracts and agreements.',
-      route: '#contract-preparation',
+      route: '/service/other_service/employment-law/contract-preparation',
     },
     {
       icon: BookOpen,
       title: 'Legal Advisory',
       description: 'Expert guidance on employment law regulations and disputes.',
-      route: '#legal-advisory',
+      route: '/service/other_service/employment-law/legal-advisory',
     },
     {
       icon: Upload,
       title: 'Document Filing',
       description: 'Seamless submission of required legal documents to authorities.',
-      route: '#document-filing',
+      route: '/service/other_service/employment-law/document-filing',
     },
     {
       icon: Clock,
       title: 'Dispute Resolution',
       description: 'Timely resolution of workplace disputes and grievances.',
-      route: '#dispute-resolution',
+      route: '/service/other_service/employment-law/dispute-resolution',
     },
-    {
-      icon: Shield,
-      title: 'Employee Training',
-      description: 'Training programs to ensure compliance awareness.',
-      route: '#employee-training',
-    },
-    {
-      icon: Scale,
-      title: 'Regulatory Updates',
-      description: 'Stay updated with the latest employment law changes.',
-      route: '#regulatory-updates',
-    },
+   
+   
   ];
 
   return (
