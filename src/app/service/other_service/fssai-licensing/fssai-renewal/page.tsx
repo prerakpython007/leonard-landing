@@ -7,7 +7,7 @@ import { X } from 'lucide-react';
 import Link from 'next/link';
 import Head from 'next/head';
 
-interface PolicyInfo {
+interface RenewalInfo {
   id: number;
   title: string;
   description: string;
@@ -15,53 +15,53 @@ interface PolicyInfo {
   detailedContent: string;
 }
 
-const policyInfo: PolicyInfo[] = [
+const renewalInfo: RenewalInfo[] = [
   {
     id: 1,
-    title: 'Custom Drafting',
-    description: 'We create policies specific to your business model and industry.',
-    category: 'Tailoring',
+    title: 'Timely Reminders',
+    description: 'We notify you to renew your license before it expires.',
+    category: 'Notification',
     detailedContent: `
-      • Analyze your business model, industry, and data practices.
-      • Draft privacy policies customized to your operations and customer interactions.
-      • Incorporate industry-specific requirements for sectors like e-commerce, healthcare, or finance.
-      • Ensure policies reflect your unique data collection and processing methods.
-      • Provide revisions to align with your brand voice and objectives.
+      • Send reminders 120 to 30 days before your FSSAI license expiry.
+      • Provide clear instructions on the renewal timeline and requirements.
+      • Use email or preferred communication channels for notifications.
+      • Ensure you stay proactive to avoid last-minute renewals.
+      • Track your license validity to prevent compliance lapses.
     `,
   },
   {
     id: 2,
-    title: 'Legal Compliance',
-    description: 'We ensure policies meet GDPR, DPDP, and other data protection laws.',
-    category: 'Compliance',
+    title: 'Application Handling',
+    description: 'We manage the renewal process on the FoSCoS portal.',
+    category: 'Portal Management',
     detailedContent: `
-      • Align policies with GDPR, DPDP Act 2023, and other global data protection regulations.
-      • Include mandatory disclosures for data collection, storage, and sharing.
-      • Ensure compliance with cross-border data transfer requirements.
-      • Update policies to reflect changes in data protection laws.
-      • Conduct compliance reviews to mitigate legal risks.
+      • Handle the entire FSSAI renewal process through the FoSCoS portal.
+      • Complete renewal forms with accurate business and license details.
+      • Submit applications within the mandatory 120-to-30-day renewal window.
+      • Coordinate with FSSAI authorities for smooth processing.
+      • Ensure timely submission to maintain compliance.
     `,
   },
   {
     id: 3,
-    title: 'User-Friendly Language',
-    description: 'We draft clear policies that customers can easily understand.',
-    category: 'Clarity',
+    title: 'Document Updates',
+    description: 'We assist in updating any required documents for renewal.',
+    category: 'Documentation',
     detailedContent: `
-      • Use plain, concise language to make policies accessible to all users.
-      • Avoid complex legal jargon while maintaining legal accuracy.
-      • Structure policies for easy navigation with clear headings and sections.
-      • Ensure transparency in describing data practices to build trust.
-      • Test readability to meet customer expectations and regulatory standards.
+      • Review and update documents required for FSSAI license renewal.
+      • Compile updated identity proofs, business certificates, or premises proof as needed.
+      • Ensure documents comply with current FSSAI renewal requirements.
+      • Address any document-related queries from FSSAI authorities.
+      • Provide templates and checklists for efficient updates.
     `,
   },
 ];
 
-export default function PrivacyPolicyDraftingPage() {
+export default function FSSAIRenewalPage() {
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [selectedInfo, setSelectedInfo] = useState<PolicyInfo | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<RenewalInfo | null>(null);
 
-  const handleExploreClick = (info: PolicyInfo) => {
+  const handleExploreClick = (info: RenewalInfo) => {
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -76,13 +76,13 @@ export default function PrivacyPolicyDraftingPage() {
       <Head>
         <meta
           name="description"
-          content="Craft comprehensive privacy policies tailored to your business. Ensure compliance with data protection laws in India and globally with our expert services."
+          content="Hassle-free FSSAI license renewals before expiration. Keep your food business compliant in India with our expert renewal services."
         />
         <meta
           name="keywords"
-          content="privacy policy drafting, tailored privacy policies, data protection compliance, business privacy policies"
+          content="FSSAI renewal services, FSSAI license renewal, food license renewal India, FSSAI compliance renewal"
         />
-        <title>Privacy Policy Drafting Services | Tailored Policies for Your Business</title>
+        <title>FSSAI Renewal Services | Hassle-Free License Renewals</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
@@ -169,12 +169,12 @@ export default function PrivacyPolicyDraftingPage() {
             className="max-w-7xl mx-auto text-center"
           >
             <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-              Privacy Policy Drafting
+              FSSAI Renewal Services
               <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
               <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             </h1>
             <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-              Tailored Policies for Your Business
+              Hassle-Free License Renewals
             </p>
           </motion.div>
         </motion.section>
@@ -193,18 +193,18 @@ export default function PrivacyPolicyDraftingPage() {
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
               <div className="text-center space-y-6">
                 <h2 className="text-4xl font-bold mb-4">
-                  <span className="text-[#00ADB5]">Craft Tailored</span>{' '}
-                  <span className="text-[#393E46]">Privacy Policies for Compliance</span>
+                  <span className="text-[#00ADB5]">Hassle-Free</span>{' '}
+                  <span className="text-[#393E46]">FSSAI License Renewals</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  A robust privacy policy is essential to build trust and ensure compliance with data protection laws. At [Your Company Name], we craft comprehensive privacy policies tailored to your business, ensuring adherence to regulations in India and internationally.
+                  An expired FSSAI license can lead to penalties or business closure. At [Your Company Name], we provide hassle-free FSSAI renewal services, ensuring your license is renewed on time (between 120 and 30 days before expiry) to keep your food business compliant in India.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
                   📩 Contact us at{' '}
                   <a href="mailto:info@yourcompanyname.com" className="text-[#00ADB5] hover:underline">
                     info@yourcompanyname.com
                   </a>{' '}
-                  to secure your business with a tailored privacy policy today.
+                  to renew your FSSAI license seamlessly today.
                 </p>
               </div>
             </motion.div>
@@ -214,12 +214,12 @@ export default function PrivacyPolicyDraftingPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">
-                <span className="text-[#222831]">Our Privacy</span>{' '}
-                <span className="text-[#00ADB5]">Policy Services</span>
+                <span className="text-[#222831]">Our FSSAI</span>{' '}
+                <span className="text-[#00ADB5]">Renewal Services</span>
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-              {policyInfo.map((info: PolicyInfo, index: number) => (
+              {renewalInfo.map((info: RenewalInfo, index: number) => (
                 <motion.div
                   key={info.id}
                   className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
@@ -259,14 +259,14 @@ export default function PrivacyPolicyDraftingPage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">
                 <span className="text-[#222831]">Benefits of</span>{' '}
-                <span className="text-[#00ADB5]">Privacy Policy Drafting</span>
+                <span className="text-[#00ADB5]">FSSAI Renewal</span>
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
               {[
-                { title: 'Build Trust', description: 'Build customer trust with transparent data practices.' },
-                { title: 'Avoid Penalties', description: 'Avoid penalties by complying with data protection regulations.' },
-                { title: 'Protect Business', description: 'Protect your business from legal risks and liabilities.' },
+                { title: 'Avoid Penalties', description: 'Avoid penalties by renewing your FSSAI license on time.' },
+                { title: 'Uninterrupted Operations', description: 'Ensure uninterrupted operations for your food business.' },
+                { title: 'Effortless Compliance', description: 'Maintain compliance with FSSAI regulations effortlessly.' },
               ].map((benefit, index) => (
                 <motion.div
                   key={benefit.title}
@@ -296,9 +296,9 @@ export default function PrivacyPolicyDraftingPage() {
               <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
               <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-              <h2 className="text-4xl font-bold mb-4">Ready to Secure Your Business with a Tailored Privacy Policy?</h2>
+              <h2 className="text-4xl font-bold mb-4">Ready to Renew Your FSSAI License Seamlessly?</h2>
               <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-                Ensure compliance and build customer trust with expert-drafted privacy policies. Partner with [Your Company Name] for tailored solutions.
+                Keep your food business compliant with hassle-free renewals. Partner with [Your Company Name] to ensure timely license renewal.
               </p>
               <Link
                 href="/contact-us"
