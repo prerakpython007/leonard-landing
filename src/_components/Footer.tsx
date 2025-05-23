@@ -41,9 +41,9 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {[
-                { Icon: Linkedin, href: "https://www.linkedin.com/company/leonard-solutions" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/leonard-corporate-solutions-pvt-ltd/" },
                 { Icon: Twitter, href: "https://twitter.com/leonardsolutions" },
-                { Icon: Instagram, href: "https://www.instagram.com/leonardsolutions" },
+                { Icon: Instagram, href: "https://www.instagram.com/leonardsolutionspvt?igsh=Y2drampjMGhyN3Yz" },
               ].map(({ Icon, href }, i) => (
                 <Link key={i} href={href} target="_blank" rel="noopener noreferrer">
                   <Icon className="text-[#00ADB5] hover:text-white transition-all cursor-pointer" />

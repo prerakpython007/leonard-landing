@@ -129,25 +129,37 @@ export default function GIConsultationPage() {
           </div>
 
           {/* Call to Action */}
-          <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <p className="text-lg leading-relaxed text-center">
-                Ready to take your GI portfolio to the next level? Schedule a consultation with us today!
-              </p>
+          <section className="py-32 px-4 md:px-16 lg:px-24">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                className="relative max-w-3xl mx-auto px-8 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+                <h2 className="text-4xl font-bold mb-4">Maximize Your GI Portfolio with Expert Guidance</h2>
+                <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+                  Ready to take your GI portfolio to the next level? Schedule a consultation with us today!
+                </p>
+                <Link
+                  href="/contact-us"
+                  className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+                >
+                  Contact Us
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
+          </section>
         </div>
       </section>
-
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
     </div>
   );
 }

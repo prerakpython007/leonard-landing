@@ -1,34 +1,28 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, Scale, HandshakeIcon } from 'lucide-react';
+import { Building, FileText, Settings } from 'lucide-react';
 import Link from 'next/link';
 
-export default function InvestorAgreementsPage() {
-  const features = [
-    {
-      icon: FileText,
-      title: "Term Sheet Drafting",
-      description: "We create clear, investor-friendly term sheets for negotiations."
-    },
-    {
-      icon: Scale,
-      title: "SAFE & Equity Agreements",
-      description: "We draft Simple Agreements for Future Equity (SAFE) and equity contracts."
-    },
-    {
-      icon: HandshakeIcon,
-      title: "Negotiation Support",
-      description: "We assist in negotiating terms to balance founder and investor interests."
-    }
-  ];
+const features = [
+  {
+    icon: Building,
+    title: "Structure Guidance",
+    description: "We help you select the best legal structure for your startup's goals."
+  },
+  {
+    icon: FileText,
+    title: "Incorporation Process",
+    description: "We manage registration, filings, and ROC compliance."
+  },
+  {
+    icon: Settings,
+    title: "Post-Incorporation Support",
+    description: "We assist with initial legal setup and compliance requirements."
+  }
+];
 
-  const benefits = [
-    'Attract investors with professional and transparent agreements',
-    'Protect your startup\'s equity and control during funding rounds',
-    'Ensure compliance with legal standards for fundraising'
-  ];
-
+export default function IncorporationPage() {
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern */}
@@ -50,12 +44,12 @@ export default function InvestorAgreementsPage() {
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Investor Agreements
+            Incorporation & Structuring
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Attract Funding with Investor-Friendly Agreements
+            Build a Strong Foundation with Startup Incorporation
           </p>
         </motion.div>
       </motion.section>
@@ -65,15 +59,9 @@ export default function InvestorAgreementsPage() {
         <div className="max-w-6xl mx-auto space-y-32">
           {/* Overview */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Securing investment requires clear and professional agreements. At Leonard Corporate Solutions, we craft investor-friendly term sheets, SAFE notes, and equity agreements to help your startup attract funding while protecting your interests.
+                Starting a business requires the right legal structure to succeed. At Leonard Corporate Solutions, we provide seamless incorporation and structuring services, guiding you to choose the optimal structure—whether Proprietorship, LLP, or Pvt Ltd—while ensuring compliance in India and beyond.
               </p>
             </div>
           </motion.div>
@@ -81,8 +69,8 @@ export default function InvestorAgreementsPage() {
           {/* Services Section */}
           <div className="space-y-8">
             <h2 className="text-3xl font-bold text-center mb-8">
-              <span className="text-[#222831]">Our Investor</span>{' '}
-              <span className="text-[#00ADB5]">Agreement Services</span>
+              <span className="text-[#222831]">Our Incorporation</span>{' '}
+              <span className="text-[#00ADB5]">Services</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
@@ -106,41 +94,38 @@ export default function InvestorAgreementsPage() {
             </div>
           </div>
 
-          {/* Benefits Section */}
-          <motion.div className="relative max-w-3xl mx-auto px-8">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              <span className="text-[#222831]">Benefits of</span>{' '}
-              <span className="text-[#00ADB5]">Investor Agreements</span>
-            </h2>
-            <ul className="space-y-4 list-none pl-5">
-              {benefits.map((benefit, index) => (
-                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
           {/* Call to Action */}
-          <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <p className="text-lg leading-relaxed text-center">
-                Raise funds with confidence. Contact us for investor agreement services today!
-              </p>
+          <section className="py-32 px-4 md:px-16 lg:px-24">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                className="relative max-w-3xl mx-auto px-8 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+                <h2 className="text-4xl font-bold mb-4">Launch Your Startup with Proper Incorporation</h2>
+                <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+                  Launch your startup the right way. Contact us for incorporation services today!
+                </p>
+                <Link
+                  href="/contact-us"
+                  className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+                >
+                  Contact Us
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
+          </section>
         </div>
       </section>
-
-      {/* Back Link */}
-      <div className="container mx-auto px-4 py-8">
-        <Link
-          href="/service/startup"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Startup Services
-        </Link>
-      </div>
     </div>
   );
 }

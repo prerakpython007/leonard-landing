@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Scale, HandshakeIcon, MessageSquare, Users, FileText, Shield } from 'lucide-react';
+import { Scale, HandshakeIcon, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 
 const adrServices = [
@@ -20,12 +20,6 @@ const adrServices = [
 		title: 'Process Guidance',
 		description: 'We guide you through the ADR process for optimal outcomes.',
 	},
-];
-
-const adrBenefits = [
-	'Save time and costs compared to traditional litigation',
-	'Maintain business relationships with less adversarial resolutions',
-	'Achieve faster outcomes with streamlined processes',
 ];
 
 export default function AlternativeDisputePage() {
@@ -115,40 +109,38 @@ export default function AlternativeDisputePage() {
 						</div>
 					</div>
 
-					{/* Benefits Section */}
-					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<h2 className="text-3xl font-bold text-center mb-8">
-							<span className="text-[#00ADB5]">Benefits</span>{' '}
-							<span className="text-[#222831]">of ADR</span>
-						</h2>
-						<ul className="space-y-4 list-none pl-5">
-							{adrBenefits.map((benefit, index) => (
-								<li
-									key={index}
-									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+					{/* Call to Action */}
+					<section className="py-32 px-4 md:px-16 lg:px-24">
+						<div className="max-w-6xl mx-auto">
+							<motion.div
+								className="relative max-w-3xl mx-auto px-8 text-center"
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8 }}
+								viewport={{ once: true }}
+							>
+								<div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+								<div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+								<div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+								<div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+								<h2 className="text-4xl font-bold mb-4">Resolve Disputes Efficiently with ADR</h2>
+								<p className="text-[#393E46] text-lg leading-relaxed mb-6">
+									Resolve disputes efficiently. Contact us for alternative dispute resolution services!
+								</p>
+								<Link
+									href="/contact-us"
+									className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
 								>
-									{benefit}
-								</li>
-							))}
-						</ul>
-						<div className="mt-12 text-center">
-							<p className="text-lg font-medium text-[#393E46]">
-								Resolve disputes efficiently. Contact us for alternative dispute resolution services!
-							</p>
+									Contact Us
+									<svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+									</svg>
+								</Link>
+							</motion.div>
 						</div>
-					</motion.div>
+					</section>
 				</div>
 			</section>
-
-			{/* Back Link */}
-			<div className="container mx-auto px-4 py-8">
-				<Link
-					href="/service/litigation"
-					className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-				>
-					<span className="mr-2">←</span> Back to Litigation Services
-				</Link>
-			</div>
 		</div>
 	);
 }

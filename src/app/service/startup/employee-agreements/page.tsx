@@ -4,31 +4,25 @@ import { motion } from 'framer-motion';
 import { UserCheck, FileText, Shield } from 'lucide-react';
 import Link from 'next/link';
 
+const features = [
+  {
+    icon: UserCheck,
+    title: "Employee Contracts",
+    description: "We draft agreements covering roles, compensation, and confidentiality."
+  },
+  {
+    icon: FileText,
+    title: "Contractor Agreements",
+    description: "We create contracts for freelancers with clear deliverables and terms."
+  },
+  {
+    icon: Shield,
+    title: "Compliance Check",
+    description: "We ensure all agreements meet labor and business laws."
+  }
+];
+
 export default function EmployeeAgreementsPage() {
-  const features = [
-    {
-      icon: UserCheck,
-      title: "Employee Contracts",
-      description: "We draft agreements covering roles, compensation, and confidentiality."
-    },
-    {
-      icon: FileText,
-      title: "Contractor Agreements",
-      description: "We create contracts for freelancers with clear deliverables and terms."
-    },
-    {
-      icon: Shield,
-      title: "Compliance Check",
-      description: "We ensure all agreements meet labor and business laws."
-    }
-  ];
-
-  const benefits = [
-    'Prevent disputes with well-defined roles and expectations',
-    'Protect your startup\'s confidential information with NDAs',
-    'Ensure compliance with local and international labor laws'
-  ];
-
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern */}
@@ -106,41 +100,38 @@ export default function EmployeeAgreementsPage() {
             </div>
           </div>
 
-          {/* Benefits Section */}
-          <motion.div className="relative max-w-3xl mx-auto px-8">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              <span className="text-[#222831]">Why Agreements</span>{' '}
-              <span className="text-[#00ADB5]">Matter</span>
-            </h2>
-            <ul className="space-y-4 list-none pl-5">
-              {benefits.map((benefit, index) => (
-                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
           {/* Call to Action */}
-          <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <p className="text-lg leading-relaxed text-center">
-                Build a secure team. Contact us for employee and contractor agreement services!
-              </p>
+          <section className="py-32 px-4 md:px-16 lg:px-24">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                className="relative max-w-3xl mx-auto px-8 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+                <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+                <h2 className="text-4xl font-bold mb-4">Build a Secure Team with Compliant Agreements</h2>
+                <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+                  Build a secure team. Contact us for employee and contractor agreement services!
+                </p>
+                <Link
+                  href="/contact-us"
+                  className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+                >
+                  Contact Us
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
+          </section>
         </div>
       </section>
-
-      {/* Back Link */}
-      <div className="container mx-auto px-4 py-8">
-        <Link
-          href="/service/startup"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Startup Services
-        </Link>
-      </div>
     </div>
   );
 }

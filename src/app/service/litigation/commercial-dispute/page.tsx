@@ -1,41 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Briefcase, FileText, Scale, Search, Target } from 'lucide-react';
+import { Briefcase, Scale, Search } from 'lucide-react';
 import Link from 'next/link';
-
-const features = [
-	{
-		icon: Shield,
-		title: 'Risk Assessment',
-		description: 'Commercial risk evaluation.',
-	},
-	{
-		icon: Briefcase,
-		title: 'Strategy Development',
-		description: 'Custom dispute strategies.',
-	},
-	{
-		icon: FileText,
-		title: 'Case Analysis',
-		description: 'Comprehensive case review.',
-	},
-	{
-		icon: Scale,
-		title: 'Legal Planning',
-		description: 'Strategic legal planning.',
-	},
-	{
-		icon: Search,
-		title: 'Evidence Management',
-		description: 'Evidence collection and analysis.',
-	},
-	{
-		icon: Target,
-		title: 'Resolution Planning',
-		description: 'Targeted resolution approaches.',
-	},
-];
 
 const strategyPoints = [
 	'Case assessment',
@@ -50,8 +17,7 @@ const disputeServices = [
 	{
 		icon: Search,
 		title: 'Dispute Analysis',
-		description:
-			'We assess the nature and impact of the dispute on your business.',
+		description: 'We assess the nature and impact of the dispute on your business.',
 	},
 	{
 		icon: Briefcase,
@@ -61,15 +27,8 @@ const disputeServices = [
 	{
 		icon: Scale,
 		title: 'Execution Support',
-		description:
-			'We guide you through the resolution process, from negotiation to litigation.',
+		description: 'We guide you through the resolution process, from negotiation to litigation.',
 	},
-];
-
-const disputeBenefits = [
-	'Protect your business from financial and reputational damage',
-	'Resolve disputes with a clear, strategic approach',
-	'Minimize disruptions to your operations during conflicts',
 ];
 
 export default function CommercialDisputePage() {
@@ -124,10 +83,7 @@ export default function CommercialDisputePage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Commercial disputes can be complex and costly if not handled
-								properly. At Leonard Corporate Solutions, we develop strategic
-								plans to address commercial disputes, ensuring your business
-								interests are protected in India and worldwide.
+								Commercial disputes can be complex and costly if not handled properly. At Leonard Corporate Solutions, we develop strategic plans to address commercial disputes, ensuring your business interests are protected in India and worldwide.
 							</p>
 							<ul className="space-y-4 list-none pl-5">
 								{strategyPoints.map((item, index) => (
@@ -166,49 +122,44 @@ export default function CommercialDisputePage() {
 									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
 										{service.title}
 									</h3>
-									<p className="text-[#393E46]/80">
-										{service.description}
-									</p>
+									<p className="text-[#393E46]/80">{service.description}</p>
 								</motion.div>
 							))}
 						</div>
 					</div>
 
-					{/* Benefits Section */}
-					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<h2 className="text-3xl font-bold text-center mb-8">
-							<span className="text-[#00ADB5]">Why a Dispute</span>{' '}
-							<span className="text-[#222831]">Strategy Matters</span>
-						</h2>
-						<ul className="space-y-4 list-none pl-5">
-							{disputeBenefits.map((benefit, index) => (
-								<li
-									key={index}
-									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+					{/* Call to Action */}
+					<section className="py-32 px-4 md:px-16 lg:px-24">
+						<div className="max-w-6xl mx-auto">
+							<motion.div
+								className="relative max-w-3xl mx-auto px-8 text-center"
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8 }}
+								viewport={{ once: true }}
+							>
+								<div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+								<div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+								<div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+								<div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+								<h2 className="text-4xl font-bold mb-4">Tackle Commercial Disputes Strategically</h2>
+								<p className="text-[#393E46] text-lg leading-relaxed mb-6">
+									Tackle commercial disputes strategically. Contact us for dispute strategy services!
+								</p>
+								<Link
+									href="/contact-us"
+									className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
 								>
-									{benefit}
-								</li>
-							))}
-						</ul>
-						<div className="mt-12 text-center">
-							<p className="text-lg font-medium text-[#393E46]">
-								Tackle commercial disputes strategically. Contact us for dispute
-								strategy services!
-							</p>
+									Contact Us
+									<svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+									</svg>
+								</Link>
+							</motion.div>
 						</div>
-					</motion.div>
+					</section>
 				</div>
 			</section>
-
-			{/* Back Link */}
-			<div className="container mx-auto px-4 py-8">
-				<Link
-					href="/service/litigation"
-					className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-				>
-					<span className="mr-2">←</span> Back to Litigation Services
-				</Link>
-			</div>
 		</div>
 	);
 }

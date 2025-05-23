@@ -1,28 +1,28 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shirt, ShieldCheck, FilePenLine } from 'lucide-react';
+import { Briefcase, ShieldCheck, FilePenLine } from 'lucide-react';
 import Link from 'next/link';
 
 const features = [
   {
-    icon: Shirt,
-    title: "Fashion Design Registration",
-    description: "Secure legal protection for your unique clothing and accessory designs."
+    icon: Briefcase,
+    title: "Comprehensive Registration",
+    description: "Handle all aspects of design registration, from filing to approval."
   },
   {
     icon: ShieldCheck,
-    title: "Brand Protection",
-    description: "Safeguard your fashion brand against imitation and unauthorized use."
+    title: "Prosecution Support",
+    description: "Navigate design prosecution processes to secure your rights."
   },
   {
     icon: FilePenLine,
-    title: "Design Licensing",
-    description: "Manage licensing agreements to monetize your fashion designs effectively."
+    title: "Portfolio Management",
+    description: "Strategize and manage your design portfolio for long-term success."
   }
 ];
 
-export default function FashionDesignsPage() {
+export default function DesignServicesPage() {
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern */}
@@ -44,12 +44,12 @@ export default function FashionDesignsPage() {
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Fashion Designs
+            Design Services
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Unique Fashion Creations
+            Comprehensive Support for Your Design Needs
           </p>
         </motion.div>
       </motion.section>
@@ -67,7 +67,7 @@ export default function FashionDesignsPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Safeguard unique clothing, accessories, and fashion items with tailored design protection. At Leonard Corporate Solutions, we ensure your creative fashion designs are legally protected, preserving your brand’s exclusivity in India and globally.
+                Comprehensive support for design registration, prosecution, and portfolio management. At Leonard Corporate Solutions, we provide end-to-end design services to protect and manage your creative assets in India and globally.
               </p>
             </div>
           </motion.div>
@@ -75,7 +75,7 @@ export default function FashionDesignsPage() {
           {/* Services Section */}
           <div className="space-y-8">
             <h2 className="text-3xl font-bold text-center mb-8">
-              <span className="text-[#222831]">Our Fashion Design</span>{' '}
+              <span className="text-[#222831]">Our Design</span>{' '}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -114,9 +114,9 @@ export default function FashionDesignsPage() {
                 <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
                 <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
                 <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-                <h2 className="text-4xl font-bold mb-4">Protect Your Fashion Creations</h2>
+                <h2 className="text-4xl font-bold mb-4">Manage Your Designs with Expert Support</h2>
                 <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-                  Safeguard your unique fashion designs. Contact us for fashion design protection services today!
+                  Protect and manage your designs. Contact us for comprehensive design services today!
                 </p>
                 <Link
                   href="/contact-us"
