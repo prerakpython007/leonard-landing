@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { HandshakeIcon, Scale, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
+import type { FC } from 'react';
 
 const settlementServices = [
 	{
@@ -22,7 +23,7 @@ const settlementServices = [
 	},
 ];
 
-export default function SettlementNegotiationsPage() {
+const SettlementNegotiationsPage: FC = () => {
 	return (
 		<div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
 			{/* Grid Pattern */}
@@ -143,4 +144,6 @@ export default function SettlementNegotiationsPage() {
 			</section>
 		</div>
 	);
-}
+};
+
+export default SettlementNegotiationsPage;
