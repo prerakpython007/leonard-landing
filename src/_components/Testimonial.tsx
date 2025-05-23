@@ -50,35 +50,37 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="bg-[#EEEEEE] py-16 px-4 md:px-16 lg:px-24 relative overflow-hidden">
-      <span className="absolute left-0 top-1/2 text-[#00ADB5] text-[200px] opacity-10 transform -translate-y-1/2">
+    <section className="bg-[#EEEEEE] py-16 sm:py-20 md:py-24 lg:py-32 px-4 md:px-8 lg:px-16 xl:px-24 relative overflow-hidden">
+      {/* Background Stars */}
+      <span className="absolute left-0 top-1/2 text-[#00ADB5] text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
-      <span className="absolute right-0 top-1/2 text-[#00ADB5] text-[200px] opacity-10 transform -translate-y-1/2">
+      <span className="absolute right-0 top-1/2 text-[#00ADB5] text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
+
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h3 className="text-[#00ADB5] text-4xl font-bold uppercase tracking-wider mb-4">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <h3 className="text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wider mb-4">
             Testimonials
           </h3>
-          <h2 className="text-5xl md:text-6xl lg:text-lg font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-[#00ADB5]">What Our </span>
-            <span className="text-[#222831]">Clients Say Say About Leonard Corporate Solutions</span>
+            <span className="text-[#222831] block sm:inline mt-2 sm:mt-0">Clients Say</span>
           </h2>
-          <p className="text-[#393E46] text-lg max-w-2xl mx-auto">
+          <p className="text-[#393E46] text-base sm:text-lg max-w-2xl mx-auto px-4">
             Trusted by industry leaders, startups, and global businesses for intellectual property, corporate, and international legal services.
           </p>
         </div>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 relative px-2 sm:px-4">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               className={`
-                bg-white p-8 rounded-2xl shadow-lg 
+                bg-white p-6 sm:p-8 rounded-2xl shadow-lg 
                 transition-all duration-300 cursor-pointer
                 ${hoveredId === testimonial.id ? 'shadow-xl scale-[1.02] rotate-0 z-10' : ''}
               `}
@@ -103,24 +105,28 @@ const TestimonialsSection = () => {
               onMouseEnter={() => setHoveredId(testimonial.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="text-6xl text-[#00ADB5] opacity-10 absolute top-4 right-6">
+              <div className="text-4xl sm:text-5xl md:text-6xl text-[#00ADB5] opacity-10 absolute top-4 right-6">
                 "
               </div>
-              <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-[#00ADB5]/10 text-[#00ADB5] mb-4">
+              <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-[#00ADB5]/10 text-[#00ADB5] mb-4">
                 {testimonial.tag}
               </span>
-              <p className="text-[#393E46] text-lg mb-6 min-h-[100px]">
+              <p className="text-[#393E46] text-base sm:text-lg mb-6 min-h-[80px] sm:min-h-[100px]">
                 {testimonial.text}
               </p>
-              <div className="flex items-center gap-4 mt-6">
+              <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
                 />
                 <div>
-                  <h4 className="text-[#222831] font-semibold">{testimonial.name}</h4>
-                  <p className="text-[#393E46] text-sm">{testimonial.position}</p>
+                  <h4 className="text-[#222831] font-semibold text-sm sm:text-base">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-[#393E46] text-xs sm:text-sm">
+                    {testimonial.position}
+                  </p>
                 </div>
               </div>
             </motion.div>

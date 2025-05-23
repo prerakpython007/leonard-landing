@@ -160,7 +160,7 @@ const sections = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[150px] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern */}
       <div 
         className="fixed inset-0 pointer-events-none"
@@ -174,52 +174,36 @@ export default function PricingPage() {
         }}
       />
 
-      {/* Hero Section with Corner Angles */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles only for title section */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      {/* Hero Section */}
+      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Desktop only */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+        <motion.div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Our Pricing
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Transparent Pricing for Intellectual Property Services
           </p>
         </motion.div>
       </motion.section>
 
       {/* Pricing Cards Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto space-y-24">
+      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
+        <div className="max-w-7xl mx-auto">
           {sections.map((section) => (
-            <div key={section.id}>
-              <motion.div
-                className="text-center mb-16"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl font-bold text-[#222831] mb-4">{section.title}</h2>
+            <div key={section.id} className="mb-16 sm:mb-24 md:mb-32 last:mb-0">
+              <motion.div className="text-center mb-8 sm:mb-12 md:mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831]">{section.title}</h2>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                 {section.data.map((item, itemIndex) => (
                   item.description && (
                     <motion.div
@@ -277,14 +261,8 @@ export default function PricingPage() {
             </div>
           ))}
 
-          {/* Disclaimer section with corner angles */}
-          <motion.div
-            className="max-w-3xl mx-auto mt-24 p-8 relative"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          {/* Disclaimer section */}
+          <motion.div className="max-w-3xl mx-auto mt-16 sm:mt-24 md:mt-32 p-6 sm:p-8 md:p-12 relative">
             {/* Corner Angles */}
             <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
             <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
@@ -321,13 +299,7 @@ export default function PricingPage() {
           </motion.div>
 
           {/* Pricing Note */}
-          <motion.div 
-            className="text-center mt-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+          <motion.div className="text-center mt-8 sm:mt-12 px-4">
             <p className="text-[#393E46]/70 text-sm italic">
               * All prices mentioned are subject to change. Please contact us for the most current pricing information.
             </p>
@@ -336,7 +308,7 @@ export default function PricingPage() {
       </section>
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+      <div className="container mx-auto py-8 sm:py-12">
         <Link
           href="/"
           className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
@@ -345,5 +317,5 @@ export default function PricingPage() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

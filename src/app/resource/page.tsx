@@ -126,7 +126,7 @@ export default function GovernmentResourcesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[150px] font-montserrat">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -186,83 +186,62 @@ export default function GovernmentResourcesPage() {
         </motion.div>
       )}
 
-      {/* Hero Section with Corner Angles */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      {/* Hero Section */}
+      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Desktop only */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-5xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+        <motion.div className="max-w-7xl mx-auto text-center px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Government IP Resources
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Access official government resources for trademarks, copyrights, patents, and more in India
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section - Redesigned */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      {/* Content Sections */}
+      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Your Gateway to IP Protection</h2>
-          </motion.div>
-          
-          <motion.div
-            className="relative max-w-3xl mx-auto p-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+          {/* Introduction Section */}
+          <motion.div className="mb-16 sm:mb-24 md:mb-32">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-[#222831] mb-4">Your Gateway to IP Protection</h2>
+            </motion.div>
+            
+            <motion.div
+              className="relative max-w-3xl mx-auto p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* Corner Angles */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
 
-            <p className="text-[#393E46]/80 text-lg text-center leading-relaxed">
-              Navigate India's intellectual property landscape with ease. Our curated list of official government resources helps you register, protect, and manage trademarks, copyrights, patents, and other IP assets efficiently.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Resources Section - Redesigned Cards */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Official Government Resources</h2>
+              <p className="text-[#393E46]/80 text-lg text-center leading-relaxed">
+                Navigate India's intellectual property landscape with ease. Our curated list of official government resources helps you register, protect, and manage trademarks, copyrights, patents, and other IP assets efficiently.
+              </p>
+            </motion.div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Resources Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {resourceInfo.map((info: ResourceInfo, index: number) => (
               <motion.div
                 key={info.id}
@@ -307,114 +286,110 @@ export default function GovernmentResourcesPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Contact Section - With Corner Angles */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Contact Government Authorities</h2>
-          </motion.div>
+          {/* Contact Section */}
+          <motion.div className="mt-16 sm:mt-24 md:mt-32">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-[#222831] mb-4">Contact Government Authorities</h2>
+            </motion.div>
 
-          <motion.div
-            className="relative max-w-3xl mx-auto p-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+            <motion.div
+              className="relative max-w-3xl mx-auto p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Corner Angles */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
 
-            <h3 className="text-xl font-bold text-[#222831] mb-6">Office of CGPDTM</h3>
-            <p className="text-[#393E46]/80 mb-4">
-              For assistance with IP-related queries, contact the Controller General of Patents, Designs & Trade Marks (CGPDTM):
-            </p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>
-                <strong>Website</strong>:{" "}
-                <Link
-                  href="https://ipindia.gov.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#00ADB5] hover:text-[#222831]"
-                >
-                  ipindia.gov.in
-                </Link>
-              </li>
-              <li>
-                <strong>Email</strong>: cgpdm@nic.in
-              </li>
-              <li>
-                <strong>Phone</strong>: +91-22-24912407 (Mumbai Office)
-              </li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Call to Action Section - Redesigned */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Need Expert IP Guidance?</h2>
-          </motion.div>
-          
-          <motion.div
-            className="relative max-w-3xl mx-auto p-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
-
-            <div className="text-center space-y-6">
-              <p className="text-lg text-[#393E46]/80">
-                Our team can help you navigate government IP resources and protect your intellectual property effectively. Let's secure your innovations together!
+              <h3 className="text-xl font-bold text-[#222831] mb-6">Office of CGPDTM</h3>
+              <p className="text-[#393E46]/80 mb-4">
+                For assistance with IP-related queries, contact the Controller General of Patents, Designs & Trade Marks (CGPDTM):
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Link
-                  href="/price"
-                  className="inline-flex items-center px-8 py-3 bg-[#222831] text-white font-medium rounded-xl hover:bg-[#00ADB5] transition-all duration-300 group"
-                >
-                  Get Started Today
-                  <svg
-                    className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              <ul className="text-[#393E46]/80 list-disc list-inside">
+                <li>
+                  <strong>Website</strong>:{" "}
+                  <Link
+                    href="https://ipindia.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00ADB5] hover:text-[#222831]"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-                <span className="text-[#393E46]/60">or</span>
-                <Link
-                  href="/contact-us"
-                  className="inline-flex items-center px-8 py-3 border-2 border-[#222831] text-[#222831] font-medium rounded-xl hover:bg-[#222831] hover:text-white transition-all duration-300"
-                >
-                  Contact Us
-                </Link>
+                    ipindia.gov.in
+                  </Link>
+                </li>
+                <li>
+                  <strong>Email</strong>: cgpdm@nic.in
+                </li>
+                <li>
+                  <strong>Phone</strong>: +91-22-24912407 (Mumbai Office)
+                </li>
+              </ul>
+            </motion.div>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div className="mt-16 sm:mt-24 md:mt-32">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-[#222831] mb-4">Need Expert IP Guidance?</h2>
+            </motion.div>
+            
+            <motion.div
+              className="relative max-w-3xl mx-auto p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Corner Angles */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+
+              <div className="text-center space-y-6">
+                <p className="text-lg text-[#393E46]/80">
+                  Our team can help you navigate government IP resources and protect your intellectual property effectively. Let's secure your innovations together!
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                  <Link
+                    href="/price"
+                    className="inline-flex items-center px-8 py-3 bg-[#222831] text-white font-medium rounded-xl hover:bg-[#00ADB5] transition-all duration-300 group"
+                  >
+                    Get Started Today
+                    <svg
+                      className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                  <span className="text-[#393E46]/60">or</span>
+                  <Link
+                    href="/contact-us"
+                    className="inline-flex items-center px-8 py-3 border-2 border-[#222831] text-[#222831] font-medium rounded-xl hover:bg-[#222831] hover:text-white transition-all duration-300"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
