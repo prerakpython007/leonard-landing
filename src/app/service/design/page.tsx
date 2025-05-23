@@ -54,7 +54,7 @@ export default function DesignPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -67,53 +67,37 @@ export default function DesignPage() {
         }}
       />
 
-      {/* Hero Section */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      {/* Hero Section - Updated for responsiveness */}
+      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Desktop only */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+        <motion.div className="max-w-7xl mx-auto text-center px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Design Services
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Elevating Your Brand with Innovative Design Protection
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Design Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      {/* Content Section - Improved spacing */}
+      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
         <div className="max-w-6xl mx-auto">
-          {/* Design Overview */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative max-w-3xl mx-auto px-8">
-              {/* Corner Angles */}
-              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+          {/* Design Overview - Better padding */}
+          <motion.div className="mb-12 sm:mb-16 md:mb-24">
+            <div className="relative max-w-3xl mx-auto p-8 sm:p-12">
+              {/* Corner Angles - Responsive spacing */}
+              <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <div className="text-center space-y-6">
                 <h2 className="text-4xl font-bold mb-4">
@@ -142,9 +126,9 @@ export default function DesignPage() {
             </h2>
           </div>
 
-          {/* Services Grid */}
+          {/* Services Grid - Updated grid layout */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -191,14 +175,8 @@ export default function DesignPage() {
             ))}
           </motion.div>
 
-          {/* Closing Message */}
-          <motion.div
-            className="mt-32 relative max-w-3xl mx-auto px-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          {/* Closing Message - Responsive margins */}
+          <motion.div className="mt-16 sm:mt-24 md:mt-32 relative max-w-3xl mx-auto px-4 sm:px-8">
             <div className="relative py-12">
               {/* Corner Angles */}
               <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
