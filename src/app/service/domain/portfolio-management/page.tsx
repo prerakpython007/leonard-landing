@@ -1,50 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, BarChart, Settings, Globe, Shield, Link2 } from 'lucide-react';
+import { Search, Clock, Target } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PortfolioManagementPage() {
   const features = [
     {
-      icon: Briefcase,
-      title: "Portfolio Analysis",
-      description: "Comprehensive analysis of your domain portfolio and strategic recommendations."
+      icon: Search,
+      title: "Portfolio Audit",
+      description: "We assess your current domain assets for gaps and opportunities."
     },
     {
-      icon: BarChart,
-      title: "Value Assessment",
-      description: "Evaluation of domain assets and optimization opportunities."
+      icon: Clock,
+      title: "Renewal Management",
+      description: "We ensure timely renewals to prevent domain loss."
     },
     {
-      icon: Settings,
-      title: "Portfolio Optimization",
-      description: "Strategic management and optimization of domain portfolios."
-    },
-    {
-      icon: Globe,
-      title: "Global Management",
-      description: "Worldwide domain portfolio management and protection."
-    },
-    {
-      icon: Shield,
-      title: "Security Management",
-      description: "Enhanced security measures for domain portfolio protection."
-    },
-    {
-      icon: Link2,
-      title: "Domain Strategy",
-      description: "Development of comprehensive domain management strategies."
+      icon: Target,
+      title: "Strategic Acquisition",
+      description: "We assist in acquiring domains that align with your brand."
     }
-  ];
-
-  const portfolioItems = [
-    'Strategic portfolio review and optimization',
-    'Domain acquisition and disposal strategies',
-    'Portfolio consolidation and cost management',
-    'Security and access management',
-    'Renewal and expiration monitoring',
-    'Global portfolio coordination'
   ];
 
   return (
@@ -73,7 +49,7 @@ export default function PortfolioManagementPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Strategic Management of Your Domain Portfolio
+            Strengthen Your IP Strategy with Domain Portfolio Management
           </p>
         </motion.div>
       </motion.section>
@@ -91,20 +67,13 @@ export default function PortfolioManagementPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our portfolio management services provide comprehensive solutions for managing and optimizing your domain name assets. We help organizations maintain, protect, and enhance their domain portfolios through strategic planning and expert execution.
+                A well-managed domain name portfolio is a key part of your intellectual property strategy. At Leonard Corporate Solutions, we help you manage and strengthen your domain portfolio to maximize protection and value.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {portfolioItems.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -125,15 +94,11 @@ export default function PortfolioManagementPage() {
             ))}
           </div>
 
-          {/* Additional Information */}
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Comprehensive</span>{' '}
-                <span className="text-[#222831]">Portfolio Solutions</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Our expert team provides end-to-end portfolio management solutions, ensuring your domain assets are protected, optimized, and aligned with your business strategy. Contact us to learn how we can help strengthen your domain portfolio.
+              <p className="text-lg leading-relaxed text-center">
+                Optimize your domain portfolio for success. Contact us for expert management services!
               </p>
             </div>
           </motion.div>

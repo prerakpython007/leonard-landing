@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Package, FileText, Users, Scale, Shield, HandshakeIcon } from 'lucide-react';
+import { FileText, Shield, Scale } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ShareholderAgreementsPage() {
   const features = [
     {
       icon: FileText,
-      title: "Agreement Drafting",
-      description: "Expert drafting of shareholder agreements."
-    },
-    {
-      icon: Users,
-      title: "Rights Management",
-      description: "Definition of shareholder rights and obligations."
-    },
-    {
-      icon: Scale,
-      title: "Dispute Resolution",
-      description: "Mechanisms for resolving shareholder disputes."
+      title: "Custom Drafting",
+      description: "We create agreements tailored to your business and shareholder needs."
     },
     {
       icon: Shield,
-      title: "Interest Protection",
-      description: "Protection of shareholder interests."
+      title: "Dispute Prevention",
+      description: "We include clauses to address potential conflicts and exit strategies."
     },
     {
-      icon: Package,
-      title: "Exit Strategies",
-      description: "Planning for shareholder exits and transfers."
-    },
-    {
-      icon: HandshakeIcon,
-      title: "Voting Arrangements",
-      description: "Structuring of voting rights and procedures."
+      icon: Scale,
+      title: "Legal Review",
+      description: "We ensure your agreements comply with local and international laws."
     }
   ];
 
-  const agreementPoints = [
-    'Shareholder rights and obligations',
-    'Voting arrangements',
-    'Transfer restrictions',
-    'Exit provisions',
-    'Dispute resolution mechanisms',
-    'Dividend policies'
+  const benefits = [
+    'Align shareholder interests for smoother business operations',
+    'Prevent costly disputes with clear terms and conditions',
+    'Protect your business from legal and operational risks'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function ShareholderAgreementsPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Drafting and Advisory Services for Shareholder Agreements
+            Align Interests with Precise Shareholder Agreements
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function ShareholderAgreementsPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our shareholder agreement services provide comprehensive support in drafting and structuring agreements that protect stakeholder interests and maintain corporate harmony. We ensure clear rights, responsibilities, and dispute resolution mechanisms.
+                Clear shareholder agreements are crucial to prevent disputes and align interests. At Leonard Corporate Solutions, we craft precise shareholder agreements to protect your business and ensure smooth operations in India and beyond.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {agreementPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Shareholder</span>{' '}
+              <span className="text-[#00ADB5]">Agreement Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Why Shareholder</span>{' '}
+              <span className="text-[#00ADB5]">Agreements Matter</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Agreement Services</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our shareholder agreement services can help protect interests and establish clear governance structures for your business.
+              <p className="text-lg leading-relaxed text-center">
+                Secure your business relationships. Contact us for shareholder agreement services!
               </p>
             </div>
           </motion.div>

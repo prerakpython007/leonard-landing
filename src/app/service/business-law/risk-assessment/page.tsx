@@ -5,46 +5,28 @@ import { Shield, AlertTriangle, Search, FileCheck, Scale, Settings } from 'lucid
 import Link from 'next/link';
 
 export default function RiskAssessmentPage() {
-  const features = [
+  const riskServices = [
     {
       icon: Search,
       title: "Risk Identification",
-      description: "Comprehensive risk discovery process."
-    },
-    {
-      icon: Scale,
-      title: "Risk Analysis",
-      description: "Detailed assessment of identified risks."
+      description: "We assess your operations to uncover legal and regulatory risks."
     },
     {
       icon: Shield,
-      title: "Risk Prevention",
-      description: "Proactive risk prevention strategies."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Monitoring",
-      description: "Continuous risk surveillance system."
-    },
-    {
-      icon: FileCheck,
-      title: "Compliance Check",
-      description: "Risk-based compliance verification."
+      title: "Mitigation Strategies",
+      description: "We develop tailored plans to address identified risks."
     },
     {
       icon: Settings,
-      title: "Process Integration",
-      description: "Risk management implementation."
+      title: "Ongoing Support",
+      description: "We monitor risks and adjust strategies as your business evolves."
     }
   ];
 
-  const riskPoints = [
-    'Risk identification',
-    'Impact assessment',
-    'Mitigation strategies',
-    'Prevention planning',
-    'Monitoring systems',
-    'Response protocols'
+  const riskBenefits = [
+    'Protect your business from legal and financial setbacks',
+    'Ensure continuity by addressing risks proactively',
+    'Build confidence among investors and stakeholders'
   ];
 
   return (
@@ -68,12 +50,12 @@ export default function RiskAssessmentPage() {
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Risk Assessment
+            Risk Assessment & Mitigation
             <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Strategic Risk Assessment & Mitigation Services
+            Protect Your Business with Risk Assessment & Mitigation
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,55 @@ export default function RiskAssessmentPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our risk assessment services help identify, analyze, and mitigate potential legal and business risks. We develop comprehensive strategies to protect your business interests and ensure sustainable operations.
+                Legal risks can disrupt your business operations and lead to costly consequences. At Leonard Corporate Solutions, we provide expert risk assessment and mitigation services to identify potential issues and implement strategies to safeguard your business.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {riskPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              <span className="text-[#00ADB5]">Our Risk</span>{' '}
+              <span className="text-[#222831]">Management Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {riskServices.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <service.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Strategic</span>{' '}
-                <span className="text-[#222831]">Risk Management</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our risk assessment services can help protect your business through proactive risk identification and management.
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#00ADB5]">Benefits of</span>{' '}
+              <span className="text-[#222831]">Risk Mitigation</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {riskBenefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 text-center">
+              <p className="text-lg font-medium text-[#393E46]">
+                Minimize risks and secure your operations. Contact us for risk assessment services!
               </p>
             </div>
           </motion.div>

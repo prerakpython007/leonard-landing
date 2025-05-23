@@ -46,6 +46,32 @@ const strategyPoints = [
 	'Resolution planning',
 ];
 
+const disputeServices = [
+	{
+		icon: Search,
+		title: 'Dispute Analysis',
+		description:
+			'We assess the nature and impact of the dispute on your business.',
+	},
+	{
+		icon: Briefcase,
+		title: 'Strategic Planning',
+		description: 'We create tailored plans to resolve disputes effectively.',
+	},
+	{
+		icon: Scale,
+		title: 'Execution Support',
+		description:
+			'We guide you through the resolution process, from negotiation to litigation.',
+	},
+];
+
+const disputeBenefits = [
+	'Protect your business from financial and reputational damage',
+	'Resolve disputes with a clear, strategic approach',
+	'Minimize disruptions to your operations during conflicts',
+];
+
 export default function CommercialDisputePage() {
 	return (
 		<div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
@@ -71,7 +97,7 @@ export default function CommercialDisputePage() {
 
 				<motion.div className="max-w-7xl mx-auto text-center">
 					<h1 className="text-6xl md:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-						Commercial Disputes
+						Commercial Dispute Strategy
 						<span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">
 							✦
 						</span>
@@ -80,7 +106,7 @@ export default function CommercialDisputePage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Strategic Resolution of Complex Commercial Disputes
+						Address Complex Disputes with Strategic Planning
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,9 +124,10 @@ export default function CommercialDisputePage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our commercial dispute strategy services provide comprehensive
-								solutions for complex business conflicts. We develop tailored
-								strategies to protect your interests and achieve optimal outcomes.
+								Commercial disputes can be complex and costly if not handled
+								properly. At Leonard Corporate Solutions, we develop strategic
+								plans to address commercial disputes, ensuring your business
+								interests are protected in India and worldwide.
 							</p>
 							<ul className="space-y-4 list-none pl-5">
 								{strategyPoints.map((item, index) => (
@@ -115,40 +142,58 @@ export default function CommercialDisputePage() {
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our Dispute</span>{' '}
+							<span className="text-[#222831]">Strategy Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{disputeServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">
+										{service.description}
+									</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Strategic</span>{' '}
-								<span className="text-[#222831]">Solutions</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our commercial dispute strategy services
-								can help resolve your business conflicts effectively.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Why a Dispute</span>{' '}
+							<span className="text-[#222831]">Strategy Matters</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{disputeBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Tackle commercial disputes strategically. Contact us for dispute
+								strategy services!
 							</p>
 						</div>
 					</motion.div>

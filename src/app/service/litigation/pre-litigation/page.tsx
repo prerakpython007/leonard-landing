@@ -46,6 +46,30 @@ const noticePoints = [
 	'Resolution tracking',
 ];
 
+const noticeServices = [
+	{
+		icon: FileText,
+		title: 'Notice Drafting',
+		description: 'We create clear, legally sound notices to address disputes.',
+	},
+	{
+		icon: MessageSquare,
+		title: 'Response Management',
+		description: 'We handle responses and negotiations to resolve issues.',
+	},
+	{
+		icon: Shield,
+		title: 'Escalation Prevention',
+		description: 'We aim to settle disputes amicably before they escalate.',
+	},
+];
+
+const noticeBenefits = [
+	'Resolve disputes quickly and cost-effectively',
+	'Avoid the time and expense of courtroom litigation',
+	'Protect your business relationships with early resolution',
+];
+
 export default function PreLitigationPage() {
 	return (
 		<div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
@@ -80,7 +104,7 @@ export default function PreLitigationPage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Strategic Legal Notice Management & Resolution
+						Resolve Disputes Early with Pre-Litigation Notices
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,9 +122,10 @@ export default function PreLitigationPage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our pre-litigation notice services help resolve disputes
-								efficiently before they escalate to court proceedings. We provide
-								strategic legal communication and resolution strategies.
+								Addressing disputes before they reach the courtroom can save time
+								and costs. At Leonard Corporate Solutions, we draft and manage
+								pre-litigation notices to resolve conflicts early, helping you
+								avoid lengthy litigation in India and beyond.
 							</p>
 							<ul className="space-y-4 list-none pl-5">
 								{noticePoints.map((item, index) => (
@@ -115,40 +140,56 @@ export default function PreLitigationPage() {
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our Pre-Litigation</span>{' '}
+							<span className="text-[#222831]">Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{noticeServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Expert</span>{' '}
-								<span className="text-[#222831]">Notice Services</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our pre-litigation notice services can
-								help resolve disputes effectively before court proceedings.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Why Pre-Litigation</span>{' '}
+							<span className="text-[#222831]">Notices Matter</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{noticeBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Settle disputes early. Contact us for pre-litigation notice
+								services today!
 							</p>
 						</div>
 					</motion.div>

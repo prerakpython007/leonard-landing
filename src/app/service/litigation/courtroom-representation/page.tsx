@@ -1,49 +1,31 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Gavel, FileText, Scale, Shield, Users, MessageSquare } from 'lucide-react';
+import { Gavel, FileText, Shield } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
+const courtServices = [
 	{
 		icon: Gavel,
-		title: 'Court Advocacy',
-		description: 'Expert court representation.',
+		title: 'Legal Advocacy',
+		description: 'Our experienced lawyers represent you in court proceedings.',
 	},
 	{
 		icon: FileText,
 		title: 'Case Preparation',
-		description: 'Thorough case documentation.',
-	},
-	{
-		icon: Scale,
-		title: 'Legal Strategy',
-		description: 'Strategic litigation planning.',
+		description: 'We build a strong case with thorough evidence and legal research.',
 	},
 	{
 		icon: Shield,
-		title: 'Rights Protection',
-		description: 'Safeguarding client interests.',
-	},
-	{
-		icon: Users,
-		title: 'Expert Coordination',
-		description: 'Management of expert witnesses.',
-	},
-	{
-		icon: MessageSquare,
-		title: 'Court Communications',
-		description: 'Effective court interactions.',
+		title: 'Strategic Defense',
+		description: 'We develop tailored strategies to defend your business interests.',
 	},
 ];
 
-const courtPoints = [
-	'Trial preparation',
-	'Evidence management',
-	'Witness coordination',
-	'Court appearances',
-	'Legal submissions',
-	'Appeal handling',
+const courtBenefits = [
+	'Protect your business from unfavorable legal outcomes',
+	'Ensure your rights are upheld with expert legal advocacy',
+	'Minimize disruptions to your operations during litigation',
 ];
 
 export default function CourtroomRepresentationPage() {
@@ -80,7 +62,7 @@ export default function CourtroomRepresentationPage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Expert Legal Advocacy & Court Representation
+						Defend Your Business with Expert Courtroom Representation
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,57 +80,64 @@ export default function CourtroomRepresentationPage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our courtroom representation services provide expert legal advocacy
-								to protect your interests in court. We offer comprehensive litigation
-								support from case preparation to trial representation.
+								When disputes escalate to litigation, you need a skilled legal team
+								to defend your interests. At Leonard Corporate Solutions, we provide
+								expert courtroom representation to protect your business in India and
+								internationally, ensuring your rights are upheld in court.
 							</p>
-							<ul className="space-y-4 list-none pl-5">
-								{courtPoints.map((item, index) => (
-									<li
-										key={index}
-										className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
-									>
-										{item}
-									</li>
-								))}
-							</ul>
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our Courtroom</span>{' '}
+							<span className="text-[#222831]">Representation Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{courtServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Expert</span>{' '}
-								<span className="text-[#222831]">Legal Advocacy</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our courtroom representation services can
-								help protect your interests through expert legal advocacy.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Benefits of</span>{' '}
+							<span className="text-[#222831]">Courtroom Representation</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{courtBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Defend your business in court. Contact us for courtroom representation
+								services today!
 							</p>
 						</div>
 					</motion.div>

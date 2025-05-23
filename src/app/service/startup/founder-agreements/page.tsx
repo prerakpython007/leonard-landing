@@ -1,52 +1,34 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, FileText, Scale, HandshakeIcon, Shield, Settings } from 'lucide-react';
+import { Users, Scale, Shield } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
-  {
-    icon: Users,
-    title: "Founder Relations",
-    description: "Define roles, responsibilities and relationships."
-  },
-  {
-    icon: Scale,
-    title: "Equity Structure",
-    description: "Fair allocation of ownership and vesting terms."
-  },
-  {
-    icon: Shield,
-    title: "Rights Protection",
-    description: "Safeguarding founder interests and rights."
-  },
-  {
-    icon: HandshakeIcon,
-    title: "Dispute Resolution",
-    description: "Clear mechanisms for resolving conflicts."
-  },
-  {
-    icon: FileText,
-    title: "Documentation",
-    description: "Comprehensive agreement preparation."
-  },
-  {
-    icon: Settings,
-    title: "Operating Rules",
-    description: "Clear guidelines for company operations."
-  }
-];
-
-const founderPoints = [
-  'Equity distribution',
-  'Roles and responsibilities',
-  'Decision-making processes',
-  'Vesting schedules',
-  'Exit provisions',
-  'Dispute resolution'
-];
-
 export default function FounderAgreementsPage() {
+  const features = [
+    {
+      icon: Users,
+      title: "Role Definition",
+      description: "We outline each founder's roles and responsibilities."
+    },
+    {
+      icon: Scale,
+      title: "Equity Structuring",
+      description: "We define equity splits and vesting schedules to protect interests."
+    },
+    {
+      icon: Shield,
+      title: "Dispute Resolution",
+      description: "We include clauses to address potential conflicts and exits."
+    }
+  ];
+
+  const benefits = [
+    'Prevent misunderstandings and disputes among founders',
+    'Protect your startup\'s future with clear equity and role definitions',
+    'Build trust and alignment among co-founders for long-term success'
+  ];
+
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern */}
@@ -73,7 +55,7 @@ export default function FounderAgreementsPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Guidance for Strong Founder Relationships
+            Clarify Roles with Robust Founder Agreements
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function FounderAgreementsPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our founder agreement services help establish clear frameworks for startup leadership. We ensure all critical aspects of founder relationships are properly documented and structured for long-term success.
+                A clear founder agreement is essential to avoid disputes and align expectations. At Leonard Corporate Solutions, we draft robust founder agreements that define roles, equity splits, and responsibilities, ensuring your startup's founders are on the same page.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {founderPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Founder</span>{' '}
+              <span className="text-[#00ADB5]">Agreement Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Why Founder</span>{' '}
+              <span className="text-[#00ADB5]">Agreements Matter</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Guidance</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our founder agreement services can help establish strong foundations for your startup's leadership structure.
+              <p className="text-lg leading-relaxed text-center">
+                Secure your startup's foundation. Contact us for founder agreement services!
               </p>
             </div>
           </motion.div>

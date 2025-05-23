@@ -1,50 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { AlertTriangle, Search, Globe, LineChart, Shield, Eye } from 'lucide-react';
+import { Globe, Shield, Target } from 'lucide-react';
 import Link from 'next/link';
 
 export default function MarketMonitoringPage() {
   const features = [
     {
-      icon: Search,
-      title: "Market Surveillance",
-      description: "Comprehensive monitoring of physical and online marketplaces."
-    },
-    {
       icon: Globe,
-      title: "Global Coverage",
-      description: "Worldwide market monitoring and threat detection."
+      title: "Online Surveillance",
+      description: "We monitor e-commerce platforms like Amazon, Flipkart, and Etsy for fakes."
     },
     {
-      icon: LineChart,
-      title: "Trend Analysis",
-      description: "Analysis of counterfeiting patterns and emerging threats."
+      icon: Target,
+      title: "Physical Market Checks",
+      description: "We investigate local markets for counterfeit goods."
     },
     {
       icon: Shield,
-      title: "Preventive Action",
-      description: "Early warning system for potential counterfeiting activities."
-    },
-    {
-      icon: Eye,
-      title: "Online Monitoring",
-      description: "Digital marketplace and e-commerce platform surveillance."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Alerts",
-      description: "Immediate notification of detected counterfeiting threats."
+      title: "Takedown Services",
+      description: "We initiate takedowns to remove counterfeit listings online."
     }
   ];
 
-  const monitoringPoints = [
-    'Real-time market surveillance',
-    'Online platform monitoring',
-    'Social media tracking',
-    'E-commerce marketplace scanning',
-    'Supply chain monitoring',
-    'Data analytics and reporting'
+  const benefits = [
+    'Identify counterfeiting threats before they escalate',
+    'Protect your customers from fake products',
+    'Maintain your brand\'s reputation and market trust'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function MarketMonitoringPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Comprehensive Market Surveillance & Protection
+            Detect Counterfeiting with Market Monitoring
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,59 @@ export default function MarketMonitoringPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our market monitoring services provide comprehensive surveillance of both physical and digital marketplaces to detect and prevent counterfeiting activities. We employ advanced monitoring tools and techniques to protect your brand across all channels.
+                Counterfeit products often hide in plain sight. At Leonard Corporate Solutions, we provide market monitoring services to detect and address counterfeiting activities across physical markets and online platforms in India and worldwide.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {monitoringPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Our Market</span>{' '}
+              <span className="text-[#00ADB5]">Monitoring Approach</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#222831]">Why Market</span>{' '}
+              <span className="text-[#00ADB5]">Monitoring Matters</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Proactive</span>{' '}
-                <span className="text-[#222831]">Protection</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to discover how our market monitoring services can help protect your brand from counterfeiting activities through comprehensive surveillance and early detection.
+              <p className="text-lg leading-relaxed text-center">
+                Stay vigilant against counterfeits. Contact us for market monitoring services today!
               </p>
             </div>
           </motion.div>

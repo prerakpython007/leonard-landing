@@ -4,46 +4,28 @@ import { motion } from 'framer-motion';
 import { Scale, HandshakeIcon, MessageSquare, Users, FileText, Shield } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
-	{
-		icon: Scale,
-		title: 'Mediation',
-		description: 'Professional mediation services.',
-	},
+const adrServices = [
 	{
 		icon: HandshakeIcon,
+		title: 'Mediation',
+		description: 'We facilitate negotiations to reach mutually beneficial agreements.',
+	},
+	{
+		icon: Scale,
 		title: 'Arbitration',
-		description: 'Expert arbitration proceedings.',
+		description: 'We represent you in arbitration proceedings for binding resolutions.',
 	},
 	{
 		icon: MessageSquare,
-		title: 'Negotiation',
-		description: 'Strategic dispute negotiation.',
-	},
-	{
-		icon: Users,
-		title: 'Facilitation',
-		description: 'Dispute resolution facilitation.',
-	},
-	{
-		icon: FileText,
-		title: 'Documentation',
-		description: 'Comprehensive agreement drafting.',
-	},
-	{
-		icon: Shield,
-		title: 'Interest Protection',
-		description: 'Safeguarding client interests.',
+		title: 'Process Guidance',
+		description: 'We guide you through the ADR process for optimal outcomes.',
 	},
 ];
 
-const adrPoints = [
-	'Mediation services',
-	'Arbitration proceedings',
-	'Negotiation support',
-	'Settlement facilitation',
-	'Agreement drafting',
-	'Resolution implementation',
+const adrBenefits = [
+	'Save time and costs compared to traditional litigation',
+	'Maintain business relationships with less adversarial resolutions',
+	'Achieve faster outcomes with streamlined processes',
 ];
 
 export default function AlternativeDisputePage() {
@@ -80,7 +62,7 @@ export default function AlternativeDisputePage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Efficient Dispute Resolution Through Mediation & Arbitration
+						Resolve Disputes Efficiently with ADR
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,58 +80,60 @@ export default function AlternativeDisputePage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our alternative dispute resolution services provide efficient and
-								cost-effective solutions for resolving conflicts outside of court. We
-								offer expert mediation and arbitration services to achieve favorable
-								outcomes.
+								Alternative Dispute Resolution (ADR) offers a faster, less adversarial way to settle disputes. At Leonard Corporate Solutions, we provide expert mediation and arbitration services to resolve business conflicts efficiently in India and internationally.
 							</p>
-							<ul className="space-y-4 list-none pl-5">
-								{adrPoints.map((item, index) => (
-									<li
-										key={index}
-										className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
-									>
-										{item}
-									</li>
-								))}
-							</ul>
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our ADR</span>{' '}
+							<span className="text-[#222831]">Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{adrServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Expert</span>{' '}
-								<span className="text-[#222831]">Resolution Services</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our alternative dispute resolution services
-								can help resolve your conflicts efficiently and cost-effectively.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Benefits</span>{' '}
+							<span className="text-[#222831]">of ADR</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{adrBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Resolve disputes efficiently. Contact us for alternative dispute resolution services!
 							</p>
 						</div>
 					</motion.div>

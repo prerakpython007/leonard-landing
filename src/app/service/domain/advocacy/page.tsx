@@ -1,50 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FileText, Scale, Shield, Gavel, MessageCircle, FileCheck } from 'lucide-react';
+import { Shield, FileText, Gavel } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdvocacyPage() {
   const features = [
     {
-      icon: Scale,
-      title: "Balanced Representation",
-      description: "Expert representation for both claimants and defendants in domain disputes."
-    },
-    {
-      icon: Gavel,
-      title: "Legal Proceedings",
-      description: "Comprehensive handling of domain name legal proceedings and documentation."
-    },
-    {
       icon: Shield,
-      title: "Rights Protection",
-      description: "Strategic protection of domain name rights and interests."
-    },
-    {
-      icon: MessageCircle,
-      title: "Negotiation Support",
-      description: "Expert negotiation and mediation services for dispute resolution."
+      title: "Claimant Support",
+      description: "We help you build a strong case to recover disputed domains."
     },
     {
       icon: FileText,
-      title: "Documentation",
-      description: "Thorough preparation and review of all legal documentation."
+      title: "Defendant Defense",
+      description: "We defend against unfounded claims to protect your domain rights."
     },
     {
-      icon: FileCheck,
-      title: "Compliance Assurance",
-      description: "Ensuring compliance with domain name regulations and procedures."
+      icon: Gavel,
+      title: "Procedural Expertise",
+      description: "We navigate UDRP, INDRP, and other dispute resolution processes."
     }
-  ];
-
-  const advocacyPoints = [
-    'Comprehensive legal representation',
-    'Strategic case development',
-    'Expert witness coordination',
-    'Evidence gathering and analysis',
-    'Settlement negotiations',
-    'Appeals and enforcement'
   ];
 
   return (
@@ -73,7 +49,7 @@ export default function AdvocacyPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Representation for Domain Name Disputes
+            Balanced Advocacy for Domain Name Disputes
           </p>
         </motion.div>
       </motion.section>
@@ -91,20 +67,13 @@ export default function AdvocacyPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our advocacy services provide expert representation for both claimants and defendants in domain name disputes. We combine technical expertise with legal acumen to deliver effective solutions for complex domain-related challenges.
+                Whether you're a claimant seeking to reclaim a domain or a defendant facing a dispute, Leonard Corporate Solutions offers balanced expertise in advocacy for domain name proceedings. We ensure your rights are protected on both sides of the dispute.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {advocacyPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -125,15 +94,11 @@ export default function AdvocacyPage() {
             ))}
           </div>
 
-          {/* Additional Information */}
+          {/* Call to Action */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
             <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Representation</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                With years of experience in domain name litigation and dispute resolution, our team provides strategic advocacy to protect your interests. Contact us to discuss your case and explore your options.
+              <p className="text-lg leading-relaxed text-center">
+                Get expert advocacy for your domain dispute. Contact us to represent your case!
               </p>
             </div>
           </motion.div>

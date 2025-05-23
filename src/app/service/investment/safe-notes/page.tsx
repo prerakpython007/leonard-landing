@@ -1,49 +1,31 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Package, FileText, Calculator, Scale, Shield, Settings } from 'lucide-react';
+import { Package, FileText, Shield } from 'lucide-react';
 import Link from 'next/link';
 
-const features = [
+const safeServices = [
 	{
 		icon: Package,
 		title: 'SAFE Structuring',
-		description: 'Expert SAFE note agreement structuring.',
+		description: 'We draft SAFE agreements tailored to your fundraising goals.',
 	},
 	{
 		icon: FileText,
-		title: 'Note Documentation',
-		description: 'Comprehensive convertible note drafting.',
-	},
-	{
-		icon: Calculator,
-		title: 'Terms Calculation',
-		description: 'Conversion and valuation calculations.',
-	},
-	{
-		icon: Scale,
-		title: 'Rights Balancing',
-		description: 'Fair terms for all parties involved.',
+		title: 'Convertible Note Drafting',
+		description: 'We create convertible notes with clear terms for conversion.',
 	},
 	{
 		icon: Shield,
-		title: 'Interest Protection',
-		description: 'Safeguarding investment interests.',
-	},
-	{
-		icon: Settings,
-		title: 'Implementation',
-		description: 'Smooth execution of note agreements.',
+		title: 'Legal Compliance',
+		description: 'We ensure agreements comply with local and international laws.',
 	},
 ];
 
-const notePoints = [
-	'SAFE note structuring',
-	'Convertible note drafting',
-	'Conversion terms',
-	'Valuation caps',
-	'Discount rates',
-	'Maturity provisions',
+const safeBenefits = [
+	'Raise funds quickly without immediate equity dilution',
+	'Provide flexibility for both founders and investors',
+	'Simplify early-stage fundraising with streamlined agreements',
 ];
 
 export default function SafeNotesPage() {
@@ -80,7 +62,7 @@ export default function SafeNotesPage() {
 						</span>
 					</h1>
 					<p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-						Expert Structuring of Investment Notes
+						Flexible Fundraising with SAFE & Convertible Notes
 					</p>
 				</motion.div>
 			</motion.section>
@@ -98,57 +80,64 @@ export default function SafeNotesPage() {
 
 						<div className="text-[#393E46] space-y-6">
 							<p className="text-lg leading-relaxed">
-								Our SAFE and convertible note services provide comprehensive support
-								in structuring and documenting flexible investment instruments. We
-								ensure clear terms and protect both investor and company interests.
+								SAFE (Simple Agreement for Future Equity) and convertible notes offer
+								flexible ways to raise funds without immediate equity dilution. At
+								Leonard Corporate Solutions, we structure these agreements to help
+								your startup raise capital efficiently in India and worldwide.
 							</p>
-							<ul className="space-y-4 list-none pl-5">
-								{notePoints.map((item, index) => (
-									<li
-										key={index}
-										className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
-									>
-										{item}
-									</li>
-								))}
-							</ul>
 						</div>
 					</motion.div>
 
-					{/* Features Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<motion.div
-								key={feature.title}
-								className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-							>
-								<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-									✦
-								</span>
-								<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-									<feature.icon className="h-6 w-6 text-white" />
-								</div>
-								<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-									{feature.title}
-								</h3>
-								<p className="text-[#393E46]/80">{feature.description}</p>
-							</motion.div>
-						))}
+					{/* Services Section */}
+					<div>
+						<h2 className="text-3xl font-bold text-center mb-12">
+							<span className="text-[#00ADB5]">Our SAFE &</span>{' '}
+							<span className="text-[#222831]">Convertible Note Services</span>
+						</h2>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							{safeServices.map((service, index) => (
+								<motion.div
+									key={service.title}
+									className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.1 }}
+								>
+									<span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+										✦
+									</span>
+									<div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+										<service.icon className="h-6 w-6 text-white" />
+									</div>
+									<h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+										{service.title}
+									</h3>
+									<p className="text-[#393E46]/80">{service.description}</p>
+								</motion.div>
+							))}
+						</div>
 					</div>
 
-					{/* Additional Information */}
+					{/* Benefits Section */}
 					<motion.div className="relative max-w-3xl mx-auto px-8">
-						<div className="text-[#393E46] space-y-6">
-							<h2 className="text-3xl font-bold text-center mb-8">
-								<span className="text-[#00ADB5]">Expert</span>{' '}
-								<span className="text-[#222831]">Note Structuring</span>
-							</h2>
-							<p className="text-lg leading-relaxed">
-								Contact us to learn how our SAFE and convertible note services can
-								help structure flexible investment instruments for your startup.
+						<h2 className="text-3xl font-bold text-center mb-8">
+							<span className="text-[#00ADB5]">Benefits of</span>{' '}
+							<span className="text-[#222831]">SAFE & Convertible Notes</span>
+						</h2>
+						<ul className="space-y-4 list-none pl-5">
+							{safeBenefits.map((benefit, index) => (
+								<li
+									key={index}
+									className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]"
+								>
+									{benefit}
+								</li>
+							))}
+						</ul>
+						<div className="mt-12 text-center">
+							<p className="text-lg font-medium text-[#393E46]">
+								Raise funds flexibly. Contact us for SAFE and convertible note
+								services today!
 							</p>
 						</div>
 					</motion.div>

@@ -5,46 +5,28 @@ import { FileText, Shield, HandshakeIcon, Search, Scale, Settings } from 'lucide
 import Link from 'next/link';
 
 export default function ContractManagementPage() {
-  const features = [
+  const contractServices = [
     {
       icon: FileText,
-      title: "Contract Drafting",
-      description: "Expert drafting of business contracts."
+      title: "Drafting",
+      description: "We create clear, enforceable contracts tailored to your needs."
     },
     {
       icon: Search,
-      title: "Contract Review",
-      description: "Thorough analysis of agreements."
-    },
-    {
-      icon: Shield,
-      title: "Risk Management",
-      description: "Identifying and mitigating contract risks."
-    },
-    {
-      icon: HandshakeIcon,
-      title: "Negotiation Support",
-      description: "Expert contract negotiation guidance."
-    },
-    {
-      icon: Scale,
-      title: "Legal Compliance",
-      description: "Ensuring contractual compliance."
+      title: "Review",
+      description: "We analyze existing contracts to identify risks and suggest improvements."
     },
     {
       icon: Settings,
-      title: "Process Management",
-      description: "Streamlined contract management."
+      title: "Management",
+      description: "We track contract timelines, renewals, and obligations to ensure compliance."
     }
   ];
 
-  const contractPoints = [
-    'Contract drafting and review',
-    'Risk assessment',
-    'Negotiation support',
-    'Compliance verification',
-    'Template development',
-    'Process optimization'
+  const contractBenefits = [
+    'Minimize risks with well-drafted and reviewed contracts',
+    'Prevent disputes by ensuring clarity in agreements',
+    'Streamline your business operations with organized contract management'
   ];
 
   return (
@@ -73,7 +55,7 @@ export default function ContractManagementPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Contract Drafting & Management Services
+            Secure Transactions with Expert Contract Management
           </p>
         </motion.div>
       </motion.section>
@@ -91,49 +73,55 @@ export default function ContractManagementPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our contract management services provide comprehensive support for all your business agreements. From drafting and review to negotiation and ongoing management, we ensure your contracts are legally sound and effectively managed.
+                Effective contract management is essential to protect your business interests. At Leonard Corporate Solutions, we draft, review, and manage contracts to ensure your transactions are secure and legally sound in India and worldwide.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {contractPoints.map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-[#393E46]/80">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Services Grid */}
+          <div>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              <span className="text-[#00ADB5]">Our Contract</span>{' '}
+              <span className="text-[#222831]">Management Services</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {contractServices.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-12 h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <service.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#393E46]/80">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Additional Information */}
+          {/* Benefits Section */}
           <motion.div className="relative max-w-3xl mx-auto px-8">
-            <div className="text-[#393E46] space-y-6">
-              <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-[#00ADB5]">Expert</span>{' '}
-                <span className="text-[#222831]">Contract Services</span>
-              </h2>
-              <p className="text-lg leading-relaxed">
-                Contact us to learn how our contract management services can help streamline your business agreements and protect your interests.
+            <h2 className="text-3xl font-bold text-center mb-8">
+              <span className="text-[#00ADB5]">Why Contract</span>{' '}
+              <span className="text-[#222831]">Management Matters</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {contractBenefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 text-center">
+              <p className="text-lg font-medium text-[#393E46]">
+                Protect your transactions. Contact us for contract management services today!
               </p>
             </div>
           </motion.div>

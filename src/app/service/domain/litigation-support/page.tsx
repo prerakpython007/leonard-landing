@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Scale, FileText, Shield, Gavel, AlertCircle, BookOpen } from 'lucide-react';
+import { Gavel, FileText, Search } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LitigationSupportPage() {
@@ -9,32 +9,17 @@ export default function LitigationSupportPage() {
     {
       icon: Gavel,
       title: "Court Representation",
-      description: "Expert legal representation in domain-related court proceedings."
+      description: "Our experienced lawyers represent you in domain-related lawsuits."
     },
     {
       icon: FileText,
-      title: "Case Documentation",
-      description: "Comprehensive preparation of legal documents and evidence."
+      title: "Case Strategy",
+      description: "We develop tailored strategies to strengthen your legal position."
     },
     {
-      icon: Shield,
-      title: "Strategic Defense",
-      description: "Strategic planning and defense in domain name litigation."
-    },
-    {
-      icon: AlertCircle,
-      title: "Risk Assessment",
-      description: "Thorough evaluation of litigation risks and potential outcomes."
-    },
-    {
-      icon: Scale,
-      title: "Legal Compliance",
-      description: "Ensuring adherence to jurisdictional requirements and regulations."
-    },
-    {
-      icon: BookOpen,
-      title: "Expert Testimony",
-      description: "Provision of expert testimony and technical documentation."
+      icon: Search,
+      title: "Evidence Gathering",
+      description: "We compile robust evidence to support your claims."
     }
   ];
 
@@ -64,7 +49,7 @@ export default function LitigationSupportPage() {
             <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Expert Legal Support for Domain Name Disputes
+            Expert Litigation Support for Domain Name Disputes
           </p>
         </motion.div>
       </motion.section>
@@ -82,27 +67,13 @@ export default function LitigationSupportPage() {
 
             <div className="text-[#393E46] space-y-6">
               <p className="text-lg leading-relaxed">
-                Our litigation support services provide comprehensive legal assistance in domain name disputes. From case preparation to court representation, we ensure your interests are protected throughout the legal process.
+                When domain name disputes escalate, you need expert legal representation. At Leonard Corporate Solutions, we provide litigation support for complex domain name cases, ensuring your rights are protected in court.
               </p>
-              <ul className="space-y-4 list-none pl-5">
-                {[
-                  'Expert court representation',
-                  'Case strategy development',
-                  'Evidence gathering and documentation',
-                  'Legal research and analysis',
-                  'Expert witness coordination',
-                  'Settlement negotiation support'
-                ].map((item, index) => (
-                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -122,6 +93,15 @@ export default function LitigationSupportPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Call to Action */}
+          <motion.div className="relative max-w-3xl mx-auto px-8">
+            <div className="text-[#393E46] space-y-6">
+              <p className="text-lg leading-relaxed text-center">
+                Don't let domain disputes harm your business. Contact us for litigation support today!
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
