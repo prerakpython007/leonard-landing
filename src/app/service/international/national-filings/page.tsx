@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -103,7 +102,7 @@ export default function InternationalTrademarkFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -127,7 +126,7 @@ export default function InternationalTrademarkFilingPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[90vh] sm:max-h-[95vh] overflow-y-auto p-4 sm:p-10 shadow-xl border border-[#00ADB5]/20 relative mx-2 sm:mx-6"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -182,19 +181,19 @@ export default function InternationalTrademarkFilingPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Trademark Filing
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-8 sm:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-8 text-lg sm:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light px-4">
             Expand Your Brand Globally with the Madrid Protocol
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-16 sm:py-24 md:py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
             className="relative max-w-3xl mx-auto px-8"
@@ -239,7 +238,7 @@ export default function InternationalTrademarkFilingPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-4 md:px-16">
             {madridProtocolInfo.map((info: MadridProtocolInfo, index: number) => (
               <motion.div
                 key={info.id}
