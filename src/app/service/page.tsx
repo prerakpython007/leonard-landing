@@ -444,14 +444,7 @@ export default function Services() {
       </section>
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+     
     </div>
   );
 }

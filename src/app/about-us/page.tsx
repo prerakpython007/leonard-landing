@@ -20,7 +20,6 @@ const TEAM_MEMBERS = [
     image: "/rohitbhai.webp",
     role: "Leadership"
   },
-
   // Legal & Taxation
   {
     name: "Dr. Farrukh Khan",
@@ -52,7 +51,6 @@ const TEAM_MEMBERS = [
     image: "https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg",
     role: "Legal"
   },
-
   // Strategy & Operations
   {
     name: "Prabodhan Makwana",
@@ -78,7 +76,6 @@ const TEAM_MEMBERS = [
     image: "https://images.pexels.com/photos/2381071/pexels-photo-2381071.jpeg",
     role: "Strategy"
   },
-
   // Administrative & Support
   {
     name: "Prachi Jadhav",
@@ -199,7 +196,6 @@ export default function AboutPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Corner Angles for Hero Section */}
           <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
           <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
           <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
@@ -222,15 +218,15 @@ export default function AboutPage() {
           </motion.div>
         </motion.section>
 
-        {/* Main Content Section with better spacing */}
+        {/* Main Content Section with improved spacing */}
         <section className="py-16 sm:py-24 px-4 md:px-16 lg:px-24 relative mt-24 sm:mt-40">
           <div className="max-w-7xl mx-auto relative">
             {/* Background Decorations */}
             <div className="absolute -top-20 right-10 text-[#00ADB5] text-7xl animate-pulse opacity-30">✦</div>
             <div className="absolute bottom-10 left-0 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</div>
             
-            <div className="grid md:grid-cols-2 gap-20 items-center relative">
-              {/* Content Section - Now First */}
+            <div className="grid md:grid-cols-2 gap-12 sm:gap-20 items-start relative">
+              {/* Content Section */}
               <motion.div
                 className="space-y-8 relative z-10"
                 initial={{ opacity: 0, x: -50 }}
@@ -255,7 +251,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-2 gap-8 sm:mt-12">
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
                     <h3 className="text-4xl font-bold text-[#00ADB5]">10+</h3>
                     <p className="text-[#393E46] font-medium">Years of Excellence</p>
@@ -265,13 +261,11 @@ export default function AboutPage() {
                     <p className="text-[#393E46] font-medium">Satisfied Clients</p>
                   </div>
                 </div>
-
-               
               </motion.div>
 
-              {/* Image Section - Now Second with Decorative Elements */}
+              {/* Image Section */}
               <motion.div
-                className="relative h-[700px] -mt-20"
+                className="relative h-[500px] sm:h-[600px] mt-12 md:mt-0"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -301,7 +295,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Vision & Mission Sections with improved mobile layout */}
+        {/* Vision & Mission Sections */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-white/50">
           <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
             {/* Vision Section */}
@@ -406,7 +400,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Section with better grid layout */}
+        {/* Team Section */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative">
           <div className="max-w-7xl mx-auto">
             <motion.div

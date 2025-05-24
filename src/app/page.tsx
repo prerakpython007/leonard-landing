@@ -4,7 +4,7 @@ import Landing from "~/_components/Landing";
 import Testimonials from "~/_components/Testimonial";
 import Ticker from "~/_components/ticker";
 import Experience from "~/_components/Experience";
-import Disclaimer from "~/components/Disclaimer";
+import ContactUsSection from "~/_components/ContactUsSection";
 
 export default function HomePage() {
   return (
@@ -14,7 +14,7 @@ export default function HomePage() {
       <Ticker />
       <Testimonials />
       <Experience />
-      <Disclaimer />
+      <ContactUsSection />
     </main>
   );
 }
