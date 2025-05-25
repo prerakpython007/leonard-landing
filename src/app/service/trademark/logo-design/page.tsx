@@ -1,9 +1,10 @@
 'use client';
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Brush, Shield, Search } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
 // Define the interface for logo design info
 interface LogoDesignInfo {
@@ -17,65 +18,65 @@ interface LogoDesignInfo {
 const logoDesignInfo: LogoDesignInfo[] = [
   {
     id: 1,
-    title: "What is a Logo?",
-    description: "A logo is a distinctive visual symbol that represents a business, its products, or services, often combining graphics, text, or numbers to convey its identity.",
-    category: "Logo Basics",
+    title: 'What is a Logo?',
+    description: 'A visual symbol representing your business or brand.',
+    category: 'Logo Basics',
     detailedContent: `
       • A unique visual mark representing your business or brand.
-      • Combines graphics, typography, colors, and sometimes numbers.
-      • Acts as the face of your brand across marketing channels.
-      • Conveys your business’s values, mission, and personality.
+      • Combining graphics, typography, colors, and sometimes numbers.
+      • Acting as the face of your brand across marketing channels.
+      • Conveying your business’s values, mission, and personality.
       • Designed to be memorable and instantly recognizable.
       • Applicable to businesses, products, or services.
     `,
   },
   {
     id: 2,
-    title: "Why Logo Design Matters",
-    description: "A well-crafted logo enhances brand recognition, communicates professionalism, and sets your business apart in a competitive market.",
-    category: "Significance",
+    title: 'Why Logo Design Matters',
+    description: 'Enhances recognition and sets your brand apart.',
+    category: 'Significance',
     detailedContent: `
-      • Boosts brand recognition with a memorable visual identity.
-      • Communicates professionalism and builds customer trust.
-      • Differentiates your business in a crowded marketplace.
-      • Creates a lasting first impression for potential customers.
-      • Anchors your brand across digital and physical platforms.
-      • Influences customer perception and loyalty.
+      • Boosting brand recognition with a memorable visual identity.
+      • Communicating professionalism and building customer trust.
+      • Differentiating your business in a crowded marketplace.
+      • Creating a lasting first impression for potential customers.
+      • Anchoring your brand across digital and physical platforms.
+      • Influencing customer perception and loyalty.
     `,
   },
   {
     id: 3,
-    title: "Logo Design Process",
-    description: "Our process involves creative design, thorough trademark searches, and legal compliance to deliver a unique logo that aligns with your brand vision.",
-    category: "Design Process",
+    title: 'Logo Design Process',
+    description: 'Creative design with trademark and legal compliance.',
+    category: 'Design Process',
     detailedContent: `
-      • Understand your brand’s vision, values, and target audience.
-      • Brainstorm and sketch creative logo concepts.
-      • Conduct trademark searches to ensure uniqueness.
-      • Design multiple logo variations for client review.
-      • Refine selected design based on feedback.
-      • Finalize with legal compliance for trademark registration.
+      • Understanding your brand’s vision, values, and target audience.
+      • Brainstorming and sketching creative logo concepts.
+      • Conducting trademark searches to ensure uniqueness.
+      • Designing multiple logo variations for client review.
+      • Refining selected design based on feedback.
+      • Finalizing with legal compliance for trademark registration.
     `,
   },
   {
     id: 4,
-    title: "Trademark Protection",
-    description: "Trademarking your logo safeguards your brand’s identity, preventing others from using similar designs that could confuse customers.",
-    category: "Legal Protection",
+    title: 'Trademark Protection',
+    description: 'Safeguards your logo from unauthorized use.',
+    category: 'Legal Protection',
     detailedContent: `
-      • Secures exclusive rights to your logo’s design.
-      • Prevents competitors from using similar marks.
-      • Protects against customer confusion in the market.
-      • Strengthens legal standing in infringement disputes.
-      • Enhances brand value and market credibility.
-      • Covers all relevant trademark classes for your business.
+      • Securing exclusive rights to your logo’s design.
+      • Preventing competitors from using similar marks.
+      • Protecting against customer confusion in the market.
+      • Strengthening legal standing in infringement disputes.
+      • Enhancing brand value and market credibility.
+      • Covering all relevant trademark classes for your business.
     `,
   },
   {
     id: 5,
-    title: "Comprehensive Services",
-    description: "We offer logo design, trademark registration, objection handling, and infringement analysis across all 45 trademark classes for businesses of all sizes.",
-    category: "Our Services",
+    title: 'Comprehensive Services',
+    description: 'Design, registration, and protection for all businesses.',
+    category: 'Our Services',
     detailedContent: `
       • Custom logo design tailored to your brand vision.
       • Trademark search and registration across 45 classes.
@@ -85,6 +86,30 @@ const logoDesignInfo: LogoDesignInfo[] = [
       • End-to-end service from design to legal protection.
     `,
   },
+];
+
+const designServices = [
+  {
+    icon: Brush,
+    title: 'Creative Design',
+    description: 'We craft unique logos reflecting your brand’s vision.',
+  },
+  {
+    icon: Search,
+    title: 'Trademark Search',
+    description: 'We ensure your logo is unique with thorough searches.',
+  },
+  {
+    icon: Shield,
+    title: 'Legal Protection',
+    description: 'We secure your logo with trademark registration.',
+  },
+];
+
+const benefits = [
+  'Build a memorable brand identity',
+  'Stand out in a competitive market',
+  'Protect your logo with trademark registration',
 ];
 
 export default function LogoDesigningPage() {
@@ -102,8 +127,8 @@ export default function LogoDesigningPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
+      {/* Grid Pattern */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -111,14 +136,14 @@ export default function LogoDesigningPage() {
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px',
+          backgroundSize: '20px 20px sm:30px 30px',
         }}
       />
 
       {/* Popup */}
       {showPopup && selectedInfo && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -126,7 +151,7 @@ export default function LogoDesigningPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-md relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -144,273 +169,196 @@ export default function LogoDesigningPage() {
               onClick={closePopup}
               className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
             >
-              <X size={32} />
+              <X size={24} />
             </button>
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
-            <div className="text-[#393E46]/85 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-4 sm:mb-6">{selectedInfo.title}</h2>
+            <ul className="text-[#393E46]/85 text-sm sm:text-base leading-relaxed space-y-2">
               {selectedInfo.detailedContent.split('\n').map((line, index) => {
                 line = line.trim();
                 if (!line) return null;
                 return (
-                  <p key={index} className="mb-2">
-                    {line.startsWith('•') ? line : `• ${line}`}
-                  </p>
+                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    {line.replace(/^•\s*/, '')}
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </motion.div>
         </motion.div>
       )}
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
 
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center px-4"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Logo Designing
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Create Your Brand Identity
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      {/* Main Content */}
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-24 lg:space-y-32">
+          {/* Overview */}
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="text-[#393E46] space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg leading-relaxed">
+                A logo is the visual cornerstone of your brand, instantly conveying your identity and values. At BrandSecure, we design unique, memorable logos and ensure their legal protection through trademark registration, helping your business stand out in India and beyond.
+              </p>
+            </div>
+          </motion.div>
 
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Elevate Your</span>{' '}
-                <span className="text-[#393E46]">Brand</span>
-              </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                A logo is the cornerstone of your brand’s identity, creating instant recognition and shaping how customers perceive your business. At BrandSecure, we specialize in designing visually striking and legally protected logos tailored to your vision. Our team ensures your logo stands out while being safeguarded through trademark registration.
+          {/* Logo Design Info Section */}
+          <div className="space-y-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">Explore</span>{' '}
+              <span className="text-[#00ADB5]">Logo Design</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {logoDesignInfo.map((info, index) => (
+                <motion.div
+                  key={info.id}
+                  className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <Brush className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {info.title}
+                  </h3>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{info.description}</p>
+                  <button
+                    onClick={() => handleExploreClick(info)}
+                    className="mt-4 inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 text-sm sm:text-base"
+                  >
+                    Explore
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Strategy Section */}
+          <div className="space-y-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">How We</span>{' '}
+              <span className="text-[#00ADB5]">Design Your Logo</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {designServices.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Benefits Section */}
+          <motion.div
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">Why You Need</span>{' '}
+              <span className="text-[#00ADB5]">a Logo</span>
+            </h2>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 text-sm sm:text-base before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative py-8 sm:py-12">
+              <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Design Your Logo</h2>
+              <p className="text-[#393E46] text-sm sm:text-lg leading-relaxed mb-6">
+                Create a unique brand identity with our expert design and trademark services. Contact us today!
               </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
-                </a>{' '}
-                to design your logo today.
-              </p>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
+              >
+                Contact Us
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Logo Design Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Logo Design</span>{' '}
-              <span className="text-[#00ADB5]">Essentials</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {logoDesignInfo.map((info: LogoDesignInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Importance of Logo Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Why Your Business</span>{' '}
-              <span className="text-[#00ADB5]">Needs a Logo</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {[
-              {
-                title: 'Brand Identity',
-                description: 'A logo serves as the visual embodiment of your brand, conveying your business’s values and mission at a glance.',
-              },
-              {
-                title: 'Customer Recognition',
-                description: 'A memorable logo helps customers instantly recognize your brand, fostering trust and loyalty in a crowded market.',
-              },
-              {
-                title: 'Competitive Edge',
-                description: 'A unique logo distinguishes your business from competitors, making it easier for customers to choose your brand.',
-              },
-              {
-                title: 'Marketing Consistency',
-                description: 'Your logo anchors your marketing materials, ensuring a cohesive brand image across websites, ads, and packaging.',
-              },
-              {
-                title: 'Emotional Connection',
-                description: 'Colors, shapes, and design elements in your logo evoke emotions, building a deeper bond with your audience.',
-              },
-              {
-                title: 'Legal Safeguard',
-                description: 'Trademarking your logo protects it from imitation, ensuring your brand’s uniqueness remains exclusive.',
-              },
-            ].map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{benefit.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Services Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our Logo</span>{' '}
-              <span className="text-[#00ADB5]">Design Services</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 px-4 md:px-16">
-            {[
-              {
-                title: 'Custom Logo Creation',
-                description: 'Our designers craft unique logos that reflect your brand’s vision, incorporating symbols, typography, and taglines as needed.',
-              },
-              {
-                title: 'Trademark Search & Registration',
-                description: 'We conduct comprehensive trademark searches and handle the registration process to secure your logo’s legal protection.',
-              },
-              {
-                title: 'Objection & Opposition Support',
-                description: 'Our team manages trademark objections and oppositions, ensuring your logo’s registration process stays on track.',
-              },
-              {
-                title: 'Infringement Analysis',
-                description: 'We analyze potential infringements to protect your logo from unauthorized use, preserving your brand’s integrity.',
-              },
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Design</span>{' '}
-              <span className="text-[#393E46]">Your Logo?</span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Build a powerful brand identity with BrandSecure’s expert logo design and trademark services. Contact us today to create a logo that resonates with your audience.
-            </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8">
         <Link
           href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
         >
           <span className="mr-2">←</span> Back to Home
         </Link>

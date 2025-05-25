@@ -1,12 +1,14 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
+import { Shield, FileText, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { X } from 'lucide-react';
 
-// Define the interface for trademark info
-interface TrademarkInfo {
+// Interface for trademark renewal information
+interface RenewalInfo {
   id: number;
   title: string;
   description: string;
@@ -14,84 +16,108 @@ interface TrademarkInfo {
   detailedContent: string;
 }
 
-const trademarkInfo: TrademarkInfo[] = [
+const renewalInfo: RenewalInfo[] = [
   {
     id: 1,
-    title: 'Understanding Trademarks',
-    description: 'A trademark is a unique symbol, design, or expression that sets your products or services apart from competitors. It includes logos, brand names, slogans, and other identifiable features.',
-    category: 'Trademark Basics',
+    title: 'What is Trademark Renewal?',
+    description: 'Trademark renewal is the process of extending the legal protection of your registered trademark to maintain its validity.',
+    category: 'Renewal Basics',
     detailedContent: `
-      • A unique sign, logo, word, or phrase identifying your goods/services.
-      • Ensures brand recognition and consumer trust.
-      • Includes word marks (e.g., brand names), logos, slogans, sounds, or shapes.
-      • Registered for specific classes under the Nice Classification system.
-      • Provides legal protection against misuse.
-      • Enhances market presence and brand reputation.
+      • Required every 10 years from the registration date.
+      • Ensures continued exclusive rights to your mark.
+      • Prevents cancellation due to non-renewal.
+      • Maintains brand recognition and consumer trust.
+      • Filed using Form TM-R with the Trademark Registry.
+      • Applicable to trademarks under the Trade Marks Act.
     `,
   },
   {
     id: 2,
-    title: 'Why Register a Trademark?',
-    description: 'Trademark registration secures your exclusive rights to use the mark, protects against unauthorized use, and allows legal action against infringements, ensuring brand protection.',
+    title: 'Importance of Timely Renewal',
+    description: 'Timely renewal safeguards your trademark’s legal protection, preventing loss of rights and potential infringements.',
     category: 'Legal Protection',
     detailedContent: `
-      • Grants exclusive rights to use the mark in registered classes.
-      • Enables legal action against infringers for damages or injunctions.
-      • Offers nationwide protection in India.
-      • Increases brand credibility and valuation.
-      • Supports international filings via Madrid Protocol.
-      • Prevents customer confusion from similar marks.
+      • Preserves exclusive rights in registered classes.
+      • Avoids costly re-registration or legal disputes.
+      • Protects against unauthorized use by competitors.
+      • Maintains brand credibility and market presence.
+      • Ensures compliance with Indian trademark laws.
+      • Prevents lapse, which could lead to public domain use.
     `,
   },
   {
     id: 3,
-    title: 'Trademark Registration Process',
-    description: 'The process involves conducting a trademark search, filing an application, examination by the trademark office, publication in the journal, and final registration if unopposed.',
+    title: 'Renewal Process',
+    description: 'The renewal process involves filing Form TM-R, paying fees, and ensuring active use to maintain trademark validity.',
     category: 'Process Guide',
     detailedContent: `
-      • Conduct a search to check for existing similar marks.
-      • File application online with mark details and class.
-      • Registrar examines for compliance with Trade Marks Act.
-      • Respond to objections within 30 days if raised.
-      • Mark published in Trademark Journal for 90 days.
-      • Registered with certificate if no oppositions.
+      • File Form TM-R within 6 months before expiry.
+      • Pay prescribed fees (online or offline).
+      • Submit proof of active use if requested.
+      • Registrar updates the trademark register.
+      • Receive renewal certificate upon approval.
+      • Late renewal possible within 6 months post-expiry with surcharge.
     `,
   },
   {
     id: 4,
-    title: 'Trademark Maintenance',
-    description: 'Post-registration, trademarks need periodic renewals every ten years and active use to maintain validity. Monitoring for infringements is key to protecting your rights.',
-    category: 'Trademark Management',
+    title: 'Restoration After Expiry',
+    description: 'If a trademark lapses, restoration is possible within a grace period, but it involves additional costs and risks.',
+    category: 'Restoration Guide',
     detailedContent: `
-      • Renew every 10 years using Form TM-R.
-      • Use mark actively to avoid cancellation after 5 years.
-      • Monitor market and journal for infringements.
-      • Take legal action against unauthorized use.
-      • Update registry for ownership or address changes.
-      • Maintain records of use (e.g., invoices).
+      • Apply for restoration within 6 months post-expiry.
+      • File Form TM-R with higher restoration fees.
+      • Provide reasons for delay and proof of use.
+      • Risk of third-party claims during lapse period.
+      • Registrar may impose conditions for restoration.
+      • Successful restoration reinstates protection.
     `,
   },
   {
     id: 5,
-    title: 'Global Trademark Protection',
-    description: 'Safeguarding your trademark internationally requires filing in each country or using systems like the Madrid Protocol for efficient multi-country registration.',
-    category: 'Global Trademarks',
+    title: 'Monitoring and Maintenance',
+    description: 'Regular monitoring and active use of your trademark ensure seamless renewals and ongoing protection.',
+    category: 'Maintenance Tips',
     detailedContent: `
-      • File directly in each country’s trademark office.
-      • Use Madrid Protocol for single application in 128 countries.
-      • Leverage regional systems like EUIPO for EU protection.
-      • Conduct international searches for mark availability.
-      • Ensure mark is culturally appropriate.
-      • Monitor global markets for infringements.
+      • Track renewal deadlines using a trademark calendar.
+      • Maintain records of use (e.g., invoices, ads).
+      • Monitor market for potential infringements.
+      • Update registry for ownership or address changes.
+      • Engage professionals for timely filings.
+      • Ensure continuous use to avoid cancellation.
     `,
   },
 ];
 
-export default function TrademarkRegistrationPage() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedInfo, setSelectedInfo] = useState<TrademarkInfo | null>(null);
+const renewalServices = [
+  {
+    icon: Clock,
+    title: 'Renewal Filing',
+    description: 'We manage timely Form TM-R submissions.',
+  },
+  {
+    icon: FileText,
+    title: 'Documentation Support',
+    description: 'We assist with proof of use and records.',
+  },
+  {
+    icon: Shield,
+    title: 'Legal Guidance',
+    description: 'We ensure compliance and protection.',
+  },
+];
 
-  const handleExploreClick = (info: TrademarkInfo) => {
+const benefits = [
+  'Maintain exclusive rights to your brand',
+  'Prevent loss of trademark protection',
+  'Enhance brand credibility and market trust',
+];
+
+export default function TrademarkRenewalPage() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedInfo, setSelectedInfo] = useState<RenewalInfo | null>(null);
+
+  const handleExploreClick = (info: RenewalInfo) => {
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -103,7 +129,7 @@ export default function TrademarkRegistrationPage() {
 
   return (
     <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
-      {/* Grid Pattern Overlay */}
+      {/* Grid Pattern */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -111,7 +137,7 @@ export default function TrademarkRegistrationPage() {
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px',
+          backgroundSize: '20px 20px sm:30px 30px',
         }}
       />
 
@@ -126,7 +152,7 @@ export default function TrademarkRegistrationPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-6 sm:p-8 md:p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-md relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -144,294 +170,206 @@ export default function TrademarkRegistrationPage() {
               onClick={closePopup}
               className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
             >
-              <X size={32} />
+              <X size={24} />
             </button>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
-            <div className="text-[#393E46]/85 text-base sm:text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-4 sm:mb-6">{selectedInfo.title}</h2>
+            <ul className="text-[#393E46]/85 text-sm sm:text-base leading-relaxed space-y-2">
               {selectedInfo.detailedContent.split('\n').map((line, index) => {
                 line = line.trim();
                 if (!line) return null;
                 return (
-                  <p key={index} className="mb-2">
-                    {line.startsWith('•') ? line : `• ${line}`}
-                  </p>
+                  <li key={index} className="relative pl-6 before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    {line.replace(/^•\s*/, '')}
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </motion.div>
         </motion.div>
       )}
 
       {/* Hero Section */}
       <motion.section
-        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
 
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center px-4"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Registration
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Trademark Renewal
+            <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Brand Identity with Expert Trademark Solutions
+            Maintain Your Brand’s Legal Protection
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto">
+      {/* Main Content */}
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-24 lg:space-y-32">
+          {/* Overview */}
           <motion.div
-            className="relative max-w-3xl mx-auto p-8 sm:p-12"
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Protect Your Brand</span>{' '}
-                <span className="text-[#393E46]">with Trademark Registration</span>
-              </h2>
-              <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
-                At Leonard Corporate Solutions, we understand the importance of your brand’s unique identity—logos, slogans, or packaging—in today’s competitive market. Our expert trademark registration services guide startups, established companies, and individual entrepreneurs through the process in India, ensuring your intellectual property is protected and your market presence is strengthened.
+            <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="text-[#393E46] space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg leading-relaxed">
+                At Leonard Corporate Solutions, we specialize in handling timely trademark renewals to maintain your brand’s legal protection and validity. Our expert services ensure your trademark—logos, names, or slogans—remains secure in India’s competitive market.
               </p>
-              <p className="text-[#393E46] text-base sm:text-lg font-medium">
-                📩 Contact us at{' '}
+              <p className="text-base sm:text-lg font-medium">
+                📧 Reach out at{' '}
                 <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
                   info@leonardsolutions.in
-                </a>{' '}
-                to start securing your brand today.
+                </a>
               </p>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Trademark Info Section */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Trademark</span>{' '}
-              <span className="text-[#00ADB5]">Essentials</span>
+          {/* Renewal Info Section */}
+          <div className="space-y-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">Explore</span>{' '}
+              <span className="text-[#00ADB5]">Trademark Renewal</span>
             </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-            {trademarkInfo.map((info: TrademarkInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {renewalInfo.map((info, index) => (
+                <motion.div
+                  key={info.id}
+                  className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{info.description}</p>
                   <button
                     onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                    className="mt-4 inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 text-sm sm:text-base"
                   >
                     Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                </div>
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Types of Trademarks Section */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Types of Trademark</span>{' '}
-              <span className="text-[#00ADB5]">Registrations</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-            {[
-              { title: 'Product Mark', description: 'Used for tangible goods, product marks identify the origin of products and uphold a company’s reputation. These fall under classes 1-34.' },
-              { title: 'Service Mark', description: 'Service marks distinguish service providers, covering classes 35-45, and help differentiate services in the market.' },
-              { title: 'Collective Mark', description: 'Represents a group’s products or services, protected by associations or public institutions for collective use.' },
-              { title: 'Certification Mark', description: 'Indicates product quality, origin, or standards, commonly used for packaged goods, toys, and electronics.' },
-              { title: 'Shape Mark', description: 'Protects unique product shapes that are distinctive and recognizable to consumers as brand-specific.' },
-              { title: 'Sound Mark', description: 'Distinctive sounds, like audio mnemonics or jingles, associated with a brand’s products or services.' },
-            ].map((mark, index) => (
-              <motion.div
-                key={mark.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{mark.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{mark.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Registration Process Section */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              <span className="text-[#222831]">How to Register</span>{' '}
-              <span className="text-[#00ADB5]">a Trademark in India</span>
-            </h2>
-          </div>
-          <div className="space-y-6">
-            {[
-              { title: 'Trademark Search', description: 'Conduct a thorough search to ensure your trademark is unique and avoid conflicts with existing marks.' },
-              { title: 'Application Filing', description: 'Submit the application with the Trademark Registrar, including the Vienna Codification for figurative elements.' },
-              { title: 'Examination', description: 'The Registrar reviews the application for accuracy and may raise objections, which can be addressed by the applicant.' },
-              { title: 'Journal Publication', description: 'Approved trademarks are published in the Trademark Journal for 90 days, allowing public objections.' },
-              { title: 'Registration', description: 'If no objections are raised, the trademark is registered, and the certificate is issued, allowing use of the ® symbol.' },
-            ].map((step, index) => (
-              <motion.div
-                key={step.title}
-                className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{index + 1}. {step.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility and Documents Section */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 md:mb-24">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Eligibility and</span>{' '}
-              <span className="text-[#00ADB5]">Required Documents</span>
-            </h2>
-          </div>
-          <motion.div
-            className="relative bg-white p-8 rounded-xl shadow-md border border-[#00ADB5]/10 max-w-full"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ y: -5 }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
-                <ul className="text-[#393E46]/80 list-disc list-inside mb-6 text-base sm:text-lg">
-                  <li>Individuals</li>
-                  <li>Joint owners</li>
-                  <li>Proprietorship firms</li>
-                  <li>Partnership firms (up to 10 partners)</li>
-                  <li>Limited Liability Partnerships (LLPs)</li>
-                  <li>Indian and foreign companies</li>
-                  <li>Trusts and societies</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-                <p className="text-[#393E46]/80 mb-4 text-base sm:text-lg">Documents vary by applicant type but generally include:</p>
-                <ul className="text-[#393E46]/80 list-disc list-inside text-base sm:text-lg">
-                  <li>PAN card and Aadhar card (for individuals and proprietorships)</li>
-                  <li>Incorporation certificate and company PAN card (for companies and LLPs)</li>
-                  <li>Partnership deed (for partnership firms)</li>
-                  <li>Trust deed (for trusts)</li>
-                  <li>MSME certificate and logo (if applicable)</li>
-                </ul>
-              </div>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
 
-      {/* Call to Action Section */}
-      <section className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 md:px-8 lg:px-12 mb-12">
-        <div className="max-w-7xl mx-auto">
+          {/* Services Section */}
+          <div className="space-y-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">Our</span>{' '}
+              <span className="text-[#00ADB5]">Renewal Services</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {renewalServices.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
+                    <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Benefits Section */}
           <motion.div
-            className="relative max-w-3xl mx-auto p-8 sm:p-12 text-center"
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
-              <span className="text-[#393E46]">Your Brand?</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+              <span className="text-[#222831]">Why Renew</span>{' '}
+              <span className="text-[#00ADB5]">Your Trademark?</span>
             </h2>
-            <p className="text-[#393E46] text-base sm:text-lg leading-relaxed mb-6">
-              Safeguard your business identity with Leonard Corporate Solutions’ expert trademark registration services. Start today to ensure your brand’s exclusivity in India’s competitive market.
-            </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            <ul className="space-y-4 list-none pl-5">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="relative pl-6 text-sm sm:text-base before:content-['✦'] before:absolute before:left-0 before:text-[#00ADB5]">
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative py-8 sm:py-12">
+              <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Secure Your Brand</h2>
+              <p className="text-[#393E46] text-sm sm:text-lg leading-relaxed mb-6">
+                Ensure your trademark remains protected with our expert renewal services. Contact us today!
+              </p>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
+              >
+                Contact Us
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

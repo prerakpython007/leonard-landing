@@ -1,145 +1,145 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import Link from "next/link"
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-// Define the interface for Contract Review info
-interface ContractReviewInfo {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-}
-
-const contractReviewInfo: ContractReviewInfo[] = [
+const contractReviewInfo = [
   {
     id: 1,
-    title: "What is Contract Review?",
-    description: "Contract review involves a thorough analysis of contract terms to ensure clarity, compliance, and protection of your interests.",
-    category: "Basics"
+    title: 'What is Contract Review?',
+    description: 'Contract review involves a thorough analysis of contract terms to ensure clarity, compliance, and protection of your interests.',
+    category: 'Basics',
   },
   {
     id: 2,
-    title: "Benefits of Review",
-    description: "Identifies risks, ensures enforceability, and provides clarity on obligations to prevent disputes.",
-    category: "Benefits"
+    title: 'Benefits of Review',
+    description: 'Identifies risks, ensures enforceability, and provides clarity on obligations to prevent disputes.',
+    category: 'Benefits',
   },
   {
     id: 3,
-    title: "Who Needs It?",
-    description: "Businesses, freelancers, or individuals signing or drafting contracts benefit from professional review.",
-    category: "Eligibility"
+    title: 'Who Needs It?',
+    description: 'Businesses, freelancers, or individuals signing or drafting contracts benefit from professional review.',
+    category: 'Eligibility',
   },
   {
     id: 4,
-    title: "Review Timeline",
-    description: "Typically completed within 1-5 days, depending on the contract’s complexity.",
-    category: "Timeline"
+    title: 'Review Timeline',
+    description: 'Typically completed within 1-5 days, depending on the contract’s complexity.',
+    category: 'Timeline',
   },
   {
     id: 5,
-    title: "Our Approach",
-    description: "We provide detailed, clause-by-clause analysis with actionable recommendations to safeguard your interests.",
-    category: "Process"
-  }
-]
+    title: 'Our Approach',
+    description: 'We provide detailed, clause-by-clause analysis with actionable recommendations to safeguard your interests.',
+    category: 'Process',
+  },
+];
 
 export default function ContractReviewPage() {
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat">
-      {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none" 
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
+      {/* Grid Pattern */}
+      <div
+        className="fixed inset-0 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px'
+          backgroundSize: '20px 20px sm:30px 30px',
         }}
       />
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center px-4"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Contract Review
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Ensure Your Contracts Are Secure and Compliant
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      {/* Main Content */}
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-24 lg:space-y-32">
+          {/* Introduction Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white p-8 rounded-xl shadow-lg"
-          >
-            <h2 className="text-3xl font-bold text-[#222831] mb-4">Secure Your Agreements</h2>
-            <p className="text-[#393E46]/80 mb-6">
-              Our contract review services ensure your agreements are clear, enforceable, and free of hidden risks. At DesignSecure, we meticulously analyze every clause to protect your interests and ensure compliance with applicable laws.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contract Review Info Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Contract Review Essentials</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+            <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-4">Secure Your Agreements</h2>
+              <p className="text-[#393E46]/80 text-sm sm:text-base">
+                Our contract review services ensure your agreements are clear, enforceable, and free of hidden risks. At Leonard Corporate Solutions, we meticulously analyze every clause to protect your interests and ensure compliance with applicable laws.
+              </p>
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {contractReviewInfo.map((info: ContractReviewInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="p-6">
+          {/* Contract Review Info Section */}
+          <div>
+            <motion.div
+              className="text-center mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831] mb-4">Contract Review Essentials</h2>
+              <div className="w-16 sm:w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+            </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+              {contractReviewInfo.map((info, index) => (
+                <motion.div
+                  key={info.id}
+                  className="group bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                   <div className="mb-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
+                    <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium bg-white/90 backdrop-blur-sm rounded-full text-[#00ADB5]">
                       {info.category}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 mb-4 line-clamp-3">{info.description}</p>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base mb-4 line-clamp-3">{info.description}</p>
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-[#393E46]">Learn More</span>
                     <Link
                       href={`/contract/review/${info.id}`}
-                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300"
+                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 text-sm sm:text-base"
                     >
                       Explore
                       <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,183 +147,162 @@ export default function ContractReviewPage() {
                       </svg>
                     </Link>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Types of Contracts Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Types of Contracts We Review</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Types of Contracts Section */}
+          <div className="bg-[#F7F7F7] py-12 sm:py-16 rounded-xl">
             <motion.div
+              className="text-center mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831] mb-4">Types of Contracts We Review</h2>
+              <div className="w-16 sm:w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+            </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
+              {[
+                { title: 'Non-Disclosure Agreements', description: 'Ensuring confidentiality clauses protect sensitive information.' },
+                { title: 'Service Agreements', description: 'Clarifying terms for service delivery and payment obligations.' },
+                { title: 'Lease Agreements', description: 'Reviewing terms for property or equipment leasing.' },
+                { title: 'Partnership Agreements', description: 'Ensuring fair terms for business collaborations.' },
+              ].map((type, index) => (
+                <motion.div
+                  key={type.title}
+                  className="group bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {type.title}
+                  </h3>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{type.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Review Process Section */}
+          <div>
+            <motion.div
+              className="text-center mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831] mb-4">Contract Review Process</h2>
+              <div className="w-16 sm:w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+            </motion.div>
+            <div className="space-y-6 sm:space-y-8">
+              {[
+                { step: '1. Document Submission', description: 'Provide the contract draft or existing agreement for review.' },
+                { step: '2. Clause-by-Clause Review', description: 'We analyze each term for risks, ambiguities, and compliance.' },
+                { step: '3. Feedback Delivery', description: 'Receive a detailed report with recommendations and revisions.' },
+                { step: '4. Final Revisions', description: 'We assist in finalizing the contract to ensure it meets your needs.' },
+              ].map((process, index) => (
+                <motion.div
+                  key={process.step}
+                  className="group bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                    {process.step}
+                  </h3>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base">{process.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Eligibility and Documents Section */}
+          <div className="bg-[#F7F7F7] py-12 sm:py-16 rounded-xl">
+            <motion.div
+              className="text-center mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831] mb-4">Eligibility and Required Documents</h2>
+              <div className="w-16 sm:w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
+            </motion.div>
+            <motion.div
+              className="bg-white p-6 sm:p-8 rounded-xl shadow-md"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
+              viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Non-Disclosure Agreements</h3>
-              <p className="text-[#393E46]/80">Ensuring confidentiality clauses protect sensitive information.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Service Agreements</h3>
-              <p className="text-[#393E46]/80">Clarifying terms for service delivery and payment obligations.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Lease Agreements</h3>
-              <p className="text-[#393E46]/80">Reviewing terms for property or equipment leasing.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">Partnership Agreements</h3>
-              <p className="text-[#393E46]/80">Ensuring fair terms for business collaborations.</p>
+              <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3">Who Can Request a Review?</h3>
+              <ul className="text-[#393E46]/80 list-disc list-inside mb-6 text-sm sm:text-base">
+                <li>Businesses and corporations</li>
+                <li>Freelancers and independent contractors</li>
+                <li>Individuals signing agreements</li>
+                <li>Startups and entrepreneurs</li>
+              </ul>
+              <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
+              <p className="text-[#393E46]/80 mb-4 text-sm sm:text-base">Documents include:</p>
+              <ul className="text-[#393E46]/80 list-disc list-inside text-sm sm:text-base">
+                <li>Contract draft or signed agreement</li>
+                <li>Related correspondence (if applicable)</li>
+                <li>Details of parties involved</li>
+                <li>Specific concerns or objectives</li>
+              </ul>
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* Review Process Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+          {/* Call to Action */}
           <motion.div
-            className="text-center mb-12"
+            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Contract Review Process</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">1. Document Submission</h3>
-              <p className="text-[#393E46]/80">Provide the contract draft or existing agreement for review.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">2. Clause-by-Clause Review</h3>
-              <p className="text-[#393E46]/80">We analyze each term for risks, ambiguities, and compliance.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">3. Feedback Delivery</h3>
-              <p className="text-[#393E46]/80">Receive a detailed report with recommendations and revisions.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-[#222831] mb-3">4. Final Revisions</h3>
-              <p className="text-[#393E46]/80">We assist in finalizing the contract to ensure it meets your needs.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility and Documents Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Eligibility and Required Documents</h2>
-            <div className="w-24 h-1 bg-[#00ADB5] mx-auto rounded-full"></div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Request a Review?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Businesses and corporations</li>
-              <li>Freelancers and independent contractors</li>
-              <li>Individuals signing agreements</li>
-              <li>Startups and entrepreneurs</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Contract draft or signed agreement</li>
-              <li>Related correspondence (if applicable)</li>
-              <li>Details of parties involved</li>
-              <li>Specific concerns or objectives</li>
-            </ul>
+            <div className="relative py-8 sm:py-12">
+              <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Review Your Contract?</h2>
+              <p className="text-[#393E46] text-sm sm:text-lg leading-relaxed mb-6">
+                Ensure your agreements are secure with Leonard Corporate Solutions’ expert contract review services. Contact us today to protect your interests.
+              </p>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
+              >
+                Get Started
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-16 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-[#222831] mb-4">Ready to Review Your Contract?</h2>
-            <p className="text-[#393E46]/80 mb-6 max-w-2xl mx-auto">
-              Ensure your agreements are secure with DesignSecure’s expert contract review services. Contact us today to protect your interests.
-            </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      {/* Back to Home Link */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
-  )
+  );
 }
