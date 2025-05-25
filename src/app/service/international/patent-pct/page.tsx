@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -103,7 +102,7 @@ export default function InternationalPatentFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -127,7 +126,7 @@ export default function InternationalPatentFilingPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[90vh] sm:max-h-[95vh] overflow-y-auto p-4 sm:p-10 shadow-xl border border-[#00ADB5]/20 relative mx-2 sm:mx-6"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -182,19 +181,19 @@ export default function InternationalPatentFilingPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             PCT Filing
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-4 sm:-left-8 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-4 sm:-right-8 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light px-2">
             Secure Your Invention Globally with the PCT System
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-16 sm:py-24 md:py-32 px-4 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div
             className="relative max-w-3xl mx-auto px-8"
@@ -210,11 +209,11 @@ export default function InternationalPatentFilingPage() {
             <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 <span className="text-[#00ADB5]">Protect Your</span>{' '}
                 <span className="text-[#393E46]">Invention Worldwide</span>
               </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-[#393E46] leading-relaxed">
                 The Patent Cooperation Treaty (PCT) offers a streamlined way to seek patent protection in multiple countries through a single international application. At BrandSecure, we guide inventors and businesses through the PCT process, helping you safeguard your innovations across global markets efficiently and effectively.
               </p>
               <p className="text-[#393E46] text-lg font-medium">
@@ -239,7 +238,7 @@ export default function InternationalPatentFilingPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-4 md:px-16">
             {pctInfo.map((info: PCTInfo, index: number) => (
               <motion.div
                 key={info.id}
@@ -254,13 +253,15 @@ export default function InternationalPatentFilingPage() {
                   <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
                     {info.category}
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <p className="text-sm sm:text-base text-[#393E46]/80 leading-relaxed">
+                    {info.description}
+                  </p>
                   <button
                     onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                    className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
                   >
                     Explore
                     <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -319,7 +320,7 @@ export default function InternationalPatentFilingPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{country.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3">{country.title}</h3>
                 <p className="text-[#393E46]/80 text-base leading-relaxed">{country.description}</p>
               </motion.div>
             ))}
@@ -391,7 +392,7 @@ export default function InternationalPatentFilingPage() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
+            <ul className="text-sm sm:text-base text-[#393E46]/80 list-disc list-inside space-y-2 sm:space-y-3 mb-6">
               <li>Individuals with a patentable invention</li>
               <li>Businesses with a registered office in a PCT member country</li>
               <li>Partnership firms or companies with eligible inventors</li>
@@ -426,11 +427,11 @@ export default function InternationalPatentFilingPage() {
             <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
               <span className="text-[#393E46]">Your Invention Globally?</span>
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+            <p className="text-base sm:text-lg md:text-xl text-[#393E46] leading-relaxed mb-6">
               Safeguard your innovation worldwide with BrandSecure’s expert PCT filing services. Start today to secure your patent rights across global markets with a streamlined and strategic approach.
             </p>
             <Link

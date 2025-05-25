@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -103,7 +102,7 @@ export default function NationalPhaseEntryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -182,12 +181,12 @@ export default function NationalPhaseEntryPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             National Phase
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-4 sm:-left-8 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-4 sm:-right-8 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light px-2">
             Secure Your Patent Rights in Individual Countries
           </p>
         </motion.div>
@@ -210,7 +209,7 @@ export default function NationalPhaseEntryPage() {
             <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 <span className="text-[#00ADB5]">Transition to</span>{' '}
                 <span className="text-[#393E46]">National Patent Protection</span>
               </h2>
@@ -254,10 +253,10 @@ export default function NationalPhaseEntryPage() {
                   <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
                     {info.category}
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <p className="text-sm sm:text-base text-[#393E46]/80 leading-relaxed line-clamp-3">{info.description}</p>
                   <button
                     onClick={() => handleExploreClick(info)}
                     className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
@@ -319,8 +318,8 @@ export default function NationalPhaseEntryPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{country.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{country.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3">{country.title}</h3>
+                <p className="text-sm sm:text-base text-[#393E46]/80 leading-relaxed">{country.description}</p>
               </motion.div>
             ))}
           </div>
