@@ -170,10 +170,7 @@ export default function AboutPage() {
   if (!mounted) return null
 
   return (
-    <div 
-      ref={containerRef} 
-      className="min-h-screen bg-[#EEEEEE] relative rounded-b-[5%] font-montserrat overflow-x-hidden"
-    >
+    <div ref={containerRef} className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-x-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-50"
@@ -187,46 +184,41 @@ export default function AboutPage() {
         }}
       />
 
-      {/* Content sections */}
-      <div className="relative z-10">
+      <div className="relative z-10 space-y-12 sm:space-y-16 md:space-y-24">
         {/* Hero Section */}
         <motion.section
-          className="relative min-h-[60vh] sm:h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 py-20"
+          className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Corner Angles for Hero Section */}
           <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
           <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
           <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
           <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
           
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto text-center"
-          >
-            <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <motion.div className="max-w-7xl mx-auto text-center px-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
               About Us
-              <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-              <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+              <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl animate-pulse opacity-50">✦</span>
+              <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl animate-pulse opacity-50">✦</span>
             </h1>
-            <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+            <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
               Discover Our Expertise and Commitment to Excellence
             </p>
           </motion.div>
         </motion.section>
 
-        {/* Main Content Section with improved spacing */}
+        {/* Main Content Section with better spacing */}
         <section className="py-16 sm:py-24 px-4 md:px-16 lg:px-24 relative mt-24 sm:mt-40">
           <div className="max-w-7xl mx-auto relative">
             {/* Background Decorations */}
             <div className="absolute -top-20 right-10 text-[#00ADB5] text-7xl animate-pulse opacity-30">✦</div>
             <div className="absolute bottom-10 left-0 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</div>
             
-            <div className="grid md:grid-cols-2 gap-12 sm:gap-20 items-start relative">
-              {/* Content Section */}
+            <div className="grid md:grid-cols-2 gap-20 items-center relative">
+              {/* Content Section - Now First */}
               <motion.div
                 className="space-y-8 relative z-10"
                 initial={{ opacity: 0, x: -50 }}
@@ -241,8 +233,15 @@ export default function AboutPage() {
                   </h2>
                 </div>
 
-                <div className="space-y-6 text-lg text-[#393E46] leading-relaxed">
-                  <p className="relative">
+                {/* Text content with angles - Improved spacing */}
+                <div className="relative space-y-6 p-6 sm:p-8">
+                  {/* Corner Angles */}
+                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#00ADB5]" />
+                  <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#00ADB5]" />
+                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#00ADB5]" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#00ADB5]" />
+                  
+                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
                     <span className="absolute -left-4 top-0 text-[#00ADB5] opacity-20">✦</span>
                     Leonard Corporate Solutions Pvt. Ltd. is a leading Indian law firm headquartered in Mumbai, specializing exclusively in Intellectual Property Rights (IPR), Company Law, and Taxation. Since 2010, we’ve been the trusted legal partner for startups, SMEs, and multinational companies, helping them safeguard their innovations and navigate complex legal landscapes.
                   </p>
@@ -251,7 +250,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 sm:mt-12">
+                <div className="grid grid-cols-2 gap-8">
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
                     <h3 className="text-4xl font-bold text-[#00ADB5]">10+</h3>
                     <p className="text-[#393E46] font-medium">Years of Excellence</p>
@@ -263,9 +262,9 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Image Section */}
+              {/* Image Section - Now Second with Decorative Elements */}
               <motion.div
-                className="relative h-[500px] sm:h-[600px] mt-12 md:mt-0"
+                className="relative h-[700px] -mt-20"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -295,7 +294,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Vision & Mission Sections */}
+        {/* Vision & Mission Sections with improved mobile layout */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-white/50">
           <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
             {/* Vision Section */}
@@ -400,11 +399,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Section */}
+        {/* Team Section with better grid layout */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative">
           <div className="max-w-7xl mx-auto">
             <motion.div
-              className="text-center mb-16 relative"
+              className="text-center mb-12 sm:mb-16 relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -423,9 +422,9 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-              {/* Group headers */}
-              <h3 className="col-span-full text-2xl font-bold text-[#00ADB5] mt-12 mb-6 first:mt-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
+              {/* Group headers with responsive margins */}
+              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6 first:mt-0">
                 👨‍💼 Leadership
               </h3>
               {TEAM_MEMBERS.filter(member => member.role === "Leadership").map((member, index) => (
@@ -437,7 +436,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px]">
+                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -462,7 +461,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
 
-              <h3 className="col-span-full text-2xl font-bold text-[#00ADB5] mt-12 mb-6">
+              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
                 ⚖️ Legal & Taxation
               </h3>
               {TEAM_MEMBERS.filter(member => member.role === "Legal").map((member, index) => (
@@ -474,7 +473,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px]">
+                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -499,7 +498,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
 
-              <h3 className="col-span-full text-2xl font-bold text-[#00ADB5] mt-12 mb-6">
+              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
                 🧠 Strategy & Operations
               </h3>
               {TEAM_MEMBERS.filter(member => member.role === "Strategy").map((member, index) => (
@@ -511,7 +510,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px]">
+                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -536,7 +535,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
 
-              <h3 className="col-span-full text-2xl font-bold text-[#00ADB5] mt-12 mb-6">
+              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
                 🗂️ Administrative & Support
               </h3>
               {TEAM_MEMBERS.filter(member => member.role === "Administrative").map((member, index) => (
@@ -548,7 +547,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px]">
+                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
                     <Image
                       src={member.image}
                       alt={member.name}

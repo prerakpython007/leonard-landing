@@ -1,9 +1,16 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { DollarSign, FileText, Briefcase, Scale, UserCheck, Package } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import {
+  DollarSign,
+  FileText,
+  Briefcase,
+  Scale,
+  UserCheck,
+  Package,
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function InvestmentFundraisingPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -11,44 +18,50 @@ export default function InvestmentFundraisingPage() {
   const serviceCards = [
     {
       icon: DollarSign,
-      title: 'Venture Capital Advisory',
-      description: 'Navigate VC funding rounds with expert legal guidance on terms and negotiations.',
-      route: '/service/investment/venture-capital',
+      title: "Venture Capital Advisory",
+      description:
+        "Navigate VC funding rounds with expert legal guidance on terms and negotiations.",
+      route: "/service/investment/venture-capital",
     },
     {
       icon: FileText,
-      title: 'Angel Investment Agreements',
-      description: 'Draft and review agreements for angel funding to secure your startup’s growth.',
-      route: '/service/investment/angel-investment',
+      title: "Angel Investment Agreements",
+      description:
+        "Draft and review agreements for angel funding to secure your startup’s growth.",
+      route: "/service/investment/angel-investment",
     },
     {
       icon: Package,
-      title: 'SAFE Notes & Convertible Notes',
-      description: 'Structure SAFE and convertible note agreements for flexible fundraising.',
-      route: '/service/investment/safe-notes',
+      title: "SAFE Notes & Convertible Notes",
+      description:
+        "Structure SAFE and convertible note agreements for flexible fundraising.",
+      route: "/service/investment/safe-notes",
     },
     {
       icon: Briefcase,
-      title: 'Investor Relations Support',
-      description: 'Manage investor communications and compliance with clear legal strategies.',
-      route: '/service/investment/investor-relations',
+      title: "Investor Relations Support",
+      description:
+        "Manage investor communications and compliance with clear legal strategies.",
+      route: "/service/investment/investor-relations",
     },
     {
       icon: Scale,
-      title: 'Due Diligence Support',
-      description: 'Prepare for investor due diligence with comprehensive legal documentation.',
-      route: '/service/investment/due-diligence',
+      title: "Due Diligence Support",
+      description:
+        "Prepare for investor due diligence with comprehensive legal documentation.",
+      route: "/service/investment/due-diligence",
     },
     {
       icon: UserCheck,
-      title: 'Equity Structuring',
-      description: 'Design equity plans to align founder, investor, and employee interests.',
-      route: '/service/investment/equity-structuring',
+      title: "Equity Structuring",
+      description:
+        "Design equity plans to align founder, investor, and employee interests.",
+      route: "/service/investment/equity-structuring",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -57,52 +70,40 @@ export default function InvestmentFundraisingPage() {
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px',
+          backgroundSize: "30px 30px",
         }}
       />
 
-      {/* Hero Section */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      {/* Hero Section - Updated for responsiveness */}
+      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Desktop only */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Investment & Fundraising Legal Services
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+        <motion.div className="max-w-7xl mx-auto text-center px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Investment & Fundraising
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+              ✦
+            </span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+              ✦
+            </span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Secure Funding for Your Startup with Expert Legal Support
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Investment & Fundraising Information Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      {/* Content Section - Improved spacing */}
+      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
         <div className="max-w-6xl mx-auto">
-          {/* Investment & Fundraising Overview */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative max-w-3xl mx-auto px-8">
+          {/* Overview Section - Better padding */}
+          <motion.div className="mb-12 sm:mb-16 md:mb-24">
+            <div className="relative max-w-3xl mx-auto p-6 sm:p-8 md:p-12">
               {/* Corner Angles */}
               <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
               <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
@@ -111,17 +112,24 @@ export default function InvestmentFundraisingPage() {
 
               <div className="text-center space-y-6">
                 <h2 className="text-4xl font-bold mb-4">
-                  <span className="text-[#00ADB5]">Investment &</span>{' '}
+                  <span className="text-[#00ADB5]">Investment &</span>{" "}
                   <span className="text-[#393E46]">Fundraising</span>
                 </h2>
                 <p className="text-[#393E46] text-lg leading-relaxed">
-                  Leonard Corporate Solutions provides specialized legal advisory for startups and businesses seeking investment. From venture capital to angel rounds, we craft precise agreements and provide strategic support to ensure your fundraising efforts are legally robust and aligned with your growth goals.
+                  Leonard Corporate Solutions provides specialized legal advisory
+                  for startups and businesses seeking investment. From venture
+                  capital to angel rounds, we craft precise agreements and provide
+                  strategic support to ensure your fundraising efforts are legally
+                  robust and aligned with your growth goals.
                 </p>
                 <p className="text-[#393E46] text-lg font-medium">
-                  📩 Contact us at{' '}
-                  <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                  📩 Contact us at{" "}
+                  <a
+                    href="mailto:info@leonardsolutions.in"
+                    className="text-[#00ADB5] hover:underline"
+                  >
                     info@leonardsolutions.in
-                  </a>{' '}
+                  </a>{" "}
                   for tailored fundraising legal support.
                 </p>
               </div>
@@ -131,24 +139,17 @@ export default function InvestmentFundraisingPage() {
           {/* Our Services Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Our Investment</span>{' '}
+              <span className="text-[#222831]">Our Investment</span>{" "}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
           </div>
 
           {/* Services Grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {serviceCards.map((service, index) => (
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            {serviceCards.map((service) => (
               <Link
                 key={service.title}
                 href={service.route}
-                data-testid={`service-link-${service.title}`}
                 className="group relative"
                 onMouseEnter={() => setHoveredCard(service.title)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -159,7 +160,9 @@ export default function InvestmentFundraisingPage() {
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
+                    ✦
+                  </span>
                   <div className="flex flex-col gap-5 relative z-10">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
                       <service.icon className="h-6 w-6" />
@@ -177,7 +180,7 @@ export default function InvestmentFundraisingPage() {
                     className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     data-testid={`service-underline-${service.title}`}
                   />
                 </motion.div>
@@ -185,14 +188,8 @@ export default function InvestmentFundraisingPage() {
             ))}
           </motion.div>
 
-          {/* Closing Message */}
-          <motion.div
-            className="mt-32 relative max-w-3xl mx-auto px-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          {/* Closing Message - Responsive margins */}
+          <motion.div className="mt-16 sm:mt-24 md:mt-32 relative max-w-3xl mx-auto px-4 sm:px-8">
             <div className="relative py-12">
               {/* Corner Angles */}
               <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
@@ -201,15 +198,17 @@ export default function InvestmentFundraisingPage() {
               <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
               <p className="text-[#393E46] text-lg text-center leading-relaxed">
-                Leonard Corporate Solutions empowers your business to secure funding with confidence through tailored legal expertise, ensuring a solid foundation for growth.
+                Leonard Corporate Solutions empowers your business to secure funding
+                with confidence through tailored legal expertise, ensuring a solid
+                foundation for growth.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+      {/* Back to Home Link - Better spacing */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8 md:py-10">
         <Link
           href="/"
           data-testid="back-to-home-link"

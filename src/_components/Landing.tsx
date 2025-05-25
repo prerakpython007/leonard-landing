@@ -194,6 +194,7 @@ const Container = styled.div`
   position: relative;
   min-height: 100vh;
   isolation: isolate;
+  overflow-x: hidden; // Prevent horizontal scroll
 
   &::before {
     content: '';
@@ -251,6 +252,13 @@ const Content = styled.div`
     gap: 2rem;
     padding: 1rem;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
 `;
 
 const LeftContent = styled.div`
@@ -283,6 +291,11 @@ const MainTitle = styled.h1`
   @media (max-width: 768px) {
     font-size: clamp(2rem, 3.5vw, 3rem);
   }
+
+  @media (max-width: 480px) {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    br { display: none; }
+  }
 `;
 
 const TitleHighlight = styled.span`
@@ -311,6 +324,11 @@ const Stats = styled.div`
   @media (max-width: 768px) {
     gap: 1.5rem;
   }
+
+  @media (max-width: 480px) {
+    justify-content: center;
+    gap: 1rem;
+  }
 `;
 
 const StatItem = styled.div``;
@@ -323,6 +341,10 @@ const StatValue = styled.div`
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -345,7 +367,8 @@ const Actions = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    width: 100%;
   }
 `;
 
@@ -379,6 +402,11 @@ const ConsultationBtn = styled.a`
     margin-bottom: 1rem;
     justify-content: center;
   }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
 `;
 
 const SecondaryButton = styled(motion.button)`
@@ -404,8 +432,20 @@ const RightContent = styled.div`
   justify-content: center;
 
   @media (max-width: 1024px) {
+    height: 400px;
+    align-items: center;
+    margin-top: -2rem;
+  }
+
+  @media (max-width: 768px) {
+    height: 350px;
+    margin: 0 auto;
+    margin-top: -1rem;
+  }
+
+  @media (max-width: 480px) {
     height: 300px;
-    display: block;
+    margin-top: 0;
   }
 `;
 
@@ -423,6 +463,17 @@ const DecorativeShape = styled.div`
   @media (max-width: 1024px) {
     width: 300px;
     height: 300px;
+  }
+
+  @media (max-width: 768px) {
+    width: 280px;
+    height: 280px;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    width: 240px;
+    height: 240px;
   }
 
   @keyframes morph {
@@ -452,8 +503,21 @@ const ImageWrapper = styled.div`
   }
 
   @media (max-width: 1024px) {
-    width: 250px;
+    width: 280px;
+    height: 350px;
+  }
+
+  @media (max-width: 768px) {
+    width: 240px;
     height: 300px;
+    margin: 0 auto;
+    border-radius: 25% 75% 75% 25% / 25% 25% 75% 75%;
+  }
+
+  @media (max-width: 480px) {
+    width: 200px;
+    height: 250px;
+    border-radius: 20% 80% 80% 20% / 20% 20% 80% 80%;
   }
 `;
 
@@ -468,6 +532,13 @@ const StyledImage = styled.img`
   &:hover {
     transform: scale(1.15);
     filter: brightness(1.1) contrast(1.1);
+  }
+
+  @media (max-width: 768px) {
+    transform: scale(1.05);
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 

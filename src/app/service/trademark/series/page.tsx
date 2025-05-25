@@ -102,7 +102,7 @@ export default function SeriesTrademarkPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -111,14 +111,14 @@ export default function SeriesTrademarkPage() {
             linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
           `,
-          backgroundSize: '30px 30px',
+          backgroundSize: "30px 30px",
         }}
       />
 
       {/* Popup */}
       {showPopup && selectedInfo && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -126,13 +126,13 @@ export default function SeriesTrademarkPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-6 sm:p-8 md:p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#00ADB5 #222831' }}
+            style={{ scrollbarWidth: "thin", scrollbarColor: "#00ADB5 #222831" }}
           >
             <style>{`
               ::-webkit-scrollbar { width: 8px; }
@@ -146,8 +146,8 @@ export default function SeriesTrademarkPage() {
             >
               <X size={32} />
             </button>
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
-            <div className="text-[#393E46]/85 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
+            <div className="text-[#393E46]/85 text-base sm:text-lg leading-relaxed">
               {selectedInfo.detailedContent.split('\n').map((line, index) => {
                 line = line.trim();
                 if (!line) return null;
@@ -164,7 +164,7 @@ export default function SeriesTrademarkPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -181,42 +181,42 @@ export default function SeriesTrademarkPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Series Trademark
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Protect Brand Variations
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="relative max-w-3xl mx-auto p-8 sm:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="text-center space-y-6">
               <h2 className="text-4xl font-bold mb-4">
                 <span className="text-[#00ADB5]">Simplify</span>{' '}
                 <span className="text-[#393E46]">Series Trademarks</span>
               </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
+              <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
                 Series trademarks, under Section 15 of the Trademarks Act, 1999, allow registration of multiple similar marks in one application. BrandSecure streamlines the process, ensuring cost-effective protection for your brand variations.
               </p>
-              <p className="text-[#393E46] text-lg font-medium">
+              <p className="text-[#393E46] text-base sm:text-lg font-medium">
                 📩 Contact us at{' '}
                 <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
                   info@brandsecure.in
@@ -229,16 +229,16 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Series Trademark Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               <span className="text-[#222831]">Series Trademark</span>{' '}
               <span className="text-[#00ADB5]">Essentials</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {seriesTrademarkInfo.map((info: SeriesTrademarkInfo, index: number) => (
               <motion.div
                 key={info.id}
@@ -267,7 +267,12 @@ export default function SeriesTrademarkPage() {
                     </svg>
                   </button>
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <motion.div
+                  className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                />
               </motion.div>
             ))}
           </div>
@@ -275,15 +280,15 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Eligibility Criteria Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               <span className="text-[#222831]">Criteria for</span>{' '}
               <span className="text-[#00ADB5]">Series Trademarks</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
             {[
               {
                 title: 'Material Similarity',
@@ -319,10 +324,10 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Application Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               <span className="text-[#222831]">Series Trademark</span>{' '}
               <span className="text-[#00ADB5]">Application Process</span>
             </h2>
@@ -363,15 +368,15 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               <span className="text-[#222831]">Why Choose</span>{' '}
               <span className="text-[#00ADB5]">Series Trademarks?</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {[
               {
                 title: 'Cost Efficiency',
@@ -403,15 +408,15 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Examples Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
               <span className="text-[#222831]">Examples of</span>{' '}
               <span className="text-[#00ADB5]">Series Trademarks</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
             {[
               {
                 title: 'Swiggy Services',
@@ -439,26 +444,26 @@ export default function SeriesTrademarkPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
+            className="relative max-w-3xl mx-auto p-8 sm:p-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <h2 className="text-4xl font-bold mb-4">
               <span className="text-[#00ADB5]">Protect</span>{' '}
               <span className="text-[#393E46]">Your Brand Variations</span>
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
+            <p className="text-[#393E46] text-base sm:text-lg leading-relaxed mb-6">
               Secure your trademark variations with BrandSecure’s expert series trademark services. Contact us today to streamline registration and safeguard your brand.
             </p>
             <Link
@@ -473,16 +478,6 @@ export default function SeriesTrademarkPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
     </div>
   );
 }

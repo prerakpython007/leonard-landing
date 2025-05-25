@@ -25,6 +25,11 @@ import { useState } from "react";
 
 export default function Services() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [expandedSections, setExpandedSections] = useState({
+    national: false,
+    international: false,
+    extended: false
+  });
 
   const nationalServices = [
     {
@@ -100,8 +105,6 @@ export default function Services() {
       route: "service/litigation",
     },
   ]
-
-  // Removed duplicate declaration of internationalServices to fix redeclaration error.
 
   const internationalServices = [
     {
@@ -181,8 +184,22 @@ export default function Services() {
     },
   ]
 
+  const toggleSection = (section: 'national' | 'international' | 'extended') => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const getVisibleItems = (items: any[], section: 'national' | 'international' | 'extended') => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768 && !expandedSections[section]) {
+      return items.slice(0, 3);
+    }
+    return items;
+  };
+
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -196,38 +213,28 @@ export default function Services() {
       />
 
       {/* Hero Section */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles for Hero Section */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      <motion.section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Updated to match other pages */}
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
         
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+        <motion.div className="max-w-7xl mx-auto text-center px-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Our Services
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Comprehensive Legal & IP Solutions for a Modern Business World
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Our Expertise Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 relative">
-        <div className="max-w-6xl mx-auto relative">
+      {/* Our Expertise Section - Improved Spacing */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-16 lg:px-24 relative">
+        <div className="max-w-6xl mx-auto relative space-y-16 sm:space-y-24 md:space-y-32">
           <motion.div
             className="mb-24"
             initial={{ opacity: 0, y: 20 }}
@@ -252,12 +259,12 @@ export default function Services() {
               </motion.div>
             </div>
 
-            <div className="relative max-w-3xl mx-auto px-8">
-              {/* Corner Angles */}
-              <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="relative max-w-3xl mx-auto px-4 sm:px-8 md:px-12">
+              {/* Corner Angles with improved spacing */}
+              <div className="absolute -top-4 sm:-top-8 -left-4 sm:-left-8 w-6 sm:w-8 h-6 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 sm:-top-8 -right-4 sm:-right-8 w-6 sm:w-8 h-6 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 sm:-bottom-8 -left-4 sm:-left-8 w-6 sm:w-8 h-6 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+              <div className="absolute -bottom-4 sm:-bottom-8 -right-4 sm:-right-8 w-6 sm:w-8 h-6 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
               
               <div className="text-center space-y-6">
                 <p className="text-[#393E46] text-lg leading-relaxed">
@@ -273,156 +280,197 @@ export default function Services() {
             </div>
           </motion.div>
 
-          {/* Services Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">National Legal Services</span>{" "}
-              <span className="text-[#00ADB5]">(India-Focused)</span>
-            </h2>
+          {/* Services Sections - Added Spacing */}
+          <div className="space-y-16 sm:space-y-24 md:space-y-32">
+            {/* National Services */}
+            <div className="space-y-8 sm:space-y-12">
+              <div className="text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+                  <span className="text-[#222831]">National Legal Services</span>{" "}
+                  <span className="text-[#00ADB5]">(India-Focused)</span>
+                </h2>
+              </div>
+
+              {/* Services Grid */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                {getVisibleItems(nationalServices, 'national').map((service, index) => (
+                  <Link
+                    key={service.name}
+                    href={service.route}
+                    className="group relative"
+                    onMouseEnter={() => setHoveredCard(service.name)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <motion.div
+                      className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                      <div className="flex flex-col gap-5 relative z-10">
+                        <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                          <service.icon className="h-7 w-7" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                            {service.name}
+                          </h3>
+                          <p className="text-[#393E46]/80 text-base leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    </motion.div>
+                  </Link>
+                ))}
+              </motion.div>
+              {nationalServices.length > 3 && (
+                <div className="flex justify-center mt-8 md:hidden">
+                  <button
+                    onClick={() => toggleSection('national')}
+                    className="px-6 py-3 bg-[#00ADB5] text-white rounded-lg hover:bg-[#00ADB5]/90 transition-colors"
+                  >
+                    {expandedSections.national ? 'Show Less' : 'Show More'}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* International Services */}
+            <div className="space-y-8 sm:space-y-12">
+              {/* International Services Section Title */}
+              <div className="text-center mb-16 mt-32">
+                <h2 className="text-3xl font-bold mb-4">
+                  <span className="text-[#222831]">International Legal Services</span>{" "}
+                  <span className="text-[#00ADB5]">(Global Solutions)</span>
+                </h2>
+              </div>
+
+              {/* International Services Grid */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                {getVisibleItems(internationalServices, 'international').map((service, index) => (
+                  <Link
+                    key={service.name}
+                    href={service.route}
+                    className="group relative"
+                    onMouseEnter={() => setHoveredCard(service.name)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <motion.div
+                      className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                      <div className="flex flex-col gap-5 relative z-10">
+                        <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                          <service.icon className="h-7 w-7" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                            {service.name}
+                          </h3>
+                          <p className="text-[#393E46]/80 text-base leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    </motion.div>
+                  </Link>
+                ))}
+              </motion.div>
+              {internationalServices.length > 3 && (
+                <div className="flex justify-center mt-8 md:hidden">
+                  <button
+                    onClick={() => toggleSection('international')}
+                    className="px-6 py-3 bg-[#00ADB5] text-white rounded-lg hover:bg-[#00ADB5]/90 transition-colors"
+                  >
+                    {expandedSections.international ? 'Show Less' : 'Show More'}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Extended Services */}
+            <div className="space-y-8 sm:space-y-12">
+              {/* Extended Legal Services Section Title */}
+              <div className="text-center mb-16 mt-32">
+                <h2 className="text-3xl font-bold mb-4">
+                  <span className="text-[#222831]">Extended Legal Support</span>{" "}
+                  <span className="text-[#00ADB5]">(Specialized Solutions)</span>
+                </h2>
+              </div>
+
+              {/* Extended Services Grid */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                {getVisibleItems(extendedServices, 'extended').map((service, index) => (
+                  <Link
+                    key={service.name}
+                    href={service.route}
+                    className="group relative"
+                    onMouseEnter={() => setHoveredCard(service.name)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <motion.div
+                      className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                      <div className="flex flex-col gap-5 relative z-10">
+                        <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                          <service.icon className="h-7 w-7" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                            {service.name}
+                          </h3>
+                          <p className="text-[#393E46]/80 text-base leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    </motion.div>
+                  </Link>
+                ))}
+              </motion.div>
+              {extendedServices.length > 3 && (
+                <div className="flex justify-center mt-8 md:hidden">
+                  <button
+                    onClick={() => toggleSection('extended')}
+                    className="px-6 py-3 bg-[#00ADB5] text-white rounded-lg hover:bg-[#00ADB5]/90 transition-colors"
+                  >
+                    {expandedSections.extended ? 'Show Less' : 'Show More'}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Services Grid */}
+          {/* Closing Message - Improved Spacing */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {nationalServices.map((service, index) => (
-              <Link
-                key={service.name}
-                href={service.route}
-                className="group relative"
-                onMouseEnter={() => setHoveredCard(service.name)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <motion.div
-                  className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                  <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
-                      <service.icon className="h-7 w-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                        {service.name}
-                      </h3>
-                      <p className="text-[#393E46]/80 text-base leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
-
-          {/* International Services Section Title */}
-          <div className="text-center mb-16 mt-32">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">International Legal Services</span>{" "}
-              <span className="text-[#00ADB5]">(Global Solutions)</span>
-            </h2>
-          </div>
-
-          {/* International Services Grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {internationalServices.map((service, index) => (
-              <Link
-                key={service.name}
-                href={service.route}
-                className="group relative"
-                onMouseEnter={() => setHoveredCard(service.name)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <motion.div
-                  className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                  <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
-                      <service.icon className="h-7 w-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                        {service.name}
-                      </h3>
-                      <p className="text-[#393E46]/80 text-base leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
-
-          {/* Extended Legal Services Section Title */}
-          <div className="text-center mb-16 mt-32">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Extended Legal Support</span>{" "}
-              <span className="text-[#00ADB5]">(Specialized Solutions)</span>
-            </h2>
-          </div>
-
-          {/* Extended Services Grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {extendedServices.map((service, index) => (
-              <Link
-                key={service.name}
-                href={service.route}
-                className="group relative"
-                onMouseEnter={() => setHoveredCard(service.name)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <motion.div
-                  className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                  <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
-                      <service.icon className="h-7 w-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                        {service.name}
-                      </h3>
-                      <p className="text-[#393E46]/80 text-base leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
-
-          {/* Closing Message */}
-          <motion.div
-            className="mt-32 relative max-w-3xl mx-auto px-8"
+            className="mt-16 sm:mt-24 md:mt-32"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -444,7 +492,14 @@ export default function Services() {
       </section>
 
       {/* Back to Home Link */}
-     
+      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+        >
+          <span className="mr-2">←</span> Back to Home
+        </Link>
+      </div>
     </div>
   );
 }

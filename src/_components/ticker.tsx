@@ -41,9 +41,18 @@ const TickerTrack = styled.div<{ $direction: string; $speed: number; $isPaused: 
   animation: ${props => props.$direction === 'right' ? scrollRight : scrollLeft} 
     ${props => props.$speed}s linear infinite;
   animation-play-state: ${props => props.$isPaused ? 'paused' : 'running'};
-  gap: 15px;
+  gap: 10px;
+  margin: 1rem 0;
+  @media (min-width: 480px) {
+    gap: 15px;
+  }
   @media (min-width: 768px) {
     gap: 20px;
+    margin: 1.5rem 0;
+  }
+  @media (min-width: 1024px) {
+    gap: 25px;
+    margin: 2rem 0;
   }
   will-change: transform;
 `;
@@ -51,12 +60,21 @@ const TickerTrack = styled.div<{ $direction: string; $speed: number; $isPaused: 
 const TickerContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 140px;
+  height: 100px;
+  @media (min-width: 480px) {
+    height: 120px;
+  }
   @media (min-width: 768px) {
+    height: 160px;
+  }
+  @media (min-width: 1024px) {
     height: 180px;
   }
   overflow: hidden;
-  padding: 8px 0;
+  padding: 6px 0;
+  @media (min-width: 768px) {
+    padding: 8px 0;
+  }
 `;
 
 const TickerWrapper = styled.div`
@@ -88,9 +106,17 @@ const TickerWrapper = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  @media (min-width: 480px) {
+    width: 100px;
+    height: 100px;
+  }
   @media (min-width: 768px) {
+    width: 120px;
+    height: 120px;
+  }
+  @media (min-width: 1024px) {
     width: 140px;
     height: 140px;
   }
@@ -110,24 +136,28 @@ const Ticker = () => {
   ];
 
   return (
-    <div className="py-8 md:py-12 lg:py-16 relative overflow-hidden bg-[#EEEEEE]">
-      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+    <div className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-[#EEEEEE]">
+      {/* Background Stars */}
+      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
-      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[300px] md:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
+      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[200px] sm:text-[250px] md:text-[300px] lg:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
         ✦
       </span>
-      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[250px] md:text-[300px] opacity-10 transform -translate-y-1/2">
+      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
-      <div className="relative text-center mb-8 md:mb-12 w-[87%] m-auto px-4">
-        <span className="text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
+
+      {/* Title */}
+      <div className="relative text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 mt-4 sm:mt-8 md:mt-12 w-[90%] sm:w-[87%] m-auto px-4">
+        <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
           <strong className="text-[#00ADB5] mr-2">OUR</strong>
           CLIENTS
         </span>
       </div>
 
-      <div className="space-y-4">
+      {/* Ticker Content */}
+      <div className="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 mb-8 sm:mb-12 md:mb-16">
         {tickerRows.map((row, index) => (
           <TickerContainer key={index}>
             <TickerWrapper

@@ -1,12 +1,12 @@
 'use client';
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { X } from 'lucide-react';
 
-// Define the interface for renewal info
-interface RenewalInfo {
+// Define the interface for trademark info
+interface TrademarkInfo {
   id: number;
   title: string;
   description: string;
@@ -14,84 +14,84 @@ interface RenewalInfo {
   detailedContent: string;
 }
 
-const renewalInfo: RenewalInfo[] = [
+const trademarkInfo: TrademarkInfo[] = [
   {
     id: 1,
-    title: "What is Trademark Renewal?",
-    description: "Trademark renewal extends the legal protection of your brand for another ten years, ensuring continued exclusivity of your logo, name, or slogan in the market.",
-    category: "Renewal Basics",
+    title: 'Understanding Trademarks',
+    description: 'A trademark is a unique symbol, design, or expression that sets your products or services apart from competitors. It includes logos, brand names, slogans, and other identifiable features.',
+    category: 'Trademark Basics',
     detailedContent: `
-      • Extends trademark validity for another 10 years.
-      • Protects logos, names, or slogans from unauthorized use.
-      • Governed by the Trade Marks Act, 1999 in India.
-      • Maintains exclusive rights to your brand identity.
-      • Requires filing Form TM-R with the Trademark Registry.
-      • Prevents competitors from claiming similar marks.
+      • A unique sign, logo, word, or phrase identifying your goods/services.
+      • Ensures brand recognition and consumer trust.
+      • Includes word marks (e.g., brand names), logos, slogans, sounds, or shapes.
+      • Registered for specific classes under the Nice Classification system.
+      • Provides legal protection against misuse.
+      • Enhances market presence and brand reputation.
     `,
   },
   {
     id: 2,
-    title: "Benefits of Renewal",
-    description: "Renewing your trademark maintains brand protection, prevents loss of rights, enables legal action against infringements, and supports licensing opportunities.",
-    category: "Brand Protection",
+    title: 'Why Register a Trademark?',
+    description: 'Trademark registration secures your exclusive rights to use the mark, protects against unauthorized use, and allows legal action against infringements, ensuring brand protection.',
+    category: 'Legal Protection',
     detailedContent: `
-      • Sustains legal protection against unauthorized use.
-      • Prevents loss of exclusive brand rights.
-      • Enables lawsuits against trademark infringements.
-      • Supports licensing or franchising for revenue.
-      • Enhances brand credibility and market trust.
-      • Maintains brand value and recognition.
+      • Grants exclusive rights to use the mark in registered classes.
+      • Enables legal action against infringers for damages or injunctions.
+      • Offers nationwide protection in India.
+      • Increases brand credibility and valuation.
+      • Supports international filings via Madrid Protocol.
+      • Prevents customer confusion from similar marks.
     `,
   },
   {
     id: 3,
-    title: "Renewal Process",
-    description: "The process involves filing Form TM-R, scrutiny by the Trademark Registry, journal publication, and issuance of a renewal certificate if unopposed.",
-    category: "Process Guide",
+    title: 'Trademark Registration Process',
+    description: 'The process involves conducting a trademark search, filing an application, examination by the trademark office, publication in the journal, and final registration if unopposed.',
+    category: 'Process Guide',
     detailedContent: `
-      • File Form TM-R online or through an agent.
-      • Trademark Registry reviews application compliance.
-      • Approved renewals published in Trademark Journal.
-      • Four-month opposition period post-publication.
-      • Renewal certificate issued if unopposed.
-      • Process typically takes 6-12 months.
+      • Conduct a search to check for existing similar marks.
+      • File application online with mark details and class.
+      • Registrar examines for compliance with Trade Marks Act.
+      • Respond to objections within 30 days if raised.
+      • Mark published in Trademark Journal for 90 days.
+      • Registered with certificate if no oppositions.
     `,
   },
   {
     id: 4,
-    title: "Trademark Restoration",
-    description: "If a trademark expires, it can be restored within one year from the expiry date by filing an application with the required fees and documentation.",
-    category: "Restoration",
+    title: 'Trademark Maintenance',
+    description: 'Post-registration, trademarks need periodic renewals every ten years and active use to maintain validity. Monitoring for infringements is key to protecting your rights.',
+    category: 'Trademark Management',
     detailedContent: `
-      • Applicable within 6-12 months post-expiry.
-      • Requires Form TM-R with surcharge fees.
-      • Includes Form TM-18 for affidavit support.
-      • Registry issues notice 6 months before expiry.
-      • Failure to restore leads to trademark removal.
-      • Restored mark regains full legal protection.
+      • Renew every 10 years using Form TM-R.
+      • Use mark actively to avoid cancellation after 5 years.
+      • Monitor market and journal for infringements.
+      • Take legal action against unauthorized use.
+      • Update registry for ownership or address changes.
+      • Maintain records of use (e.g., invoices).
     `,
   },
   {
     id: 5,
-    title: "Timelines and Forms",
-    description: "Renewal can be filed up to one year before expiry, with specific forms like TM-R and TM-18, along with applicable fees for physical or e-filing.",
-    category: "Filing Requirements",
+    title: 'Global Trademark Protection',
+    description: 'Safeguarding your trademark internationally requires filing in each country or using systems like the Madrid Protocol for efficient multi-country registration.',
+    category: 'Global Trademarks',
     detailedContent: `
-      • File up to 12 months before expiry date.
-      • Form TM-R: ₹9,000 (e-filing) or ₹10,000 (physical).
-      • Surcharge for late renewal: ₹4,500-₹5,000.
-      • Form TM-18 for affidavit if required.
-      • E-filing preferred for faster processing.
-      • Timely filing avoids restoration penalties.
+      • File directly in each country’s trademark office.
+      • Use Madrid Protocol for single application in 128 countries.
+      • Leverage regional systems like EUIPO for EU protection.
+      • Conduct international searches for mark availability.
+      • Ensure mark is culturally appropriate.
+      • Monitor global markets for infringements.
     `,
   },
 ];
 
-export default function TrademarkRenewalPage() {
+export default function TrademarkRegistrationPage() {
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedInfo, setSelectedInfo] = useState<RenewalInfo | null>(null);
+  const [selectedInfo, setSelectedInfo] = useState<TrademarkInfo | null>(null);
 
-  const handleExploreClick = (info: RenewalInfo) => {
+  const handleExploreClick = (info: TrademarkInfo) => {
     setSelectedInfo(info);
     setShowPopup(true);
   };
@@ -102,7 +102,7 @@ export default function TrademarkRenewalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
@@ -118,7 +118,7 @@ export default function TrademarkRenewalPage() {
       {/* Popup */}
       {showPopup && selectedInfo && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -126,7 +126,7 @@ export default function TrademarkRenewalPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-6 sm:p-8 md:p-10 shadow-xl border border-[#00ADB5]/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -146,8 +146,8 @@ export default function TrademarkRenewalPage() {
             >
               <X size={32} />
             </button>
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
-            <div className="text-[#393E46]/85 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
+            <div className="text-[#393E46]/85 text-base sm:text-lg leading-relaxed">
               {selectedInfo.detailedContent.split('\n').map((line, index) => {
                 line = line.trim();
                 if (!line) return null;
@@ -164,7 +164,7 @@ export default function TrademarkRenewalPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -181,65 +181,65 @@ export default function TrademarkRenewalPage() {
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Renewal
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            Trademark Registration
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Extend Your Brand Protection
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+            Secure Your Brand Identity with Expert Trademark Solutions
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="relative max-w-3xl mx-auto p-8 sm:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="text-center space-y-6">
               <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Safeguard</span>{' '}
-                <span className="text-[#393E46]">Your Brand</span>
+                <span className="text-[#00ADB5]">Protect Your Brand</span>{' '}
+                <span className="text-[#393E46]">with Trademark Registration</span>
               </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                Trademark renewal extends your brand’s legal protection for another decade, ensuring exclusivity under the Trade Marks Act, 1999. BrandSecure simplifies the online renewal process, helping you maintain your brand’s identity and prevent unauthorized use.
+              <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
+                At Leonard Corporate Solutions, we understand the importance of your brand’s unique identity—logos, slogans, or packaging—in today’s competitive market. Our expert trademark registration services guide startups, established companies, and individual entrepreneurs through the process in India, ensuring your intellectual property is protected and your market presence is strengthened.
               </p>
-              <p className="text-[#393E46] text-lg font-medium">
+              <p className="text-[#393E46] text-base sm:text-lg font-medium">
                 📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
+                <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">
+                  info@leonardsolutions.in
                 </a>{' '}
-                to renew your trademark today.
+                to start securing your brand today.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Renewal Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Trademark Renewal</span>{' '}
+      {/* Trademark Info Section */}
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Trademark</span>{' '}
               <span className="text-[#00ADB5]">Essentials</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {renewalInfo.map((info: RenewalInfo, index: number) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            {trademarkInfo.map((info: TrademarkInfo, index: number) => (
               <motion.div
                 key={info.id}
                 className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
@@ -267,84 +267,68 @@ export default function TrademarkRenewalPage() {
                     </svg>
                   </button>
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <motion.div
+                  className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits of Renewal Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Benefits of</span>{' '}
-              <span className="text-[#00ADB5]">Trademark Renewal</span>
+      {/* Types of Trademarks Section */}
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Types of Trademark</span>{' '}
+              <span className="text-[#00ADB5]">Registrations</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {[
-              {
-                title: 'Sustained Brand Protection',
-                description: 'Renewal extends legal protection for your brand for another decade, preventing competitors from using similar marks.',
-              },
-              {
-                title: 'Retains Exclusive Rights',
-                description: 'Avoid losing exclusive rights to your brand, which could allow others to register similar marks and create market confusion.',
-              },
-              {
-                title: 'Supports Legal Action',
-                description: 'A renewed trademark empowers you to take legal steps against unauthorized use, safeguarding your brand’s reputation.',
-              },
-              {
-                title: 'Boosts Licensing Opportunities',
-                description: 'A valid trademark supports licensing or franchising, creating new revenue streams with confident partners.',
-              },
-            ].map((benefit, index) => (
+              { title: 'Product Mark', description: 'Used for tangible goods, product marks identify the origin of products and uphold a company’s reputation. These fall under classes 1-34.' },
+              { title: 'Service Mark', description: 'Service marks distinguish service providers, covering classes 35-45, and help differentiate services in the market.' },
+              { title: 'Collective Mark', description: 'Represents a group’s products or services, protected by associations or public institutions for collective use.' },
+              { title: 'Certification Mark', description: 'Indicates product quality, origin, or standards, commonly used for packaged goods, toys, and electronics.' },
+              { title: 'Shape Mark', description: 'Protects unique product shapes that are distinctive and recognizable to consumers as brand-specific.' },
+              { title: 'Sound Mark', description: 'Distinctive sounds, like audio mnemonics or jingles, associated with a brand’s products or services.' },
+            ].map((mark, index) => (
               <motion.div
-                key={benefit.title}
+                key={mark.title}
                 className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{benefit.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-[#222831] mb-3">{mark.title}</h3>
+                <p className="text-[#393E46]/80 text-base leading-relaxed">{mark.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Renewal Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Trademark Renewal</span>{' '}
-              <span className="text-[#00ADB5]">Process</span>
+      {/* Registration Process Section */}
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <span className="text-[#222831]">How to Register</span>{' '}
+              <span className="text-[#00ADB5]">a Trademark in India</span>
             </h2>
           </div>
           <div className="space-y-6">
             {[
-              {
-                title: 'File Application',
-                description: 'Submit Form TM-R online via the Indian Patent Office portal or through an authorized agent.',
-              },
-              {
-                title: 'Application Review',
-                description: 'The Trademark Registry examines the application to ensure compliance with all requirements.',
-              },
-              {
-                title: 'Journal Publication',
-                description: 'Approved renewals are published in the Trademark Journal for public review.',
-              },
-              {
-                title: 'Renewal Certificate',
-                description: 'Upon successful publication, a renewal certificate is issued, extending protection for ten years.',
-              },
+              { title: 'Trademark Search', description: 'Conduct a thorough search to ensure your trademark is unique and avoid conflicts with existing marks.' },
+              { title: 'Application Filing', description: 'Submit the application with the Trademark Registrar, including the Vienna Codification for figurative elements.' },
+              { title: 'Examination', description: 'The Registrar reviews the application for accuracy and may raise objections, which can be addressed by the applicant.' },
+              { title: 'Journal Publication', description: 'Approved trademarks are published in the Trademark Journal for 90 days, allowing public objections.' },
+              { title: 'Registration', description: 'If no objections are raised, the trademark is registered, and the certificate is issued, allowing use of the ® symbol.' },
             ].map((step, index) => (
               <motion.div
                 key={step.title}
@@ -362,116 +346,79 @@ export default function TrademarkRenewalPage() {
         </div>
       </section>
 
-      {/* Documents and Forms Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Documents and Forms</span>{' '}
-              <span className="text-[#00ADB5]">for Renewal</span>
+      {/* Eligibility and Documents Section */}
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F7F7F7]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              <span className="text-[#222831]">Eligibility and</span>{' '}
+              <span className="text-[#00ADB5]">Required Documents</span>
             </h2>
           </div>
           <motion.div
-            className="bg-white p-8 rounded-xl shadow-md border border-[#00ADB5]/10"
+            className="relative bg-white p-8 rounded-xl shadow-md border border-[#00ADB5]/10 max-w-full"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             whileHover={{ y: -5 }}
           >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6 text-base">
-              <li>Form TM-R (Renewal Application)</li>
-              <li>Copy of Trademark Registration Certificate</li>
-              <li>Original Trademark Application Form (TM-A)</li>
-              <li>Applicant’s Identity and Address Proof</li>
-              <li>Power of Attorney (if filed by an agent)</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Forms and Fees</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-[#393E46]/80 text-base">
-                <thead>
-                  <tr className="bg-[#00ADB5]/10">
-                    <th className="p-4 font-bold text-[#222831]">Form</th>
-                    <th className="p-4 font-bold text-[#222831]">Purpose</th>
-                    <th className="p-4 font-bold text-[#222831]">Physical Filing Cost</th>
-                    <th className="p-4 font-bold text-[#222831]">E-Filing Cost</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="p-4">TM-R</td>
-                    <td className="p-4">Renewal of registered trademark</td>
-                    <td className="p-4">₹10,000</td>
-                    <td className="p-4">₹9,000</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">TM-R</td>
-                    <td className="p-4">Renewal with surcharge</td>
-                    <td className="p-4">₹5,000 + Renewal fee</td>
-                    <td className="p-4">₹4,500 + Renewal fee</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">TM-18</td>
-                    <td className="p-4">Affidavit for statement of case</td>
-                    <td className="p-4">-</td>
-                    <td className="p-4">-</td>
-                  </tr>
-                </tbody>
-              </table>
+            {/* Corner Angles */}
+            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
+                <ul className="text-[#393E46]/80 list-disc list-inside mb-6 text-base sm:text-lg">
+                  <li>Individuals</li>
+                  <li>Joint owners</li>
+                  <li>Proprietorship firms</li>
+                  <li>Partnership firms (up to 10 partners)</li>
+                  <li>Limited Liability Partnerships (LLPs)</li>
+                  <li>Indian and foreign companies</li>
+                  <li>Trusts and societies</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
+                <p className="text-[#393E46]/80 mb-4 text-base sm:text-lg">Documents vary by applicant type but generally include:</p>
+                <ul className="text-[#393E46]/80 list-disc list-inside text-base sm:text-lg">
+                  <li>PAN card and Aadhar card (for individuals and proprietorships)</li>
+                  <li>Incorporation certificate and company PAN card (for companies and LLPs)</li>
+                  <li>Partnership deed (for partnership firms)</li>
+                  <li>Trust deed (for trusts)</li>
+                  <li>MSME certificate and logo (if applicable)</li>
+                </ul>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Restoration Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Trademark</span>{' '}
-              <span className="text-[#00ADB5]">Restoration</span>
-            </h2>
-          </div>
-          <motion.div
-            className="bg-white p-8 rounded-xl shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ y: -5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Restoring an Expired Trademark</h3>
-            <p className="text-[#393E46]/80 mb-4 text-base">
-              If your trademark expires, restoration is possible within six months to one year from the expiry date. The Trademark Registry sends a notice six months prior to expiry. Failure to renew within six months post-expiry results in removal from the Register. Restoration involves filing Form TM-R with a surcharge and supporting documents.
-            </p>
-            <p className="text-[#393E46]/80 text-base">
-              Restoration Fees: ₹10,000 (physical) or ₹9,000 (e-filing) plus renewal fee for Form TM-R, and Form TM-18 for affidavit support.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-4 sm:py-6 md:py-8 px-4 sm:px-6 md:px-8 lg:px-12 mb-12">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
+            className="relative max-w-3xl mx-auto p-8 sm:p-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Renew</span>{' '}
-              <span className="text-[#393E46]">Your Trademark</span>
+              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
+              <span className="text-[#393E46]">Your Brand?</span>
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Keep your brand protected with BrandSecure’s expert renewal services. Contact us today to extend your trademark’s validity and maintain market exclusivity.
+            <p className="text-[#393E46] text-base sm:text-lg leading-relaxed mb-6">
+              Safeguard your business identity with Leonard Corporate Solutions’ expert trademark registration services. Start today to ensure your brand’s exclusivity in India’s competitive market.
             </p>
             <Link
               href="/contact-us"
@@ -485,16 +432,6 @@ export default function TrademarkRenewalPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
     </div>
   );
 }

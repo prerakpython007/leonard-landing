@@ -71,7 +71,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="font-montserrat relative min-h-screen rounded-b-[5%] bg-[#EEEEEE]">
+    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
       {/* Grid Pattern Overlay */}
       <div
         className="pointer-events-none fixed inset-0"
@@ -115,52 +115,44 @@ export default function ContactPage() {
       )}
 
       {/* Hero Section */}
-      <motion.section
-        className="relative flex h-[80vh] items-center justify-center overflow-hidden px-4 md:px-16 lg:px-24"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
+        {/* Corner Angles - Desktop only */}
         <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
         <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
         <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute right-8 bottom-8 hidden h-12 w-12 border-r-2 border-b-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-7xl text-center"
-        >
-          <h1 className="relative inline-block text-6xl font-extrabold tracking-tight text-[#222831] md:text-8xl">
+        <motion.div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Contact Us
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 animate-pulse text-5xl text-[#00ADB5] opacity-50">
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
               ✦
             </span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 animate-pulse text-5xl text-[#00ADB5] opacity-50">
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
               ✦
             </span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-light text-[#393E46]/80">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Get in Touch with Our Expert Team
           </p>
         </motion.div>
       </motion.section>
 
       {/* Contact Information Section */}
-      <section className="px-4 py-32 md:px-16 lg:px-24">
+      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
         <div className="mx-auto max-w-6xl">
+          {/* Contact Info */}
           <motion.div
-            className="mb-12 relative px-8 py-12"
+            className="mb-12 relative p-4 sm:p-8 md:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+          <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
 
             <h2 className="mb-6 text-3xl font-bold text-[#222831]">
               Contacting Us
@@ -197,8 +189,9 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
+          {/* Head Office Card */}
           <motion.div
-            className="mb-12 rounded-2xl border border-white/20 bg-white/80 p-8 shadow-lg backdrop-blur-sm"
+            className="mb-12 rounded-2xl border border-white/20 bg-white/80 p-4 sm:p-6 md:p-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -240,8 +233,9 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
+          {/* Contact Form */}
           <motion.div
-            className="mb-12 relative px-8 py-12 overflow-hidden"
+            className="mb-12 relative p-4 sm:p-8 md:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -263,7 +257,7 @@ export default function ContactPage() {
                 Have questions or need assistance? We're here to help! Fill out the form below and our team will get back to you shortly.
               </p>
 
-              <form onSubmit={handleSubmit} className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+              <form className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div className="group">
                   <label htmlFor="firstName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
                     First Name
@@ -347,8 +341,9 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
+          {/* Map Section */}
           <motion.div
-            className="relative px-8 py-12"
+            className="relative p-4 sm:p-8 md:p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -359,9 +354,6 @@ export default function ContactPage() {
             <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
             <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
 
-            <h2 className="mb-8 text-3xl font-bold text-[#222831]">
-              Our Global Locations
-            </h2>
             <div className="rounded-xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm">
               <MapComponent />
             </div>
