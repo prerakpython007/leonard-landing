@@ -134,7 +134,7 @@ export default function DocumentFilingPage() {
                 className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
                 aria-label="Close popup"
               >
-                <X size={24} sm:size={32} />
+                <X className="w-6 h-6 sm:w-8 sm:h-8" />
               </button>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-4 sm:mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
               <div className="text-[#393E46]/85 text-sm sm:text-base md:text-lg leading-relaxed">
