@@ -213,7 +213,7 @@ export default function PublicSectorCompliancePage() {
                 <span className="text-[#222831]">Our Public Sector</span>{' '}
                 <span className="text-[#00ADB5]">Compliance Services</span>
               </h2>
-              <div className homologous="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
+              <div className ="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8">
                 {publicSectorComplianceInfo.map((info, index) => (
                   <motion.div
                     key={info.id}
