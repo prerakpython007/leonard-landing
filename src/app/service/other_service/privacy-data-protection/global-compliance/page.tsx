@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { X } from 'lucide-react';
 import Link from 'next/link';
-import Head from 'next/head';
 
 interface GlobalComplianceInfo {
   id: number;
@@ -68,29 +67,19 @@ export default function GlobalCompliancePage() {
   const closePopup = () => {
     setShowPopup(false);
     setSelectedInfo(null);
+  };
+
   return (
     <>
-      <Head>
-        <meta
-          name="description"
-          content="Expert advice on multi-national data protection obligations. Ensure global compliance for your business in India and worldwide."
-        />
-        <meta
-          name="keywords"
-          content="global data protection compliance, multi-national data obligations, international data compliance, global privacy services"
-        />
-        <title>Global Data Protection Compliance | Leonard CorporateSolutions</title>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-      </Head>
       <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
         <div
-          className="fixed inset-0 className="fixed inset"events-none"
+          className="fixed inset-0 pointer-events-none"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent,1px),
+              linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
             `,
-            backgroundSize: '20px 20px sm:30px 30px',
+            backgroundSize: '20px 20px',
           }}
         />
         {showPopup && selectedInfo && (
