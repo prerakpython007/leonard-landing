@@ -37,7 +37,7 @@ const Experience = () => {
 	});
 
 	return (
-		<section className="min-h-screen bg-gradient-to-b from-[#EEEEEE] to-white rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[150px] py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 relative overflow-hidden">
+		<section className="min-h-screen bg-gradient-to-b from-[#EEEEEE] to-white py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 relative overflow-hidden">
 			{/* Background Stars */}
 			<span className="absolute left-[5%] sm:left-0 top-[20%] sm:top-[45%] text-[#00ADB5] text-[80px] sm:text-[120px] md:text-[200px] lg:text-[300px] opacity-10 -z-10">
 				✦
@@ -150,7 +150,7 @@ const Experience = () => {
 				</div>
 
 				{/* Contact Section */}
-				<motion.div
+				{/* <motion.div
 					className="mt-12 sm:mt-16 md:mt-20 lg:mt-24 pt-8 sm:pt-12 md:pt-16 border-t border-[#00ADB5]/10"
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ const Experience = () => {
 							</a>
 						</div>
 					</div>
-				</motion.div>
+				</motion.div> */}
 			</div>
 		</section>
 	);

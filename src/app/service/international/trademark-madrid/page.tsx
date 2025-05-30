@@ -170,24 +170,24 @@ export default function InternationalTrademarkFilingPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        {/* Corner Angles - hidden on mobile */}
+        <div className="absolute top-12 left-12 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5] hidden sm:block" />
+        <div className="absolute top-12 right-12 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5] hidden sm:block" />
+        <div className="absolute bottom-12 left-12 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5] hidden sm:block" />
+        <div className="absolute bottom-12 right-12 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5] hidden sm:block" />
 
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center px-4"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            International Trademark Filing
-            <span className="absolute top-1/2 -left-8 sm:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-8 sm:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+            <span className="block sm:inline">International</span>{' '}
+            <span className="block sm:inline">Trademark Filing</span>            <span className="absolute top-1/2 -left-8 sm:-left-6 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-8 sm:-right-6 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-lg sm:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Protect Your Brand Globally
           </p>
         </motion.div>
@@ -203,18 +203,18 @@ export default function InternationalTrademarkFilingPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            {/* Corner Angles - updated positioning */}
+            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#00ADB5]" />
 
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
+            <div className="text-center space-y-4 sm:space-y-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">
                 <span className="text-[#00ADB5]">Secure Your Brand</span>{' '}
                 <span className="text-[#393E46]">Worldwide</span>
               </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
+              <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
                 Expanding your brand internationally requires robust trademark protection. The Madrid Protocol simplifies this by allowing a single application to secure trademark rights in multiple countries. At BrandSecure, we provide expert guidance to navigate the Madrid Protocol process, ensuring your brand is protected efficiently across global markets.
               </p>
               <p className="text-[#393E46] text-lg font-medium">
@@ -243,7 +243,7 @@ export default function InternationalTrademarkFilingPage() {
             {madridProtocolInfo.map((info: MadridProtocolInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                className="group bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -254,10 +254,10 @@ export default function InternationalTrademarkFilingPage() {
                   <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
                     {info.category}
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
                     {info.title}
                   </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
+                  <p className="text-[#393E46]/80 text-sm sm:text-base leading-relaxed line-clamp-3">{info.description}</p>
                   <button
                     onClick={() => handleExploreClick(info)}
                     className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
@@ -422,13 +422,13 @@ export default function InternationalTrademarkFilingPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            {/* Corner Angles - updated positioning */}
+            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#00ADB5]" />
+            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#00ADB5]" />
 
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">
               <span className="text-[#00ADB5]">Ready to Go</span>{' '}
               <span className="text-[#393E46]">Global?</span>
             </h2>
