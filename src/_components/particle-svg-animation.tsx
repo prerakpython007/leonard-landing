@@ -75,24 +75,27 @@ export default function ParticleSVGAnimation({ svgSrc }: ParticleSVGAnimationPro
     for (let y = 0; y < tempCanvas.height; y += pixelStep) {
       for (let x = 0; x < tempCanvas.width; x += pixelStep) {
         const i = (y * tempCanvas.width + x) * 4
-        const alpha = data[i + 3]
+        // Ensure that the alpha channel exists before accessing
+        if (i + 3 < data.length) {
+          const alpha = data[i + 3] ?? 0
 
-        // Only create particles if pixel is within the drawn image bounds AND is not transparent
-        if (alpha > 0 && x >= offsetX && x < offsetX + drawWidth && y >= offsetY && y < offsetY + drawHeight) {
-          const r = data[i]
-          const g = data[i + 1]
-          const b = data[i + 2]
+          // Only create particles if pixel is within the drawn image bounds AND is not transparent
+          if (alpha > 0 && x >= offsetX && x < offsetX + drawWidth && y >= offsetY && y < offsetY + drawHeight) {
+            const r = data[i]
+            const g = data[i + 1]
+            const b = data[i + 2]
 
-          newParticles.push({
-            x: x, // Start directly at target position
-            y: y, // Start directly at target position
-            targetX: x,
-            targetY: y,
-            color: `rgba(${r},${g},${b},${alpha / 255})`,
-            radius: particleRadius,
-            vx: 0, // No initial velocity
-            vy: 0, // No initial velocity
-          })
+            newParticles.push({
+              x: x, // Start directly at target position
+              y: y, // Start directly at target position
+              targetX: x,
+              targetY: y,
+              color: `rgba(${r},${g},${b},${alpha / 255})`,
+              radius: particleRadius,
+              vx: 0, // No initial velocity
+              vy: 0, // No initial velocity
+            })
+          }
         }
       }
     }
