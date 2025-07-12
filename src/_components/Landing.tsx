@@ -1,545 +1,247 @@
 "use client";
+import React from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "motion/react";
+import Image from "next/image";
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import styled from 'styled-components';
-import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+export const HeroParallax = ({
+  products,
+}: {
+  products: {
+    title: string;
+    link: string;
+    thumbnail: string;
+  }[];
+}) => {
+  const firstRow = products.slice(0, 5);
+  const secondRow = products.slice(5, 10);
+  const thirdRow = products.slice(10, 15);
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
-const Landing = () => {
-  const router = useRouter();
-  const [count, setCount] = useState({ years: 0, rate: 0 });
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const springConfig = { damping: 15, stiffness: 150 };
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const magneticX = useSpring(0, springConfig);
-  const magneticY = useSpring(0, springConfig);
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const imageElement = document.querySelector('.magnetic-image');
-      if (!imageElement) return;
-
-      const rect = imageElement.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      // Calculate distance from cursor to image center
-      const deltaX = (e.clientX - centerX) * 0.15;
-      const deltaY = (e.clientY - centerY) * 0.15;
-      
-      // Apply magnetic effect with distance falloff
-      const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
-      const maxDistance = 500; // Maximum distance for magnetic effect
-      const falloff = Math.max(0, 1 - distance / maxDistance);
-      
-      magneticX.set(deltaX * falloff);
-      magneticY.set(deltaY * falloff);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [magneticX, magneticY]);
-
-  useEffect(() => {
-    const animateCount = () => {
-      const duration = 2000;
-      const framesPerSecond = 60;
-      const totalFrames = duration * framesPerSecond / 1000;
-      
-      let frame = 0;
-      const timer = setInterval(() => {
-        frame++;
-        setCount({
-          years: Math.min(25, Math.floor((frame / totalFrames) * 11)),
-          rate: Math.min(98, Math.floor((frame / totalFrames) * 98))
-        });
-        
-        if (frame === totalFrames) clearInterval(timer);
-      }, 1000 / framesPerSecond);
-    };
-
-    animateCount();
-  }, []);
-
-  // Add mouse interaction for dots
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const dots = document.querySelectorAll('.grid-dot');
-      const container = containerRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      dots.forEach((dot: Element) => {
-        const dotElement = dot as HTMLElement;
-        const dotX = dotElement.offsetLeft;
-        const dotY = dotElement.offsetTop;
-        
-        const distance = Math.sqrt(
-          Math.pow(mouseX - dotX, 2) + Math.pow(mouseY - dotY, 2)
-        );
-        
-        if (distance < 100) {
-          const scale = 1 - distance / 100;
-          dotElement.style.transform = `scale(${1 + scale})`;
-          dotElement.style.opacity = `${0.3 + scale * 0.7}`;
-        } else {
-          dotElement.style.transform = 'scale(1)';
-          dotElement.style.opacity = '0.3';
-        }
-      });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
+  const translateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    springConfig,
+  );
+  const translateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    springConfig,
+  );
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    springConfig,
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    springConfig,
+  );
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    springConfig,
+  );
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    springConfig,
+  );
   return (
-    <Container ref={containerRef}>
-      <ParticleBackground />
-      <HeroSection>
-        <GeometricOverlay />
-        <Content>
-          <LeftContent>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <Eyebrow>Welcome to <span className='textbor'>Leonard</span> Solutions</Eyebrow>
-              <MainTitle>
-                <TitleHighlight>IPR</TitleHighlight>
-                <span> is our </span>
-                <br />
-                <span>game</span>
-              </MainTitle>
-              <SubHeading>Your Premier Legal Partners</SubHeading>
-              <Stats>
-                <StatItem>
-                  <StatValue
-                    as={motion.div}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {count.years}+
-                  </StatValue>
-                  <StatLabel>Years Experience</StatLabel>
-                </StatItem>
-                <StatDivider />
-                <StatItem>
-                  <StatValue
-                    as={motion.div}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {count.rate}%
-                  </StatValue>
-                  <StatLabel>Success Rate</StatLabel>
-                </StatItem>
-              </Stats>
-              <Actions>
-                <ConsultationBtn
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@leonardsolutions.in&su=Consultation%20Request"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Start Consultation
-                </ConsultationBtn>
-                <SecondaryButton
-                  as={motion.button}
-                  whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
-                  onClick={() => router.push('/about-us')}
-                >
-                  Learn More →
-                </SecondaryButton>
-              </Actions>
-            </motion.div>
-          </LeftContent>
-          <RightContent>
-            <motion.div
-              className="magnetic-image"
-              style={{
-                x: magneticX,
-                y: magneticY
-              }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <DecorativeShape />
-              <ImageWrapper>
-                <StyledImage
-                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80"
-                  alt="Lady Justice Statue"
-                />
-              </ImageWrapper>
-            </motion.div>
-          </RightContent>
-        </Content>
-      </HeroSection>
-    </Container>
+    <div
+      ref={ref}
+      className="relative flex h-[300vh] flex-col self-auto overflow-hidden py-40 antialiased [perspective:1000px] [transform-style:preserve-3d]"
+    >
+      <Header />
+      <motion.div
+        style={{
+          rotateX,
+          rotateZ,
+          translateY,
+          opacity,
+        }}
+        className=""
+      >
+        <motion.div className="mb-20 flex flex-row-reverse space-x-20 space-x-reverse">
+          {firstRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="mb-20 flex flex-row space-x-20">
+          {secondRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateXReverse}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row-reverse space-x-20 space-x-reverse">
+          {thirdRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
-// Styled components
-const Container = styled.div`
-  background: #EEEEEE;
-  position: relative;
-  min-height: 100vh;
-  isolation: isolate;
-  overflow-x: hidden; // Prevent horizontal scroll
+export const Header = () => {
+  // Less interactive logo state
+  const [logoPos, setLogoPos] = React.useState({ x: 0, y: 0 });
+  const logoRef = React.useRef<HTMLDivElement>(null);
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(34, 40, 49, 0.02) 2px, transparent 2px),
-      linear-gradient(90deg, rgba(34, 40, 49, 0.02) 2px, transparent 2px);
-    background-size: 50px 50px;
-    background-position: -1px -1px;
-    mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
-    z-index: -1;
-  }
-`;
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!logoRef.current) return;
+      const rect = logoRef.current.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      // Less interactive: only move a little and only if close
+      if (dist < 120) {
+        setLogoPos({
+          x: logoPos.x - dx * 0.03,
+          y: logoPos.y - dy * 0.03,
+        });
+      } else {
+        setLogoPos({
+          x: logoPos.x * 0.96,
+          y: logoPos.y * 0.96,
+        });
+      }
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+    // eslint-disable-next-line
+  }, [logoPos]);
 
-const ParticleBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(0, 173, 181, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 173, 181, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px;
-  opacity: 0.7;
-  pointer-events: none;
-`;
+  return (
+    <div className="relative top-0 left-0 mx-auto w-full max-w-7xl px-4 py-20 md:py-24">
+      <div className="flex flex-col md:flex-row md:gap-x-20 gap-y-10 items-center justify-center">
+        <div
+          ref={logoRef}
+          style={{
+            transform: `translate3d(${logoPos.x}px,${logoPos.y}px,0)`,
+            transition: "box-shadow 0.3s",
+          }}
+          className="flex items-center justify-center relative"
+        >
+          {/* New blob shape in the background */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              width: 260,
+              height: 260,
+              zIndex: 1,
+              filter: "blur(2px)",
+              background:
+                "radial-gradient(ellipse 60% 40% at 60% 40%, rgba(0,0,0,0.10) 60%, transparent 100%)",
+              borderRadius: "40% 60% 70% 30% / 30% 40% 60% 70%",
+              animation: "blobMorphAlt 10s ease-in-out infinite alternate",
+            }}
+          />
+          <style>
+            {`
+              @keyframes blobMorphAlt {
+                0% { border-radius: 40% 60% 70% 30% / 30% 40% 60% 70%; }
+                50% { border-radius: 60% 40% 30% 70% / 60% 30% 40% 70%; }
+                100% { border-radius: 40% 60% 70% 30% / 30% 40% 60% 70%; }
+              }
+            `}
+          </style>
+          <div className="relative flex items-center justify-center w-[220px] h-[220px] md:w-[300px] md:h-[300px] lg:w-[300px] lg:h-[300px] rounded-[60%_40%_55%_45%/55%_60%_40%_45%] bg-gradient-to-br from-black/10 to-transparent shadow-xl z-10">
+            <Image
+              src="/lion-logo-face.png"
+              height={220}
+              width={220}
+              alt="logo"
+              className="object-contain"
+              style={{ width: "110%", height: "110%" }}
+              priority
+            />
+          </div>
+        </div>
+        <div className="flex-1 py-6 md:py-10 md:pl-10 text-center md:text-left">
+          <h1 className="text-2xl font-bold md:text-5xl lg:text-7xl dark:text-black leading-tight">
+            Welcome to Leonard Solutions
+          </h1>
+          <p className="mt-6 max-w-2xl text-base md:text-xl dark:text-black">
+            <span
+              className="font-bold text-3xl md:text-4xl lg:text-5xl"
+              style={{
+                color: "#000000",
+                textShadow: "0 0 16px #fff, 0 0 32px #fff, 0 0 48px #fff",
+                filter: "brightness(1.5)",
+              }}
+            >
+              IPR
+            </span>
+            <span className="ml-2">is our</span>
+            <br className="hidden md:block" />
+            <span className="ml-2">game</span>
+            <br />
+            <span className="block mt-4 text-lg md:text-xl text-[#393E46]">
+              Your Premier Legal Partners
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-const HeroSection = styled.section`
-  position: relative;
-  min-height: 80vh;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-start;
-  padding-top: 10vh;
-`;
-
-const GeometricOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(120deg, transparent 45%, rgba(0, 173, 181, 0.03) 100%),
-    linear-gradient(-120deg, transparent 45%, rgba(34, 40, 49, 0.03) 100%);
-`;
-
-const Content = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-  align-items: flex-start;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 1rem;
-    text-align: center;
-  }
-`;
-
-const LeftContent = styled.div`
-  position: relative;
-  z-index: 2;
-`;
-
-const Eyebrow = styled.span`
-  color: #00ADB5;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  display: block;
-  margin-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-const MainTitle = styled.h1`
-  font-size: clamp(2.5rem, 4vw, 4rem);
-  line-height: 1.1;
-  background: linear-gradient(135deg, #222831 0%, #393E46 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-
-  @media (max-width: 768px) {
-    font-size: clamp(2rem, 3.5vw, 3rem);
-  }
-
-  @media (max-width: 480px) {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    br { display: none; }
-  }
-`;
-
-const TitleHighlight = styled.span`
-  background: linear-gradient(135deg, #00ADB5 0%, #009ca3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-`;
-
-const SubHeading = styled.h2`
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  color: #393E46;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-  }
-`;
-
-const Stats = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
-
-  @media (max-width: 768px) {
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    justify-content: center;
-    gap: 1rem;
-  }
-`;
-
-const StatItem = styled.div``;
-
-const StatValue = styled.div`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #222831;
-  line-height: 1;
-
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const StatLabel = styled.div`
-  color: #393E46;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-`;
-
-const StatDivider = styled.div`
-  height: 40px;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, #00ADB5, transparent);
-`;
-
-const Actions = styled.div`
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-`;
-
-const ConsultationBtn = styled.a`
-  background: linear-gradient(90deg, #00ADB5 0%, #009ca3 100%);
-  color: #EEEEEE;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 173, 181, 0.15);
-  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-  margin-right: 1.5rem;
-
-  &:hover, &:focus {
-    background: linear-gradient(90deg, #009ca3 0%, #00ADB5 100%);
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 8px 24px rgba(0, 173, 181, 0.25);
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 1rem;
-    justify-content: center;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9rem;
-    padding: 0.8rem 1.5rem;
-  }
-`;
-
-const SecondaryButton = styled(motion.button)`
-  background: transparent;
-  color: #222831;
-  border: none;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0.8rem 1.5rem;
-  }
-`;
-
-const RightContent = styled.div`
-  position: relative;
-  height: 500px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-
-  @media (max-width: 1024px) {
-    height: 400px;
-    align-items: center;
-    margin-top: -2rem;
-  }
-
-  @media (max-width: 768px) {
-    height: 350px;
-    margin: 0 auto;
-    margin-top: -1rem;
-  }
-
-  @media (max-width: 480px) {
-    height: 300px;
-    margin-top: 0;
-  }
-`;
-
-const DecorativeShape = styled.div`
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  background: linear-gradient(135deg, rgba(0, 173, 181, 0.15), transparent);
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  animation: 
-    morph 8s ease-in-out infinite,
-    float 6s ease-in-out infinite;
-  filter: blur(2px);
-
-  @media (max-width: 1024px) {
-    width: 300px;
-    height: 300px;
-  }
-
-  @media (max-width: 768px) {
-    width: 280px;
-    height: 280px;
-    opacity: 0.8;
-  }
-
-  @media (max-width: 480px) {
-    width: 240px;
-    height: 240px;
-  }
-
-  @keyframes morph {
-    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-  }
-`;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  z-index: 2;
-  width: 350px;
-  height: 450px;
-  overflow: hidden;
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-  }
-
-  @media (max-width: 1024px) {
-    width: 280px;
-    height: 350px;
-  }
-
-  @media (max-width: 768px) {
-    width: 240px;
-    height: 300px;
-    margin: 0 auto;
-    border-radius: 25% 75% 75% 25% / 25% 25% 75% 75%;
-  }
-
-  @media (max-width: 480px) {
-    width: 200px;
-    height: 250px;
-    border-radius: 20% 80% 80% 20% / 20% 20% 80% 80%;
-  }
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1);
-  filter: brightness(1.05) contrast(1.05);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  &:hover {
-    transform: scale(1.15);
-    filter: brightness(1.1) contrast(1.1);
-  }
-
-  @media (max-width: 768px) {
-    transform: scale(1.05);
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`;
-
-export default Landing;
+export const ProductCard = ({
+  product,
+  translate,
+}: {
+  product: {
+    title: string;
+    link: string;
+    thumbnail: string;
+  };
+  translate: MotionValue<number>;
+}) => {
+  return (
+    <motion.div
+      style={{
+        x: translate,
+      }}
+      whileHover={{
+        y: -20,
+      }}
+      key={product.title}
+      className="group/product relative h-96 w-[30rem] shrink-0"
+    >
+      <a href={product.link} className="block group-hover/product:shadow-2xl">
+        <img
+          src={product.thumbnail}
+          height="600"
+          width="600"
+          className="absolute inset-0 h-full w-full object-cover object-left-top"
+          alt={product.title}
+        />
+      </a>
+      <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 group-hover/product:opacity-80"></div>
+      <h2 className="absolute bottom-4 left-4 text-white opacity-0 group-hover/product:opacity-100">
+        {product.title}
+      </h2>
+    </motion.div>
+  );
+};

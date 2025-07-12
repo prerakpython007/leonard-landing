@@ -21,18 +21,18 @@ const CeaseAndEnforcePage = () => {
       {/* Hero Section - Updated for better responsiveness */}
       <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
         {/* Corner Angles - Desktop only */}
-        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
         <motion.div className="max-w-7xl mx-auto text-center px-4">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Cease & Enforce
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
               ✦
             </span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
               ✦
             </span>
           </h1>
@@ -51,7 +51,7 @@ const CeaseAndEnforcePage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-6 sm:pb-8 md:pb-10">
         <Link
           href="/service"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
+          className="inline-flex items-center text-[#393E46] hover:text-black transition-colors text-sm sm:text-base"
         >
           <span className="mr-2">←</span> Back to Services
         </Link>

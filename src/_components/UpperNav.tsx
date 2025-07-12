@@ -22,7 +22,7 @@ const UpperNav: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#00ADB5] text-white py-3">
+    <div className="bg-black text-white py-3">
       <div className="relative max-w-7xl mx-auto">
         <div className={`${styles.ticker} overflow-hidden`}>
           <div className={`${styles.gradientOverlay} ${styles.leftGradient} flex items-center`}>
@@ -39,7 +39,7 @@ const UpperNav: React.FC = () => {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 text-sm hover:text-[#222831] font-bold transition-colors duration-300 cursor-pointer"
+                    className="px-3 text-sm hover:text-black font-bold transition-colors duration-300 cursor-pointer"
                   >
                     {item}
                   </a>
@@ -54,7 +54,7 @@ const UpperNav: React.FC = () => {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 text-sm hover:text-[#222831] font-bold transition-colors duration-300 cursor-pointer"
+                    className="px-3 text-sm hover:text-black font-bold transition-colors duration-300 cursor-pointer"
                   >
                     {item}
                   </a>

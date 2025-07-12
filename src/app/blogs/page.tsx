@@ -58,10 +58,10 @@ export default function BlogsPage() {
 				transition={{ duration: 1 }}
 			>
 				{/* Corner Angles - Desktop only */}
-				<div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-				<div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-				<div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-				<div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+				<div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+				<div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+				<div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+				<div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
 				<motion.div
 					className="max-w-7xl mx-auto text-center"
@@ -71,10 +71,10 @@ export default function BlogsPage() {
 				>
 					<h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
 						Our Blog
-						<span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+						<span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
 							✦
 						</span>
-						<span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+						<span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
 							✦
 						</span>
 					</h1>
@@ -110,8 +110,8 @@ export default function BlogsPage() {
 								whileHover={{ y: -5 }}
 							>
 								{/* Decorative elements */}
-								<div className="absolute top-0 left-0 w-20 h-20 bg-[#00ADB5]/5 rounded-br-[100px]" />
-								<div className="absolute top-4 left-4 w-2 h-2 bg-[#00ADB5] rounded-full" />
+								<div className="absolute top-0 left-0 w-20 h-20 bg-black/5 rounded-br-[100px]" />
+								<div className="absolute top-4 left-4 w-2 h-2 bg-black rounded-full" />
 
 								<div className="relative h-48 sm:h-56 overflow-hidden">
 									<Image
@@ -122,7 +122,7 @@ export default function BlogsPage() {
 									/>
 									<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 									<div className="absolute top-4 right-4">
-										<span className="px-4 py-1 bg-white/90 text-[#00ADB5] rounded-full text-sm font-medium">
+										<span className="px-4 py-1 bg-white/90 text-black rounded-full text-sm font-medium">
 											{blog.category}
 										</span>
 									</div>
@@ -131,7 +131,7 @@ export default function BlogsPage() {
 								<div className="p-4 sm:p-6 md:p-8">
 									<div className="flex items-center gap-4 mb-4 text-sm text-[#393E46]/70">
 										<div className="flex items-center gap-2">
-											<span className="w-1 h-1 rounded-full bg-[#00ADB5]" />
+											<span className="w-1 h-1 rounded-full bg-black" />
 											<span>
 												{new Date(blog.date).toLocaleDateString("en-US", {
 													month: "long",
@@ -141,7 +141,7 @@ export default function BlogsPage() {
 											</span>
 										</div>
 										<div className="flex items-center gap-2">
-											<span className="w-1 h-1 rounded-full bg-[#00ADB5]" />
+											<span className="w-1 h-1 rounded-full bg-black" />
 											<span>5 min read</span>
 										</div>
 									</div>
@@ -155,7 +155,7 @@ export default function BlogsPage() {
 
 									<Link
 										href={`/blogs/${blog.id}`}
-										className="inline-flex items-center text-[#222831] hover:text-[#00ADB5] transition-colors duration-300 font-medium group/link"
+										className="inline-flex items-center text-[#222831] hover:text-black transition-colors duration-300 font-medium group/link"
 									>
 										Read Article
 										<ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" />

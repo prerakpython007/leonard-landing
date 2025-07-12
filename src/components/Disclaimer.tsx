@@ -41,15 +41,15 @@ export default function Disclaimer() {
         </div>
 
         {/* Corner Decorations */}
-        <span className="absolute top-2 left-2 md:top-4 md:left-4 text-[#00ADB5] text-2xl md:text-4xl">✦</span>
+        <span className="absolute top-2 left-2 md:top-4 md:left-4 text-black text-2xl md:text-4xl">✦</span>
         <span className="absolute top-2 right-2 md:top-4 md:right-4 text-[#393E46] text-2xl md:text-4xl">✦</span>
         <span className="absolute bottom-2 left-2 md:bottom-4 md:left-4 text-[#393E46] text-2xl md:text-4xl">✦</span>
-        <span className="absolute bottom-2 right-2 md:bottom-4 md:right-4 text-[#00ADB5] text-2xl md:text-4xl">✦</span>
+        <span className="absolute bottom-2 right-2 md:bottom-4 md:right-4 text-black text-2xl md:text-4xl">✦</span>
 
         {/* Title */}
         <div className="text-center mb-4 sm:mb-6 md:mb-8">
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-light tracking-wider uppercase relative inline-block">
-            <span className="text-[#00ADB5] font-extrabold">
+            <span className="text-black font-extrabold">
               Disclaimer & <span className='text-[#222831]'>Confirmation</span>
             </span>
           </h2>
@@ -65,7 +65,7 @@ export default function Disclaimer() {
           
           <ul className="space-y-3 md:space-y-4 list-none pl-4 md:pl-5">
             {listItems.map((item, index) => (
-              <li key={index} className="relative pl-4 md:pl-6 before:content-['•'] before:absolute before:left-0 before:text-[#00ADB5] text-sm md:text-base">
+              <li key={index} className="relative pl-4 md:pl-6 before:content-['•'] before:absolute before:left-0 before:text-black text-sm md:text-base">
                 {item}
               </li>
             ))}
@@ -84,7 +84,7 @@ export default function Disclaimer() {
           </button>
           <button
             onClick={handleAgree}
-            className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-[#00ADB5] text-white font-montserrat text-sm tracking-wide hover:bg-[#00ADB5]/90 transition-colors rounded"
+            className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-black text-white font-montserrat text-sm tracking-wide hover:bg-black/90 transition-colors rounded"
           >
             I Agree
           </button>

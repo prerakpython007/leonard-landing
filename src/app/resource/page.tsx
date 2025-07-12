@@ -159,7 +159,7 @@ export default function GovernmentResourcesPage() {
           >
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 text-[#393E46] hover:text-[#00ADB5]"
+              className="absolute top-4 right-4 text-[#393E46] hover:text-black"
             >
               <X size={24} />
             </button>
@@ -175,7 +175,7 @@ export default function GovernmentResourcesPage() {
                     href={linkItem.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#00ADB5] hover:text-[#222831] text-sm break-all"
+                    className="text-black hover:text-[#222831] text-sm break-all"
                   >
                     {linkItem.link}
                   </Link>
@@ -189,16 +189,16 @@ export default function GovernmentResourcesPage() {
       {/* Hero Section */}
       <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
         {/* Corner Angles - Desktop only */}
-        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
         <motion.div className="max-w-7xl mx-auto text-center px-4">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Government IP Resources
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">✦</span>
           </h1>
           <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Access official government resources for trademarks, copyrights, patents, and more in India
@@ -229,10 +229,10 @@ export default function GovernmentResourcesPage() {
               viewport={{ once: true }}
             >
               {/* Corner Angles */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-black" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-black" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-black" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-black" />
 
               <p className="text-[#393E46]/80 text-lg text-center leading-relaxed">
                 Navigate India's intellectual property landscape with ease. Our curated list of official government resources helps you register, protect, and manage trademarks, copyrights, patents, and other IP assets efficiently.
@@ -252,15 +252,15 @@ export default function GovernmentResourcesPage() {
                 whileHover={{ y: -5 }}
               >
                 {/* Decorative elements */}
-                <div className="absolute top-0 left-0 w-20 h-20 bg-[#00ADB5]/5 rounded-br-[100px]" />
-                <div className="absolute top-4 left-4 w-2 h-2 bg-[#00ADB5] rounded-full" />
+                <div className="absolute top-0 left-0 w-20 h-20 bg-black/5 rounded-br-[100px]" />
+                <div className="absolute top-4 left-4 w-2 h-2 bg-black rounded-full" />
                 
                 <div className="p-8 relative">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#00ADB5]/10 flex items-center justify-center">
-                      <span className="text-[#00ADB5]">{categoryIcons[info.category]}</span>
+                    <div className="w-10 h-10 rounded-xl bg-black/10 flex items-center justify-center">
+                      <span className="text-black">{categoryIcons[info.category]}</span>
                     </div>
-                    <span className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full">
+                    <span className="px-3 py-1 text-xs font-medium bg-black/10 text-black rounded-full">
                       {info.category}
                     </span>
                   </div>
@@ -270,7 +270,7 @@ export default function GovernmentResourcesPage() {
                   
                   <button
                     onClick={() => handleExploreClick(info)}
-                    className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-[#00ADB5] transition-colors duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
+                    className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-black transition-colors duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
                   >
                     <span className="relative z-10">Explore Resources</span>
                     <svg
@@ -306,10 +306,10 @@ export default function GovernmentResourcesPage() {
               transition={{ duration: 0.5 }}
             >
               {/* Corner Angles */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-black" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-black" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-black" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-black" />
 
               <h3 className="text-xl font-bold text-[#222831] mb-6">Office of CGPDTM</h3>
               <p className="text-[#393E46]/80 mb-4">
@@ -322,7 +322,7 @@ export default function GovernmentResourcesPage() {
                     href="https://ipindia.gov.in/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#00ADB5] hover:text-[#222831]"
+                    className="text-black hover:text-[#222831]"
                   >
                     ipindia.gov.in
                   </Link>
@@ -356,10 +356,10 @@ export default function GovernmentResourcesPage() {
               transition={{ duration: 0.5 }}
             >
               {/* Corner Angles */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-black" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-black" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-black" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-black" />
 
               <div className="text-center space-y-6">
                 <p className="text-lg text-[#393E46]/80">
@@ -368,7 +368,7 @@ export default function GovernmentResourcesPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                   <Link
                     href="/price"
-                    className="inline-flex items-center px-8 py-3 bg-[#222831] text-white font-medium rounded-xl hover:bg-[#00ADB5] transition-all duration-300 group"
+                    className="inline-flex items-center px-8 py-3 bg-[#222831] text-white font-medium rounded-xl hover:bg-black transition-all duration-300 group"
                   >
                     Get Started Today
                     <svg

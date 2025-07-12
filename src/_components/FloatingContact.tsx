@@ -23,7 +23,7 @@ export default function FloatingContact() {
           href="https://wa.me/919930032215"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#00ADB5] p-3 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+          className="bg-black p-3 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           initial={{ x: 100, opacity: 0 }}

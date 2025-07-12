@@ -175,7 +175,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
         >
           <Link
             href="/blogs"
-            className="inline-flex items-center text-[#00ADB5] hover:text-[#222831] transition-colors duration-300 mb-8"
+            className="inline-flex items-center text-black hover:text-[#222831] transition-colors duration-300 mb-8"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -204,7 +204,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <span className="text-[#00ADB5] text-sm">{blog.category}</span>
+            <span className="text-black text-sm">{blog.category}</span>
             <h1 className="text-4xl font-bold text-[#222831] mt-2">{blog.title}</h1>
             <div className="flex items-center mt-4 space-x-4">
               <span className="text-[#393E46]">{blog.author}</span>
@@ -242,7 +242,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
                 )}
 
                 {section.quote && (
-                  <blockquote className="border-l-4 border-[#00ADB5] pl-6 my-8 italic">
+                  <blockquote className="border-l-4 border-black pl-6 my-8 italic">
                     <p className="text-xl text-[#393E46] mb-2">{section.quote.text}</p>
                     <footer className="text-sm">
                       <span className="font-semibold">{section.quote.author}</span>

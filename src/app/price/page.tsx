@@ -177,16 +177,16 @@ export default function PricingPage() {
       {/* Hero Section */}
       <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
         {/* Corner Angles - Desktop only */}
-        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Our Pricing
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">✦</span>
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">✦</span>
           </h1>
           <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Transparent Pricing for Intellectual Property Services
@@ -215,13 +215,13 @@ export default function PricingPage() {
                       whileHover={{ y: -5 }}
                     >
                       {/* Decorative elements */}
-                      <div className="absolute top-0 left-0 w-20 h-20 bg-[#00ADB5]/5 rounded-br-[100px]" />
-                      <div className="absolute top-4 left-4 w-2 h-2 bg-[#00ADB5] rounded-full" />
+                      <div className="absolute top-0 left-0 w-20 h-20 bg-black/5 rounded-br-[100px]" />
+                      <div className="absolute top-4 left-4 w-2 h-2 bg-black rounded-full" />
                       
                       <div className="p-8 relative">
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-10 h-10 rounded-xl bg-[#00ADB5]/10 flex items-center justify-center">
-                            <span className="text-[#00ADB5] font-bold">#{item.sNo}</span>
+                          <div className="w-10 h-10 rounded-xl bg-black/10 flex items-center justify-center">
+                            <span className="text-black font-bold">#{item.sNo}</span>
                           </div>
                           <h3 className="text-lg font-medium text-[#222831] flex-1">
                             {section.title} Service
@@ -239,19 +239,19 @@ export default function PricingPage() {
                             <span className="text-[#393E46]/70 text-sm">Our Fee</span>
                             <span className="text-[#222831] font-medium">{item.ourFee}</span>
                           </div>
-                          <div className="flex justify-between items-center p-4 bg-[#00ADB5]/5 rounded-lg">
+                          <div className="flex justify-between items-center p-4 bg-black/5 rounded-lg">
                             <span className="text-[#222831] font-bold">Total</span>
-                            <span className="text-[#00ADB5] font-bold text-xl">{item.total}</span>
+                            <span className="text-black font-bold text-xl">{item.total}</span>
                           </div>
                         </div>
                         
                         <Link
                           href="/contact-us"
-                          className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-[#00ADB5] transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
+                          className="w-full bg-[#222831] text-white py-3.5 rounded-xl hover:bg-black transition-all duration-300 flex items-center justify-center gap-2 group relative overflow-hidden"
                         >
                           <span className="relative z-10">Get in Touch</span>
                           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 relative z-10" />
-                          <div className="absolute inset-0 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                          <div className="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                         </Link>
                       </div>
                     </motion.div>
@@ -264,32 +264,32 @@ export default function PricingPage() {
           {/* Disclaimer section */}
           <motion.div className="max-w-3xl mx-auto mt-16 sm:mt-24 md:mt-32 p-6 sm:p-8 md:p-12 relative">
             {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-[#00ADB5]" />
+            <div className="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-black" />
+            <div className="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-black" />
+            <div className="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-black" />
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-black" />
 
             <div className="text-center">
               <h2 className="text-3xl font-bold text-[#222831] mb-8 flex items-center justify-center gap-3">
                 Disclaimer
-                <span className="text-[#00ADB5] animate-pulse">✦</span>
+                <span className="text-black animate-pulse">✦</span>
               </h2>
               <div className="space-y-6">
                 <p className="text-[#393E46] text-lg leading-relaxed">
                   <strong className="font-semibold text-[#222831] block mb-3">
                     Patent application charges for each sheet of specification (after 30 pages):
                   </strong>
-                  Gov't Fees: <span className="font-semibold text-[#00ADB5]">₹800.00</span>
+                  Gov't Fees: <span className="font-semibold text-black">₹800.00</span>
                   <br />
-                  Our Fees: <span className="font-semibold text-[#00ADB5]">₹1500.00</span>
+                  Our Fees: <span className="font-semibold text-black">₹1500.00</span>
                 </p>
                 <p className="text-[#393E46] text-lg leading-relaxed">
                   <strong className="font-semibold text-[#222831] block mb-3">
                     Patent application charges for each claim (in addition to 10 claims):
                   </strong>
-                  Gov't Fees: <span className="font-semibold text-[#00ADB5]">₹160.00</span>
+                  Gov't Fees: <span className="font-semibold text-black">₹160.00</span>
                   <br />
-                  Our Fees: <span className="font-semibold text-[#00ADB5]">₹300.00</span>
+                  Our Fees: <span className="font-semibold text-black">₹300.00</span>
                 </p>
                 <p className="text-[#393E46]/80 text-lg leading-relaxed italic mt-8">
                   These fees are the minimum charges for the activity described. Subject to change without notice.
@@ -311,7 +311,7 @@ export default function PricingPage() {
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+          className="inline-flex items-center text-[#393E46] hover:text-black transition-colors"
         >
           <span className="mr-2">←</span> Back to Home
         </Link>

@@ -84,10 +84,10 @@ export default function PrivacyDataProtectionPage() {
           }}
         />
         <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center px-4">
-          <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+          <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-black hidden lg:block" />
+          <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-black hidden lg:block" />
+          <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-black hidden lg:block" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-black hidden lg:block" />
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -96,8 +96,8 @@ export default function PrivacyDataProtectionPage() {
           >
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
               Privacy & Data Protection
-              <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
-              <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+              <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-black text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
+              <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-black text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
             </h1>
             <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
               Expert Guidance for Data Protection Compliance
@@ -112,13 +112,13 @@ export default function PrivacyDataProtectionPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+              <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-black" />
+              <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-black" />
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-black" />
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-black" />
               <div className="text-center space-y-4 sm:space-y-6">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-                  <span className="text-[#00ADB5]">Privacy &</span>{' '}
+                  <span className="text-black">Privacy &</span>{' '}
                   <span className="text-[#222831]">Data Protection Overview</span>
                 </h2>
                 <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
@@ -126,7 +126,7 @@ export default function PrivacyDataProtectionPage() {
                 </p>
                 <p className="text-[#393E46] text-base sm:text-lg font-medium">
                   📩 Contact us at{' '}
-                  <a href="mailto:info@leonardcorporatesolutions.com" className="text-[#00ADB5] hover:underline">
+                  <a href="mailto:info@leonardcorporatesolutions.com" className="text-black hover:underline">
                     info@leonardcorporatesolutions.com
                   </a>
                 </p>
@@ -135,7 +135,7 @@ export default function PrivacyDataProtectionPage() {
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
                 <span className="text-[#222831]">Key Areas</span>{' '}
-                <span className="text-[#00ADB5]">of Expertise</span>
+                <span className="text-black">of Expertise</span>
               </h2>
               <motion.div
                 className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
@@ -143,13 +143,13 @@ export default function PrivacyDataProtectionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative bg-white rounded-xl p-6 sm:p-8 shadow-md border border-[#00ADB5]/10">
-                  <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-                  <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-                  <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-                  <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+                <div className="relative bg-white rounded-xl p-6 sm:p-8 shadow-md border border-black/10">
+                  <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-black" />
+                  <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-black" />
+                  <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-black" />
+                  <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-black" />
                   <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-4 sm:mb-6 flex items-center gap-2">
-                    <FileText className="h-5 sm:h-6 w-5 sm:w-6 text-[#00ADB5]" />
+                    <FileText className="h-5 sm:h-6 w-5 sm:w-6 text-black" />
                     Privacy and Compliance Services
                   </h3>
                   <ul className="text-[#393E46] text-sm sm:text-base leading-relaxed space-y-3 sm:space-y-4">
@@ -161,7 +161,7 @@ export default function PrivacyDataProtectionPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                       >
-                        <span className="h-2 w-2 rounded-full bg-[#00ADB5] mt-1 sm:mt-2 flex-shrink-0 group-hover:scale-125 transition-transform" />
+                        <span className="h-2 w-2 rounded-full bg-black mt-1 sm:mt-2 flex-shrink-0 group-hover:scale-125 transition-transform" />
                         <span>{item}</span>
                       </motion.li>
                     ))}
@@ -172,7 +172,7 @@ export default function PrivacyDataProtectionPage() {
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
                 <span className="text-[#222831]">Our Privacy</span>{' '}
-                <span className="text-[#00ADB5]">& Data Protection Services</span>
+                <span className="text-black">& Data Protection Services</span>
               </h2>
               <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                 {serviceCards.map((service, index) => (
@@ -189,13 +189,13 @@ export default function PrivacyDataProtectionPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                      <span className="absolute top-4 right-4 text-black text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                       <div className="flex flex-col gap-4 sm:gap-5 relative z-10">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#00ADB5] rounded-xl flex items-center justify-center text-white">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-black rounded-xl flex items-center justify-center text-white">
                           <service.icon className="h-5 sm:h-7 w-5 sm:w-7" />
                         </div>
                         <div>
-                          <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                          <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-2 sm:mb-3 group-hover:text-black transition-colors duration-300">
                             {service.title}
                           </h3>
                           <p className="text-[#393E46]/80 text-sm sm:text-base leading-relaxed">
@@ -215,12 +215,12 @@ export default function PrivacyDataProtectionPage() {
               transition={{ duration: 0.8 }}
             >
               <div className="relative py-8 sm:py-12">
-                <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-                <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-                <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+                <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-black" />
+                <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-black" />
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-black" />
+                <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-black" />
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-[#00ADB5]">Ready to Ensure</span>{' '}
+                  <span className="text-black">Ready to Ensure</span>{' '}
                   <span className="text-[#222831]">Data Protection Compliance?</span>
                 </h2>
                 <p className="text-[#393E46] text-sm sm:text-base leading-relaxed mb-6">
@@ -228,7 +228,7 @@ export default function PrivacyDataProtectionPage() {
                 </p>
                 <Link
                   href="/contact-us"
-                  className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
+                  className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-black text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
                 >
                   Contact Us
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +242,7 @@ export default function PrivacyDataProtectionPage() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8">
           <Link
             href="/"
-            className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
+            className="inline-flex items-center text-[#393E46] hover:text-black transition-colors text-sm sm:text-base"
           >
             <span className="mr-2">←</span> Back to Home
           </Link>

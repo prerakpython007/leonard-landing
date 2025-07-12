@@ -19,17 +19,17 @@ export default function Footer() {
           <h3 className="text-xl font-bold">Quick Links</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/about-us" className="text-gray-400 hover:text-[#00ADB5] transition-colors">
+              <Link href="/about-us" className="text-gray-400 hover:text-black transition-colors">
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/services" className="text-gray-400 hover:text-[#00ADB5] transition-colors">
+              <Link href="/services" className="text-gray-400 hover:text-black transition-colors">
                 Services
               </Link>
             </li>
             <li>
-              <Link href="/contact-us" className="text-gray-400 hover:text-[#00ADB5] transition-colors">
+              <Link href="/contact-us" className="text-gray-400 hover:text-black transition-colors">
                 Contact
               </Link>
             </li>
@@ -43,7 +43,7 @@ export default function Footer() {
             <li>
               <Link 
                 href="/privacy-policy" 
-                className="text-gray-400 hover:text-[#00ADB5] transition-colors inline-flex items-center gap-1"
+                className="text-gray-400 hover:text-black transition-colors inline-flex items-center gap-1"
               >
                 Privacy Policy <ArrowUpRight className="w-4 h-4" />
               </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
             <li>
               <Link 
                 href="/terms" 
-                className="text-gray-400 hover:text-[#00ADB5] transition-colors inline-flex items-center gap-1"
+                className="text-gray-400 hover:text-black transition-colors inline-flex items-center gap-1"
               >
                 Terms of Service <ArrowUpRight className="w-4 h-4" />
               </Link>
@@ -65,7 +65,7 @@ export default function Footer() {
           <p className="text-gray-400">Mumbai, India</p>
           <a 
             href="mailto:info@leonardsolutions.in"
-            className="text-[#00ADB5] hover:text-[#00ADB5]/80 transition-colors"
+            className="text-black hover:text-black/80 transition-colors"
           >
             info@leonardsolutions.in
           </a>

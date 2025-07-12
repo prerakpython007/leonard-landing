@@ -127,7 +127,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
           onClick={closePopup}
         >
           <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-[#00ADB5]/20 relative"
+            className="bg-white rounded-xl max-w-5xl w-full max-h-[95vh] overflow-y-auto p-10 shadow-xl border border-black/20 relative"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -143,11 +143,11 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             `}</style>
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
+              className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-black hover:bg-black/10 rounded-full"
             >
               <X size={32} />
             </button>
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
+            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-black/30 pb-2">{selectedInfo.title}</h2>
             <div className="text-[#393E46]/85 text-lg leading-relaxed">
               {selectedInfo.detailedContent.split('\n').map((line, index) => {
                 line = line.trim();
@@ -171,10 +171,10 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
         transition={{ duration: 1 }}
       >
         {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-black hidden lg:block" />
+        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-black hidden lg:block" />
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-black hidden lg:block" />
+        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-black hidden lg:block" />
 
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -184,8 +184,8 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
         >
           <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Cease & Desist
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-black text-5xl animate-pulse opacity-50">✦</span>
+            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-black text-5xl animate-pulse opacity-50">✦</span>
           </h1>
           <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
             Protect Your IP Globally
@@ -204,14 +204,14 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-black" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-black" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-black" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-black" />
 
             <div className="text-center space-y-6">
               <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Enforce Your IP</span>{' '}
+                <span className="text-black">Enforce Your IP</span>{' '}
                 <span className="text-[#393E46]">Worldwide</span>
               </h2>
               <p className="text-[#393E46] text-lg leading-relaxed">
@@ -219,7 +219,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
               </p>
               <p className="text-[#393E46] text-lg font-medium">
                 📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                <a href="mailto:info@brandsecure.in" className="text-black hover:underline">
                   info@brandsecure.in
                 </a>{' '}
                 to enforce your IP rights today.
@@ -235,7 +235,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">Enforcement</span>{' '}
-              <span className="text-[#00ADB5]">Essentials</span>
+              <span className="text-black">Essentials</span>
             </h2>
           </div>
 
@@ -243,24 +243,24 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             {enforcementInfo.map((info: EnforcementInfo, index: number) => (
               <motion.div
                 key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-black/10 relative overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                <span className="absolute top-4 right-4 text-black text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
                 <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
+                  <div className="px-3 py-1 text-xs font-medium bg-black/10 text-black rounded-full w-fit">
                     {info.category}
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-black transition-colors duration-300">
                     {info.title}
                   </h3>
                   <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
                   <button
                     onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
+                    className="inline-flex items-center text-black font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
                   >
                     Explore
                     <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,7 +268,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
                     </svg>
                   </button>
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </motion.div>
             ))}
           </div>
@@ -281,7 +281,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">Key Enforcement</span>{' '}
-              <span className="text-[#00ADB5]">Services</span>
+              <span className="text-black">Services</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
@@ -295,7 +295,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             ].map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-black/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -315,7 +315,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">How Enforcement</span>{' '}
-              <span className="text-[#00ADB5]">Works</span>
+              <span className="text-black">Works</span>
             </h2>
           </div>
           <div className="space-y-8">
@@ -328,7 +328,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             ].map((step, index) => (
               <motion.div
                 key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-black/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -348,11 +348,11 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
               <span className="text-[#222831]">Who Can</span>{' '}
-              <span className="text-[#00ADB5]">Benefit?</span>
+              <span className="text-black">Benefit?</span>
             </h2>
           </div>
           <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
+            className="bg-white rounded-xl p-8 shadow-md border border-black/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -388,13 +388,13 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             viewport={{ once: true }}
           >
             {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-black" />
+            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-black" />
+            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-black" />
+            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-black" />
 
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Enforce</span>{' '}
+              <span className="text-black">Ready to Enforce</span>{' '}
               <span className="text-[#393E46]">Your IP Rights?</span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed mb-6">
@@ -402,7 +402,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
             </p>
             <Link
               href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+              className="inline-flex items-center px-6 py-3 bg-black text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
             >
               Get Started
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -417,7 +417,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
       <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
         <Link
           href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+          className="inline-flex items-center text-[#393E46] hover:text-black transition-colors"
         >
           <span className="mr-2">←</span> Back to Home
         </Link>

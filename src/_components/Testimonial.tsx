@@ -52,21 +52,21 @@ const TestimonialsSection = () => {
   return (
     <section className="bg-[#EEEEEE] py-16 sm:py-20 md:py-24 lg:py-32 px-4 md:px-8 lg:px-16 xl:px-24 relative overflow-hidden">
       {/* Background Stars */}
-      <span className="absolute left-0 top-1/2 text-[#00ADB5] text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
+      <span className="absolute left-0 top-1/2 text-black text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
-      <span className="absolute right-0 top-1/2 text-[#00ADB5] text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
+      <span className="absolute right-0 top-1/2 text-black text-[100px] sm:text-[150px] md:text-[200px] opacity-10 transform -translate-y-1/2">
         ✦
       </span>
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <h3 className="text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wider mb-4">
+          <h3 className="text-black text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wider mb-4">
             Testimonials
           </h3>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-[#00ADB5]">What Our </span>
+            <span className="text-black">What Our </span>
             <span className="text-[#222831] block sm:inline mt-2 sm:mt-0">Clients Say</span>
           </h2>
           <p className="text-[#393E46] text-base sm:text-lg max-w-2xl mx-auto px-4">
@@ -105,10 +105,10 @@ const TestimonialsSection = () => {
               onMouseEnter={() => setHoveredId(testimonial.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl text-[#00ADB5] opacity-10 absolute top-4 right-6">
+              <div className="text-4xl sm:text-5xl md:text-6xl text-black opacity-10 absolute top-4 right-6">
                 "
               </div>
-              <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-[#00ADB5]/10 text-[#00ADB5] mb-4">
+              <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-black/10 text-black mb-4">
                 {testimonial.tag}
               </span>
               <p className="text-[#393E46] text-base sm:text-lg mb-6 min-h-[80px] sm:min-h-[100px]">

@@ -25,14 +25,14 @@ export default function TermsPage() {
         transition={{ duration: 1 }}
       >
         <motion.h1 
-          className="text-5xl md:text-6xl font-bold text-[#222831] relative inline-block"
+          className="text-5xl md:text-6xl font-bold text-black relative inline-block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           Terms of Service
-          <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-4xl animate-pulse opacity-50">✦</span>
-          <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-4xl animate-pulse opacity-50">✦</span>
+          <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-black text-4xl animate-pulse opacity-50">✦</span>
+          <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-black text-4xl animate-pulse opacity-50">✦</span>
         </motion.h1>
       </motion.section>
 
@@ -68,16 +68,16 @@ export default function TermsPage() {
             ].map((section, index) => (
               <motion.div
                 key={section.title}
-                className="group bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/20 hover:border-[#00ADB5]/20 transition-all duration-300"
+                className="group bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/20 hover:border-black/20 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 viewport={{ once: true }}
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-[#00ADB5] text-2xl font-bold opacity-20">✦</span>
+                  <span className="text-black text-2xl font-bold opacity-20">✦</span>
                   <div>
-                    <h2 className="text-xl font-bold text-[#222831] mb-4">{section.title}</h2>
+                    <h2 className="text-xl font-bold text-black mb-4">{section.title}</h2>
                     <p className="text-lg leading-relaxed text-[#393E46]/80">{section.content}</p>
                   </div>
                 </div>

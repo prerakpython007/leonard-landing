@@ -102,11 +102,11 @@ export default function ContactPage() {
           >
             <button
               onClick={handleClosePopup}
-              className="absolute top-4 right-4 text-[#393E46] hover:text-[#00ADB5] transition-colors"
+              className="absolute top-4 right-4 text-[#393E46] hover:text-black transition-colors"
             >
               <X className="h-6 w-6" />
             </button>
-            <span className="text-4xl text-[#00ADB5]">✦</span>
+            <span className="text-4xl text-black">✦</span>
             <p className="text-xl font-semibold text-[#222831] text-center">
               Your message was sent successfully!
             </p>
@@ -117,18 +117,18 @@ export default function ContactPage() {
       {/* Hero Section */}
       <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
         {/* Corner Angles - Desktop only */}
-        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
         <motion.div className="max-w-7xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
             Contact Us
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
               ✦
             </span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">
+            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black opacity-50 animate-pulse">
               ✦
             </span>
           </h1>
@@ -149,10 +149,10 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-          <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
+          <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-black lg:block" />
+        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-black lg:block" />
+        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-black lg:block" />
+        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-black lg:block" />
 
             <h2 className="mb-6 text-3xl font-bold text-[#222831]">
               Contacting Us
@@ -165,7 +165,7 @@ export default function ContactPage() {
               details, please email us at{" "}
               <a
                 href="mailto:info@leonardsolutions.in"
-                className="text-[#00ADB5] hover:underline"
+                className="text-black hover:underline"
               >
                 info@leonardsolutions.in
               </a>{" "}
@@ -182,7 +182,7 @@ export default function ContactPage() {
               For any queries related to your personal data, privacy concerns, or our legal policies, don’t hesitate to contact Leonard Corporate Solutions at{" "}
               <a
                 href="mailto:info@leonardsolutions.in"
-                className="text-[#00ADB5] hover:underline"
+                className="text-black hover:underline"
               >
                 info@leonardsolutions.in
               </a>{" "}
@@ -199,7 +199,7 @@ export default function ContactPage() {
           >
             <h2 className="relative mb-6 text-3xl font-bold text-[#222831]">
               <span className="relative z-10">Head Office (Mumbai)</span>
-              <span className="absolute bottom-0 left-0 -z-10 h-3 w-20 bg-[#00ADB5]/20"></span>
+              <span className="absolute bottom-0 left-0 -z-10 h-3 w-20 bg-black/20"></span>
             </h2>
             <div className="grid gap-8 md:grid-cols-3">
               {contactDetails.map((detail, index) => (
@@ -210,7 +210,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="transform rounded-lg bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 text-white transition-transform duration-300 group-hover:scale-110">
+                  <div className="transform rounded-lg bg-gradient-to-br from-black to-[#00959c] p-3 text-white transition-transform duration-300 group-hover:scale-110">
                     <detail.icon className="h-6 w-6" />
                   </div>
                   <div>
@@ -220,7 +220,7 @@ export default function ContactPage() {
                     {detail.title === "Email Us" ? (
                       <a
                         href="mailto:info@leonardsolutions.in"
-                        className="text-lg text-[#00ADB5] hover:underline"
+                        className="text-lg text-black hover:underline"
                       >
                         info@leonardsolutions.in
                       </a>
@@ -241,13 +241,13 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
-            <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-[#00ADB5]/5 blur-3xl" />
+            <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-black/5 blur-3xl" />
+            <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-black/5 blur-3xl" />
             
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-black" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-black" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-black" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-black" />
 
             <div className="relative">
               <h2 className="mb-8 text-3xl font-bold text-[#222831] text-center">
@@ -259,7 +259,7 @@ export default function ContactPage() {
 
               <form className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div className="group">
-                  <label htmlFor="firstName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                  <label htmlFor="firstName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-black">
                     First Name
                   </label>
                   <input
@@ -268,12 +268,12 @@ export default function ContactPage() {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-black focus:ring-2 focus:ring-black/20 focus:outline-none"
                     required
                   />
                 </div>
                 <div className="group">
-                  <label htmlFor="lastName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                  <label htmlFor="lastName" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-black">
                     Last Name
                   </label>
                   <input
@@ -282,12 +282,12 @@ export default function ContactPage() {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-black focus:ring-2 focus:ring-black/20 focus:outline-none"
                     required
                   />
                 </div>
                 <div className="group">
-                  <label htmlFor="email" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                  <label htmlFor="email" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-black">
                     Email
                   </label>
                   <input
@@ -296,12 +296,12 @@ export default function ContactPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-black focus:ring-2 focus:ring-black/20 focus:outline-none"
                     required
                   />
                 </div>
                 <div className="group">
-                  <label htmlFor="mobile" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                  <label htmlFor="mobile" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-black">
                     Mobile No.
                   </label>
                   <input
@@ -310,12 +310,12 @@ export default function ContactPage() {
                     name="mobile"
                     value={formData.mobile}
                     onChange={handleChange}
-                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    className="w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-black focus:ring-2 focus:ring-black/20 focus:outline-none"
                     required
                   />
                 </div>
                 <div className="md:col-span-2 group">
-                  <label htmlFor="message" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-[#00ADB5]">
+                  <label htmlFor="message" className="mb-2 block font-medium text-[#222831] transition-colors group-focus-within:text-black">
                     Your Message
                   </label>
                   <textarea
@@ -323,14 +323,14 @@ export default function ContactPage() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="min-h-[150px] w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                    className="min-h-[150px] w-full rounded-lg border-2 border-[#393E46]/10 p-3 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:border-black focus:ring-2 focus:ring-black/20 focus:outline-none"
                     required
                   ></textarea>
                 </div>
                 <div className="text-center md:col-span-2">
                   <motion.button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#00ADB5] to-[#00959c] px-8 py-4 font-medium text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:to-[#00ADB5]"
+                    className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-black to-[#00959c] px-8 py-4 font-medium text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:to-black"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -349,10 +349,10 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-black" />
+            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-black" />
+            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-black" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-black" />
 
             <div className="rounded-xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm">
               <MapComponent />

@@ -1,19 +1,18 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
-import Link from 'next/link';
-import type { UrlObject } from 'url';
-import { motion } from 'framer-motion';
+"use client"
+import type React from "react"
+import { useState, useEffect } from "react"
+import { Menu, X, ChevronDown } from "lucide-react"
+import Link from "next/link"
+import { motion } from "framer-motion"
 
 interface DropdownItem {
-  title: string;
-  items: { label: string; href: string }[];
+  title: string
+  items: { label: string; href: string }[]
 }
 
 interface MobileDropdownProps {
-  dropdown: DropdownItem[];
-  onClose: () => void;
+  dropdown: DropdownItem[]
+  onClose: () => void
 }
 
 const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClose }) => (
@@ -21,7 +20,7 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
     {dropdown.map((section, idx) => (
       <div key={idx} className="space-y-2">
         <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2 p-2">
-          <span className="text-[#00ADB5] text-xs">✦</span>
+          <span className="text-black text-xs">✦</span>
           {section.title}
         </h3>
         <div className="pl-4 space-y-1">
@@ -29,11 +28,11 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
             <Link
               key={subIdx}
               href={subItem.href}
-              data-testid={`mobile-dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
-              className="block p-2 text-gray-600 hover:text-[#00ADB5] text-sm rounded-lg hover:bg-white/50 transition-all"
+              data-testid={`mobile-dropdown-link-${subItem.label.replace(/\s+/g, "-")}`}
+              className="block p-2 text-gray-600 hover:text-black text-sm rounded-lg hover:bg-white/50 transition-all"
               onClick={() => {
-                console.log(`Mobile: Navigating to ${subItem.href}`);
-                onClose();
+                console.log(`Mobile: Navigating to ${subItem.href}`)
+                onClose()
               }}
             >
               {subItem.label}
@@ -43,76 +42,73 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
       </div>
     ))}
   </div>
-);
+)
 
 interface SecondaryNavItem {
-  label: string;
-  href: string;
-  dropdown?: DropdownItem[];
+  label: string
+  href: string
+  dropdown?: DropdownItem[]
 }
 
 interface MobileNavItem extends SecondaryNavItem {
-  dropdown?: DropdownItem[];
+  dropdown?: DropdownItem[]
 }
 
 const Nav: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showSecondaryNav, setShowSecondaryNav] = useState(false);
-  const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
-  const [isInteracting, setIsInteracting] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [showSecondaryNav, setShowSecondaryNav] = useState(false)
+  const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({})
+  const [isInteracting, setIsInteracting] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const saved = localStorage.getItem('showSecondaryNav');
+    const saved = localStorage.getItem("showSecondaryNav")
     if (saved) {
-      setShowSecondaryNav(JSON.parse(saved));
+      setShowSecondaryNav(JSON.parse(saved))
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem('showSecondaryNav', JSON.stringify(showSecondaryNav));
-  }, [showSecondaryNav]);
+    localStorage.setItem("showSecondaryNav", JSON.stringify(showSecondaryNav))
+  }, [showSecondaryNav])
 
   useEffect(() => {
-    if (isOpen || isInteracting) return;
-
+    if (isOpen || isInteracting) return
     const timer = setInterval(() => {
-      setShowSecondaryNav((prev: any) => !prev);
-    }, 7000);
-
-    return () => clearInterval(timer);
-  }, [isOpen, isInteracting]);
+      setShowSecondaryNav((prev: any) => !prev)
+    }, 7000)
+    return () => clearInterval(timer)
+  }, [isOpen, isInteracting])
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset"
     }
     return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+      document.body.style.overflow = "unset"
+    }
+  }, [isOpen])
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setScrolled(offset > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      const offset = window.scrollY
+      setScrolled(offset > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const primaryNavItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/service' },
-    { label: 'About Us', href: '/about-us' },
-    { label: 'Contact Us', href: '/contact-us' },
-    { label: 'Blogs', href: '/blogs' },
-    { label: 'Pricing', href: '/price' },
-    { label: 'Resources', href: '/resource' },
-  ];
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/service" },
+    { label: "About Us", href: "/about-us" },
+    { label: "Contact Us", href: "/contact-us" },
+    { label: "Blogs", href: "/blogs" },
+    { label: "Pricing", href: "/price" },
+    { label: "Resources", href: "/resource" },
+  ]
 
   const nationalDropdown: DropdownItem[] = [
     {
@@ -125,7 +121,7 @@ const Nav: React.FC = () => {
         { label: "Geographical Indications (GI)", href: "/service/geographical" },
         { label: "Domain Name Law", href: "/service/domain" },
         { label: "Anti-Counterfeiting & Brand Protection", href: "/service/anti-counterfeiting" },
-      ]
+      ],
     },
     {
       title: "Business Legal Services",
@@ -135,57 +131,69 @@ const Nav: React.FC = () => {
         { label: "Business Law & Compliance", href: "/service/business-law" },
         { label: "Investment & Fundraising Legal", href: "/service/investment" },
         { label: "Litigation & Dispute Resolution", href: "/service/litigation" },
-      ]
-    }
-  ];
+      ],
+    },
+  ]
 
   const internationalDropdown: DropdownItem[] = [
     {
       title: "International IP Filing",
       items: [
-        { label: "International Trademark Filing via Madrid Protocol", href: "/service/international/trademark-madrid" },
-        { label: "National Filings in USA, EU, UK, UAE, Australia, etc.", href: "/service/international/national-filings" },
+        {
+          label: "International Trademark Filing via Madrid Protocol",
+          href: "/service/international/trademark-madrid",
+        },
+        {
+          label: "National Filings in USA, EU, UK, UAE, Australia, etc.",
+          href: "/service/international/national-filings",
+        },
         { label: "International Patent Filing via PCT Application", href: "/service/international/patent-pct" },
         { label: "National Phase Entry", href: "/service/international/patent-national-phase" },
         { label: "Global Copyright Filing (as per Berne Convention)", href: "/service/international/copyright-berne" },
         { label: "International Design Protection under Hague System", href: "/service/international/design-hague" },
-      ]
+      ],
     },
     {
       title: "Global Legal & Brand Services",
       items: [
         { label: "Cross-Border Brand & Legal Consulting", href: "/service/international/brand-consulting" },
-        { label: "Trademark & Patent Portfolio Management for Multinationals", href: "/service/international/portfolio-management" },
-        { label: "Market Entry Legal Strategy for Foreign Businesses in India", href: "/service/international/market-entry-india" },
+        {
+          label: "Trademark & Patent Portfolio Management for Multinationals",
+          href: "/service/international/portfolio-management",
+        },
+        {
+          label: "Market Entry Legal Strategy for Foreign Businesses in India",
+          href: "/service/international/market-entry-india",
+        },
         { label: "Legal Support for Indian Startups Going Global", href: "/service/international/startup-global" },
         { label: "IP Watch Services in Multiple Jurisdictions", href: "/service/international/ip-watch" },
         { label: "Anti-Counterfeiting for Exporters", href: "/service/international/anti-counterfeiting" },
         { label: "Customs Watch Listing in International Markets", href: "/service/international/customs-watch" },
         { label: "Cease & Desist + Enforcement in Foreign Jurisdictions", href: "/service/international/enforcement" },
-      ]
-    }
-  ];
+      ],
+    },
+  ]
 
   const secondaryNavItems: SecondaryNavItem[] = [
-    { label: 'National Services', href: '/service/national', dropdown: nationalDropdown },
-    { label: 'International Services', href: '/service/international', dropdown: internationalDropdown },
-  ];
+    { label: "National Services", href: "/service/national", dropdown: nationalDropdown },
+    { label: "International Services", href: "/service/international", dropdown: internationalDropdown },
+  ]
 
   const getDropdownPosition = (label: string) => {
-    return 'right-0'; // Align dropdowns to the right of the parent link
-  };
+    return "right-0" // Align dropdowns to the right of the parent link
+  }
 
   const toggleMobileDropdown = (label: string) => {
-    setMobileDropdowns(prev => ({
+    setMobileDropdowns((prev) => ({
       ...prev,
-      [label]: !prev[label]
-    }));
-  };
+      [label]: !prev[label],
+    }))
+  }
 
   return (
-    <motion.nav 
+    <motion.nav
       className={`sticky top-0 w-full transition-all duration-300 z-[100] ${
-        scrolled ? 'bg-[#EEEEEE]/90 backdrop-blur-lg' : 'bg-[#EEEEEE]'
+        scrolled ? "bg-[#EEEEEE]/90 backdrop-blur-lg" : "bg-[#EEEEEE]"
       }`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -196,21 +204,65 @@ const Nav: React.FC = () => {
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-gray-900 focus:outline-none"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700 hover:text-gray-900 focus:outline-none">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           <div className="flex items-center h-full py-2">
             <Link href="/" className="h-20 md:h-30 w-auto flex items-center">
-              <img
-                src="/lion-logo.png"
-                alt="Law Firm Logo"
-                className="h-full w-auto object-contain"
-              />
+              <div className="w-20 h-16 relative">
+                {/* Background SVG - Static with low opacity */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="78.041"
+                  height="63.53"
+                  viewBox="0 0 80 70"
+                  fill="none"
+                  className="w-full h-full absolute inset-0"
+                >
+                  <path
+                    d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                    fill="transparent"
+                    stroke="rgb(200, 200, 200)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.5"
+                  />
+                </svg>
+
+                {/* Foreground SVG - Animated drawing/undrawing */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="78.041"
+                  height="63.53"
+                  viewBox="0 0 80 70"
+                  fill="none"
+                  className="w-full h-full absolute inset-0"
+                >
+                  <motion.path
+                    d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                    fill="transparent"
+                    stroke="rgb(0, 0, 0)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{
+                      strokeDasharray: 1000,
+                      strokeDashoffset: 1000,
+                    }}
+                    animate={{
+                      strokeDashoffset: [1000, 0, 1000],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </svg>
+              </div>
             </Link>
           </div>
 
@@ -218,16 +270,14 @@ const Nav: React.FC = () => {
             <div className="relative h-full w-[600px] lg:w-[800px] xl:w-[1000px]">
               <div
                 className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav
-                    ? '-translate-y-full opacity-0'
-                    : 'translate-y-0 opacity-100'
+                  showSecondaryNav ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
                 }`}
               >
                 {primaryNavItems.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                    className="text-gray-800 hover:text-black font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-black after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
                   >
                     {item.label}
                   </Link>
@@ -236,9 +286,7 @@ const Nav: React.FC = () => {
 
               <div
                 className={`absolute w-full h-full flex items-center justify-end transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav
-                    ? 'translate-y-0 opacity-100'
-                    : 'translate-y-full opacity-0'
+                  showSecondaryNav ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
                 }`}
               >
                 <div className="flex items-center gap-4">
@@ -247,46 +295,56 @@ const Nav: React.FC = () => {
                       <div className="flex items-center gap-1">
                         <Link
                           href={item.href}
-                          className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                          className="text-gray-800 whitespace-nowrap hover:text-black font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-black after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
                           onClick={() => console.log(`Parent: Navigating to ${item.href}`)}
                         >
                           {item.label}
                         </Link>
                         {item.dropdown && (
-                          <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
+                          <ChevronDown
+                            size={16}
+                            className="text-gray-600 transition-transform duration-300 group-hover:rotate-180"
+                          />
                         )}
                       </div>
-                      
+
                       {item.dropdown && (
-                        <div className={`absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ${getDropdownPosition(item.label)} top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]`}>
+                        <div
+                          className={`absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ${getDropdownPosition(item.label)} top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]`}
+                        >
                           <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
-                            <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                            <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                            
+                            <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">
+                              ✦
+                            </div>
+                            <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">
+                              ✦
+                            </div>
+
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
-                              {Array.isArray(item.dropdown) && item.dropdown.map((column, idx) => (
-                                <div key={idx}>
-                                  <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
-                                    <span className="text-[#00ADB5]">✦</span>
-                                    {column.title}
-                                  </h3>
-                                  <ul className="space-y-1.5 sm:space-y-2">
-                                    {column.items.map((subItem, subIdx) => (
-                                      <li key={subIdx}>
-                                        <Link
-                                          href={subItem.href}
-                                          data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
-                                          className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
-                                          onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
-                                        >
-                                          <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
-                                          {subItem.label}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
+                              {Array.isArray(item.dropdown) &&
+                                item.dropdown.map((column, idx) => (
+                                  <div key={idx}>
+                                    <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
+                                      <span className="text-black">✦</span>
+                                      {column.title}
+                                    </h3>
+                                    <ul className="space-y-1.5 sm:space-y-2">
+                                      {column.items.map((subItem, subIdx) => (
+                                        <li key={subIdx}>
+                                          <Link
+                                            href={subItem.href}
+                                            data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, "-")}`}
+                                            className="text-gray-600 hover:text-black text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
+                                            onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
+                                          >
+                                            <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-black transition-colors"></span>
+                                            {subItem.label}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                ))}
                             </div>
                           </div>
                         </div>
@@ -299,23 +357,21 @@ const Nav: React.FC = () => {
 
             <button
               onClick={() => setShowSecondaryNav(!showSecondaryNav)}
-              className="p-2 ml-4 lg:ml-8 text-gray-700 hover:text-[#00ADB5] transition-all duration-500 h-12 flex items-center"
-              aria-label={showSecondaryNav ? 'Show Main Menu' : 'Show Services Menu'}
+              className="p-2 ml-4 lg:ml-8 text-gray-700 hover:text-black transition-all duration-500 h-12 flex items-center"
+              aria-label={showSecondaryNav ? "Show Main Menu" : "Show Services Menu"}
             >
               <ChevronDown
                 size={24}
                 className={`transform transition-transform duration-500 ${
-                  showSecondaryNav ? 'rotate-180' : 'rotate-0'
+                  showSecondaryNav ? "rotate-180" : "rotate-0"
                 }`}
               />
             </button>
           </div>
         </div>
 
-        <motion.div 
-          className={`md:hidden fixed inset-0 z-[9999] ${
-            isOpen ? "pointer-events-auto" : "pointer-events-none"
-          }`}
+        <motion.div
+          className={`md:hidden fixed inset-0 z-[9999] ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: isOpen ? 1 : 0 }}
           onClick={() => setIsOpen(false)}
@@ -331,23 +387,23 @@ const Nav: React.FC = () => {
               <div className="flex justify-between items-center mb-8">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
+                  className="p-2 text-gray-700 hover:text-black transition-colors"
                 >
                   <X size={24} />
                 </button>
-                <span className="text-[#00ADB5] text-2xl">✦</span>
+                <span className="text-black text-2xl">✦</span>
               </div>
 
               <div className="flex justify-center mb-8">
                 <button
                   onClick={() => setShowSecondaryNav(!showSecondaryNav)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md text-gray-700 hover:text-[#00ADB5] transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md text-gray-700 hover:text-black transition-colors"
                 >
-                  {showSecondaryNav ? 'Main Menu' : 'Services Menu'}
+                  {showSecondaryNav ? "Main Menu" : "Services Menu"}
                   <ChevronDown
                     size={20}
                     className={`transform transition-transform duration-300 ${
-                      showSecondaryNav ? 'rotate-180' : 'rotate-0'
+                      showSecondaryNav ? "rotate-180" : "rotate-0"
                     }`}
                   />
                 </button>
@@ -357,39 +413,39 @@ const Nav: React.FC = () => {
                 <div className="space-y-1">
                   {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (
                     <div key={item.label} className="border-b border-gray-100/50 last:border-0">
-                      {'dropdown' in item ? (
+                      {"dropdown" in item ? (
                         <div className="py-2">
                           <button
                             onClick={() => toggleMobileDropdown(item.label)}
-                            className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                            className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-black font-medium text-base transition-all"
                           >
                             <span className="flex items-center gap-2">
-                              <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                              <span className="text-black opacity-50 text-sm">✦</span>
                               {item.label}
                             </span>
                             <ChevronDown
                               size={18}
                               className={`transform transition-transform duration-300 ${
-                                mobileDropdowns[item.label] ? 'rotate-180' : 'rotate-0'
+                                mobileDropdowns[item.label] ? "rotate-180" : "rotate-0"
                               }`}
                             />
                           </button>
-                          
+
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
-                            animate={{ 
+                            animate={{
                               height: mobileDropdowns[item.label] ? "auto" : 0,
-                              opacity: mobileDropdowns[item.label] ? 1 : 0
+                              opacity: mobileDropdowns[item.label] ? 1 : 0,
                             }}
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
                             {(item as MobileNavItem).dropdown && (
-                              <MobileDropdownContent 
+                              <MobileDropdownContent
                                 dropdown={(item as MobileNavItem).dropdown!}
                                 onClose={() => {
-                                  setIsOpen(false);
-                                  setMobileDropdowns({});
+                                  setIsOpen(false)
+                                  setMobileDropdowns({})
                                 }}
                               />
                             )}
@@ -398,10 +454,10 @@ const Nav: React.FC = () => {
                       ) : (
                         <Link
                           href={item.href}
-                          className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                          className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-black font-medium text-base transition-all"
                           onClick={() => setIsOpen(false)}
                         >
-                          <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                          <span className="text-black opacity-50 text-sm">✦</span>
                           {item.label}
                         </Link>
                       )}
@@ -414,7 +470,7 @@ const Nav: React.FC = () => {
         </motion.div>
       </div>
     </motion.nav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

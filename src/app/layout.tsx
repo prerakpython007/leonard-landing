@@ -24,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body className="bg-[#222831] relative">
+      <body className="bg-black relative">
 
         <UpperNav />
         <Nav />

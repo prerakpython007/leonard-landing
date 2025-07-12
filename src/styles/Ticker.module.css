@@ -37,10 +37,10 @@
 
 .leftGradient {
   left: 0;
-  background: linear-gradient(to right, #00ADB5 60%, transparent);
+  background: linear-gradient(to right, #000, transparent);
 }
 
 .rightGradient {
   right: 0;
-  background: linear-gradient(to left, #00ADB5 60%, transparent);
+  background: linear-gradient(to left, #000, transparent);
 }
