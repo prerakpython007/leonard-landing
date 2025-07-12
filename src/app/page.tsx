@@ -1,5 +1,5 @@
 import Link from "next/link";
-import About from "~/_components/About";
+import { About } from "~/_components/About";
 import { HeroParallax } from "~/_components/Landing";
 import Testimonials from "~/_components/Testimonial";
 import { ThreeDMarquee } from "~/_components/ticker";
@@ -93,7 +93,7 @@ const products = [
   {
     title: "Copyright Registration",
     link: "https://www.copyright.gov/",
-    thumbnail: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?auto=format&fit=crop&w=600&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Legal Document Automation",
@@ -118,7 +118,7 @@ const products = [
   {
     title: "IP Valuation Service",
     link: "https://www.ipwatchdog.com/",
-    thumbnail: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?auto=format&fit=crop&w=600&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Legal CRM",
