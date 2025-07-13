@@ -7,7 +7,7 @@ import Link from 'next/link';
 const ContactUsSection = () => {
   return (
     <div className="bg-white">
-      <section className="py-12 px-4 md:px-16 lg:px-24 relative overflow-hidden">
+      <section className="py-48 px-4 md:px-16 lg:px-24 relative overflow-hidden">
         {/* Background Stars */}
         <span className="absolute left-0 top-[45%] text-black text-[150px] md:text-[300px] opacity-10 -z-10">✦</span>
         <span className="absolute right-0 top-[45%] text-black text-[150px] md:text-[300px] opacity-10 -z-10">✦</span>

@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { cn } from "~/lib/utils";
+
 export const ThreeDMarquee = ({
   images,
   className,
@@ -15,62 +16,66 @@ export const ThreeDMarquee = ({
     const start = colIndex * chunkSize;
     return images.slice(start, start + chunkSize);
   });
+
   return (
-    <div
-      className={cn(
-        "mx-auto block h-[600px] overflow-hidden  max-sm:h-100 bg-[#EEEEEE]",
-        className,
-      )}
-    >
-      <div className="w-full text-center text-3xl font-bold tracking-tight text-black pt-8 pb-4 z-50 relative">
+    <>
+      {/* Heading ABOVE ticker */}
+      <div className="w-full text-center text-3xl font-bold tracking-tight text-black  py-48 z-50 relative">
         Our Clients
       </div>
-      <div className="flex size-full items-center justify-center">
-        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
-          <div
-            style={{
-              transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
-            }}
-            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d"
-          >
-            {chunks.map((subarray, colIndex) => (
-              <motion.div
-                animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
-                transition={{
-                  duration: colIndex % 2 === 0 ? 10 : 15,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                key={colIndex + "marquee"}
-                className="flex flex-col items-start gap-8"
-              >
-                <GridLineVertical className="-left-4" offset="80px" />
-                {subarray.map((image, imageIndex) => (
-                  <div className="relative" key={imageIndex + image}>
-                    <GridLineHorizontal className="-top-4" offset="20px" />
-                    <motion.img
-                      whileHover={{
-                        y: -10,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                      }}
-                      key={imageIndex + image}
-                      src={image}
-                      alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
-                      width={970}
-                      height={700}
-                    />
-                  </div>
-                ))}
-              </motion.div>
-            ))}
+
+      {/* Marquee Section */}
+      <div
+        className={cn(
+          "mx-auto block h-[600px] overflow-hidden max-sm:h-100 bg-[#EEEEEE]",
+          className,
+        )}
+      >
+        <div className="flex size-full items-center justify-center">
+          <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
+            <div
+              style={{
+                transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
+              }}
+              className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d"
+            >
+              {chunks.map((subarray, colIndex) => (
+                <motion.div
+                  animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
+                  transition={{
+                    duration: colIndex % 2 === 0 ? 10 : 15,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                  key={colIndex + "marquee"}
+                  className="flex flex-col items-start gap-8"
+                >
+                  <GridLineVertical className="-left-4" offset="80px" />
+                  {subarray.map((image, imageIndex) => (
+                    <div className="relative" key={imageIndex + image}>
+                      <GridLineHorizontal className="-top-4" offset="20px" />
+                      <motion.img
+                        whileHover={{ y: -10 }}
+                        transition={{
+                          duration: 0.3,
+                          ease: "easeInOut",
+                        }}
+                        key={imageIndex + image}
+                        src={image}
+                        alt={`Image ${imageIndex + 1}`}
+                        className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
+                        width={970}
+                        height={700}
+                      />
+                    </div>
+                  ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -90,7 +95,7 @@ const GridLineHorizontal = ({
           "--height": "1px",
           "--width": "5px",
           "--fade-stop": "90%",
-          "--offset": offset || "200px", //-100px if you want to keep the line inside
+          "--offset": offset || "200px",
           "--color-dark": "rgba(255, 255, 255, 0.2)",
           maskComposite: "exclude",
         } as React.CSSProperties
@@ -102,7 +107,6 @@ const GridLineHorizontal = ({
         "[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
         "[mask-composite:exclude]",
         "z-30",
-        "",
         className,
       )}
     ></div>
@@ -125,7 +129,7 @@ const GridLineVertical = ({
           "--height": "5px",
           "--width": "1px",
           "--fade-stop": "90%",
-          "--offset": offset || "150px", //-100px if you want to keep the line inside
+          "--offset": offset || "150px",
           "--color-dark": "rgba(255, 255, 255, 0.2)",
           maskComposite: "exclude",
         } as React.CSSProperties

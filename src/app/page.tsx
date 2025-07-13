@@ -3,7 +3,7 @@ import { About } from "~/_components/About";
 import { HeroParallax } from "~/_components/Landing";
 import Testimonials from "~/_components/Testimonial";
 import { ThreeDMarquee } from "~/_components/ticker";
-import { StickyScroll } from "~/_components/Experience";
+import { Experiance} from "~/_components/Experience";
 import ContactUsSection from "~/_components/ContactUsSection";
 
 const images = [
@@ -154,7 +154,7 @@ export default function HomePage() {
       <About />
       <ThreeDMarquee images={images} />
       <Testimonials />
-      <StickyScroll content={content} />
+      <Experiance />
       <ContactUsSection />
     </main>
   );
