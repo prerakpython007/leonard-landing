@@ -17,7 +17,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col items-center overflow-hidden bg-[#EEEEEE] px-4 py-16 sm:py-20 md:py-24 lg:py-32 md:px-8 lg:px-16"
+      className="relative flex min-h-screen flex-col items-center overflow-hidden bg-[#0b0903] px-4 py-16 sm:py-20 md:py-24 lg:py-32 md:px-8 lg:px-16"
     >
       {/* Background Stars - Adjusted sizes */}
       <span className="absolute top-[45%] left-0 -translate-y-1/2 transform text-[150px] text-[#00ADB5] opacity-10 sm:text-[200px] md:text-[300px]">

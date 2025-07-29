@@ -264,9 +264,9 @@ const Nav: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-between w-full h-full">
+          <div className="hidden md:flex items-center w-full h-full">
             {/* Left Navigation Items */}
-            <div className="flex items-center gap-6 lg:gap-8">
+            <div className="flex flex-1 justify-between items-center max-w-[40%]">
               {leftNavItems.map((item) => (
                 <div key={item.label} className="relative group">
                   <div className="flex items-center gap-1">
@@ -321,18 +321,18 @@ const Nav: React.FC = () => {
             </div>
 
             {/* Centered Logo */}
-            <div className="flex items-center h-full py-2">
-              <Link href="/" className="h-20 w-auto flex items-center">
+            <div className="flex items-center h-full py-2 flex-shrink-0 mx-auto">
+              <Link href="/" className="h-20 w-auto flex items-center justify-center">
                 <img
                   src="/lion-logo.png"
                   alt="Law Firm Logo"
-                  className="h-full w-auto object-contain"
+                  className="h-full w-auto object-contain mx-auto"
                 />
               </Link>
             </div>
 
             {/* Right Navigation Items */}
-            <div className="flex items-center gap-6 lg:gap-8">
+            <div className="flex flex-1 justify-between items-center max-w-[40%]">
               {rightNavItems.map((item) => (
                 <div key={item.label} className="relative group">
                   <div className="flex items-center gap-1">
