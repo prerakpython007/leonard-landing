@@ -45,20 +45,16 @@ const MobileDropdownContent: React.FC<MobileDropdownProps> = ({ dropdown, onClos
   </div>
 );
 
-interface SecondaryNavItem {
+interface NavItem {
   label: string;
   href: string;
-  dropdown?: DropdownItem[];
-}
-
-interface MobileNavItem extends SecondaryNavItem {
   dropdown?: DropdownItem[];
 }
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSecondaryNav, setShowSecondaryNav] = useState(false);
-  const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
+  const [mobileDropdowns, setMobileDropdowns] = useState<Record<string, boolean>>({});
   const [isInteracting, setIsInteracting] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -103,16 +99,6 @@ const Nav: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const primaryNavItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/service' },
-    { label: 'About Us', href: '/about-us' },
-    { label: 'Contact Us', href: '/contact-us' },
-    { label: 'Blogs', href: '/blogs' },
-    { label: 'Pricing', href: '/price' },
-    { label: 'Resources', href: '/resource' },
-  ];
 
   const nationalDropdown: DropdownItem[] = [
     {
@@ -166,10 +152,82 @@ const Nav: React.FC = () => {
     }
   ];
 
-  const secondaryNavItems: SecondaryNavItem[] = [
-    { label: 'National Services', href: '/service/national', dropdown: nationalDropdown },
-    { label: 'International Services', href: '/service/international', dropdown: internationalDropdown },
+  const leftNavItems = [
+    { 
+      label: 'Who are we?', 
+      href: '/about-us',
+      dropdown: [
+        {
+          title: "About Our Firm",
+          items: [
+            { label: "About Us", href: "/about-us" },
+            { label: "Our Team", href: "/about-us#team" },
+            { label: "Contact Us", href: "/contact-us" },
+          ]
+        }
+      ]
+    },
+    { 
+      label: 'IP Registration India', 
+      href: '/service/national', 
+      dropdown: nationalDropdown 
+    },
+    { 
+      label: 'IP Registration International', 
+      href: '/service/international', 
+      dropdown: internationalDropdown 
+    },
   ];
+
+  const rightNavItems = [
+    { 
+      label: 'Careers', 
+      href: '/careers',
+      dropdown: [
+        {
+          title: "Career Opportunities",
+          items: [
+            { label: "Law Intern", href: "/careers/law-intern" },
+            { label: "For Students", href: "/careers/students" },
+            { label: "Others", href: "/careers/others" },
+          ]
+        }
+      ]
+    },
+    { 
+      label: 'Blogs', 
+      href: '/blogs',
+      dropdown: [
+        {
+          title: "Recent Articles",
+          items: [
+            { label: "Trademark Registration Guide", href: "/blogs/trademark-guide" },
+            { label: "Patent Filing Process", href: "/blogs/patent-process" },
+            { label: "Copyright Protection Tips", href: "/blogs/copyright-tips" },
+            { label: "Startup IP Strategy", href: "/blogs/startup-ip" },
+          ]
+        }
+      ]
+    },
+    { 
+      label: 'Insights', 
+      href: '/insights',
+      dropdown: [
+        {
+          title: "Industry Insights",
+          items: [
+            { label: "IP Market Trends", href: "/insights/market-trends" },
+            { label: "Legal Updates", href: "/insights/legal-updates" },
+            { label: "Case Studies", href: "/insights/case-studies" },
+            { label: "Industry Reports", href: "/insights/reports" },
+          ]
+        }
+      ]
+    },
+  ];
+
+  // Combine all navigation items for mobile menu
+  const allNavItems = [...leftNavItems, ...rightNavItems];
 
   const getDropdownPosition = (label: string) => {
     return 'right-0'; // Align dropdowns to the right of the parent link
@@ -194,7 +252,8 @@ const Nav: React.FC = () => {
       onMouseLeave={() => setIsInteracting(false)}
     >
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex items-center h-20">
+          {/* Mobile menu button */}
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -204,111 +263,139 @@ const Nav: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex items-center h-full py-2">
-            <Link href="/" className="h-20 md:h-30 w-auto flex items-center">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center justify-between w-full h-full">
+            {/* Left Navigation Items */}
+            <div className="flex items-center gap-6 lg:gap-8">
+              {leftNavItems.map((item) => (
+                <div key={item.label} className="relative group">
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href={item.href}
+                      className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                      onClick={() => console.log(`Left Nav: Navigating to ${item.href}`)}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.dropdown && (
+                      <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
+                    )}
+                  </div>
+                  
+                  {item.dropdown && (
+                    <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 left-0 top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]">
+                      <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
+                        <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                        <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
+                          {item.dropdown.map((column, idx) => (
+                            <div key={idx}>
+                              <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
+                                <span className="text-[#00ADB5]">✦</span>
+                                {column.title}
+                              </h3>
+                              <ul className="space-y-1.5 sm:space-y-2">
+                                {column.items.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.href}
+                                      data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
+                                      className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
+                                      onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
+                                    >
+                                      <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
+                                      {subItem.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Centered Logo */}
+            <div className="flex items-center h-full py-2">
+              <Link href="/" className="h-20 w-auto flex items-center">
+                <img
+                  src="/lion-logo.png"
+                  alt="Law Firm Logo"
+                  className="h-full w-auto object-contain"
+                />
+              </Link>
+            </div>
+
+            {/* Right Navigation Items */}
+            <div className="flex items-center gap-6 lg:gap-8">
+              {rightNavItems.map((item) => (
+                <div key={item.label} className="relative group">
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href={item.href}
+                      className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
+                      onClick={() => console.log(`Right Nav: Navigating to ${item.href}`)}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.dropdown && (
+                      <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
+                    )}
+                  </div>
+                  
+                  {item.dropdown && (
+                    <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 right-0 top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]">
+                      <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
+                        <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                        <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
+                          {item.dropdown.map((column, idx) => (
+                            <div key={idx}>
+                              <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
+                                <span className="text-[#00ADB5]">✦</span>
+                                {column.title}
+                              </h3>
+                              <ul className="space-y-1.5 sm:space-y-2">
+                                {column.items.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.href}
+                                      data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
+                                      className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
+                                      onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
+                                    >
+                                      <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
+                                      {subItem.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Logo (visible only on mobile) */}
+          <div className="flex md:hidden items-center h-full py-2 ml-auto">
+            <Link href="/" className="h-16 w-auto flex items-center">
               <img
                 src="/lion-logo.png"
                 alt="Law Firm Logo"
                 className="h-full w-auto object-contain"
               />
             </Link>
-          </div>
-
-          <div className="hidden md:flex items-center h-full">
-            <div className="relative h-full w-[600px] lg:w-[800px] xl:w-[1000px]">
-              <div
-                className={`absolute w-full h-full flex items-center justify-between transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav
-                    ? '-translate-y-full opacity-0'
-                    : 'translate-y-0 opacity-100'
-                }`}
-              >
-                {primaryNavItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="text-gray-800 hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
-              <div
-                className={`absolute w-full h-full flex items-center justify-end transition-all duration-500 ease-in-out transform ${
-                  showSecondaryNav
-                    ? 'translate-y-0 opacity-100'
-                    : 'translate-y-full opacity-0'
-                }`}
-              >
-                <div className="flex items-center gap-4">
-                  {secondaryNavItems.map((item) => (
-                    <div key={item.label} className="relative group">
-                      <div className="flex items-center gap-1">
-                        <Link
-                          href={item.href}
-                          className="text-gray-800 whitespace-nowrap hover:text-[#00ADB5] font-medium transition-all duration-200 text-sm lg:text-base uppercase tracking-wider relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#00ADB5] after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full py-2"
-                          onClick={() => console.log(`Parent: Navigating to ${item.href}`)}
-                        >
-                          {item.label}
-                        </Link>
-                        {item.dropdown && (
-                          <ChevronDown size={16} className="text-gray-600 transition-transform duration-300 group-hover:rotate-180" />
-                        )}
-                      </div>
-                      
-                      {item.dropdown && (
-                        <div className={`absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 ${getDropdownPosition(item.label)} top-full pt-4 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]`}>
-                          <div className="bg-white shadow-2xl rounded-lg p-3 sm:p-4 md:p-5 relative">
-                            <div className="absolute top-4 right-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                            <div className="absolute bottom-4 left-4 text-gray-200 opacity-20 text-4xl hidden sm:block">✦</div>
-                            
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
-                              {Array.isArray(item.dropdown) && item.dropdown.map((column, idx) => (
-                                <div key={idx}>
-                                  <h3 className="font-semibold text-gray-900 mb-2 sm:mb-4 uppercase text-xs sm:text-sm flex items-center gap-2">
-                                    <span className="text-[#00ADB5]">✦</span>
-                                    {column.title}
-                                  </h3>
-                                  <ul className="space-y-1.5 sm:space-y-2">
-                                    {column.items.map((subItem, subIdx) => (
-                                      <li key={subIdx}>
-                                        <Link
-                                          href={subItem.href}
-                                          data-testid={`dropdown-link-${subItem.label.replace(/\s+/g, '-')}`}
-                                          className="text-gray-600 hover:text-[#00ADB5] text-xs sm:text-sm transition-colors duration-200 flex items-center gap-2 group/item"
-                                          onClick={() => console.log(`Desktop: Navigating to ${subItem.href}`)}
-                                        >
-                                          <span className="w-1 h-1 bg-gray-300 rounded-full group-hover/item:bg-[#00ADB5] transition-colors"></span>
-                                          {subItem.label}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setShowSecondaryNav(!showSecondaryNav)}
-              className="p-2 ml-4 lg:ml-8 text-gray-700 hover:text-[#00ADB5] transition-all duration-500 h-12 flex items-center"
-              aria-label={showSecondaryNav ? 'Show Main Menu' : 'Show Services Menu'}
-            >
-              <ChevronDown
-                size={24}
-                className={`transform transition-transform duration-500 ${
-                  showSecondaryNav ? 'rotate-180' : 'rotate-0'
-                }`}
-              />
-            </button>
           </div>
         </div>
 
@@ -338,24 +425,9 @@ const Nav: React.FC = () => {
                 <span className="text-[#00ADB5] text-2xl">✦</span>
               </div>
 
-              <div className="flex justify-center mb-8">
-                <button
-                  onClick={() => setShowSecondaryNav(!showSecondaryNav)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md text-gray-700 hover:text-[#00ADB5] transition-colors"
-                >
-                  {showSecondaryNav ? 'Main Menu' : 'Services Menu'}
-                  <ChevronDown
-                    size={20}
-                    className={`transform transition-transform duration-300 ${
-                      showSecondaryNav ? 'rotate-180' : 'rotate-0'
-                    }`}
-                  />
-                </button>
-              </div>
-
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="space-y-1">
-                  {(showSecondaryNav ? secondaryNavItems : primaryNavItems).map((item) => (
+                  {allNavItems.map((item) => (
                     <div key={item.label} className="border-b border-gray-100/50 last:border-0">
                       {'dropdown' in item ? (
                         <div className="py-2">
@@ -384,9 +456,9 @@ const Nav: React.FC = () => {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            {(item as MobileNavItem).dropdown && (
+                            {item.dropdown && (
                               <MobileDropdownContent 
-                                dropdown={(item as MobileNavItem).dropdown!}
+                                dropdown={item.dropdown}
                                 onClose={() => {
                                   setIsOpen(false);
                                   setMobileDropdowns({});

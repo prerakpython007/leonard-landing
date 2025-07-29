@@ -23,7 +23,7 @@ const UpperNav: React.FC = () => {
 
   return (
     <div className="bg-[#00ADB5] text-white py-3">
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative w-full">
         <div className={`${styles.ticker} overflow-hidden`}>
           <div className={`${styles.gradientOverlay} ${styles.leftGradient} flex items-center`}>
             <span className="text-2xl ml-4 opacity-50">✦</span>
