@@ -323,11 +323,58 @@ const Nav: React.FC = () => {
             {/* Centered Logo */}
             <div className="flex items-center h-full py-2 flex-shrink-0 mx-auto">
               <Link href="/" className="h-20 w-auto flex items-center justify-center">
-                <img
-                  src="/lion-logo.png"
-                  alt="Law Firm Logo"
-                  className="h-full w-auto object-contain mx-auto"
-                />
+                <div className="w-20 h-16 relative p-1">
+                  {/* Background SVG - Static with low opacity */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="78.041"
+                    height="63.53"
+                    viewBox="-5 -5 90 80"
+                    fill="none"
+                    className="w-full h-full absolute inset-0"
+                  >
+                    <path
+                      d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                      fill="transparent"
+                      stroke="rgb(200, 200, 200)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      opacity="0.5"
+                    />
+                  </svg>
+
+                  {/* Foreground SVG - Animated drawing/undrawing */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="78.041"
+                    height="63.53"
+                    viewBox="-5 -5 90 80"
+                    fill="none"
+                    className="w-full h-full absolute inset-0"
+                  >
+                    <motion.path
+                      d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                      fill="transparent"
+                      stroke="rgb(0, 0, 0)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{
+                        strokeDasharray: 1000,
+                        strokeDashoffset: 1000,
+                      }}
+                      animate={{
+                        strokeDashoffset: [1000, 0, 1000],
+                      }}
+                      transition={{
+                        duration: 12,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </svg>
+                </div>
               </Link>
             </div>
 
@@ -390,100 +437,148 @@ const Nav: React.FC = () => {
           {/* Mobile Logo (visible only on mobile) */}
           <div className="flex md:hidden items-center h-full py-2 ml-auto">
             <Link href="/" className="h-16 w-auto flex items-center">
-              <img
-                src="/lion-logo.png"
-                alt="Law Firm Logo"
-                className="h-full w-auto object-contain"
-              />
+              <div className="w-16 h-12 relative p-1">
+                {/* Background SVG - Static with low opacity */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="78.041"
+                  height="63.53"
+                  viewBox="-5 -5 90 80"
+                  fill="none"
+                  className="w-full h-full absolute inset-0"
+                >
+                  <path
+                    d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                    fill="transparent"
+                    stroke="rgb(200, 200, 200)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.5"
+                  />
+                </svg>
+
+                {/* Foreground SVG - Animated drawing/undrawing */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="78.041"
+                  height="63.53"
+                  viewBox="-5 -5 90 80"
+                  fill="none"
+                  className="w-full h-full absolute inset-0"
+                >
+                  <motion.path
+                    d="M 78.041 23.5 C 75.725 23.5 69.301 25.181 69.301 30 C 69.283 30.4 68.573 32.895 71.675 35.036 C 75.892 37.946 76.426 38.815 77.013 40.5 C 78.903 45.935 66.601 47.39 60.401 46.5 C 50.421 45.067 40.512 42.605 40.512 36 C 40.512 30.45 45.454 28.398 47.401 26.5 C 49.349 24.602 52.607 23.965 56.401 23.5 C 60.196 23.035 55.669 22.175 48.901 25.5 C 42.134 28.825 31.431 41.602 30.401 41.5 C 24.962 40.961 19.893 26.365 20.901 17.5 C 21.91 8.635 30.368 0 37.059 0 C 43.75 0 38.581 11.903 31.901 26.5 C 25.221 41.097 17.03 58.387 12.954 62.535 C 4.684 70.953 -7.88 23.334 6.689 18.54"
+                    fill="transparent"
+                    stroke="rgb(0, 0, 0)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{
+                      strokeDasharray: 1000,
+                      strokeDashoffset: 1000,
+                    }}
+                    animate={{
+                      strokeDashoffset: [1000, 0, 1000],
+                    }}
+                    transition={{
+                      duration: 12,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </svg>
+              </div>
             </Link>
           </div>
-        </div>
 
-        <motion.div 
-          className={`md:hidden fixed inset-0 z-[9999] ${
-            isOpen ? "pointer-events-auto" : "pointer-events-none"
-          }`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isOpen ? 1 : 0 }}
-          onClick={() => setIsOpen(false)}
-        >
-          <motion.div
-            className="absolute left-0 top-0 bottom-0 w-[300px] bg-[#EEEEEE] z-[10000] h-[100vh] overflow-y-auto"
-            initial={{ x: "-100%" }}
-            animate={{ x: isOpen ? 0 : "-100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()}
+          {/* Mobile Dropdown Menu */}
+          <motion.div 
+            className={`md:hidden fixed inset-0 z-[9999] ${
+              isOpen ? "pointer-events-auto" : "pointer-events-none"
+            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isOpen ? 1 : 0 }}
+            onClick={() => setIsOpen(false)}
           >
-            <div className="p-4 h-full flex flex-col">
-              <div className="flex justify-between items-center mb-8">
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
-                >
-                  <X size={24} />
-                </button>
-                <span className="text-[#00ADB5] text-2xl">✦</span>
-              </div>
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 w-[300px] bg-[#EEEEEE] z-[10000] h-[100vh] overflow-y-auto"
+              initial={{ x: "-100%" }}
+              animate={{ x: isOpen ? 0 : "-100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-4 h-full flex flex-col">
+                <div className="flex justify-between items-center mb-8">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 text-gray-700 hover:text-[#00ADB5] transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                  <span className="text-[#00ADB5] text-2xl">✦</span>
+                </div>
 
-              <div className="flex-1 overflow-y-auto custom-scrollbar">
-                <div className="space-y-1">
-                  {allNavItems.map((item) => (
-                    <div key={item.label} className="border-b border-gray-100/50 last:border-0">
-                      {'dropdown' in item ? (
-                        <div className="py-2">
-                          <button
-                            onClick={() => toggleMobileDropdown(item.label)}
-                            className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
-                          >
-                            <span className="flex items-center gap-2">
-                              <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
-                              {item.label}
-                            </span>
-                            <ChevronDown
-                              size={18}
-                              className={`transform transition-transform duration-300 ${
-                                mobileDropdowns[item.label] ? 'rotate-180' : 'rotate-0'
-                              }`}
-                            />
-                          </button>
-                          
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ 
-                              height: mobileDropdowns[item.label] ? "auto" : 0,
-                              opacity: mobileDropdowns[item.label] ? 1 : 0
-                            }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            {item.dropdown && (
-                              <MobileDropdownContent 
-                                dropdown={item.dropdown}
-                                onClose={() => {
-                                  setIsOpen(false);
-                                  setMobileDropdowns({});
-                                }}
+                <div className="flex-1 overflow-y-auto custom-scrollbar">
+                  <div className="space-y-1">
+                    {allNavItems.map((item) => (
+                      <div key={item.label} className="border-b border-gray-100/50 last:border-0">
+                        {'dropdown' in item ? (
+                          <div className="py-2">
+                            <button
+                              onClick={() => toggleMobileDropdown(item.label)}
+                              className="flex items-center justify-between w-full p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                                {item.label}
+                              </span>
+                              <ChevronDown
+                                size={18}
+                                className={`transform transition-transform duration-300 ${
+                                  mobileDropdowns[item.label] ? 'rotate-180' : 'rotate-0'
+                                }`}
                               />
-                            )}
-                          </motion.div>
-                        </div>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
-                          {item.label}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                            </button>
+                            
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ 
+                                height: mobileDropdowns[item.label] ? "auto" : 0,
+                                opacity: mobileDropdowns[item.label] ? 1 : 0
+                              }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              {item.dropdown && (
+                                <MobileDropdownContent 
+                                  dropdown={item.dropdown}
+                                  onClose={() => {
+                                    setIsOpen(false);
+                                    setMobileDropdowns({});
+                                  }}
+                                />
+                              )}
+                            </motion.div>
+                          </div>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <span className="text-[#00ADB5] opacity-50 text-sm">✦</span>
+                            {item.label}
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </motion.nav>
   );
