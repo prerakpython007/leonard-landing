@@ -22,13 +22,13 @@ const UpperNav: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#00ADB5] text-white py-3">
+    <div className="bg-black text-white py-3">
       <div className="relative w-full">
-        <div className={`${styles.ticker} overflow-hidden`}>
-          <div className={`${styles.gradientOverlay} ${styles.leftGradient} flex items-center`}>
+        <div className="overflow-hidden relative">
+          <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-black to-transparent flex items-center z-10 pointer-events-none">
             <span className="text-2xl ml-4 opacity-50">✦</span>
           </div>
-          <div className={`${styles.gradientOverlay} ${styles.rightGradient} flex items-center justify-end`}>
+          <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-black to-transparent flex items-center justify-end z-10 pointer-events-none">
             <span className="text-2xl mr-4 opacity-50">✦</span>
           </div>
           <div className={styles.wrapper}>
@@ -39,22 +39,7 @@ const UpperNav: React.FC = () => {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 text-sm hover:text-[#222831] font-bold transition-colors duration-300 cursor-pointer"
-                  >
-                    {item}
-                  </a>
-                  <span className="text-sm opacity-30 mx-1">✦</span>
-                </React.Fragment>
-              ))}
-            </div>
-            <div className={`${styles.content} whitespace-nowrap`}>
-              {items.map((item, index) => (
-                <React.Fragment key={`dup-${index}`}>
-                  <a 
-                    href={INSTAGRAM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 text-sm hover:text-[#222831] font-bold transition-colors duration-300 cursor-pointer"
+                    className="px-3 text-sm hover:text-[#00ADB5] font-bold transition-colors duration-300 cursor-pointer"
                   >
                     {item}
                   </a>
