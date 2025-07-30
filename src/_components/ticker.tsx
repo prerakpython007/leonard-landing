@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
 
 // Image list with .png extensions, assuming transparent backgrounds
@@ -112,7 +113,7 @@ const CenterLogo = styled.div`
   width: 150vw;
   height: 150vw;
   max-width: none;
-  background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.85) 8%, rgba(245,245,245,0.75) 15%, rgba(240,240,240,0.6) 25%, rgba(235,235,235,0.4) 35%, rgba(230,230,230,0.2) 45%, transparent 55%);
+  background: radial-gradient(ellipse, rgba(255,255,255,0.98) 0%, rgba(252,252,252,0.95) 1%, rgba(248,248,248,0.9) 2%, rgba(245,245,245,0.8) 4%, rgba(240,240,240,0.65) 6%, rgba(235,235,235,0.5) 8%, rgba(230,230,230,0.3) 12%, rgba(225,225,225,0.15) 16%, transparent 20%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,10 +280,19 @@ const Ticker = () => {
 
       {/* Title */}
       <div className="relative text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 mt-4 sm:mt-8 md:mt-12 w-[90%] sm:w-[87%] m-auto px-4">
-        <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#393E46] tracking-wider">
-          <strong className="text-[#00ADB5] mr-2">OUR</strong>
-          CLIENTS
-        </span>
+         <motion.h1
+        className="text-[#000000] text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative"
+        style={{ 
+          letterSpacing: "0.4em",
+          textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)"
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
+        OUR CLIENTS
+      </motion.h1>
       </div>
 
       {/* Main Ticker Container with Center Logo */}
