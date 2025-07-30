@@ -1,72 +1,101 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
 import { useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 const Landing = () => {
   const router = useRouter()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Mouse position values
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  // Spring animations for smooth cursor following
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 25, mass: 0.1 })
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 25, mass: 0.1 })
+
+  // Parallax transforms
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
+  const gameTextScale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
+  const gameTextOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.3])
+
+  // Transform mouse position to background movement (subtle attraction effect)
+  const bgTransformX = useTransform(springX, (value) => `${value * 0.02}px`)
+  const bgTransformY = useTransform(springY, (value) => `${value * 0.02}px`)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
+
+      // Calculate mouse position relative to center of screen
+      const centerX = window.innerWidth / 2
+      const centerY = window.innerHeight / 2
+      const relativeX = e.clientX - centerX
+      const relativeY = e.clientY - centerY
+
+      // Update motion values for background attraction
+      mouseX.set(relativeX)
+      mouseY.set(relativeY)
     }
 
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+  }, [mouseX, mouseY])
 
   return (
-    <div className="bg-[#EEEEEE] relative min-h-screen overflow-x-hidden">
+    <div className="bg-[#EEEEEE] relative overflow-x-hidden">
       {/* Custom Blob Cursor */}
-      <motion.div
-        className="fixed pointer-events-none z-50"
-        animate={{
-          x: mousePosition.x - 48,
-          y: mousePosition.y - 48,
-          scale: isHovering ? 1 : 0,
-          opacity: isHovering ? 1 : 0,
-        }}
-        transition={{
-          x: {
-            type: "spring",
-            stiffness: 500,
-            damping: 28,
-            mass: 0.5,
-          },
-          y: {
-            type: "spring",
-            stiffness: 500,
-            damping: 28,
-            mass: 0.5,
-          },
-          scale: {
-            type: "spring",
-            stiffness: 400,
-            damping: 25,
-            mass: 0.8,
-          },
-          opacity: {
-            duration: 0.2,
-            ease: "easeInOut",
-          },
-        }}
-        initial={{ scale: 0, opacity: 0 }}
-      >
-        <img src="/lion-logo.png" alt="Lion Logo" className="w-24 h-24 object-contain drop-shadow-lg" />
-      </motion.div>
+      <AnimatePresence>
+        {isHovering && (
+          <motion.div
+            className="fixed pointer-events-none z-50"
+            style={{
+              left: mousePosition.x - 88,
+              top: mousePosition.y - 88,
+            }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+                mass: 0.8,
+              },
+              opacity: {
+                duration: 0.15,
+                ease: "easeInOut",
+              },
+            }}
+          >
+            <img src="/lion-logo-face.png" alt="Lion Logo" className="w-44 h-44 object-contain drop-shadow-lg" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <section className="relative min-h-screen flex items-center justify-center">
+      {/* Hero Section with Parallax */}
+      <section ref={containerRef} className="relative min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-4 w-full">
           <motion.div
+            style={{ y: textY }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col -mt-16"
           >
             <span className="text-[#00ADB5] text-xl font-medium tracking-wide block mb-6 md:text-base md:mb-4 text-center">
-              Welcome to Leonard Solutions
+              Welcome to <span className="font-extrabold"> Leonard Solutions</span>
             </span>
             <div className="text-left mb-6">
               <div className="flex items-baseline gap-4">
@@ -77,8 +106,13 @@ const Landing = () => {
               </div>
             </div>
             <div className="relative mb-8 min-h-[400px] flex items-center w-full">
-              {/* Diagonal Legal Background Image */}
+              {/* Diagonal Legal Background Image with Parallax and Mouse Attraction */}
               <motion.div
+                style={{
+                  y: backgroundY,
+                  x: bgTransformX,
+                  y: useTransform([backgroundY, bgTransformY], ([bg, mouse]) => `calc(${bg} + ${mouse})`),
+                }}
                 className="absolute inset-0 z-0 overflow-hidden"
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 0.12, scale: 1 }}
@@ -92,8 +126,13 @@ const Landing = () => {
                   }}
                 />
               </motion.div>
-              {/* Diagonal Hero Background Image */}
+              {/* Diagonal Hero Background Image with Parallax and Mouse Attraction */}
               <motion.div
+                style={{
+                  y: heroImageY,
+                  x: bgTransformX,
+                  y: useTransform([heroImageY, bgTransformY], ([hero, mouse]) => `calc(${hero} + ${mouse})`),
+                }}
                 className="absolute inset-0 z-0 overflow-hidden"
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -107,9 +146,13 @@ const Landing = () => {
                   }}
                 />
               </motion.div>
-              {/* Main GAME Text with Original Styling */}
+              {/* Main GAME Text with Parallax */}
               <div className="flex justify-center items-center w-full relative z-10">
                 <motion.div
+                  style={{
+                    scale: gameTextScale,
+                    opacity: gameTextOpacity,
+                  }}
                   className="relative inline-block"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}

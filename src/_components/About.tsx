@@ -16,6 +16,10 @@ const About = () => {
     offset: ["start end", "end start"],
   });
 
+  // Animation for background image sliding in from left
+  const backgroundX = useTransform(scrollYProgress, [0, 0.2], ["-100%", "0%"]);
+  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+
   // Helper to split text into words for animation
   const renderAnimatedText = (text: string, baseDelay = 0) => {
     const words = text.split(" ");
@@ -41,14 +45,29 @@ const About = () => {
       ref={sectionRef}
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#0a0b0b] px-4 py-16 sm:py-20 md:py-24 lg:py-32 md:px-8 lg:px-16"
     >
-      {/* Background Stars - Adjusted sizes */}
-      {/* Removed star spans */}
+      {/* Small Background Image */}
+      <div className="absolute top-0 left-0 w-full h-[1200px] z-0 overflow-hidden">
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-20"
+          style={{
+            backgroundImage: "url('/about-page.jpg')",
+            filter: "grayscale(30%) contrast(1.1) brightness(0.8)",
+            clipPath: "polygon(0 0, 75% 0, 45% 100%, 0 100%)",
+            x: backgroundX,
+            opacity: backgroundOpacity,
+          }}
+        />
+        {/* Fade gradient from bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-[#0a0b0b] to-transparent" />
+      </div>
+
       {/* Centered ABOUT US */}
       <motion.h1
-        className="text-[#EEEEEE] text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative"
-        style={{ 
+        className="text-[#EEEEEE] text-5xl  sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative z-10"
+        style={{
           letterSpacing: "0.4em",
-          textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)"
+          textShadow:
+            "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)",
         }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -59,8 +78,11 @@ const About = () => {
       </motion.h1>
 
       {/* Animated Text */}
-      <div className="w-full flex justify-center">
-        <div className="  text-center text-[#EEEEEE] font-medium space-y-6 mb-16 " style={{ maxWidth: "1400px" }}>
+      <div className="w-full flex justify-center relative z-10">
+        <div
+          className="  text-center text-[#EEEEEE] font-medium space-y-6 mb-16 "
+          style={{ maxWidth: "1400px" }}
+        >
           <motion.div className="mb-6">
             <span
               className="block font-bold text-[#00ADB5] mb-2"
@@ -144,63 +166,73 @@ const About = () => {
         </div>
       </div>
       {/* Stats Section */}
-     <div className="max-w-7xl mx-auto w-full mb-44 mt-20 px-2 sm:px-8 md:px-16">
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 text-center font-[Oswald,sans-serif]">
-    
-    {/* Years of Excellence */}
-    <div className="px-2 flex flex-col items-center">
-      <span
-        className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
-        style={{ letterSpacing: "0.08em", fontFamily: "'Montserrat', 'Oswald', sans-serif" }}
-      >
-        11<span className="font-extralight text-3xl align-top">+</span>
-      </span>
-      <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
-        Years of Excellence
-      </span>
-    </div>
+      <div className="max-w-7xl mx-auto w-full mb-44 mt-20 px-2 sm:px-8 md:px-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 text-center font-[Oswald,sans-serif]">
+          {/* Years of Excellence */}
+          <div className="px-2 flex flex-col items-center">
+            <span
+              className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
+              style={{
+                letterSpacing: "0.08em",
+                fontFamily: "'Montserrat', 'Oswald', sans-serif",
+              }}
+            >
+              11<span className="font-extralight text-3xl align-top">+</span>
+            </span>
+            <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
+              Years of Excellence
+            </span>
+          </div>
 
-    {/* Satisfied Clients */}
-    <div className="px-2 flex flex-col items-center">
-      <span
-        className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
-        style={{ letterSpacing: "0.08em", fontFamily: "'Montserrat', 'Oswald', sans-serif" }}
-      >
-        500<span className="font-extralight text-3xl align-top">+</span>
-      </span>
-      <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
-        Satisfied Clients
-      </span>
-    </div>
+          {/* Satisfied Clients */}
+          <div className="px-2 flex flex-col items-center">
+            <span
+              className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
+              style={{
+                letterSpacing: "0.08em",
+                fontFamily: "'Montserrat', 'Oswald', sans-serif",
+              }}
+            >
+              500<span className="font-extralight text-3xl align-top">+</span>
+            </span>
+            <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
+              Satisfied Clients
+            </span>
+          </div>
 
-    {/* Cases Handled */}
-    <div className="px-2 flex flex-col items-center">
-      <span
-        className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
-        style={{ letterSpacing: "0.08em", fontFamily: "'Montserrat', 'Oswald', sans-serif" }}
-      >
-        1000<span className="font-extralight text-3xl align-top">+</span>
-      </span>
-      <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
-        Cases Handled
-      </span>
-    </div>
+          {/* Cases Handled */}
+          <div className="px-2 flex flex-col items-center">
+            <span
+              className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
+              style={{
+                letterSpacing: "0.08em",
+                fontFamily: "'Montserrat', 'Oswald', sans-serif",
+              }}
+            >
+              1000<span className="font-extralight text-3xl align-top">+</span>
+            </span>
+            <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
+              Cases Handled
+            </span>
+          </div>
 
-    {/* Success Rate */}
-    <div className="px-2 flex flex-col items-center">
-      <span
-        className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
-        style={{ letterSpacing: "0.08em", fontFamily: "'Montserrat', 'Oswald', sans-serif" }}
-      >
-        98<span className="font-extralight text-3xl align-top">%</span>
-      </span>
-      <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
-        Success Rate
-      </span>
-    </div>
-
-  </div>
-</div>
+          {/* Success Rate */}
+          <div className="px-2 flex flex-col items-center">
+            <span
+              className="block text-5xl sm:text-6xl md:text-7xl font-thin text-[#00ADB5] mb-2 tracking-widest drop-shadow-lg"
+              style={{
+                letterSpacing: "0.08em",
+                fontFamily: "'Montserrat', 'Oswald', sans-serif",
+              }}
+            >
+              98<span className="font-extralight text-3xl align-top">%</span>
+            </span>
+            <span className="block text-lg sm:text-xl md:text-2xl text-[#EEEEEE] font-semibold mt-2">
+              Success Rate
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Cards Section */}
       <div className="w-full max-w-7xl mx-auto mt-24 mb-8 px-2">
@@ -267,7 +299,7 @@ const ScrollImageTextSection = () => {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   // Define the content for each stage
@@ -275,18 +307,21 @@ const ScrollImageTextSection = () => {
     {
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
       title: "Expert Legal Consultation",
-      description: "Our experienced legal professionals provide comprehensive consultation services, ensuring your intellectual property and business interests are fully protected with tailored legal strategies."
+      description:
+        "Our experienced legal professionals provide comprehensive consultation services, ensuring your intellectual property and business interests are fully protected with tailored legal strategies.",
     },
     {
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
-      title: "Strategic IP Protection", 
-      description: "We develop comprehensive intellectual property strategies that safeguard your innovations, trademarks, and creative works with expert legal guidance and international protection."
+      title: "Strategic IP Protection",
+      description:
+        "We develop comprehensive intellectual property strategies that safeguard your innovations, trademarks, and creative works with expert legal guidance and international protection.",
     },
     {
       image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
       title: "Global Legal Solutions",
-      description: "With our extensive network and international expertise, we provide seamless legal support across multiple jurisdictions worldwide, ensuring your business thrives globally."
-    }
+      description:
+        "With our extensive network and international expertise, we provide seamless legal support across multiple jurisdictions worldwide, ensuring your business thrives globally.",
+    },
   ];
 
   const totalStages = stages.length;
@@ -299,14 +334,14 @@ const ScrollImageTextSection = () => {
           {stages.map((stage, index) => {
             const startProgress = index / totalStages;
             const endProgress = (index + 1) / totalStages;
-            
+
             const imageOpacity = useTransform(
               scrollYProgress,
               [
                 Math.max(0, startProgress - 0.05),
                 startProgress + 0.05,
                 endProgress - 0.05,
-                Math.min(1, endProgress + 0.05)
+                Math.min(1, endProgress + 0.05),
               ],
               [0, 1, 1, 0]
             );
@@ -334,14 +369,14 @@ const ScrollImageTextSection = () => {
             {stages.map((stage, index) => {
               const startProgress = index / totalStages;
               const endProgress = (index + 1) / totalStages;
-              
+
               const textOpacity = useTransform(
                 scrollYProgress,
                 [
                   Math.max(0, startProgress - 0.05),
                   startProgress + 0.05,
                   endProgress - 0.05,
-                  Math.min(1, endProgress + 0.05)
+                  Math.min(1, endProgress + 0.05),
                 ],
                 [0, 1, 1, 0]
               );
@@ -485,27 +520,4 @@ const ParallaxCardVideo = ({
 };
 
 export default AboutWithScrollSection;
-//           style={{ background: "#222831", display: "block" }}
-//         />
-//       ) : (
-//         <video
-//           src={videoSrc}
-//           autoPlay
-//           loop
-//           muted
-//           playsInline
-//           className="w-full h-96 object-cover rounded-t-xl"
-//           style={{ background: "#222831" }}
-//         />
-//       )}
-//       <div className="p-8 flex flex-col gap-2">
-//         <h3 className="text-xl font-bold text-[#00ADB5] mb-1">{title}</h3>
-//         <p className="text-[#EEEEEE] text-base opacity-80">{desc}</p>
-//       </div>
-//     </motion.div>
-//   );
-// };
-
-// export default AboutWithScrollSection;
-
 
