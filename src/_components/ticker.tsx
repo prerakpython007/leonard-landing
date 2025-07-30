@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // Image list with .png extensions, assuming transparent backgrounds
@@ -104,6 +104,66 @@ const TickerWrapper = styled.div`
   }
 `;
 
+const CenterLogo = styled.div`
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150vw;
+  height: 150vw;
+  max-width: none;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(250,250,250,0.85) 8%, rgba(245,245,245,0.75) 15%, rgba(240,240,240,0.6) 25%, rgba(235,235,235,0.4) 35%, rgba(230,230,230,0.2) 45%, transparent 55%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+`;
+
+const LogoImage = styled.img<{ $x: number; $y: number }>`
+  width: 200px;
+  height: 200px;
+  @media (min-width: 480px) {
+    width: 240px;
+    height: 240px;
+  }
+  @media (min-width: 768px) {
+    width: 280px;
+    height: 280px;
+  }
+  @media (min-width: 1024px) {
+    width: 320px;
+    height: 320px;
+  }
+  object-fit: contain;
+  z-index: 51;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease;
+  transform: translate(${props => props.$x}px, ${props => props.$y}px);
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
+
+  &:hover {
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.15));
+  }
+`;
+
+const MainTickerContainer = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  @media (min-width: 768px) {
+    min-height: 500px;
+  }
+  @media (min-width: 1024px) {
+    min-height: 600px;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ImageContainer = styled.div`
   position: relative;
   width: 80px;
@@ -122,12 +182,27 @@ const ImageContainer = styled.div`
   }
   overflow: hidden;
   flex-shrink: 0;
-  background: none; /* No background */
-  border: none; /* No border */
+  background: none;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+`;
+
+const TickerSection = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 const Ticker = () => {
   const [hoveredTicker, setHoveredTicker] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const logoRef = useRef<HTMLImageElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const tickerRows = [
     { direction: 'left', speed: 60 },
@@ -135,8 +210,62 @@ const Ticker = () => {
     { direction: 'left', speed: 70 }
   ];
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (logoRef.current && sectionRef.current) {
+        const sectionRect = sectionRef.current.getBoundingClientRect();
+        const logoRect = logoRef.current.getBoundingClientRect();
+        
+        // Check if cursor is within the ticker section
+        if (e.clientY >= sectionRect.top && e.clientY <= sectionRect.bottom) {
+          const centerX = logoRect.left + logoRect.width / 2;
+          const centerY = logoRect.top + logoRect.height / 2;
+          
+          const deltaX = e.clientX - centerX;
+          const deltaY = e.clientY - centerY;
+          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+          
+          // Smoother attraction with larger range
+          const maxDistance = 500;
+          if (distance < maxDistance) {
+            const attractionStrength = Math.max(0, (maxDistance - distance) / maxDistance);
+            // Smoother curve for attraction
+            const smoothStrength = Math.pow(attractionStrength, 0.7);
+            const maxMove = 25;
+            
+            setMousePosition({
+              x: (deltaX * smoothStrength * maxMove) / maxDistance,
+              y: (deltaY * smoothStrength * maxMove) / maxDistance
+            });
+          } else {
+            setMousePosition({ x: 0, y: 0 });
+          }
+        } else {
+          setMousePosition({ x: 0, y: 0 });
+        }
+      }
+    };
+
+    // Throttle mouse move events for smoother performance
+    let animationFrame: number;
+    const throttledMouseMove = (e: MouseEvent) => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      animationFrame = requestAnimationFrame(() => handleMouseMove(e));
+    };
+
+    window.addEventListener('mousemove', throttledMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', throttledMouseMove);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, []);
+
   return (
-    <div className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-[#EEEEEE]">
+    <TickerSection ref={sectionRef} className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-[#EEEEEE]">
       {/* Background Stars */}
       <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-10 transform -translate-y-1/2">
         ✦
@@ -156,35 +285,49 @@ const Ticker = () => {
         </span>
       </div>
 
-      {/* Ticker Content */}
-      <div className="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 mb-8 sm:mb-12 md:mb-16">
-        {tickerRows.map((row, index) => (
-          <TickerContainer key={index}>
-            <TickerWrapper
-              onMouseEnter={() => setHoveredTicker(index)}
-              onMouseLeave={() => setHoveredTicker(null)}
-            >
-              <TickerTrack 
-                $direction={row.direction}
-                $speed={row.speed}
-                $isPaused={hoveredTicker === index}
+      {/* Main Ticker Container with Center Logo */}
+      <MainTickerContainer>
+        {/* Ticker Content */}
+        <div className="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 mb-8 sm:mb-12 md:mb-16 w-full">
+          {tickerRows.map((row, index) => (
+            <TickerContainer key={index}>
+              <TickerWrapper
+                onMouseEnter={() => setHoveredTicker(index)}
+                onMouseLeave={() => setHoveredTicker(null)}
               >
-                {duplicatedImages.map((image, imgIndex) => (
-                  <ImageContainer key={`${image.id}-${imgIndex}`}>
-                    <img
-                      src={image.url}
-                      alt={`Legal Image ${image.id}`}
-                      className="w-full h-full object-contain border-none" /* Ensure no border */
-                      loading="lazy"
-                    />
-                  </ImageContainer>
-                ))}
-              </TickerTrack>
-            </TickerWrapper>
-          </TickerContainer>
-        ))}
-      </div>
-    </div>
+                <TickerTrack 
+                  $direction={row.direction}
+                  $speed={row.speed}
+                  $isPaused={hoveredTicker === index}
+                >
+                  {duplicatedImages.map((image, imgIndex) => (
+                    <ImageContainer key={`${image.id}-${imgIndex}`}>
+                      <img
+                        src={image.url}
+                        alt={`Legal Image ${image.id}`}
+                        className="w-full h-full object-contain border-none"
+                        loading="lazy"
+                      />
+                    </ImageContainer>
+                  ))}
+                </TickerTrack>
+              </TickerWrapper>
+            </TickerContainer>
+          ))}
+
+          {/* Center Lion Logo */}
+          <CenterLogo>
+            <LogoImage 
+              ref={logoRef}
+              src="/lion-logo.png" 
+              alt="Leonard Corporate Solutions Logo"
+              $x={mousePosition.x}
+              $y={mousePosition.y}
+            />
+          </CenterLogo>
+        </div>
+      </MainTickerContainer>
+    </TickerSection>
   );
 };
 

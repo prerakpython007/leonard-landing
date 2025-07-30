@@ -234,18 +234,18 @@ export default function AboutPage() {
                 </div>
 
                 {/* Text content with angles - Improved spacing */}
-                <div className="relative space-y-6 p-6 sm:p-8">
+                <div className="relative space-y-6 p-6 sm:p-8 max-w-2xl w-full mx-auto">
                   {/* Corner Angles */}
                   <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#00ADB5]" />
                   <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#00ADB5]" />
                   <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#00ADB5]" />
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#00ADB5]" />
                   
-                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed">
+                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed" style={{ maxWidth: "700px", margin: "0 auto" }}>
                     <span className="absolute -left-4 top-0 text-[#00ADB5] opacity-20">✦</span>
                     Leonard Corporate Solutions Pvt. Ltd. is a leading Indian law firm headquartered in Mumbai, specializing exclusively in Intellectual Property Rights (IPR), Company Law, and Taxation. Since 2010, we’ve been the trusted legal partner for startups, SMEs, and multinational companies, helping them safeguard their innovations and navigate complex legal landscapes.
                   </p>
-                  <p>
+                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed" style={{ maxWidth: "700px", margin: "0 auto" }}>
                     With a highly skilled team of IP attorneys, corporate law experts, and legal consultants, we deliver tailored legal solutions across all areas of intellectual property law — from trademark and patent registration to copyright protection and licensing agreements.
                   </p>
                 </div>
