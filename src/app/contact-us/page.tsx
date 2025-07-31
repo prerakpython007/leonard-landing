@@ -3,16 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone, X } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const MapComponent = dynamic(() => import("./MapComponent"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[400px] animate-pulse rounded-xl bg-gray-100" />
-  ),
-});
-
-import "leaflet/dist/leaflet.css";
+import { WorldMap } from "~/_components/ui/world-map";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -23,20 +14,6 @@ export default function ContactPage() {
     message: "",
   });
   const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const L = require("leaflet");
-      delete (L.Icon.Default.prototype as any)._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl:
-          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-        shadowUrl:
-          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-      });
-    }
-  }, []);
 
   useEffect(() => {
     if (showPopup) {
@@ -341,7 +318,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Map Section */}
+          {/* World Map Section */}
           <motion.div
             className="relative p-4 sm:p-8 md:p-12"
             initial={{ opacity: 0, y: 20 }}
@@ -355,7 +332,34 @@ export default function ContactPage() {
             <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5]" />
 
             <div className="rounded-xl overflow-hidden shadow-lg bg-white/80 backdrop-blur-sm">
-              <MapComponent />
+              <WorldMap
+                dots={[
+                  {
+                    start: { lat: 64.2008, lng: -149.4937 }, // Alaska (Fairbanks)
+                    end: { lat: 34.0522, lng: -118.2437 }, // Los Angeles
+                  },
+                  {
+                    start: { lat: 64.2008, lng: -149.4937 }, // Alaska (Fairbanks)
+                    end: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
+                  },
+                  {
+                    start: { lat: -15.7975, lng: -47.8919 }, // Brazil (Brasília)
+                    end: { lat: 38.7223, lng: -9.1393 }, // Lisbon
+                  },
+                  {
+                    start: { lat: 51.5074, lng: -0.1278 }, // London
+                    end: { lat: 28.6139, lng: 77.2090 }, // New Delhi
+                  },
+                  {
+                    start: { lat: 28.6139, lng: 77.2090 }, // New Delhi
+                    end: { lat: 43.1332, lng: 131.9113 }, // Vladivostok
+                  },
+                  {
+                    start: { lat: 28.6139, lng: 77.2090 }, // New Delhi
+                    end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
+                  },
+                ]}
+              />
             </div>
           </motion.div>
         </div>

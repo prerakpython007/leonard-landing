@@ -20,6 +20,19 @@ const About = () => {
   const backgroundX = useTransform(scrollYProgress, [0, 0.2], ["-100%", "0%"]);
   const backgroundOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
+  // Parallax for cards background image - increased effect
+  const cardsBackgroundY = useTransform(scrollYProgress, [0.5, 1], ["100px", "-200px"]);
+
+  // Images for preview indicators
+  const cardImages = [
+    "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80",
+  ];
+
   // Helper to split text into words for animation
   const renderAnimatedText = (text: string, baseDelay = 0) => {
     const words = text.split(" ");
@@ -235,58 +248,75 @@ const About = () => {
       </div>
 
       {/* Cards Section */}
-      <div className="w-full max-w-7xl mx-auto mt-24 mb-8 px-2">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          {/* Column 1: 2 cards, staggered down */}
-          <div className="flex flex-col gap-8 mt-12 md:mt-24">
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
-              title="Trademark Excellence"
-              desc="Protect your brand with our expert trademark registration and enforcement services."
-              parallax={-30}
-            />
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
-              title="Patent Strategy"
-              desc="Innovate with confidence. We help you secure and manage your patents globally."
-              parallax={-10}
-            />
-          </div>
-          {/* Column 2: 3 cards, middle card is a video */}
-          <div className="flex flex-col gap-8 md:-mt-8">
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-              title="Corporate Law"
-              desc="Comprehensive legal solutions for startups, SMEs, and large enterprises."
-              parallax={10}
-            />
-            <ParallaxCardVideo
-              videoSrc="/about-vid-card.mp4"
-              title="IP Litigation"
-              desc="Defend your intellectual property rights with our experienced litigation team."
-              parallax={0}
-            />
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
-              title="Taxation Advisory"
-              desc="Navigate complex tax laws with our strategic advisory and compliance support."
-              parallax={-10}
-            />
-          </div>
-          {/* Column 3: 2 cards, align with column 1 */}
-          <div className="flex flex-col gap-8 mt-12 md:mt-24">
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80"
-              title="Design Protection"
-              desc="Safeguard your creative designs and innovations with robust legal coverage."
-              parallax={20}
-            />
-            <ParallaxCard
-              img="https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80"
-              title="Global Reach"
-              desc="Expand internationally with our cross-border IP and legal expertise."
-              parallax={40}
-            />
+      <div className="w-full mt-24 pb-44 mb-24 relative">
+        <div className="absolute inset-0 bg-white -mx-4 md:-mx-8 lg:-mx-16"></div>
+        
+        {/* Background Image at bottom - Full Width */}
+        <motion.div
+          className="absolute -bottom-0 left-1/2 transform -translate-x-1/2 h-96 md:h-[500px] lg:h-[600px]"
+          style={{
+            width: "250vw",
+            backgroundImage: "url('/cards-bg2.png')",
+            backgroundSize: "contain",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            y: cardsBackgroundY,
+          }}
+        />
+        
+        <div className="max-w-7xl mx-auto px-2 py-24 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            {/* Column 1: 2 cards, staggered down */}
+            <div className="flex flex-col gap-8 mt-12 md:mt-24">
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+                title="Trademark Excellence"
+                desc="Protect your brand with our expert trademark registration and enforcement services."
+                parallax={-30}
+              />
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
+                title="Patent Strategy"
+                desc="Innovate with confidence. We help you secure and manage your patents globally."
+                parallax={-10}
+              />
+            </div>
+            {/* Column 2: 3 cards, middle card is a video */}
+            <div className="flex flex-col gap-8 md:-mt-8">
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                title="Corporate Law"
+                desc="Comprehensive legal solutions for startups, SMEs, and large enterprises."
+                parallax={10}
+              />
+              <ParallaxCardVideo
+                videoSrc="/about-vid-card.mp4"
+                title="IP Litigation"
+                desc="Defend your intellectual property rights with our experienced litigation team."
+                parallax={0}
+              />
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
+                title="Taxation Advisory"
+                desc="Navigate complex tax laws with our strategic advisory and compliance support."
+                parallax={-10}
+              />
+            </div>
+            {/* Column 3: 2 cards, align with column 1 */}
+            <div className="flex flex-col gap-8 mt-12 md:mt-24">
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80"
+                title="Design Protection"
+                desc="Safeguard your creative designs and innovations with robust legal coverage."
+                parallax={20}
+              />
+              <ParallaxCard
+                img="https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80"
+                title="Global Reach"
+                desc="Expand internationally with our cross-border IP and legal expertise."
+                parallax={40}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -361,6 +391,36 @@ const ScrollImageTextSection = () => {
               </motion.div>
             );
           })}
+          
+          {/* Image Preview Indicators - Horizontal and Centered */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+            {stages.map((stage, index) => {
+              const startProgress = index / totalStages;
+              const endProgress = (index + 1) / totalStages;
+              
+              const borderColor = useTransform(
+                scrollYProgress,
+                [startProgress - 0.05, startProgress + 0.05, endProgress - 0.05, endProgress + 0.05],
+                ["rgba(255,255,255,0.3)", "#00ADB5", "#00ADB5", "rgba(255,255,255,0.3)"]
+              );
+
+              return (
+                <motion.div 
+                  key={index} 
+                  className="w-16 h-12 rounded overflow-hidden border-2 transition-all duration-300"
+                  style={{
+                    borderColor: borderColor
+                  }}
+                >
+                  <img 
+                    src={stage.image} 
+                    alt={`Preview ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Right Side - Scrolling Text Content */}
@@ -520,4 +580,3 @@ const ParallaxCardVideo = ({
 };
 
 export default AboutWithScrollSection;
-
