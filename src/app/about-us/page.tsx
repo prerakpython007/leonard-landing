@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { ArrowRight, BookOpen, Building, Globe, MapPin, Shield, Users } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -97,6 +97,37 @@ const TEAM_MEMBERS = [
   }
 ]
 
+// Add counting animation hook
+const useCountAnimation = (target: number, duration: number = 2000) => {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true)
+      let startTime: number
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime
+        const elapsed = currentTime - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        
+        // Easing function for smooth animation
+        const easeOut = 1 - Math.pow(1 - progress, 3)
+        setCount(Math.floor(easeOut * target))
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        }
+      }
+      requestAnimationFrame(animate)
+    }
+  }, [isInView, hasAnimated, target, duration])
+
+  return { count, ref }
+}
+
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -167,56 +198,99 @@ export default function AboutPage() {
     }
   ]
 
+  // Add count animations
+  const { count: yearsCount, ref: yearsRef } = useCountAnimation(10, 2000)
+  const { count: clientsCount, ref: clientsRef } = useCountAnimation(500, 2500)
+
   if (!mounted) return null
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-x-hidden px-4 sm:px-6 md:px-8 lg:px-12">
-      {/* Grid Pattern */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-50"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
-          willChange: 'transform'
-        }}
-      />
+    <div ref={containerRef} className="min-h-screen bg-[#EEEEEE] relative font-roboto overflow-x-hidden">
+      {/* Remove Grid Pattern - commented out */}
+      
+      {/* Large Gradient "L" Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <div 
+          className="text-[60rem] sm:text-[80rem] md:text-[100rem] lg:text-[120rem] font-extrabold opacity-[0.08] select-none"
+          style={{
+            background: 'linear-gradient(135deg, #00ADB5 0%, #0099A8 50%, #007B8A 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            transform: 'translateX(-5%) translateY(-5%)'
+          }}
+        >
+          L
+        </div>
+      </div>
 
       <div className="relative z-10 space-y-12 sm:space-y-16 md:space-y-24">
-        {/* Hero Section */}
+        {/* New Hero Section with About Us and Image */}
         <motion.section
-          className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
+          className="relative min-h-[70vh] flex items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Corner Angles for Hero Section */}
-          <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-          <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-          
-          <motion.div className="max-w-7xl mx-auto text-center px-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-              About Us
-              <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl animate-pulse opacity-50">✦</span>
-              <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl animate-pulse opacity-50">✦</span>
-            </h1>
-            <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-              Discover Our Expertise and Commitment to Excellence
-            </p>
-          </motion.div>
+          <div className="w-full flex items-center">
+            {/* Left Side - About Us Text (Centered Vertically) */}
+            <motion.div
+              className="w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="max-w-xl">
+                <motion.h1
+                  className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-left relative z-10"
+                  style={{
+                    letterSpacing: "0.3em",
+                    textShadow:
+                      "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+                  }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  ABOUT US
+                </motion.h1>
+
+                <div className="mt-8 space-y-4">
+                  <p className="text-lg sm:text-xl text-[#393E46] font-light leading-relaxed">
+                    Discover Our Expertise and Commitment to Excellence in Intellectual Property & Corporate Law
+                  </p>
+                  <div className="flex items-center space-x-2 text-[#00ADB5]">
+                    <span className="text-sm font-medium tracking-wider uppercase">Since 2010</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Horizontal Rectangle Image */}
+            <motion.div
+              className="w-1/2"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
+                <div className="relative h-full w-full overflow-hidden">
+                  <Image
+                    src="/WhatWeDo.jpg"
+                    alt="What We Do - Leonard Corporate Solutions"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </motion.section>
 
         {/* Main Content Section with better spacing */}
-        <section className="py-16 sm:py-24 px-4 md:px-16 lg:px-24 relative mt-24 sm:mt-40">
+        <section className="py-16 sm:py-24 px-4 md:px-16 lg:px-24 relative">
           <div className="max-w-7xl mx-auto relative">
-            {/* Background Decorations */}
-            <div className="absolute -top-20 right-10 text-[#00ADB5] text-7xl animate-pulse opacity-30">✦</div>
-            <div className="absolute bottom-10 left-0 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</div>
-            
             <div className="grid md:grid-cols-2 gap-20 items-center relative">
               {/* Content Section - Now First */}
               <motion.div
@@ -226,171 +300,277 @@ export default function AboutPage() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <div>
-                  <span className="text-[#00ADB5] font-medium tracking-wider uppercase">Our Story</span>
-                  <h2 className="text-5xl font-bold text-[#222831] mt-2 leading-tight">
-                    Empowering Brands & Innovators with IP & Corporate Legal Excellence Since 2010
-                  </h2>
-                </div>
-
-                {/* Text content with angles - Improved spacing */}
-                <div className="relative space-y-6 p-6 sm:p-8 max-w-2xl w-full mx-auto">
-                  {/* Corner Angles */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#00ADB5]" />
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#00ADB5]" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#00ADB5]" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#00ADB5]" />
-                  
-                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed" style={{ maxWidth: "700px", margin: "0 auto" }}>
-                    <span className="absolute -left-4 top-0 text-[#00ADB5] opacity-20">✦</span>
-                    Leonard Corporate Solutions Pvt. Ltd. is a leading Indian law firm headquartered in Mumbai, specializing exclusively in Intellectual Property Rights (IPR), Company Law, and Taxation. Since 2010, we’ve been the trusted legal partner for startups, SMEs, and multinational companies, helping them safeguard their innovations and navigate complex legal landscapes.
+                {/* Text content with improved line spacing */}
+                <div className="space-y-8">
+                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
+                    <strong>Leonard Corporate Solutions Pvt. Ltd.</strong> is a leading Indian law firm headquartered in <strong>Mumbai</strong>, specializing exclusively in <strong>Intellectual Property Rights (IPR)</strong>, <strong>Company Law</strong>, and <strong>Taxation</strong>. Since <strong>2010</strong>, we've been the trusted legal partner for <strong>startups</strong>, <strong>SMEs</strong>, and <strong>multinational companies</strong>, helping them safeguard their innovations and navigate complex legal landscapes.
                   </p>
-                  <p className="text-[#393E46] text-base sm:text-lg leading-relaxed" style={{ maxWidth: "700px", margin: "0 auto" }}>
-                    With a highly skilled team of IP attorneys, corporate law experts, and legal consultants, we deliver tailored legal solutions across all areas of intellectual property law — from trademark and patent registration to copyright protection and licensing agreements.
+                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
+                    With a highly skilled team of <strong>IP attorneys</strong>, <strong>corporate law experts</strong>, and <strong>legal consultants</strong>, we deliver tailored legal solutions across all areas of intellectual property law — from <strong>trademark and patent registration</strong> to <strong>copyright protection</strong> and <strong>licensing agreements</strong>.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-8">
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
-                    <h3 className="text-4xl font-bold text-[#00ADB5]">10+</h3>
+                    <motion.div
+                      ref={yearsRef}
+                      className="flex items-baseline"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        duration: 0.8,
+                        delay: 0.2,
+                        type: "spring",
+                        stiffness: 100
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="text-4xl font-bold text-black"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        viewport={{ once: true }}
+                      >
+                        {yearsCount}
+                      </motion.span>
+                      <motion.span 
+                        className="text-4xl font-bold text-[#00ADB5]"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.8 }}
+                        viewport={{ once: true }}
+                      >
+                        +
+                      </motion.span>
+                    </motion.div>
                     <p className="text-[#393E46] font-medium">Years of Excellence</p>
                   </div>
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
-                    <h3 className="text-4xl font-bold text-[#00ADB5]">500+</h3>
+                    <motion.div
+                      ref={clientsRef}
+                      className="flex items-baseline"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        duration: 0.8,
+                        delay: 0.4,
+                        type: "spring",
+                        stiffness: 100
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="text-4xl font-bold text-black"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.7 }}
+                        viewport={{ once: true }}
+                      >
+                        {clientsCount}
+                      </motion.span>
+                      <motion.span 
+                        className="text-4xl font-bold text-[#00ADB5]"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 1 }}
+                        viewport={{ once: true }}
+                      >
+                        +
+                      </motion.span>
+                    </motion.div>
                     <p className="text-[#393E46] font-medium">Satisfied Clients</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Image Section - Now Second with Decorative Elements */}
+              {/* Image Section - Simplified */}
               <motion.div
-                className="relative h-[700px] -mt-20"
+                className="relative h-[600px] sm:h-[700px] md:h-[800px]"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                {/* Background Shape */}
-                <div className="absolute inset-0 bg-[#00ADB5]/10 rounded-[30px] transform rotate-6"></div>
-                
-                {/* Image Container */}
-                <div className="absolute inset-0 transform -rotate-3 transition-transform duration-500 hover:rotate-0">
-                  <div className="relative h-full w-full overflow-hidden rounded-[30px] shadow-2xl">
-                    <Image
-                      src="/rohitbhai.webp"
-                      alt="About Us"
-                      fill
-                      className="object-cover object-center"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                  </div>
+                <div className="relative h-full w-full overflow-hidden">
+                  <Image
+                    src="/rohitbhai.webp"
+                    alt="About Us"
+                    fill
+                    className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
+                    priority
+                  />
                 </div>
-                
-                {/* Decorative Star */}
-                <span className="absolute -right-10 top-10 text-[#00ADB5] text-5xl animate-pulse">✦</span>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Vision & Mission Sections with improved mobile layout */}
-        <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-white/50">
+        {/* Vision & Mission Sections with EEEEEE background */}
+        <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
           <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
             {/* Vision Section */}
             <motion.div 
-              className="grid md:grid-cols-2 gap-16 items-center"
+              className="grid md:grid-cols-2 gap-16 items-start"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
+              <div className="space-y-6">
+                {/* Image */}
+                <div className="relative h-[500px] overflow-hidden shadow-xl">
+                  <div className="absolute inset-0 bg-[#00ADB5]/10 transform rotate-3"></div>
+                  <Image
+                    src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80"
+                    alt="Our Vision"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              
               <div className="relative">
-                <span className="absolute -top-10 -left-10 text-[#00ADB5] text-7xl animate-pulse opacity-20">✦</span>
                 <h2 className="text-4xl font-bold text-[#222831] mb-6">Our Vision</h2>
-                <div className="text-lg text-[#393E46] leading-relaxed space-y-6">
+                <div className="text-lg text-[#393E46] leading-loose space-y-8">
                   <h3 className="text-2xl font-bold text-[#222831]">Shaping the Future of Intellectual Property & Corporate Law</h3>
                   <p>
-                    At Leonard Corporate Solutions Pvt. Ltd., our vision is to be recognized as India's most trusted and globally acclaimed Intellectual Property and Corporate Law Firm. We aim to empower businesses of all sizes — from startups to Fortune 500s — to secure, protect, and monetize their intellectual property assets with confidence.
+                    At <strong>Leonard Corporate Solutions Pvt. Ltd.</strong>, our vision is to be recognized as <strong>India's most trusted</strong> and <strong>globally acclaimed Intellectual Property and Corporate Law Firm</strong>. We aim to empower businesses of all sizes — from <strong>startups to Fortune 500s</strong> — to secure, protect, and monetize their <strong>intellectual property assets</strong> with confidence.
                   </p>
                   <p>
-                    We're building a future where legal innovation meets technology, making it seamless for companies to navigate the complexities of IP rights, corporate compliance, and global legal standards. Our commitment lies in delivering legal solutions driven by excellence, integrity, and forward-thinking strategies.
+                    We're building a future where <strong>legal innovation meets technology</strong>, making it seamless for companies to navigate the complexities of <strong>IP rights</strong>, <strong>corporate compliance</strong>, and <strong>global legal standards</strong>. Our commitment lies in delivering legal solutions driven by <strong>excellence</strong>, <strong>integrity</strong>, and <strong>forward-thinking strategies</strong>.
                   </p>
                 </div>
 
-                {/* Vision Points */}
-                <div className="mt-8 space-y-4">
-                  <h4 className="text-xl font-bold text-[#00ADB5] mb-4">🚀 Pillars of Our Vision:</h4>
-                  {visionPoints.map((item, index) => (
-                    <motion.div 
-                      key={item.id}
-                      className="flex items-center space-x-3"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <span className="text-2xl">{item.icon}</span>
-                      <span className="text-[#393E46]">{item.text}</span>
-                    </motion.div>
-                  ))}
+                {/* Navigation moved here */}
+                <div className="mt-8">
+                  <div className="bg-white/80 w-[70%] p-4 mx-auto">
+                    <div className="flex flex-col text-center space-y-2">
+                      <button className="text-[#00ADB5] text-center font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        About Leonard Solutions
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        What We Do
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        What To Expect
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        Case Victories
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        Awards & Press
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        Community Involvement
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        Careers
+                      </button>
+                      <div className="h-px bg-gray-300"></div>
+                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                        Testimonials
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
-                <div className="absolute inset-0 bg-[#00ADB5]/10 rounded-2xl transform rotate-3"></div>
-                <Image
-                  src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80"
-                  alt="Our Vision"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
               </div>
             </motion.div>
 
             {/* Mission Section */}
             <motion.div 
-              className="grid md:grid-cols-2 gap-16 items-center"
+              className="grid md:grid-cols-2 gap-20 items-center relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="relative order-2 md:order-1 h-[500px] rounded-2xl overflow-hidden shadow-xl">
-                <div className="absolute inset-0 bg-[#00ADB5]/10 rounded-2xl transform -rotate-3"></div>
+              <div className="relative z-10">
+                <h2 className="text-4xl font-bold text-[#222831] mb-6">Our Mission</h2>
+                <div className="text-lg text-[#393E46] leading-loose space-y-8">
+                  <h3 className="text-2xl font-bold text-[#222831]">Delivering Excellence in IP & Corporate Legal Services</h3>
+                  <p>
+                    At <strong>Leonard Corporate Solutions Pvt. Ltd.</strong>, our mission is to provide <strong>exceptional legal services</strong> by combining <strong>deep legal expertise</strong> with <strong>innovative, tech-enabled solutions</strong>. We are committed to helping clients <strong>protect, manage, and scale</strong> their intellectual property assets — all while upholding the highest standards of <strong>integrity and professionalism</strong>.
+                  </p>
+                  <p>
+                    We're not just <strong>legal advisors</strong> — we're <strong>strategic partners</strong> in our clients' growth journey. From <strong>trademark and patent filing</strong> to <strong>IP litigation</strong>, <strong>corporate structuring</strong>, and <strong>regulatory compliance</strong>, we aim to empower businesses with <strong>future-ready legal support</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative h-[700px] overflow-hidden shadow-xl">
                 <Image
                   src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&q=80"
                   alt="Our Mission"
                   fill
-                  className="object-cover rounded-2xl"
+                  className="object-cover"
                 />
               </div>
-              <div className="order-1 md:order-2 relative">
-                <span className="absolute -top-10 -right-10 text-[#00ADB5] text-7xl animate-pulse opacity-20">✦</span>
-                <h2 className="text-4xl font-bold text-[#222831] mb-6">Our Mission</h2>
-                <div className="text-lg text-[#393E46] leading-relaxed space-y-6">
-                  <h3 className="text-2xl font-bold text-[#222831]">Delivering Excellence in IP & Corporate Legal Services</h3>
-                  <p>
-                    At Leonard Corporate Solutions Pvt. Ltd., our mission is to provide exceptional legal services by combining deep legal expertise with innovative, tech-enabled solutions. We are committed to helping clients protect, manage, and scale their intellectual property assets — all while upholding the highest standards of integrity and professionalism.
-                  </p>
-                  <p>
-                    We're not just legal advisors — we're strategic partners in our clients' growth journey. From trademark and patent filing to IP litigation, corporate structuring, and regulatory compliance, we aim to empower businesses with future-ready legal support.
-                  </p>
-                </div>
-                {/* Mission Points */}
-                <div className="mt-8 grid grid-cols-2 gap-6">
-                  <h4 className="text-xl font-bold text-[#00ADB5] col-span-2 mb-2">✨ What Drives Us:</h4>
+            </motion.div>
+
+            {/* What Drives Us Section - Single big box with 4 sections */}
+            <motion.div 
+              className="flex flex-col items-center py-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.h1
+        className="text-[#000000] text-4xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
+        style={{
+          letterSpacing: "0.3em",
+          textShadow:
+            "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+      >
+        What Drives Us:
+      </motion.h1>
+
+              <div className="max-w-5xl w-full">
+                <div className="grid grid-cols-2 gap-2">
                   {missionPoints.map((item, index) => (
                     <motion.div
                       key={item.id}
-                      className="bg-white/80 backdrop-blur-sm p-4 rounded-xl"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      className="group relative bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl aspect-square"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xl">{item.icon}</span>
-                        <h3 className="text-[#00ADB5] font-semibold">{item.title}</h3>
+                      {/* Background Image */}
+                      <div className="absolute inset-0">
+                        <Image
+                          src={
+                            index === 0 ? "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80" : // Excellence - Scales of justice
+                            index === 1 ? "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80" : // Integrity - Handshake
+                            index === 2 ? "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80" : // Innovation - Technology/Digital
+                            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80" // Growth - Business charts
+                          }
+                          alt={item.title}
+                          fill
+                          className="object-cover opacity-30 group-hover:opacity-60 transition-opacity duration-300"
+                        />
                       </div>
-                      <p className="text-sm text-[#393E46]">{item.description}</p>
+                      
+                      {/* Dark overlay on hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-all duration-300"></div>
+                      
+                      {/* Name overlay on hover - centered */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                        <h3 className="text-white font-bold text-3xl text-center">
+                          {item.title}
+                        </h3>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -409,11 +589,21 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-[#00ADB5] text-6xl animate-pulse opacity-20">✦</span>
-              <h2 className="text-5xl font-bold text-[#222831] mb-4 relative inline-block">
-                Meet Our Team
-                <span className="absolute -right-8 top-0 text-[#00ADB5] text-4xl animate-pulse">✦</span>
-              </h2>
+              <motion.h1
+        className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-24 relative z-10 px-4"
+        style={{
+          letterSpacing: "0.3em",
+          textShadow:
+            "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+      >
+Meet Our Team
+      </motion.h1>
+
               <p className="text-xl text-[#393E46]/80 mt-4 max-w-3xl mx-auto">
                 Expert Professionals Dedicated to Your Intellectual Property & Corporate Law Needs<br/>
                 <span className="text-lg block mt-2">
@@ -422,155 +612,97 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
-              {/* Group headers with responsive margins */}
-              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6 first:mt-0">
-                👨‍💼 Leadership
-              </h3>
-              {TEAM_MEMBERS.filter(member => member.role === "Leadership").map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  className="group relative bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={index < 3}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="inline-block px-3 py-1 text-xs font-medium bg-white/90 rounded-full text-[#00ADB5] mb-3">
-                        {member.role}
-                      </span>
-                      <h3 className="text-xl font-bold text-white mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.name}
-                      </h3>
-                      <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.position}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+              {TEAM_MEMBERS.map((member, index) => {
+                // Different light background colors for variety
+                const bgColors = [
+                  'from-blue-50/80 to-blue-100/80',
+                  'from-green-50/80 to-green-100/80', 
+                  'from-purple-50/80 to-purple-100/80',
+                  'from-orange-50/80 to-orange-100/80',
+                  'from-pink-50/80 to-pink-100/80',
+                  'from-indigo-50/80 to-indigo-100/80',
+                  'from-yellow-50/80 to-yellow-100/80',
+                  'from-red-50/80 to-red-100/80'
+                ];
+                
+                return (
+                  <div key={member.name} className="space-y-4">
+                    <motion.div
+                      className="group bg-white  overflow-hidden transition-all duration-300 hover:shadow-xl relative min-h-[450px]"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      {/* Image Section - Even larger image */}
+                      <div className={`relative h-80 bg-gradient-to-br ${bgColors[index % bgColors.length]} overflow-visible`}>
+                        <div className="absolute inset-0 flex items-start justify-center pt-6">
+                          <div className="relative w-64 h-72 overflow-hidden">
+                            <Image
+                              src={`/people${(index % 15) + 1}.png`}
+                              alt={member.name}
+                              width={256}
+                              height={288}
+                              className="object-cover object-top w-full h-full"
+                              style={{ 
+                                objectPosition: 'center top'
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
-                ⚖️ Legal & Taxation
-              </h3>
-              {TEAM_MEMBERS.filter(member => member.role === "Legal").map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  className="group relative bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={index < 3}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="inline-block px-3 py-1 text-xs font-medium bg-white/90 rounded-full text-[#00ADB5] mb-3">
-                        {member.role}
-                      </span>
-                      <h3 className="text-xl font-bold text-white mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.name}
-                      </h3>
-                      <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.position}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Content Section - Much smaller height */}
+                      <div className="p-3 space-y-1 pt-4 h-24 flex flex-col justify-center">
+                        {/* Name */}
+                        <h3 className="text-lg font-bold text-[#222831] text-center">
+                          {member.name}
+                        </h3>
+                        
+                        {/* Position & Role */}
+                        <div className="text-center">
+                          <p className="text-xs text-[#393E46] font-medium">
+                            {member.position}
+                          </p>
+                          <p className="text-xs text-[#00ADB5] font-semibold uppercase tracking-wider">
+                            {member.role}
+                          </p>
+                        </div>
+                      </div>
 
-              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
-                🧠 Strategy & Operations
-              </h3>
-              {TEAM_MEMBERS.filter(member => member.role === "Strategy").map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  className="group relative bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={index < 3}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="inline-block px-3 py-1 text-xs font-medium bg-white/90 rounded-full text-[#00ADB5] mb-3">
-                        {member.role}
-                      </span>
-                      <h3 className="text-xl font-bold text-white mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.name}
-                      </h3>
-                      <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.position}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Hover Overlay with Practice Areas - Adjusted positioning */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${bgColors[index % bgColors.length]} opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between text-[#222831] p-6 pt-12`}>
+                        <div className="text-center mt-5">
+                          <h4 className="text-xl font-extrabold mb-3  text-center">Practice Areas</h4>
+                          <div className="text-center  leading-tight">
+                            <p className="text-lg font-bold">Family Law</p>
+                            <p className="text-lg font-bold">Family Law Mediation</p>
+                            <p className="text-lg font-bold">Employment Law</p>
+                            <p className="text-lg font-bold">Intellectual Property</p>
+                            <p className="text-lg font-bold">Corporate Law</p>
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-lg font-semibold  cursor-pointer hover:underline">
+                            [Add full bio]
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
 
-              <h3 className="col-span-full text-xl sm:text-2xl font-bold text-[#00ADB5] mt-8 sm:mt-12 mb-4 sm:mb-6">
-                🗂️ Administrative & Support
-              </h3>
-              {TEAM_MEMBERS.filter(member => member.role === "Administrative").map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  className="group relative bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={index < 3}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="inline-block px-3 py-1 text-xs font-medium bg-white/90 rounded-full text-[#00ADB5] mb-3">
-                        {member.role}
-                      </span>
-                      <h3 className="text-xl font-bold text-white mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.name}
-                      </h3>
-                      <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {member.position}
-                      </p>
+                    {/* Buttons below the card */}
+                    <div className="flex gap-2">
+                      <button className="flex-1 bg-[#00ADB5] text-white py-2 px-3 text-xs font-medium hover:bg-[#00ADB5]/90 transition-colors duration-200">
+                        Book Now
+                      </button>
+                      <button className="flex-1 border border-[#00ADB5] text-[#00ADB5] py-2 px-3 text-xs font-medium hover:bg-[#00ADB5]/10 transition-colors duration-200">
+                        Read Full Bio
+                      </button>
                     </div>
                   </div>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -579,6 +711,9 @@ export default function AboutPage() {
   )
 }
 
+
+
+
+
 function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ")
-}

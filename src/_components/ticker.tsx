@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import styled, { keyframes } from 'styled-components';
 
 // Image list with .png extensions, assuming transparent backgrounds
 const images = [
@@ -23,201 +22,43 @@ const images = [
   "/img-16.png", // Conference Room (transparent PNG)
 ].map((url, index) => ({ id: index, url }));
 
-// Quadruple the images for smoother infinite scroll
-const duplicatedImages = [...images, ...images, ...images, ...images];
-
-const scrollLeft = keyframes`
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 2)); }
-`;
-
-const scrollRight = keyframes`
-  0% { transform: translateX(calc(-100% / 2)); }
-  100% { transform: translateX(0); }
-`;
-
-const TickerTrack = styled.div<{ $direction: string; $speed: number; $isPaused: boolean }>`
-  display: flex;
-  width: fit-content;
-  animation: ${props => props.$direction === 'right' ? scrollRight : scrollLeft} 
-    ${props => props.$speed}s linear infinite;
-  animation-play-state: ${props => props.$isPaused ? 'paused' : 'running'};
-  gap: 10px;
-  margin: 1rem 0;
-  @media (min-width: 480px) {
-    gap: 15px;
-  }
-  @media (min-width: 768px) {
-    gap: 20px;
-    margin: 1.5rem 0;
-  }
-  @media (min-width: 1024px) {
-    gap: 25px;
-    margin: 2rem 0;
-  }
-  will-change: transform;
-`;
-
-const TickerContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100px;
-  @media (min-width: 480px) {
-    height: 120px;
-  }
-  @media (min-width: 768px) {
-    height: 160px;
-  }
-  @media (min-width: 1024px) {
-    height: 180px;
-  }
-  overflow: hidden;
-  padding: 6px 0;
-  @media (min-width: 768px) {
-    padding: 8px 0;
-  }
-`;
-
-const TickerWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 150px;
-    height: 100%;
-    z-index: 2;
-  }
-
-  &::before {
-    left: 0;
-    background: linear-gradient(to right, #EEEEEE, transparent);
-  }
-
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, #EEEEEE, transparent);
-  }
-`;
-
-const CenterLogo = styled.div`
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150vw;
-  height: 150vw;
-  max-width: none;
-  background: radial-gradient(ellipse, rgba(255,255,255,0.98) 0%, rgba(252,252,252,0.95) 1%, rgba(248,248,248,0.9) 2%, rgba(245,245,245,0.8) 4%, rgba(240,240,240,0.65) 6%, rgba(235,235,235,0.5) 8%, rgba(230,230,230,0.3) 12%, rgba(225,225,225,0.15) 16%, transparent 20%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-  pointer-events: none;
-`;
-
-const LogoImage = styled.img<{ $x: number; $y: number }>`
-  width: 200px;
-  height: 200px;
-  @media (min-width: 480px) {
-    width: 240px;
-    height: 240px;
-  }
-  @media (min-width: 768px) {
-    width: 280px;
-    height: 280px;
-  }
-  @media (min-width: 1024px) {
-    width: 320px;
-    height: 320px;
-  }
-  object-fit: contain;
-  z-index: 51;
-  pointer-events: auto;
-  cursor: pointer;
-  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s ease;
-  transform: translate(${props => props.$x}px, ${props => props.$y}px);
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
-
-  &:hover {
-    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.15));
-  }
-`;
-
-const MainTickerContainer = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 400px;
-  @media (min-width: 768px) {
-    min-height: 500px;
-  }
-  @media (min-width: 1024px) {
-    min-height: 600px;
-  }
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  width: 80px;
-  height: 80px;
-  @media (min-width: 480px) {
-    width: 100px;
-    height: 100px;
-  }
-  @media (min-width: 768px) {
-    width: 120px;
-    height: 120px;
-  }
-  @media (min-width: 1024px) {
-    width: 140px;
-    height: 140px;
-  }
-  overflow: hidden;
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-    z-index: 10;
-  }
-`;
-
-const TickerSection = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
 const Ticker = () => {
-  const [hoveredTicker, setHoveredTicker] = useState<number | null>(null);
+  const [hoveredOrbit, setHoveredOrbit] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const logoRef = useRef<HTMLImageElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  const tickerRows = [
-    { direction: 'left', speed: 60 },
-    { direction: 'right', speed: 50 },
-    { direction: 'left', speed: 70 }
+  // Define orbital configurations with more spacing
+  const orbits = [
+    { 
+      radius: 240, 
+      duration: 35, 
+      direction: 'clockwise', 
+      images: images.slice(0, 6),
+      startAngle: 0
+    },
+    { 
+      radius: 360, 
+      duration: 50, 
+      direction: 'counterclockwise', 
+      images: images.slice(6, 11),
+      startAngle: 36
+    },
+    { 
+      radius: 480, 
+      duration: 65, 
+      direction: 'clockwise', 
+      images: images.slice(11, 16),
+      startAngle: 18
+    },
   ];
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       if (logoRef.current && sectionRef.current) {
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const logoRect = logoRef.current.getBoundingClientRect();
         
-        // Check if cursor is within the ticker section
         if (e.clientY >= sectionRect.top && e.clientY <= sectionRect.bottom) {
           const centerX = logoRect.left + logoRect.width / 2;
           const centerY = logoRect.top + logoRect.height / 2;
@@ -226,11 +67,9 @@ const Ticker = () => {
           const deltaY = e.clientY - centerY;
           const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
           
-          // Smoother attraction with larger range
           const maxDistance = 500;
           if (distance < maxDistance) {
             const attractionStrength = Math.max(0, (maxDistance - distance) / maxDistance);
-            // Smoother curve for attraction
             const smoothStrength = Math.pow(attractionStrength, 0.7);
             const maxMove = 25;
             
@@ -247,9 +86,8 @@ const Ticker = () => {
       }
     };
 
-    // Throttle mouse move events for smoother performance
-    let animationFrame: number;
-    const throttledMouseMove = (e: MouseEvent) => {
+    let animationFrame;
+    const throttledMouseMove = (e) => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }
@@ -266,78 +104,201 @@ const Ticker = () => {
   }, []);
 
   return (
-    <TickerSection ref={sectionRef} className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-[#EEEEEE]">
-      {/* Background Stars */}
-      <span className="absolute left-0 top-[45%] text-[#00ADB5] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-10 transform -translate-y-1/2">
-        ✦
-      </span>
-      <span className="absolute left-1/2 top-[45%] text-[#00ADB5] text-[200px] sm:text-[250px] md:text-[300px] lg:text-[350px] opacity-[0.07] transform -translate-x-1/2 -translate-y-1/2">
-        ✦
-      </span>
-      <span className="absolute right-0 top-[45%] text-[#00ADB5] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-10 transform -translate-y-1/2">
-        ✦
-      </span>
-
-      {/* Title */}
-      <div className="relative text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 mt-4 sm:mt-8 md:mt-12 w-[90%] sm:w-[87%] m-auto px-4">
-         <motion.h1
-        className="text-[#000000] text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative"
-        style={{ 
-          letterSpacing: "0.4em",
-          textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)"
-        }}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-      >
-        OUR CLIENTS
-      </motion.h1>
+    <div ref={sectionRef} className="py-24 sm:py-28 md:py-32 lg:py-40 relative overflow-hidden bg-gray-100">
+      {/* Background Video */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
+          style={{ filter: "grayscale(50%) contrast(1.1) brightness(0.8)" }}
+        >
+          <source src="/ticker-bg-video.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gray-100/60"></div>
       </div>
 
-      {/* Main Ticker Container with Center Logo */}
-      <MainTickerContainer>
-        {/* Ticker Content */}
-        <div className="space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 mb-8 sm:mb-12 md:mb-16 w-full">
-          {tickerRows.map((row, index) => (
-            <TickerContainer key={index}>
-              <TickerWrapper
-                onMouseEnter={() => setHoveredTicker(index)}
-                onMouseLeave={() => setHoveredTicker(null)}
-              >
-                <TickerTrack 
-                  $direction={row.direction}
-                  $speed={row.speed}
-                  $isPaused={hoveredTicker === index}
-                >
-                  {duplicatedImages.map((image, imgIndex) => (
-                    <ImageContainer key={`${image.id}-${imgIndex}`}>
-                      <img
-                        src={image.url}
-                        alt={`Legal Image ${image.id}`}
-                        className="w-full h-full object-contain border-none"
-                        loading="lazy"
-                      />
-                    </ImageContainer>
-                  ))}
-                </TickerTrack>
-              </TickerWrapper>
-            </TickerContainer>
-          ))}
+      {/* Title */}
+      <div className="relative text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 mt-4 sm:mt-8 md:mt-12 w-[90%] sm:w-[87%] mx-auto px-4 z-20">
+        <motion.h1
+          className="text-black text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative"
+          style={{ 
+            letterSpacing: "0.4em",
+            textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)"
+          }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          OUR CLIENTS
+        </motion.h1>
+      </div>
 
-          {/* Center Lion Logo */}
-          <CenterLogo>
-            <LogoImage 
-              ref={logoRef}
-              src="/lion-logo.png" 
-              alt="Leonard Corporate Solutions Logo"
-              $x={mousePosition.x}
-              $y={mousePosition.y}
-            />
-          </CenterLogo>
+      {/* Main Orbit Container */}
+      <div className="relative w-full h-[800px]  md:h-[900px] lg:h-[1200px] flex justify-center items-center overflow-hidden my-20 z-20">
+        {/* Orbital Tracks */}
+        {orbits.map((orbit, orbitIndex) => {
+          const rotationKeyframe = orbit.direction === 'clockwise' 
+            ? `rotate-clockwise-${orbitIndex}` 
+            : `rotate-counterclockwise-${orbitIndex}`;
+          
+          return (
+            <div key={orbitIndex} className='my-20'>
+              {/* Orbit Ring */}
+              <div
+                className="absolute border-2 border-gray-400 opacity-40 rounded-full"
+                style={{
+                  width: `${orbit.radius * 2}px`,
+                  height: `${orbit.radius * 2}px`,
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  borderColor: 'rgb(156 163 175)',
+                }}
+              />
+              
+              {/* Rotating Container */}
+              <div
+                className="absolute"
+                style={{
+                  width: `${orbit.radius * 2}px`,
+                  height: `${orbit.radius * 2}px`,
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  animation: `${rotationKeyframe} ${orbit.duration}s linear infinite`,
+                  animationPlayState: hoveredOrbit === orbitIndex ? 'paused' : 'running',
+                }}
+                onMouseEnter={() => setHoveredOrbit(orbitIndex)}
+                onMouseLeave={() => setHoveredOrbit(null)}
+              >
+                {orbit.images.map((image, imgIndex) => {
+                  const angle = orbit.startAngle + (360 / orbit.images.length) * imgIndex;
+                  const dotAngle = orbit.startAngle + (360 / orbit.images.length) * (imgIndex + 0.5);
+                  
+                  return (
+                    <div key={`${orbitIndex}-${image.id}`}>
+                      {/* Image */}
+                      <div
+                        className="absolute"
+                        style={{
+                          width: '90px',
+                          height: '90px',
+                          top: '50%',
+                          left: '50%',
+                          transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${orbit.radius}px)`,
+                        }}
+                      >
+                        {/* Counter-rotating image container to keep logos upright */}
+                        <div
+                          className="w-full h-full transition-all duration-300 ease-out hover:scale-110 hover:z-10"
+                          style={{
+                            animation: orbit.direction === 'clockwise'
+                              ? `counter-rotate-clockwise-${orbitIndex} ${orbit.duration}s linear infinite`
+                              : `counter-rotate-counterclockwise-${orbitIndex} ${orbit.duration}s linear infinite`,
+                            animationPlayState: hoveredOrbit === orbitIndex ? 'paused' : 'running',
+                          }}
+                        >
+                          <img
+                            src={image.url}
+                            alt={`Legal Image ${image.id + 1}`}
+                            className="w-full h-full object-contain rounded-lg bg-white bg-opacity-95 p-2 shadow-md border-2 border-gray-300 transition-all duration-300 hover:shadow-lg hover:bg-opacity-100 hover:border-cyan-500"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Blue dot between images - show for all images including after last */}
+                      <div
+                        className="absolute"
+                        style={{
+                          width: '8px',
+                          height: '8px',
+                          top: '50%',
+                          left: '50%',
+                          transform: `translate(-50%, -50%) rotate(${dotAngle}deg) translateY(-${orbit.radius}px)`,
+                        }}
+                      >
+                        <div className="w-2 h-2 bg-cyan-500 rounded-full opacity-60"></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Center Lion Logo Container */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+          {/* Lion Logo */}
+          <img 
+            ref={logoRef}
+            src="/lion-logo.png" 
+            alt="Leonard Corporate Solutions Logo"
+            className="w-64 h-64 object-contain z-50 cursor-pointer transition-all duration-150 ease-out filter drop-shadow-md hover:drop-shadow-lg"
+            style={{
+              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+            }}
+          />
         </div>
-      </MainTickerContainer>
-    </TickerSection>
+      </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes rotate-clockwise-0 {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rotate-clockwise-1 {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rotate-clockwise-2 {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rotate-counterclockwise-0 {
+          0% { transform: translate(-50%, -50%) rotate(360deg); }
+          100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+        @keyframes rotate-counterclockwise-1 {
+          0% { transform: translate(-50%, -50%) rotate(360deg); }
+          100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+        @keyframes rotate-counterclockwise-2 {
+          0% { transform: translate(-50%, -50%) rotate(360deg); }
+          100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+        @keyframes counter-rotate-clockwise-0 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+        @keyframes counter-rotate-clockwise-1 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+        @keyframes counter-rotate-clockwise-2 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+        @keyframes counter-rotate-counterclockwise-0 {
+          0% { transform: rotate(-360deg); }
+          100% { transform: rotate(0deg); }
+        }
+        @keyframes counter-rotate-counterclockwise-1 {
+          0% { transform: rotate(-360deg); }
+          100% { transform: rotate(0deg); }
+        }
+        @keyframes counter-rotate-counterclockwise-2 {
+          0% { transform: rotate(-360deg); }
+          100% { transform: rotate(0deg); }
+        }
+      `}</style>
+    </div>
   );
 };
 

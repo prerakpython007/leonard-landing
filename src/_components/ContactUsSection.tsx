@@ -28,7 +28,7 @@ const ContactUsSection = () => {
               Get in Touch <span className="text-[#00ADB5]">✦</span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Ready to protect your intellectual property? Contact Leonard Corporate Solutions for expert guidance on design protection and legal services.
+              Ready t o protect your intellectual property? Contact Leonard Corporate Solutions for expert guidance on design protection and legal services.
             </p>
             <div className="flex justify-center gap-6 mb-6 flex-wrap">
               <div className="flex items-center gap-2">

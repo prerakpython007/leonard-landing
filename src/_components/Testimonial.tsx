@@ -75,10 +75,7 @@ const TestimonialsSection = () => {
       >
         TESTIMONIALS
       </motion.h1>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-[#00ADB5]">What Our </span>
-            <span className="text-[#222831] block sm:inline mt-2 sm:mt-0">Clients Say</span>
-          </h2>
+         
           <p className="text-[#393E46] text-base sm:text-lg max-w-2xl mx-auto px-4">
             Trusted by industry leaders, startups, and global businesses for intellectual property, corporate, and international legal services.
           </p>

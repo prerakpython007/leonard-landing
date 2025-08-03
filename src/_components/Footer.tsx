@@ -140,8 +140,8 @@ export default function Footer() {
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex items-center">
               <span className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tighter">
-                <span className="text-[#00ADB5]">LEONARD </span>
-                <span className="text-[#EEEEEE]">SOLUTIONS</span>
+                <span className="text-[#00ADB5]">IPR IS OUR  </span>
+                <span className="text-[#EEEEEE]">GAME</span>
               </span>
               <span className="text-[#00ADB5] text-4xl sm:text-5xl md:text-6xl lg:text-7xl mx-6 sm:mx-8 md:mx-12">✦</span>
             </div>

@@ -168,12 +168,12 @@ const Nav: React.FC = () => {
       ]
     },
     { 
-      label: 'IP Registration India', 
+      label: 'IP  India', 
       href: '/service/national', 
       dropdown: nationalDropdown 
     },
     { 
-      label: 'IP Registration International', 
+      label: 'IP  International', 
       href: '/service/international', 
       dropdown: internationalDropdown 
     },

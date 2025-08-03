@@ -1,13 +1,12 @@
 "use client"
 
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { useState, useEffect, useRef, useCallback } from "react"
 
 const Landing = () => {
   const router = useRouter()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const animationFrameRef = useRef<number | null>(null)
 
@@ -16,13 +15,13 @@ const Landing = () => {
     offset: ["start start", "end start"],
   })
 
-  // Simplified mouse position values with reduced stiffness
+  // Enhanced mouse position values for better interactivity
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  // Lighter spring animations
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 30, mass: 0.2 })
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 30, mass: 0.2 })
+  // More responsive spring animations
+  const springX = useSpring(mouseX, { stiffness: 80, damping: 25, mass: 0.3 })
+  const springY = useSpring(mouseY, { stiffness: 80, damping: 25, mass: 0.3 })
 
   // Simplified parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
@@ -31,27 +30,25 @@ const Landing = () => {
   const gameTextScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
   const gameTextOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5])
 
-  // Simplified background movement (reduced intensity)
-  const bgTransformX = useTransform(springX, (value) => `${value * 0.01}px`)
-  const bgTransformY = useTransform(springY, (value) => `${value * 0.01}px`)
+  // Enhanced background movement with increased intensity
+  const bgTransformX = useTransform(springX, (value) => `${value * 0.05}px`)
+  const bgTransformY = useTransform(springY, (value) => `${value * 0.05}px`)
 
   // Throttled mouse move handler
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      // Cancel previous animation frame
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }
 
-      // Use requestAnimationFrame to throttle updates
       animationFrameRef.current = requestAnimationFrame(() => {
         setMousePosition({ x: e.clientX, y: e.clientY })
 
-        // Simplified mouse position calculation
+        // Enhanced mouse position calculation for better interaction
         const centerX = window.innerWidth / 2
         const centerY = window.innerHeight / 2
-        const relativeX = (e.clientX - centerX) * 0.5 // Reduced intensity
-        const relativeY = (e.clientY - centerY) * 0.5
+        const relativeX = (e.clientX - centerX) * 0.8
+        const relativeY = (e.clientY - centerY) * 0.8
 
         mouseX.set(relativeX)
         mouseY.set(relativeY)
@@ -61,6 +58,15 @@ const Landing = () => {
   )
 
   useEffect(() => {
+    // Load custom font
+    const font = new FontFace(
+      'EduNSWACTCursive',
+      'url(/fonts/Edu_NSW_ACT_Cursive/EduNSWACTCursive-VariableFont_wght.ttf)'
+    )
+    font.load().then(() => {
+      document.fonts.add(font)
+    }).catch(err => console.log('Font loading failed:', err))
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true })
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
@@ -72,42 +78,7 @@ const Landing = () => {
 
   return (
     <div className="bg-[#EEEEEE] relative overflow-x-hidden">
-      {/* Optimized Custom Blob Cursor */}
-      <AnimatePresence>
-        {isHovering && (
-          <motion.div
-            className="fixed pointer-events-none z-50 will-change-transform"
-            style={{
-              left: mousePosition.x - 88,
-              top: mousePosition.y - 88,
-            }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{
-              scale: {
-                type: "spring",
-                stiffness: 200,
-                damping: 20,
-                mass: 0.5,
-              },
-              opacity: {
-                duration: 0.1,
-                ease: "easeOut",
-              },
-            }}
-          >
-            <img
-              src="/lion-logo-face.png"
-              alt="Lion Logo"
-              className="w-44 h-44 object-contain drop-shadow-lg"
-              loading="eager"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Hero Section with Optimized Parallax */}
+      {/* Hero Section with Enhanced Interactive Parallax */}
       <section ref={containerRef} className="relative min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-4 w-full">
           <motion.div
@@ -117,43 +88,47 @@ const Landing = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col -mt-16"
           >
-            <span className="text-[#00ADB5] text-xl font-medium tracking-wide block mb-6 md:text-base md:mb-4 text-center">
-              Welcome to <span className="font-extrabold"> Leonard Solutions</span>
+            <span className="text-[#00ADB5] my-7  text-xl font-medium tracking-wide block mb-6 md:text-base md:mb-4 text-center">
+              Welcome to <span className="font-extrabold" style={{ fontFamily: 'EduNSWACTCursive, cursive', fontWeight: 'normal' }}> Leonard Solutions</span>
             </span>
 
             <div className="text-left mb-6">
               <div className="flex items-baseline gap-4">
-                <h1 className="text-6xl font-black text-black m-0 leading-none uppercase tracking-wider lg:text-5xl md:text-4xl">
+                <h1 className="text-4xl sm:text-3xl md:text-3xl font-black text-black m-0 leading-none uppercase tracking-wider">
                   IPR
                 </h1>
-                <div className="text-2xl text-black font-normal lg:text-xl md:text-lg">is our</div>
+                <div className="text-lg sm:text-xl md:text-2xl text-black font-normal">is our</div>
               </div>
             </div>
 
-            <div className="relative mb-8 min-h-[400px] flex items-center w-full">
-              {/* Simplified Background Image with GPU acceleration */}
+            <div className="relative mb-4 sm:mb-6 md:mb-8 min-h-[180px] sm:min-h-[250px] md:min-h-[200px] lg:min-h-[400px] flex items-center w-full">
+              {/* Enhanced Interactive Background Video */}
               <motion.div
                 style={{
-                  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                   y: useTransform([backgroundY, bgTransformY], ([bg, mouse]) => `calc(${bg} + ${mouse})`),
                   x: bgTransformX,
                 }}
                 className="absolute inset-0 z-0 overflow-hidden will-change-transform"
                 initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 0.12, scale: 1 }}
+                animate={{ opacity: 0.15, scale: 1 }}
                 transition={{ duration: 1.5, delay: 0.3 }}
               >
-                <div
-                  className="w-full h-full bg-cover bg-center transform rotate-12 scale-125 origin-center will-change-transform"
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover transform rotate-0 scale-[1.005] sm:rotate-1 sm:scale-[1.01] md:rotate-1 md:scale-[1.01] lg:rotate-6 lg:scale-110 origin-center will-change-transform"
                   style={{
-                    backgroundImage: "url('/hero-image.png')",
-                    filter: "grayscale(100%) contrast(1.1) brightness(0.9)",
-                    transform: "translate3d(0, 0, 0)", // Force GPU acceleration
+                    filter: "grayscale(100%) contrast(1.2) brightness(0.8)",
+                    transform: "translate3d(0, 0, 0)",
                   }}
-                />
+                >
+                  <source src="/lion.mp4" type="video/mp4" />
+                </video>
               </motion.div>
 
-              {/* Simplified Hero Background Image */}
+              {/* Enhanced Interactive Hero Background Video */}
               <motion.div
                 style={{
                   y: useTransform([heroImageY, bgTransformY], ([hero, mouse]) => `calc(${String(hero)} + ${String(mouse)})`),
@@ -164,14 +139,19 @@ const Landing = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, delay: 0.3 }}
               >
-                <div
-                  className="w-full h-full bg-cover bg-center transform rotate-12 scale-125 origin-center will-change-transform"
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover transform rotate-0 scale-[1.005] sm:rotate-1 sm:scale-[1.01] md:rotate-1 md:scale-[1.01] lg:rotate-6 lg:scale-110 origin-center will-change-transform"
                   style={{
-                    backgroundImage: "url('/heroImage.png')",
                     filter: "grayscale(40%) contrast(1.3) brightness(1.1) saturate(1.2)",
-                    transform: "translate3d(0, 0, 0)", // Force GPU acceleration
+                    transform: "translate3d(0, 0, 0)",
                   }}
-                />
+                >
+                  <source src="/lion.mp4" type="video/mp4" />
+                </video>
               </motion.div>
 
               {/* Optimized GAME Text */}
@@ -188,15 +168,12 @@ const Landing = () => {
                   viewport={{ once: true }}
                 >
                   <h1
-                    className="text-[#ffffff] text-[15rem] sm:text-[12rem] md:text-[10rem] lg:text-[15rem] xl:text-[18rem] font-extrabold text-center relative z-10 cursor-none will-change-transform"
+                    className="text-[#ffffff] text-[5rem] sm:text-[7rem] md:text-[3rem] lg:text-[13rem] xl:text-[16rem] 2xl:text-[18rem] font-extrabold text-center relative z-10 will-change-transform leading-[0.8] sm:leading-[0.85] md:leading-[0.9] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] lg:tracking-[0.35em]"
                     style={{
-                      letterSpacing: "0.4em",
                       textShadow:
-                        "-3px 0px 0px rgba(100, 100, 100, 0.8), -8px 3px 0px rgba(80, 80, 80, 0.6), -13px 6px 0px rgba(60, 60, 60, 0.4), -18px 9px 0px rgba(40, 40, 40, 0.3), -23px 12px 0px rgba(20, 20, 20, 0.2)",
-                      transform: "translate3d(0, 0, 0)", // Force GPU acceleration
+                        "-2px 0px 0px rgba(100, 100, 100, 0.8), -4px 2px 0px rgba(80, 80, 80, 0.6), -6px 4px 0px rgba(60, 60, 60, 0.4), -8px 6px 0px rgba(40, 40, 40, 0.3), -10px 8px 0px rgba(20, 20, 20, 0.2)",
+                      transform: "translate3d(0, 0, 0)",
                     }}
-                    onMouseEnter={() => setIsHovering(true)}
-                    onMouseLeave={() => setIsHovering(false)}
                   >
                     GAME
                   </h1>
@@ -204,12 +181,12 @@ const Landing = () => {
               </div>
             </div>
 
-            <h2 className="text-3xl text-[#393E46] mb-6 font-normal lg:text-2xl md:text-xl text-center">
+            <h2 className="text-xl sm:text-2xl md:text-xl text-[#393E46] mb-4 sm:mb-5 md:mb-6 font-normal text-center">
               Your Premier Legal Partners
             </h2>
 
             {/* Buttons */}
-            <div className="flex gap-4 items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=info@leonardsolutions.in&su=Consultation%20Request"
                 target="_blank"
@@ -234,3 +211,4 @@ const Landing = () => {
 }
 
 export default Landing
+
