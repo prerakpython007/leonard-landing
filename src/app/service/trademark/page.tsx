@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FileText, RefreshCw, ShieldOff, Gavel, FileSignature, Palette, Layers, Copyright } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function TrademarkPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -18,7 +19,7 @@ export default function TrademarkPage() {
     {
       icon: RefreshCw,
       title: "Trademark Renewal",
-      description: "Handle timely renewals to maintain your trademark’s legal protection and validity.",
+      description: "Handle timely renewals to maintain your trademark's legal protection and validity.",
       route: "/service/trademark/renewal",
     },
     {
@@ -60,116 +61,187 @@ export default function TrademarkPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
-      {/* Grid Pattern Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: "30px 30px",
-        }}
-      />
+    <div className="min-h-screen bg-[#EEEEEE] relative font-roboto overflow-x-hidden">
+      {/* Large Gradient "L" Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <div
+          className="text-[60rem] sm:text-[80rem] md:text-[100rem] lg:text-[120rem] font-extrabold opacity-[0.08] select-none"
+          style={{
+            background:
+              "linear-gradient(135deg, #00ADB5 0%, #0099A8 50%, #007B8A 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            transform: "translateX(-5%) translateY(-5%)",
+          }}
+        >
+          L
+        </div>
+      </div>
 
-      {/* Hero Section */}
-      <motion.section className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center">
-        {/* Corner Angles - Desktop only with better spacing */}
-        <div className="absolute top-8 left-8 hidden h-12 w-12 border-t-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute top-8 right-8 hidden h-12 w-12 border-t-2 border-r-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 left-8 hidden h-12 w-12 border-b-2 border-l-2 border-[#00ADB5] lg:block" />
-        <div className="absolute bottom-8 right-8 hidden h-12 w-12 border-b-2 border-r-2 border-[#00ADB5] lg:block" />
-
-        <motion.div className="max-w-7xl mx-auto text-center px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Trademark Services
-            <span className="absolute top-1/2 -left-6 sm:-left-8 md:-left-12 lg:-left-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
-            <span className="absolute top-1/2 -right-6 sm:-right-8 md:-right-12 lg:-right-16 -translate-y-1/2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#00ADB5] opacity-50 animate-pulse">✦</span>
-          </h1>
-          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Strengthen Your Brand
-          </p>
-        </motion.div>
-      </motion.section>
-
-      {/* Content Sections */}
-      <section className="py-12 sm:py-16 md:py-24 space-y-12 sm:space-y-16 md:space-y-24">
-        <div className="max-w-7xl mx-auto">
-          {/* Overview Section */}
-          <motion.div className="mb-12 sm:mb-16 md:mb-24">
-            {/* Trademark Overview */}
+      <div className="relative z-10 space-y-12 sm:space-y-16 md:space-y-24">
+        {/* Hero Section with Trademark Services and Image */}
+        <motion.section
+          className="relative min-h-[70vh] flex items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="w-full flex items-center">
+            {/* Left Side - Trademark Services Text (Centered Vertically) */}
             <motion.div
-              className="relative max-w-3xl mx-auto p-8 sm:p-12"
+              className="w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="max-w-xl">
+                <motion.h1
+                  className="text-[#000000] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-left relative z-10"
+                  style={{
+                    letterSpacing: "0.3em",
+                    textShadow:
+                      "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+                  }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  TRADEMARK SERVICES
+                </motion.h1>
+                <div className="mt-8 space-y-4">
+                  <p className="text-lg sm:text-xl text-[#393E46] font-light leading-relaxed">
+                    Strengthen Your Brand Identity with Comprehensive Legal Protection
+                  </p>
+                  <div className="flex items-center space-x-2 text-[#00ADB5]">
+                    <span className="text-sm font-medium tracking-wider uppercase">
+                      Expert Solutions
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Horizontal Rectangle Image */}
+            <motion.div
+              className="w-1/2"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
+                <div className="relative h-full w-full overflow-hidden">
+                  <Image
+                    src="/WhatWeDo.jpg"
+                    alt="Trademark Services - Leonard Corporate Solutions"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Overview & Services Section */}
+        <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
+          <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
+            {/* Overview Section */}
+            <motion.div 
+              className="grid md:grid-cols-2 gap-16 items-start"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              {/* Corner Angles - Visible on all screens with better spacing */}
-              <div className="absolute -top-6 -left-6 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -top-6 -right-6 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-6 -left-6 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-              <div className="absolute -bottom-6 -right-6 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-              <div className="text-center space-y-6">
-                <h2 className="text-4xl font-bold mb-4">
-                  <span className="text-[#00ADB5]">Trademark</span>{' '}
-                  <span className="text-[#393E46]">Overview</span>
-                </h2>
-                <p className="text-[#393E46] text-lg leading-relaxed">
-                  A trademark protects your brand’s unique signs or symbols, ensuring legal safeguards against unauthorized use. BrandSecure offers comprehensive trademark services to secure your intellectual property.
-                </p>
-                <p className="text-[#393E46] text-lg font-medium">
-                  📩 Contact us at{' '}
-                  <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                    info@brandsecure.in
-                  </a>{' '}
-                  for expert trademark solutions.
-                </p>
+              <div className="space-y-6">
+                <div className="relative h-[500px] overflow-hidden shadow-xl">
+                  <div className="absolute inset-0 bg-[#00ADB5]/10 transform rotate-3"></div>
+                  <Image
+                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+                    alt="Trademark Overview"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              
+              <div className="relative">
+                <h2 className="text-4xl font-bold text-[#222831] mb-6">Trademark Overview</h2>
+                <div className="space-y-6">
+                  <p className="text-[#393E46] text-lg leading-loose">
+                    A trademark protects your brand's unique signs or symbols, ensuring legal safeguards against unauthorized use. Leonard Corporate Solutions offers comprehensive trademark services to secure your intellectual property.
+                  </p>
+                  <p className="text-[#393E46] text-lg leading-loose">
+                    Our expert team provides end-to-end trademark solutions, from initial registration to ongoing protection and enforcement, ensuring your brand remains secure in the competitive marketplace.
+                  </p>
+                  <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-4 shadow-lg">
+                    <h3 className="text-xl font-bold text-[#222831]">Ready to Protect Your Brand?</h3>
+                    <p className="text-[#393E46] font-medium">
+                      Contact us for expert trademark solutions tailored to your business needs.
+                    </p>
+                    <p className="text-[#393E46] text-lg font-medium">
+                      📩 Email us at{' '}
+                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline font-medium">
+                        info@leonardsolutions.in
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
-          </motion.div>
 
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-            {serviceCards.map((service, index) => (
-              <Link
-                key={service.title}
-                href={service.route}
-                data-testid={`trademark-service-link-${service.title.replace(/\s+/g, '-')}`}
-                className="group relative"
-                onMouseEnter={() => setHoveredCard(service.title)}
-                onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => console.log(`Navigating to ${service.route}`)}
-              >
-                <motion.div
-                  className="h-full bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                  <div className="flex flex-col gap-5 relative z-10">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#00ADB5] to-[#00959c] rounded-lg flex items-center justify-center text-white">
-                      <service.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">{service.title}</h3>
-                      <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
-                    </div>
-                  </div>
-                  <motion.div
-                    className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5]"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  />
-                </motion.div>
-              </Link>
-            ))}
+            {/* Services Grid Section */}
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold text-[#222831] mb-12 text-center">Our Trademark Services</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                {serviceCards.map((service, index) => (
+                  <Link
+                    key={service.title}
+                    href={service.route}
+                    className="group relative"
+                    onMouseEnter={() => setHoveredCard(service.title)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <motion.div
+                      className="h-full bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.3 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      style={{ transitionDelay: `${index * 0.1}s` }}
+                    >
+                      <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                      <div className="flex flex-col gap-4 relative z-10">
+                        <div className="flex items-center justify-center w-12 h-12 text-[#00ADB5] transition-transform duration-300 group-hover:scale-110">
+                          <service.icon className="h-8 w-8" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-[#222831] mb-2 group-hover:text-[#00ADB5] transition-colors duration-300">
+                            {service.title}
+                          </h3>
+                          <p className="text-[#393E46] text-sm leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    </motion.div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

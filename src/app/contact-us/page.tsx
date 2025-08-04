@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone, X } from "lucide-react";
 import Image from "next/image";
+import { WorldMap } from "~/_components/ui/world-map";
 
 const contactDetails = [
   {
@@ -132,7 +133,7 @@ export default function ContactPage() {
             >
               <div className="max-w-xl">
                 <motion.h1
-                  className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-left relative z-10"
+                  className="text-[#000000] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-left relative z-10"
                   style={{
                     letterSpacing: "0.3em",
                     textShadow:
@@ -144,17 +145,6 @@ export default function ContactPage() {
                 >
                   CONTACT US
                 </motion.h1>
-
-                <div className="mt-8 space-y-4">
-                  <p className="text-lg sm:text-xl text-[#393E46] font-light leading-relaxed">
-                    Get in Touch with Our Expert Team for Legal Solutions
-                  </p>
-                  <div className="flex items-center space-x-2 text-[#00ADB5]">
-                    <span className="text-sm font-medium tracking-wider uppercase">
-                      Ready to Help
-                    </span>
-                  </div>
-                </div>
               </div>
             </motion.div>
 
@@ -179,74 +169,6 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </motion.section>
-
-        {/* Contact Information Section */}
-        <section className="py-16 sm:py-24 px-4 md:px-16 lg:px-24 relative">
-          <div className="max-w-7xl mx-auto relative">
-            <div className="grid md:grid-cols-2 gap-20 items-center relative">
-              {/* Content Section */}
-              <motion.div
-                className="space-y-8 relative z-10"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="space-y-8">
-                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
-                    At <strong>Leonard Corporate Solutions</strong>, your privacy and
-                    data security matter most to us. If you'd like to access any
-                    personal information we have collected about you through our
-                    website, just reach out! If you notice any inaccuracies or want
-                    to update your details, please email us at{" "}
-                    <a
-                      href="mailto:info@leonardsolutions.in"
-                      className="text-[#00ADB5] hover:underline font-medium"
-                    >
-                      info@leonardsolutions.in
-                    </a>
-                  </p>
-                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
-                    We take your privacy seriously and are committed to protecting
-                    your personal data in compliance with applicable laws. For any queries related to your personal data, privacy concerns, or our legal policies, don't hesitate to contact us.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 gap-8">
-                  <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-4 shadow-lg">
-                    <h3 className="text-xl font-bold text-[#222831]">Ready to Connect?</h3>
-                    <p className="text-[#393E46] font-medium">
-                      Our expert team is standing by to help with your intellectual property and corporate law needs.
-                    </p>
-                    <div className="flex items-center space-x-2 text-[#00ADB5]">
-                      <Phone className="h-5 w-5" />
-                      <span className="font-medium">+91 9930032215</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Image Section */}
-              <motion.div
-                className="relative h-[600px] sm:h-[700px] md:h-[800px]"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative h-full w-full overflow-hidden">
-                  <Image
-                    src="/rohitbhai.webp"
-                    alt="Contact Us"
-                    fill
-                    className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
-                    priority
-                  />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* Head Office & Contact Form Section */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
@@ -283,8 +205,8 @@ export default function ContactPage() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="transform rounded-xl bg-gradient-to-br from-[#00ADB5] to-[#00959c] p-3 text-white transition-transform duration-300 group-hover:scale-110">
-                        <detail.icon className="h-6 w-6" />
+                      <div className="flex items-center justify-center w-16 h-16 text-[#00ADB5] transition-transform duration-300 group-hover:scale-110">
+                        <detail.icon className="h-10 w-10" />
                       </div>
                       <div>
                         <h3 className="mb-2 text-lg font-semibold text-[#222831]">
@@ -338,7 +260,7 @@ export default function ContactPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full rounded-xl border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                        className="w-full border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
                         required
                       />
                     </div>
@@ -355,7 +277,7 @@ export default function ContactPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full rounded-xl border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                        className="w-full border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
                         required
                       />
                     </div>
@@ -374,7 +296,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full rounded-xl border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                        className="w-full border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
                         required
                       />
                     </div>
@@ -391,7 +313,7 @@ export default function ContactPage() {
                         name="mobile"
                         value={formData.mobile}
                         onChange={handleChange}
-                        className="w-full rounded-xl border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                        className="w-full border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
                         required
                       />
                     </div>
@@ -408,13 +330,13 @@ export default function ContactPage() {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      className="min-h-[120px] w-full rounded-xl border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
+                      className="min-h-[120px] w-full border-2 border-[#393E46]/20 p-3 bg-white/70 backdrop-blur-sm transition-all duration-300 focus:border-[#00ADB5] focus:ring-2 focus:ring-[#00ADB5]/20 focus:outline-none"
                       required
                     ></textarea>
                   </div>
                   <motion.button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#00ADB5] to-[#00959c] px-8 py-3 font-bold text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:to-[#00ADB5]"
+                    className="inline-flex items-center justify-center bg-gradient-to-r from-[#00ADB5] to-[#00959c] px-8 py-3 font-bold text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:to-[#00ADB5]"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -432,112 +354,65 @@ export default function ContactPage() {
                 />
               </div>
             </motion.div>
-
-            {/* World Map Section - Commented out until WorldMap is available */}
-            {/*
-            <motion.div 
-              className="flex flex-col items-center py-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.h2
-                className="text-[#000000] text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12 relative z-10"
-                style={{
-                  letterSpacing: "0.1em",
-                  textShadow:
-                    "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
-                }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true }}
-              >
-                Our Global Reach
-              </motion.h2>
-
-              <div className="max-w-6xl w-full bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
-                <WorldMap
-                  dots={[
-                    {
-                      start: { lat: 64.2008, lng: -149.4937 },
-                      end: { lat: 34.0522, lng: -118.2437 },
-                    },
-                    {
-                      start: { lat: 64.2008, lng: -149.4937 },
-                      end: { lat: -15.7975, lng: -47.8919 },
-                    },
-                    {
-                      start: { lat: -15.7975, lng: -47.8919 },
-                      end: { lat: 38.7223, lng: -9.1393 },
-                    },
-                    {
-                      start: { lat: 51.5074, lng: -0.1278 },
-                      end: { lat: 28.6139, lng: 77.2090 },
-                    },
-                    {
-                      start: { lat: 28.6139, lng: 77.2090 },
-                      end: { lat: 43.1332, lng: 131.9113 },
-                    },
-                    {
-                      start: { lat: 28.6139, lng: 77.2090 },
-                      end: { lat: -1.2921, lng: 36.8219 },
-                    },
-                  ]}
-                />
-              </div>
-            </motion.div>
-            */}
-
-            {/* Alternative Global Reach Section */}
-            <motion.div 
-              className="flex flex-col items-center py-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.h2
-                className="text-[#000000] text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12 relative z-10"
-                style={{
-                  letterSpacing: "0.1em",
-                  textShadow:
-                    "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
-                }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true }}
-              >
-                Our Global Reach
-              </motion.h2>
-
-              <div className="max-w-6xl w-full bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-12 text-center">
-                <p className="text-lg text-[#393E46] mb-8">
-                  Serving clients worldwide from our Mumbai headquarters
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                  <div className="space-y-2">
-                    <div className="text-3xl font-bold text-[#00ADB5]">15+</div>
-                    <div className="text-sm text-[#393E46]">Countries Served</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl font-bold text-[#00ADB5]">500+</div>
-                    <div className="text-sm text-[#393E46]">Global Clients</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl font-bold text-[#00ADB5]">1000+</div>
-                    <div className="text-sm text-[#393E46]">Cases Handled</div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-3xl font-bold text-[#00ADB5]">24/7</div>
-                    <div className="text-sm text-[#393E46]">Support Available</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
+        </section>
+
+        {/* World Map Section - Full Width */}
+        <section className="w-full bg-white">
+          <motion.div 
+            className="w-full"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {/* Our Offices Title */}
+            <div className="text-center py-16">
+              <motion.h2
+                className="text-[#000000] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold relative z-10"
+                style={{
+                  letterSpacing: "0.2em",
+                  textShadow:
+                    "-1px 0px 0px rgba(100, 100, 100, 0.6), -3px 1px 0px rgba(80, 80, 80, 0.4), -5px 2px 0px rgba(60, 60, 60, 0.3)",
+                }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+              >
+                OUR OFFICES
+              </motion.h2>
+            </div>
+
+            <WorldMap
+              dots={[
+                {
+                  start: { lat: 64.2008, lng: -149.4937 },
+                  end: { lat: 34.0522, lng: -118.2437 },
+                },
+                {
+                  start: { lat: 64.2008, lng: -149.4937 },
+                  end: { lat: -15.7975, lng: -47.8919 },
+                },
+                {
+                  start: { lat: -15.7975, lng: -47.8919 },
+                  end: { lat: 38.7223, lng: -9.1393 },
+                },
+                {
+                  start: { lat: 51.5074, lng: -0.1278 },
+                  end: { lat: 28.6139, lng: 77.2090 },
+                },
+                {
+                  start: { lat: 28.6139, lng: 77.2090 },
+                  end: { lat: 43.1332, lng: 131.9113 },
+                },
+                {
+                  start: { lat: 28.6139, lng: 77.2090 },
+                  end: { lat: -1.2921, lng: 36.8219 },
+                },
+              ]}
+            />
+          </motion.div>
         </section>
       </div>
     </div>
