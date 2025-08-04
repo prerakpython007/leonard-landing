@@ -23,10 +23,10 @@ const images = [
 ].map((url, index) => ({ id: index, url }));
 
 const Ticker = () => {
-  const [hoveredOrbit, setHoveredOrbit] = useState(null);
+  const [hoveredOrbit, setHoveredOrbit] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const logoRef = useRef(null);
-  const sectionRef = useRef(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Define orbital configurations with more spacing
   const orbits = [
@@ -54,8 +54,9 @@ const Ticker = () => {
   ];
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: { clientY: number; clientX: number; }) => {
       if (logoRef.current && sectionRef.current) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const logoRect = logoRef.current.getBoundingClientRect();
         
@@ -86,8 +87,8 @@ const Ticker = () => {
       }
     };
 
-    let animationFrame;
-    const throttledMouseMove = (e) => {
+    let animationFrame: number;
+    const throttledMouseMove = (e: { clientY: number; clientX: number; }) => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }

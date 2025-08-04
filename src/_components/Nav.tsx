@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import type { UrlObject } from 'url';
+// import type { UrlObject } from 'url';
 import { motion } from 'framer-motion';
 
 interface DropdownItem {
@@ -61,6 +61,7 @@ const Nav: React.FC = () => {
   useEffect(() => {
     const saved = localStorage.getItem('showSecondaryNav');
     if (saved) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setShowSecondaryNav(JSON.parse(saved));
     }
   }, []);
@@ -73,7 +74,7 @@ const Nav: React.FC = () => {
     if (isOpen || isInteracting) return;
 
     const timer = setInterval(() => {
-      setShowSecondaryNav((prev: any) => !prev);
+      setShowSecondaryNav((prev: unknown) => !prev);
     }, 7000);
 
     return () => clearInterval(timer);
@@ -227,11 +228,11 @@ const Nav: React.FC = () => {
   ];
 
   // Combine all navigation items for mobile menu
-  const allNavItems = [...leftNavItems, ...rightNavItems];
+  const allNavItems: NavItem[] = [...leftNavItems, ...rightNavItems];
 
-  const getDropdownPosition = (label: string) => {
-    return 'right-0'; // Align dropdowns to the right of the parent link
-  };
+  // const getDropdownPosition = (label: string) => {
+  //   return 'right-0'; // Align dropdowns to the right of the parent link
+  // };
 
   const toggleMobileDropdown = (label: string) => {
     setMobileDropdowns(prev => ({
@@ -563,6 +564,7 @@ const Nav: React.FC = () => {
                           </div>
                         ) : (
                           <Link
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             href={item.href}
                             className="flex items-center gap-2 p-3 rounded-lg hover:bg-white/50 text-gray-800 hover:text-[#00ADB5] font-medium text-base transition-all"
                             onClick={() => setIsOpen(false)}

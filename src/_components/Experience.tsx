@@ -3,20 +3,39 @@
 import { motion } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
+interface Point {
+  x: number
+  y: number
+}
+
+interface Milestone {
+  x: number
+  y: number
+  label: string
+  info: string
+  number: number
+  mouseX?: number
+  mouseY?: number
+}
+
 class UnevenMountain {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
   width: number
   height: number
-  onMilestoneHover: (milestone: any) => void
+  onMilestoneHover: (milestone: Milestone) => void
   onMilestoneLeave: () => void
   animationTime: number
   animationId: number | null
   mountainPath: Point[]
 
-  constructor(canvas: HTMLCanvasElement, onMilestoneHover: (milestone: any) => void, onMilestoneLeave: () => void) {
+  constructor(canvas: HTMLCanvasElement, onMilestoneHover: (milestone: Milestone) => void, onMilestoneLeave: () => void) {
     this.canvas = canvas
-    this.ctx = this.canvas.getContext("2d")!
+    const ctx = this.canvas.getContext("2d")
+    if (!ctx) {
+      throw new Error("Could not get canvas context")
+    }
+    this.ctx = ctx
     this.width = this.canvas.width
     this.height = this.canvas.height
     this.onMilestoneHover = onMilestoneHover
@@ -46,18 +65,18 @@ class UnevenMountain {
       const x = (e.clientX - rect.left) * scaleX
       const y = (e.clientY - rect.top) * scaleY
       
-      const milestones = [
-        { x: this.width * 0.2, y: this.height * 0.82, label: "Initial Consultation", info: "We begin by understanding your unique legal challenges and business objectives through detailed consultation." },
-        { x: this.width * 0.45, y: this.height * 0.45, label: "Strategic Planning", info: "Our expert team develops comprehensive legal strategies tailored specifically to your case requirements." },
-        { x: this.width * 0.65, y: this.height * 0.25, label: "Expert Execution", info: "Implementation of legal solutions with precision, attention to detail, and unwavering commitment to excellence." },
-        { x: this.width * 0.8, y: this.height * 0.08, label: "Peak Success", info: "Reaching the summit of legal excellence with optimal results and achieving your ultimate goals." }
+      const milestones: Milestone[] = [
+        { x: this.width * 0.2, y: this.height * 0.82, label: "Initial Consultation", info: "We begin by understanding your unique legal challenges and business objectives through detailed consultation.", number: 1 },
+        { x: this.width * 0.45, y: this.height * 0.45, label: "Strategic Planning", info: "Our expert team develops comprehensive legal strategies tailored specifically to your case requirements.", number: 2 },
+        { x: this.width * 0.65, y: this.height * 0.25, label: "Expert Execution", info: "Implementation of legal solutions with precision, attention to detail, and unwavering commitment to excellence.", number: 3 },
+        { x: this.width * 0.8, y: this.height * 0.08, label: "Peak Success", info: "Reaching the summit of legal excellence with optimal results and achieving your ultimate goals.", number: 4 }
       ]
 
       let foundHover = false
-      milestones.forEach((milestone, index) => {
+      milestones.forEach((milestone) => {
         const distance = Math.sqrt(Math.pow(x - milestone.x, 2) + Math.pow(y - milestone.y, 2))
-        if (distance <= 15) { // Increased hover area
-          this.onMilestoneHover({ ...milestone, number: index + 1, mouseX: e.clientX, mouseY: e.clientY })
+        if (distance <= 15) {
+          this.onMilestoneHover({ ...milestone, mouseX: e.clientX, mouseY: e.clientY })
           foundHover = true
           this.canvas.style.cursor = 'pointer'
         }
@@ -80,7 +99,6 @@ class UnevenMountain {
     this.drawUnevenMountain()
     this.drawAnimatedBaseFade()
     this.drawMilestones()
-    // Draw pulses AFTER mountain fill so they're visible on top
     this.drawTravelingPulses()
   }
 
@@ -93,7 +111,7 @@ class UnevenMountain {
 
     // Create much stronger gradient for more subtle fade at both ends
     const fadeGradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
-    fadeGradient.addColorStop(0, "rgba(0, 173, 181, 0.01)")    // Almost invisible start
+    fadeGradient.addColorStop(0, "rgba(0, 173, 181, 0.01)")
     fadeGradient.addColorStop(0.01, "rgba(0, 173, 181, 0.03)")
     fadeGradient.addColorStop(0.03, "rgba(0, 173, 181, 0.08)")
     fadeGradient.addColorStop(0.06, "rgba(0, 173, 181, 0.2)")
@@ -104,7 +122,7 @@ class UnevenMountain {
     fadeGradient.addColorStop(0.94, "rgba(0, 173, 181, 0.2)")
     fadeGradient.addColorStop(0.97, "rgba(0, 173, 181, 0.08)")
     fadeGradient.addColorStop(0.99, "rgba(0, 173, 181, 0.03)")
-    fadeGradient.addColorStop(1, "rgba(0, 173, 181, 0.01)")   // Almost invisible end
+    fadeGradient.addColorStop(1, "rgba(0, 173, 181, 0.01)")
 
     this.ctx.strokeStyle = fadeGradient
 
@@ -143,9 +161,16 @@ class UnevenMountain {
 
     // Draw mountain path
     this.ctx.beginPath()
-    this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
-    for (let i = 1; i < this.mountainPath.length; i++) {
-      this.ctx.lineTo(this.mountainPath[i].x, this.mountainPath[i].y)
+    if (this.mountainPath.length > 0 && this.mountainPath[0]) {
+      if (this.mountainPath[0]) {
+        this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
+        for (let i = 1; i < this.mountainPath.length; i++) {
+          const point = this.mountainPath[i]
+          if (point !== undefined) {
+            this.ctx.lineTo(point.x, point.y)
+          }
+        }
+      }
     }
     this.ctx.stroke()
 
@@ -156,21 +181,26 @@ class UnevenMountain {
     
     this.ctx.fillStyle = gradient
     this.ctx.beginPath()
-    this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
-    for (let i = 1; i < this.mountainPath.length; i++) {
-      this.ctx.lineTo(this.mountainPath[i].x, this.mountainPath[i].y)
+    if (this.mountainPath[0]) {
+      this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
+      for (let i = 1; i < this.mountainPath.length; i++) {
+        const point = this.mountainPath[i]
+        if (point !== undefined) {
+          this.ctx.lineTo(point.x, point.y)
+        }
+      }
+      this.ctx.lineTo(this.width * 0.95, this.height)
+      this.ctx.lineTo(this.width * 0.05, this.height)
+      this.ctx.closePath()
+      this.ctx.fill()
     }
-    this.ctx.lineTo(this.width * 0.95, this.height)
-    this.ctx.lineTo(this.width * 0.05, this.height)
-    this.ctx.closePath()
-    this.ctx.fill()
   }
 
   drawTravelingPulses() {
     // Draw 2 slower pulses with curved heads and trails
     for (let p = 0; p < 2; p++) {
       const pulseOffset = (p * 0.5)
-      const progress = ((this.animationTime * 0.15 + pulseOffset) % 1) // Much slower movement
+      const progress = ((this.animationTime * 0.15 + pulseOffset) % 1)
       
       if (progress < 0.12 || progress > 0.88) continue
       
@@ -180,15 +210,22 @@ class UnevenMountain {
       const upperIndex = Math.min(lowerIndex + 1, this.mountainPath.length - 1)
       const t = pathIndex - lowerIndex
       
-      if (lowerIndex < this.mountainPath.length && upperIndex < this.mountainPath.length) {
-        const x = this.mountainPath[lowerIndex].x + t * (this.mountainPath[upperIndex].x - this.mountainPath[lowerIndex].x)
-        const y = this.mountainPath[lowerIndex].y + t * (this.mountainPath[upperIndex].y - this.mountainPath[lowerIndex].y)
+      if (
+        lowerIndex < this.mountainPath.length &&
+        upperIndex < this.mountainPath.length &&
+        this.mountainPath[lowerIndex] !== undefined &&
+        this.mountainPath[upperIndex] !== undefined
+      ) {
+        const lowerPoint = this.mountainPath[lowerIndex]
+        const upperPoint = this.mountainPath[upperIndex]
+        const x = lowerPoint.x + t * (upperPoint.x - lowerPoint.x)
+        const y = lowerPoint.y + t * (upperPoint.y - lowerPoint.y)
         
         // Calculate direction for curved head
         let dirX = 1, dirY = 0
-        if (upperIndex < this.mountainPath.length) {
-          dirX = this.mountainPath[upperIndex].x - this.mountainPath[lowerIndex].x
-          dirY = this.mountainPath[upperIndex].y - this.mountainPath[lowerIndex].y
+        if (upperIndex < this.mountainPath.length && lowerPoint && upperPoint) {
+          dirX = upperPoint.x - lowerPoint.x
+          dirY = upperPoint.y - lowerPoint.y
           const length = Math.sqrt(dirX * dirX + dirY * dirY)
           if (length > 0) {
             dirX /= length
@@ -211,9 +248,17 @@ class UnevenMountain {
           const trailUpperIndex = Math.min(trailLowerIndex + 1, this.mountainPath.length - 1)
           const trailT = trailPathIndex - trailLowerIndex
           
-          if (trailLowerIndex >= 0 && trailLowerIndex < this.mountainPath.length && trailUpperIndex < this.mountainPath.length) {
-            const trailX = this.mountainPath[trailLowerIndex].x + trailT * (this.mountainPath[trailUpperIndex].x - this.mountainPath[trailLowerIndex].x)
-            const trailY = this.mountainPath[trailLowerIndex].y + trailT * (this.mountainPath[trailUpperIndex].y - this.mountainPath[trailLowerIndex].y)
+          if (
+            trailLowerIndex >= 0 &&
+            trailLowerIndex < this.mountainPath.length &&
+            trailUpperIndex < this.mountainPath.length &&
+            this.mountainPath[trailLowerIndex] !== undefined &&
+            this.mountainPath[trailUpperIndex] !== undefined
+          ) {
+            const trailLowerPoint = this.mountainPath[trailLowerIndex]
+            const trailUpperPoint = this.mountainPath[trailUpperIndex]
+            const trailX = trailLowerPoint.x + trailT * (trailUpperPoint.x - trailLowerPoint.x)
+            const trailY = trailLowerPoint.y + trailT * (trailUpperPoint.y - trailLowerPoint.y)
             
             const trailOpacity = pulseOpacity * (1 - trail * 0.25)
             const trailSize = Math.max(1, 4 - trail)
@@ -237,10 +282,10 @@ class UnevenMountain {
         
         // Create teardrop/curved shape
         this.ctx.beginPath()
-        this.ctx.moveTo(6, 0) // Front point
-        this.ctx.bezierCurveTo(6, -2, 2, -3, 0, -2) // Top curve
-        this.ctx.bezierCurveTo(-4, -1, -4, 1, 0, 2) // Back to bottom
-        this.ctx.bezierCurveTo(2, 3, 6, 2, 6, 0) // Bottom curve back to front
+        this.ctx.moveTo(6, 0)
+        this.ctx.bezierCurveTo(6, -2, 2, -3, 0, -2)
+        this.ctx.bezierCurveTo(-4, -1, -4, 1, 0, 2)
+        this.ctx.bezierCurveTo(2, 3, 6, 2, 6, 0)
         this.ctx.fill()
         
         this.ctx.restore()
@@ -257,7 +302,7 @@ class UnevenMountain {
   drawAnimatedBaseFade() {
     // Create animated fade effect ONLY at the base of the mountain
     const fadeHeight = 40
-    const baseY = this.height * 0.95 // Keep at very bottom
+    const baseY = this.height * 0.95
     
     // Multiple animated layers for a more dynamic effect
     for (let i = 0; i < 3; i++) {
@@ -293,7 +338,7 @@ class UnevenMountain {
     // Draw small animated particles only around the base
     for (let i = 0; i < 15; i++) {
       const x = (this.width * 0.1) + (this.width * 0.8 * (i / 15))
-      const baseY = this.height * 0.92 // Keep particles at base
+      const baseY = this.height * 0.92
       const floatOffset = Math.sin(this.animationTime * 1.5 + i * 0.3) * 15
       const y = baseY + floatOffset + Math.sin(this.animationTime + i) * 8
       
@@ -315,7 +360,7 @@ class UnevenMountain {
       { x: this.width * 0.8, y: this.height * 0.08 }
     ]
 
-    milestones.forEach((milestone, index) => {
+    milestones.forEach((milestone) => {
       // Simple milestone circle - no numbers
       this.ctx.strokeStyle = "#00ADB5"
       this.ctx.lineWidth = 3
@@ -341,13 +386,8 @@ class UnevenMountain {
   }
 }
 
-interface Point {
-  x: number
-  y: number
-}
-
 interface HoverCardProps {
-  milestone: any
+  milestone: Milestone | null
   isVisible: boolean
 }
 
@@ -355,7 +395,7 @@ function HoverCard({ milestone, isVisible }: HoverCardProps) {
   if (!isVisible || !milestone) return null
 
   // Background images for each milestone
-  const backgroundImages = {
+  const backgroundImages: Record<number, string> = {
     1: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop&crop=center",
     2: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=200&fit=crop&crop=center", 
     3: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=200&fit=crop&crop=center",
@@ -366,16 +406,16 @@ function HoverCard({ milestone, isVisible }: HoverCardProps) {
     <div
       className="fixed z-[9999] bg-white rounded-xl shadow-2xl overflow-hidden w-80 border-2 border-[#00ADB5]/20 pointer-events-none"
       style={{
-        left: milestone.mouseX + 15,
-        top: milestone.mouseY - 140,
-        transform: 'translateZ(0)', // Force hardware acceleration
+        left: (milestone.mouseX ?? 0) + 15,
+        top: (milestone.mouseY ?? 0) - 140,
+        transform: 'translateZ(0)',
       }}
     >
       {/* Background Image */}
       <div 
         className="w-full h-24 bg-cover bg-center relative"
         style={{
-          backgroundImage: `url(${backgroundImages[milestone.number as keyof typeof backgroundImages]})`
+          backgroundImage: `url(${backgroundImages[milestone.number]})`
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -403,7 +443,7 @@ function HoverCard({ milestone, isVisible }: HoverCardProps) {
 interface MountainCanvasProps {
   width?: number
   height?: number
-  onMilestoneHover: (milestone: any) => void
+  onMilestoneHover: (milestone: Milestone) => void
   onMilestoneLeave: () => void
 }
 
@@ -432,9 +472,20 @@ function MountainCanvas({ width = 600, height = 400, onMilestoneHover, onMilesto
 }
 
 const Experience = () => {
-  const [hoveredMilestone, setHoveredMilestone] = useState<any>(null)
+  const [hoveredMilestone, setHoveredMilestone] = useState<Milestone | null>(null)
+  const [canvasWidth, setCanvasWidth] = useState(1200)
 
-  const handleMilestoneHover = (milestone: any) => {
+  useEffect(() => {
+    const updateCanvasWidth = () => {
+      setCanvasWidth(window.innerWidth)
+    }
+
+    updateCanvasWidth()
+    window.addEventListener('resize', updateCanvasWidth)
+    return () => window.removeEventListener('resize', updateCanvasWidth)
+  }, [])
+
+  const handleMilestoneHover = (milestone: Milestone) => {
     setHoveredMilestone(milestone)
   }
 
@@ -470,7 +521,7 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           <MountainCanvas 
-            width={typeof window !== 'undefined' ? window.innerWidth : 1200} 
+            width={canvasWidth} 
             height={500}
             onMilestoneHover={handleMilestoneHover}
             onMilestoneLeave={handleMilestoneLeave}
@@ -478,13 +529,13 @@ const Experience = () => {
         </motion.div>
       </div>
 
-      {/* Hover Card - simplified */}
-      {hoveredMilestone && (
+      {/* Hover Card */}
+      {hoveredMilestone && typeof window !== 'undefined' && (
         <div
           className="fixed z-[9999] bg-white rounded-xl shadow-2xl overflow-hidden w-80 border-2 border-[#00ADB5]/20 pointer-events-none transition-opacity duration-200"
           style={{
-            left: Math.min(hoveredMilestone.mouseX + 15, window.innerWidth - 320),
-            top: Math.max(hoveredMilestone.mouseY - 140, 15),
+            left: Math.min((hoveredMilestone.mouseX ?? 0) + 15, window.innerWidth - 320),
+            top: Math.max((hoveredMilestone.mouseY ?? 0) - 140, 15),
           }}
         >
           {/* Background Image */}

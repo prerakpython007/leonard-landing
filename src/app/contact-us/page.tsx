@@ -3,8 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone, X } from "lucide-react";
-import { WorldMap } from "~/_components/ui/world-map";
 import Image from "next/image";
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    title: "Location",
+    text: "Office No. 305, Creative Industrial Estate,\nSunder Nagar Road No. 02, Kalina,\nSantacruz (East), Mumbai,\nMaharashtra, 400 098.",
+  },
+  {
+    icon: Phone,
+    title: "Phone & Fax Number",
+    text: "Landline: +91-22-26652048\n+91-22-26651538\nFax No: +91-22-265619248\nMobile: +91 9930032215",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    text: "info@leonardsolutions.in",
+  },
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -416,7 +433,8 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            {/* World Map Section */}
+            {/* World Map Section - Commented out until WorldMap is available */}
+            {/*
             <motion.div 
               className="flex flex-col items-center py-16"
               initial={{ opacity: 0, y: 20 }}
@@ -470,27 +488,58 @@ export default function ContactPage() {
                 />
               </div>
             </motion.div>
+            */}
+
+            {/* Alternative Global Reach Section */}
+            <motion.div 
+              className="flex flex-col items-center py-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.h2
+                className="text-[#000000] text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12 relative z-10"
+                style={{
+                  letterSpacing: "0.1em",
+                  textShadow:
+                    "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
+                }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+              >
+                Our Global Reach
+              </motion.h2>
+
+              <div className="max-w-6xl w-full bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-12 text-center">
+                <p className="text-lg text-[#393E46] mb-8">
+                  Serving clients worldwide from our Mumbai headquarters
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-[#00ADB5]">15+</div>
+                    <div className="text-sm text-[#393E46]">Countries Served</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-[#00ADB5]">500+</div>
+                    <div className="text-sm text-[#393E46]">Global Clients</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-[#00ADB5]">1000+</div>
+                    <div className="text-sm text-[#393E46]">Cases Handled</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-3xl font-bold text-[#00ADB5]">24/7</div>
+                    <div className="text-sm text-[#393E46]">Support Available</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
       </div>
     </div>
   );
 }
-
-const contactDetails = [
-  {
-    icon: MapPin,
-    title: "Location",
-    text: "Office No. 305, Creative Industrial Estate,\nSunder Nagar Road No. 02, Kalina,\nSantacruz (East), Mumbai,\nMaharashtra, 400 098.",
-  },
-  {
-    icon: Phone,
-    title: "Phone & Fax Number",
-    text: "Landline: +91-22-26652048\n+91-22-26651538\nFax No: +91-22-265619248\nMobile: +91 9930032215",
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    text: "info@leonardsolutions.in",
-  },
-];

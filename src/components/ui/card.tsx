@@ -1,6 +1,11 @@
 import * as React from "react"
 
-import { cn } from "~/lib/utils"
+// If 'cn' is not exported from '~/lib/utils', either export it there or import from the correct path.
+// Example: If 'cn' is defined in '~/lib/utils/cn.ts', use:
+// Or, if you need to define a simple 'cn' utility here as a fallback:
+function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
