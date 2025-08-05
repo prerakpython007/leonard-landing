@@ -1,13 +1,63 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 const aboutText = [
   "India's Leading Intellectual Property & Corporate Law Firm",
   "Leonard Corporate Solutions Pvt. Ltd. is a top-tier legal firm based in Mumbai, Maharashtra, specializing exclusively in Intellectual Property Rights (IPR), Corporate Law, and Taxation ,With over a decade of legal excellence, we have earned a reputation as one of India's most trusted names in the field of IP law and business legal advisory.",
 ];
+
+// Animated Counter Component
+const AnimatedCounter = ({ target, suffix = "", duration = 2 }: { target: number; suffix?: string; duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const animateCount = () => {
+    if (hasAnimated) return;
+    
+    setHasAnimated(true);
+    const startTime = Date.now();
+    const endTime = startTime + duration * 1000;
+
+    const updateCount = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / (duration * 1000), 1);
+      
+      // Easing function for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentCount = Math.floor(easeOut * target);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(updateCount);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      onViewportEnter={animateCount}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+    >
+      <span
+        className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00ADB5] mb-2 md:mb-4"
+        style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+      >
+        {count}{suffix && <span className="text-xl md:text-2xl align-top">{suffix}</span>}
+      </span>
+    </motion.div>
+  );
+};
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -180,12 +230,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           >
-            <span
-              className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00ADB5] mb-2 md:mb-4"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-            >
-              11<span className="text-xl md:text-2xl align-top">+</span>
-            </span>
+            <AnimatedCounter target={11} suffix="+" duration={2.5} />
             <span className="block text-xs sm:text-sm md:text-base text-[#EEEEEE] font-semibold">
               Years of Excellence
             </span>
@@ -199,12 +244,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           >
-            <span
-              className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00ADB5] mb-2 md:mb-4"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-            >
-              500<span className="text-xl md:text-2xl align-top">+</span>
-            </span>
+            <AnimatedCounter target={500} suffix="+" duration={3} />
             <span className="block text-xs sm:text-sm md:text-base text-[#EEEEEE] font-semibold">
               Satisfied Clients
             </span>
@@ -218,12 +258,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           >
-            <span
-              className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00ADB5] mb-2 md:mb-4"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-            >
-              1000<span className="text-xl md:text-2xl align-top">+</span>
-            </span>
+            <AnimatedCounter target={1000} suffix="+" duration={3.5} />
             <span className="block text-xs sm:text-sm md:text-base text-[#EEEEEE] font-semibold">
               Cases Handled
             </span>
@@ -237,12 +272,7 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           >
-            <span
-              className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00ADB5] mb-2 md:mb-4"
-              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-            >
-              98<span className="text-xl md:text-2xl align-top">%</span>
-            </span>
+            <AnimatedCounter target={98} suffix="%" duration={2.8} />
             <span className="block text-xs sm:text-sm md:text-base text-[#EEEEEE] font-semibold">
               Success Rate
             </span>
@@ -341,6 +371,9 @@ const About = () => {
                 className="bg-[#00ADB5] text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold hover:bg-[#009ca3] transition-colors duration-300 shadow-lg text-sm md:text-base mt-6"
                 whileHover={{ y: -2, boxShadow: "0 10px 25px rgba(0, 173, 181, 0.3)" }}
                 whileTap={{ y: 0 }}
+                onClick={() => {
+                  window.location.href = '/about-us#meet-our-team';
+                }}
               >
                 Learn More About Our Lawyers
               </motion.button>
@@ -352,7 +385,19 @@ const About = () => {
       {/* Cards Section - Responsive */}
       <div className="w-full mt-12 md:mt-24 pb-24 md:pb-44 mb-12 md:mb-24 relative">
         <div className="absolute inset-0 bg-[#EEEEEE] -mx-4 md:-mx-8 lg:-mx-16"></div>
-        
+        <motion.h2
+            className="text-[#000000] text-3xl py-10 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center   relative z-10 px-4"
+            style={{
+              letterSpacing: "0.2em",
+              textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6)"
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          >
+            Our Expertise
+          </motion.h2>
         <div className="max-w-7xl mx-auto px-2 py-12 md:py-24 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* Column 1 */}

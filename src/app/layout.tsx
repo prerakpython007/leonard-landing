@@ -7,6 +7,7 @@ import Footer from "~/_components/Footer";
 import ScrollToTop from "~/_components/ScrollToTop";
 
 import FloatingContact from "~/_components/FloatingContact";
+import DisclaimerSplash from "~/_components/DisclaimerSplash";
 // import TermsDisclaimer from "~/_components/TermsDisclaimer";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="bg-[#222831] relative">
+        <DisclaimerSplash />
         {/* <TermsDisclaimer /> */}
         <UpperNav />
         <Nav />

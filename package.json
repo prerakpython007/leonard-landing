@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.12.0",
+    "@tabler/icons-react": "^3.34.1",
     "@types/react-leaflet": "^3.0.0",
     "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cobe": "^0.6.4",
     "dotted-map": "^2.2.3",
     "drizzle-orm": "^0.41.0",
     "framer-motion": "^12.9.4",

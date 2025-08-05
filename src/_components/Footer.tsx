@@ -21,18 +21,18 @@ export default function Footer() {
   return (
     <footer className="bg-[#222831] text-white relative flex flex-col justify-between pt-16 sm:pt-20 md:pt-24 lg:pt-32 overflow-hidden">
       {/* Background Stars - Improved Desktop Alignment */}
-      <span className="absolute left-[5%] top-[15%] sm:left-[10%] lg:left-[15%] text-[#EEEEEE] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-[0.03]">✦</span>
+      {/* <span className="absolute left-[5%] top-[15%] sm:left-[10%] lg:left-[15%] text-[#EEEEEE] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-[0.03]">✦</span>
       <span className="absolute left-1/2 top-[15%] text-[#EEEEEE] text-[200px] sm:text-[250px] md:text-[300px] lg:text-[350px] opacity-[0.02] transform -translate-x-1/2">✦</span>
-      <span className="absolute right-[5%] top-[15%] sm:right-[10%] lg:right-[15%] text-[#EEEEEE] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-[0.03]">✦</span>
+      <span className="absolute right-[5%] top-[15%] sm:right-[10%] lg:right-[15%] text-[#EEEEEE] text-[150px] sm:text-[200px] md:text-[250px] lg:text-[300px] opacity-[0.03]">✦</span> */}
       
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
           {/* Company Info */}
           <div className="space-y-4 sm:space-y-6">
-            <h3 className="text-[#00ADB5] text-xl font-bold">Leonard Solutions</h3>
+            <h3 className="text-[#00ADB5] text-xl font-bold">Leonard <span className='text-white'>Corporate</span> Solutions</h3>
             <p className="text-gray-300">
-              Providing excellent legal services in intellectual property, taxation, and corporate law since 2013.
+              Providing excellent legal services in intellectual property, taxation, and corporate law since 2008.
             </p>
             <div className="flex gap-4">
               {[
@@ -78,14 +78,19 @@ export default function Footer() {
             <h3 className="text-[#00ADB5] text-xl font-bold mb-4">Our Services</h3>
             <ul className="space-y-2">
               {[
-                'Intellectual Property',
-                'Corporate Law',
-                'Taxation',
-                'Legal Consultation',
-                'Documentation',
+                { name: 'Intellectual Property', href: '/service#intellectual-property' },
+                { name: 'Corporate Law', href: '/service#corporate-law' },
+                { name: 'Taxation', href: '/service#taxation' },
+                { name: 'Legal Consultation', href: '/service#legal-consultation' },
+                { name: 'Documentation', href: '/service#documentation' },
               ].map((service) => (
-                <li key={service} className="text-gray-300">
-                  {service}
+                <li key={service.name}>
+                  <Link
+                    href={service.href}
+                    className="text-gray-300 hover:text-[#00ADB5] transition-colors cursor-pointer"
+                  >
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -101,7 +106,12 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-[#00ADB5]" size={20} />
-                <span className="text-gray-300">info@leonardsolutions.in</span>
+                <a 
+                  href="mailto:info@leonardsolutions.in"
+                  className="text-gray-300 hover:text-[#00ADB5] transition-colors cursor-pointer"
+                >
+                  info@leonardsolutions.in
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="text-[#00ADB5]" size={20} />

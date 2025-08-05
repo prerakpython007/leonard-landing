@@ -187,14 +187,12 @@ const Landing = () => {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=info@leonardsolutions.in&su=Consultation%20Request"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
                 className="bg-gradient-to-r from-[#00ADB5] to-[#009ca3] text-[#EEEEEE] px-6 py-3 rounded-lg text-sm font-semibold inline-flex items-center justify-center shadow-lg shadow-[#00ADB5]/15 transition-all duration-300 hover:from-[#009ca3] hover:to-[#00ADB5] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#00ADB5]/25"
+                onClick={() => router.push("/contact-us")}
               >
                 Start Consultation
-              </a>
+              </motion.button>
               <motion.button
                 className="bg-transparent text-[#222831] border-2 border-[#222831] px-6 py-3 rounded-lg text-sm cursor-pointer transition-all duration-300 hover:bg-[#222831] hover:text-[#EEEEEE]"
                 whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
@@ -211,4 +209,6 @@ const Landing = () => {
 }
 
 export default Landing
+
+
 

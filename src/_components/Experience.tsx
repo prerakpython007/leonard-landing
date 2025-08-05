@@ -504,9 +504,19 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#222831] mb-4">
-            Your Legal Journey
-          </h2>
+        <motion.h2
+            className="text-[#000000] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center mb-12 md:mb-20 relative z-10 px-4"
+            style={{
+              letterSpacing: "0.2em",
+              textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6)"
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          >
+            Our Experience
+          </motion.h2>
           <p className="text-lg text-[#393E46] max-w-2xl mx-auto">
             Navigate through challenges, scale new heights, and reach the peak of legal success
           </p>

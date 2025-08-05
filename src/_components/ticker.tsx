@@ -124,7 +124,7 @@ const Ticker = () => {
       {/* Title */}
       <div className="relative text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 mt-4 sm:mt-8 md:mt-12 w-[90%] sm:w-[87%] mx-auto px-4 z-20">
         <motion.h1
-          className="text-black text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-48 relative"
+          className="text-black text-5xl sm:text-6xl md:text-7xl font-extrabold text-center mb-28 relative"
           style={{ 
             letterSpacing: "0.4em",
             textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4), -14px 6px 0px rgba(40, 40, 40, 0.3), -18px 8px 0px rgba(20, 20, 20, 0.2)"

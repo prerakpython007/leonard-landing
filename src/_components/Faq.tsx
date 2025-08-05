@@ -45,19 +45,23 @@ const Faq = () => {
     <div ref={containerRef} className="bg-[#EEEEEE] py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-4xl font-bold text-center text-gray-900 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Frequently Asked Questions
-        </motion.h2>
+            className="text-[#000000] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center mb-12 md:mb-20 relative z-10 px-4"
+            style={{
+              letterSpacing: "0.2em",
+              textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6)"
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          >
+           FAQ?
+          </motion.h2>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Image with Parallax */}
           <motion.div
-            className="relative"
+            className="relative flex items-center justify-center"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -65,7 +69,7 @@ const Faq = () => {
             style={{ y: y1 }}
           >
             <img
-              src="/attorney-desk.png"
+              src="/attorney-desk.jpg"
               alt="Attorney Desk"
               className="w-full h-auto"
             />

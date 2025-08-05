@@ -77,57 +77,6 @@ const testimonials = [
   }
 ];
 
-const services = [
-  {
-    id: 1,
-    title: "Corporate Law Services",
-    description: "Comprehensive corporate legal solutions including litigation, compliance, and strategic business advisory services.",
-    icon: "⚖️"
-  },
-  {
-    id: 2,
-    title: "Intellectual Property Law",
-    description: "Expert trademark, patent, and copyright protection services to safeguard your intellectual assets.",
-    icon: "💡"
-  },
-  {
-    id: 3,
-    title: "Startup Legal Advisory",
-    description: "Complete legal support for startups from incorporation to fundraising and growth strategies.",
-    icon: "🚀"
-  },
-  {
-    id: 4,
-    title: "International Legal Services",
-    description: "Cross-border legal expertise for global business operations and international compliance.",
-    icon: "🌍"
-  },
-  {
-    id: 5,
-    title: "Mergers & Acquisitions",
-    description: "Strategic guidance through complex merger processes with attention to detail and risk management.",
-    icon: "🤝"
-  },
-  {
-    id: 6,
-    title: "Regulatory Compliance",
-    description: "Navigate complex regulatory landscapes with expert compliance consulting and risk assessment.",
-    icon: "📋"
-  },
-  {
-    id: 7,
-    title: "Commercial Law",
-    description: "Expert contract negotiation and commercial law services for business transactions and partnerships.",
-    icon: "📄"
-  },
-  {
-    id: 8,
-    title: "Environmental Law",
-    description: "Specialized environmental law expertise for sustainability initiatives and regulatory compliance.",
-    icon: "🌱"
-  }
-];
-
 const TestimonialsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | number | null>(null);
@@ -168,10 +117,6 @@ const TestimonialsSection = () => {
     alert(`Full review for ${name} would be displayed here`);
   };
 
-  const handleServiceClick = (serviceName: string) => {
-    alert(`Learn more about ${serviceName} - this would redirect to a detailed service page`);
-  };
-
   return (
     <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-gray-100">
       <div className="max-w-7xl mx-auto">
@@ -194,9 +139,7 @@ const TestimonialsSection = () => {
 
           <p className="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
             Trusted by Industry Leaders for Exceptional Legal Services<br/>
-            <span className="text-lg block mt-2">
-              At Leonard Corporate Solutions Pvt. Ltd., our clients' success stories speak volumes about our commitment to excellence in intellectual property, corporate law, and legal advisory services.
-            </span>
+            
           </p>
         </div>
 
@@ -311,57 +254,6 @@ const TestimonialsSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Service Cards Section */}
-        <div className="mt-16 sm:mt-24">
-          <div 
-            className={`text-center mb-12 transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
-              Our Legal Services
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Comprehensive legal solutions tailored to meet your business needs with expertise and precision.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                className={`group relative cursor-pointer transition-all duration-500 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ transitionDelay: `${(index + 8) * 100}ms` }}
-                onMouseEnter={() => setHoveredCard(`service-${service.id}`)}
-                onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => handleServiceClick(service.title)}
-              >
-                <div className="h-full bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-teal-600 border-opacity-10 relative overflow-hidden transform hover:-translate-y-2">
-                  <span className="absolute top-4 right-4 text-teal-600 text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">
-                    ✦
-                  </span>
-                  <div className="flex flex-col gap-4 relative z-10">
-                    <div className="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center text-white text-2xl">
-                      {service.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

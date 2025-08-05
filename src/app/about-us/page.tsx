@@ -99,33 +99,43 @@ const TEAM_MEMBERS = [
 
 // Add counting animation hook
 const useCountAnimation = (target: number, duration: number = 2000) => {
-  const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
     if (isInView && !hasAnimated) {
-      setHasAnimated(true)
-      let startTime: number
+      setHasAnimated(true);
+      let startTime: number;
+      let animationFrame: number;
+      
       const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
         
         // Easing function for smooth animation
-        const easeOut = 1 - Math.pow(1 - progress, 3)
-        setCount(Math.floor(easeOut * target))
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(easeOut * target));
         
         if (progress < 1) {
-          requestAnimationFrame(animate)
+          animationFrame = requestAnimationFrame(animate);
         }
-      }
-      requestAnimationFrame(animate)
+      };
+      
+      animationFrame = requestAnimationFrame(animate);
+      
+      // Cleanup function
+      return () => {
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+      };
     }
-  }, [isInView, hasAnimated, target, duration])
+  }, [isInView, hasAnimated, target, duration]);
 
-  return { count, ref }
+  return { count, ref };
 }
 
 export default function AboutPage() {
@@ -199,7 +209,7 @@ export default function AboutPage() {
   ]
 
   // Add count animations
-  const { count: yearsCount, ref: yearsRef } = useCountAnimation(10, 2000)
+  const { count: yearsCount, ref: yearsRef } = useCountAnimation(18, 2000)
   const { count: clientsCount, ref: clientsRef } = useCountAnimation(500, 2500)
 
   if (!mounted) return null
@@ -209,20 +219,7 @@ export default function AboutPage() {
       {/* Remove Grid Pattern - commented out */}
       
       {/* Large Gradient "L" Background */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <div 
-          className="text-[60rem] sm:text-[80rem] md:text-[100rem] lg:text-[120rem] font-extrabold opacity-[0.08] select-none"
-          style={{
-            background: 'linear-gradient(135deg, #00ADB5 0%, #0099A8 50%, #007B8A 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            transform: 'translateX(-5%) translateY(-5%)'
-          }}
-        >
-          L
-        </div>
-      </div>
+     
 
       <div className="relative z-10 space-y-12 sm:space-y-16 md:space-y-24">
         {/* New Hero Section with About Us and Image */}
@@ -260,7 +257,7 @@ export default function AboutPage() {
                     Discover Our Expertise and Commitment to Excellence in Intellectual Property & Corporate Law
                   </p>
                   <div className="flex items-center space-x-2 text-[#00ADB5]">
-                    <span className="text-sm font-medium tracking-wider uppercase">Since 2010</span>
+                    <span className="text-sm font-medium tracking-wider uppercase">Since 2008</span>
                   </div>
                 </div>
               </div>
@@ -276,8 +273,8 @@ export default function AboutPage() {
               <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
                 <div className="relative h-full w-full overflow-hidden">
                   <Image
-                    src="/WhatWeDo.jpg"
-                    alt="What We Do - Leonard Corporate Solutions"
+                    src="/office.png"
+                    alt="Leonard Corporate Solutions Office"
                     fill
                     className="object-cover object-center"
                     priority
@@ -303,7 +300,7 @@ export default function AboutPage() {
                 {/* Text content with improved line spacing */}
                 <div className="space-y-8">
                   <p className="text-[#393E46] text-base sm:text-lg leading-loose">
-                    <strong>Leonard Corporate Solutions Pvt. Ltd.</strong> is a leading Indian law firm headquartered in <strong>Mumbai</strong>, specializing exclusively in <strong>Intellectual Property Rights (IPR)</strong>, <strong>Company Law</strong>, and <strong>Taxation</strong>. Since <strong>2010</strong>, we've been the trusted legal partner for <strong>startups</strong>, <strong>SMEs</strong>, and <strong>multinational companies</strong>, helping them safeguard their innovations and navigate complex legal landscapes.
+                    <strong>Leonard Corporate Solutions Pvt. Ltd.</strong> is a leading Indian law firm headquartered in <strong>Mumbai</strong>, specializing exclusively in <strong>Intellectual Property Rights (IPR)</strong>, <strong>Company Law</strong>, and <strong>Taxation</strong>. Since <strong>2008</strong>, we've been the trusted legal partner for <strong>startups</strong>, <strong>SMEs</strong>, and <strong>multinational companies</strong>, helping them safeguard their innovations and navigate complex legal landscapes.
                   </p>
                   <p className="text-[#393E46] text-base sm:text-lg leading-loose">
                     With a highly skilled team of <strong>IP attorneys</strong>, <strong>corporate law experts</strong>, and <strong>legal consultants</strong>, we deliver tailored legal solutions across all areas of intellectual property law — from <strong>trademark and patent registration</strong> to <strong>copyright protection</strong> and <strong>licensing agreements</strong>.
@@ -312,73 +309,31 @@ export default function AboutPage() {
 
                 <div className="grid grid-cols-2 gap-8">
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
-                    <motion.div
+                    <div
                       ref={yearsRef}
-                      className="flex items-baseline"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ 
-                        duration: 0.8,
-                        delay: 0.2,
-                        type: "spring",
-                        stiffness: 100
-                      }}
-                      viewport={{ once: true }}
+                      className="flex items-baseline justify-center"
                     >
-                      <motion.span 
-                        className="text-4xl font-bold text-black"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        viewport={{ once: true }}
-                      >
+                      <span className="text-4xl font-bold text-black">
                         {yearsCount}
-                      </motion.span>
-                      <motion.span 
-                        className="text-4xl font-bold text-[#00ADB5]"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.8 }}
-                        viewport={{ once: true }}
-                      >
+                      </span>
+                      <span className="text-4xl font-bold text-[#00ADB5]">
                         +
-                      </motion.span>
-                    </motion.div>
+                      </span>
+                    </div>
                     <p className="text-[#393E46] font-medium">Years of Excellence</p>
                   </div>
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
-                    <motion.div
+                    <div
                       ref={clientsRef}
-                      className="flex items-baseline"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ 
-                        duration: 0.8,
-                        delay: 0.4,
-                        type: "spring",
-                        stiffness: 100
-                      }}
-                      viewport={{ once: true }}
+                      className="flex items-baseline justify-center"
                     >
-                      <motion.span 
-                        className="text-4xl font-bold text-black"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.7 }}
-                        viewport={{ once: true }}
-                      >
+                      <span className="text-4xl font-bold text-black">
                         {clientsCount}
-                      </motion.span>
-                      <motion.span 
-                        className="text-4xl font-bold text-[#00ADB5]"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 1 }}
-                        viewport={{ once: true }}
-                      >
+                      </span>
+                      <span className="text-4xl font-bold text-[#00ADB5]">
                         +
-                      </motion.span>
-                    </motion.div>
+                      </span>
+                    </div>
                     <p className="text-[#393E46] font-medium">Satisfied Clients</p>
                   </div>
                 </div>
@@ -446,35 +401,45 @@ export default function AboutPage() {
                 <div className="mt-8">
                   <div className="bg-white/80 w-[70%] p-4 mx-auto">
                     <div className="flex flex-col text-center space-y-2">
-                      <button className="text-[#00ADB5] text-center font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <h1  className="text-[#000000] text-center font-medium  py-2 px-3 rounded-lg text-sm">
                         About Leonard Solutions
-                      </button>
+                      </h1>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/service" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         What We Do
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/service#what-to-expect" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         What To Expect
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/case-studies" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         Case Victories
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/awards" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         Awards & Press
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/community" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         Community Involvement
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <Link href="/careers" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
                         Careers
-                      </button>
+                      </Link>
                       <div className="h-px bg-gray-300"></div>
-                      <button className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
+                      <button 
+                        onClick={() => {
+                          const testimonialsSection = document.getElementById('testimonials');
+                          if (testimonialsSection) {
+                            testimonialsSection.scrollIntoView({ behavior: 'smooth' });
+                          } else {
+                            window.location.href = '/#testimonials';
+                          }
+                        }}
+                        className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm"
+                      >
                         Testimonials
                       </button>
                     </div>
@@ -604,11 +569,9 @@ export default function AboutPage() {
 Meet Our Team
       </motion.h1>
 
-              <p className="text-xl text-[#393E46]/80 mt-4 max-w-3xl mx-auto">
+              <p className="text-xl text-[#393E46]/80 mt-4 max-w-4xl mx-auto">
                 Expert Professionals Dedicated to Your Intellectual Property & Corporate Law Needs<br/>
-                <span className="text-lg block mt-2">
-                  At Leonard Corporate Solutions Pvt. Ltd., our strength lies in our people — an elite team of legal, strategic, and technical minds, united by one mission: to protect, manage, and maximize the value of your intellectual property and corporate interests.
-                </span>
+                
               </p>
             </motion.div>
 
@@ -685,7 +648,7 @@ Meet Our Team
                         </div>
                         <div className="text-center">
                           <p className="text-lg font-semibold  cursor-pointer hover:underline">
-                            [Add full bio]
+                            [Read full bio]
                           </p>
                         </div>
                       </div>
@@ -693,9 +656,7 @@ Meet Our Team
 
                     {/* Buttons below the card */}
                     <div className="flex gap-2">
-                      <button className="flex-1 bg-[#00ADB5] text-white py-2 px-3 text-xs font-medium hover:bg-[#00ADB5]/90 transition-colors duration-200">
-                        Book Now
-                      </button>
+                      
                       <button className="flex-1 border border-[#00ADB5] text-[#00ADB5] py-2 px-3 text-xs font-medium hover:bg-[#00ADB5]/10 transition-colors duration-200">
                         Read Full Bio
                       </button>
@@ -715,6 +676,6 @@ Meet Our Team
 
 
 
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(" ")
-}
+
+
+
