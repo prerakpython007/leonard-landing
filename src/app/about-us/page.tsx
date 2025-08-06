@@ -311,10 +311,10 @@ export default function AboutPage() {
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
                     <div
                       ref={yearsRef}
-                      className="flex items-baseline justify-center"
+                      className="flex items-baseline "
                     >
                       <span className="text-4xl font-bold text-black">
-                        {yearsCount}
+                        18
                       </span>
                       <span className="text-4xl font-bold text-[#00ADB5]">
                         +
@@ -325,10 +325,10 @@ export default function AboutPage() {
                   <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
                     <div
                       ref={clientsRef}
-                      className="flex items-baseline justify-center"
+                      className="flex items-baseline "
                     >
                       <span className="text-4xl font-bold text-black">
-                        {clientsCount}
+                        500
                       </span>
                       <span className="text-4xl font-bold text-[#00ADB5]">
                         +

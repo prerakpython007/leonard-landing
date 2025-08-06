@@ -278,66 +278,68 @@ export default function ContactPage() {
 
         {/* ---------- FULL WIDTH STATS SECTION ---------- */}
         <section className="relative">
-          {/* Title */}
-          <div className="text-center py-8 px-4">
-            <motion.h2
-              className="text-[#000000] text-3xl sm:text-4xl md:text-5xl font-extrabold"
-              style={{
-                letterSpacing: "0.2em",
-                textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
-              }}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              OUR GLOBAL REACH
-            </motion.h2>
-            <p className="text-lg text-[#393E46] mt-4">Serving clients worldwide from our Mumbai headquarters</p>
-          </div>
+  {/* Title */}
+  <div className="text-center py-8 px-4">
+    <motion.h2
+      className="text-[#000000] text-3xl sm:text-4xl md:text-5xl font-extrabold"
+      style={{
+        letterSpacing: "0.2em",
+        textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
+      }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      viewport={{ once: true }}
+    >
+      OUR GLOBAL REACH
+    </motion.h2>
+    <p className="text-lg text-[#393E46] mt-4">
+      Serving clients worldwide from our Mumbai headquarters
+    </p>
+  </div>
 
-          {/* Full Width Stats */}
-          <div className="w-full">
-            <div className="flex h-screen overflow-hidden">
-              {stats.map((s, idx) => {
-                const isSupport = s.id === "support";
-                const hook = idx === 0 ? countries : idx === 1 ? clients : idx === 2 ? cases : null;
-                const display = isSupport ? s.staticValue : `${hook?.count ?? 0}${s.suffix}`;
+  {/* Full Width Stats */}
+  <div className="w-full">
+    <div className="flex h-screen overflow-hidden">
+      {stats.map((s) => {
+        const isSupport = s.id === "support";
+        const display = isSupport ? s.staticValue : `${s.target}${s.suffix}`;
 
-                return (
-                  <article key={s.id} className="relative flex-1 group hover:flex-[2] flex transition-[flex] duration-500 ease-out">
-                    <div className="absolute inset-0">
-                      <Image src={s.img} alt={s.title} fill className="object-cover" />
-                    </div>
-                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
-
-                    <div className="relative z-10 flex flex-col justify-center h-full p-6 md:p-8 text-white">
-                      <div className="text-center">
-                        <h3 className="text-sm md:text-base tracking-wider uppercase font-medium opacity-90 mb-3">{s.title}</h3>
-
-                        {!isSupport ? (
-                          <div ref={hook?.ref} className="text-4xl md:text-6xl font-extrabold text-[#00ADB5] leading-none mb-4">
-                            {display}
-                          </div>
-                        ) : (
-                          <div className="text-4xl md:text-6xl font-extrabold text-[#00ADB5] leading-none mb-4">{display}</div>
-                        )}
-
-                        <p className="text-sm md:text-base text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {s.id === "countries" && "We advise clients across Asia, Europe, and the Americas."}
-                          {s.id === "clients" && "From startups to multinational corporations."}
-                          {s.id === "cases" && "Corporate, IP, tax, and litigation matters resolved."}
-                          {s.id === "support" && "Round-the-clock assistance for urgent needs."}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="absolute right-0 top-0 h-full w-[1px] bg-white/20" />
-                  </article>
-                );
-              })}
+        return (
+          <article
+            key={s.id}
+            className="relative flex-1 group hover:flex-[2] flex transition-[flex] duration-500 ease-out"
+          >
+            <div className="absolute inset-0">
+              <Image src={s.img} alt={s.title} fill className="object-cover" />
             </div>
-          </div>
-        </section>
+            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
+
+            <div className="relative z-10 flex flex-col justify-center h-full p-6 md:p-8 text-white">
+              <div className="text-center">
+                <h3 className="text-sm md:text-base tracking-wider uppercase font-medium opacity-90 mb-3">
+                  {s.title}
+                </h3>
+
+                <div className="text-4xl md:text-6xl font-extrabold text-[#00ADB5] leading-none mb-4">
+                  {display}
+                </div>
+
+                <p className="text-sm md:text-base text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {s.id === "countries" && "We advise clients across Asia, Europe, and the Americas."}
+                  {s.id === "clients" && "From startups to multinational corporations."}
+                  {s.id === "cases" && "Corporate, IP, tax, and litigation matters resolved."}
+                  {s.id === "support" && "Round-the-clock assistance for urgent needs."}
+                </p>
+              </div>
+            </div>
+            <div className="absolute right-0 top-0 h-full w-[1px] bg-white/20" />
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
       </div>
     </div>
   );
