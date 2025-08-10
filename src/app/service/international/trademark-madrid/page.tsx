@@ -39,7 +39,7 @@ const madridProtocolInfo: MadridProtocolInfo[] = [
       • Lower costs than individual national filings.
       • Centralized renewals and updates via WIPO.
       • Flexibility to designate additional countries later.
-      • Faster processing through WIPO’s system.
+      • Faster processing through WIPO's system.
       • Supports brand expansion with minimal bureaucracy.
     `,
   },
@@ -103,184 +103,168 @@ export default function InternationalTrademarkFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
-        }}
-      />
-
-      {/* Popup */}
-      {showPopup && selectedInfo && (
-        <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          onClick={closePopup}
-        >
-          <motion.div
-            className="bg-white rounded-xl max-w-5xl w-full max-h-[90vh] sm:max-h-[95vh] overflow-y-auto p-4 sm:p-10 shadow-xl border border-[#00ADB5]/20 relative mx-2 sm:mx-6"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={(e) => e.stopPropagation()}
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#00ADB5 #222831' }}
-          >
-            <style>{`
-              ::-webkit-scrollbar { width: 8px; }
-              ::-webkit-scrollbar-track { background: #222831; border-radius: 4px; }
-              ::-webkit-scrollbar-thumb { background: #00ADB5; border-radius: 4px; }
-              ::-webkit-scrollbar-thumb:hover { background: #008b91; }
-            `}</style>
-            <button
-              onClick={closePopup}
-              className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
-            >
-              <X size={32} />
-            </button>
-            <h2 className="text-3xl font-bold text-[#222831] mb-6 border-b-2 border-[#00ADB5]/30 pb-2">{selectedInfo.title}</h2>
-            <div className="text-[#393E46]/85 text-lg leading-relaxed">
-              {selectedInfo.detailedContent.split('\n').map((line, index) => {
-                line = line.trim();
-                if (!line) return null;
-                return (
-                  <p key={index} className="mb-2">
-                    {line.startsWith('•') ? line : `• ${line}`}
-                  </p>
-                );
-              })}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-
+    <div className="min-h-screen bg-[#0f3460] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[95vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-
+        <div className="absolute inset-0 bg-[#0f3460]/80" />
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center relative z-10"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-white relative inline-block tracking-tight drop-shadow-lg">
             International Trademark Filing
-            <span className="absolute top-1/2 -left-8 sm:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-8 sm:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-8 text-xl text-white/90 max-w-2xl mx-auto font-light drop-shadow">
             Protect Your Brand Globally
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Introduction Section */}
-      <section className="py-16 sm:py-24 md:py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      {/* Below the title section: Secure Your Brand Worldwide */}
+      <section className="relative bg-white px-4 py-28 md:px-16 lg:px-24">
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="relative flex items-center flex-col lg:flex-row">
+              <div
+                className="relative w-full lg:w-3/5 z-20 mb-8 lg:mb-0 lg:mr-[-120px] ml-[-10px]"
+                style={{ filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.12))" }}
+              >
+                <div
+                  className="bg-white/98 p-8 md:p-10"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}
+                >
+                  <div className="space-y-6">
+                    <motion.h2
+                      className="text-[#000000] text-4xl sm:text-5xl md:text-6xl font-extrabold px-2"
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7 }}
+                      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                    >
+                      Litigation & Disputes Overview
+                    </motion.h2>
 
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Secure Your Brand</span>{' '}
-                <span className="text-[#393E46]">Worldwide</span>
-              </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                Expanding your brand internationally requires robust trademark protection. The Madrid Protocol simplifies this by allowing a single application to secure trademark rights in multiple countries. At BrandSecure, we provide expert guidance to navigate the Madrid Protocol process, ensuring your brand is protected efficiently across global markets.
-              </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
-                </a>{' '}
-                to protect your brand globally today.
-              </p>
+                    <p className="text-lg leading-relaxed text-[#393E46]">
+                      Expanding your brand internationally requires robust trademark protection. The Madrid Protocol simplifies this by allowing a single application to secure trademark rights in multiple countries. At BrandSecure, we provide expert guidance to navigate the Madrid Protocol process, ensuring your brand is protected efficiently across global markets.
+                    </p>
+
+                    <p className="text-lg leading-relaxed text-[#393E46]">
+                      Our team handles commercial disputes, contract breaches, arbitration, mediation, and enforcement, tailoring approaches to the specifics of each matter.
+                    </p>
+
+                    <p className="text-lg font-medium text-[#393E46]">
+                      📩 For bespoke dispute support, write to{" "}
+                      <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                        info@brandsecure.in
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative z-10 h-[420px] w-full lg:w-2/5">
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=1400"
+                    alt="Dispute visual"
+                    className="h-full w-full object-cover object-right"
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Madrid Protocol Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Madrid Protocol</span>{' '}
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Madrid Protocol</span>{' '}
               <span className="text-[#00ADB5]">Essentials</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-10 px-2 sm:px-4 md:px-16">
-            {madridProtocolInfo.map((info: MadridProtocolInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
+            {madridProtocolInfo.map((info: MadridProtocolInfo, index: number) => {
+              // Use a different image for each card for visual variety
+              const images = [
+                "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
+              ];
+              const bgImg = images[index % images.length];
+              return (
+                <motion.div
+                  key={info.id}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: 'multiply',
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                      {info.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#ffffff] transition-colors duration-300">
+                      {info.title}
+                    </h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed line-clamp-3">
+                      {info.description}
+                    </p>
+                    <button
+                      onClick={() => handleExploreClick(info)}
+                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group"
+                    >
+                      Explore
+                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
+                  {/* Hover overlay for effect */}
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Madrid Protocol Member Countries Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      {/* Member Countries Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Key Madrid Protocol</span>{' '}
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Key Madrid Protocol</span>{' '}
               <span className="text-[#00ADB5]">Member Countries</span>
             </h2>
           </div>
@@ -289,50 +273,79 @@ export default function InternationalTrademarkFilingPage() {
               {
                 title: 'European Union',
                 description: 'Covers all 27 EU member states through a single designation via the European Union Intellectual Property Office (EUIPO).',
+                category: 'Major Market',
               },
               {
                 title: 'United States',
                 description: 'Requires compliance with USPTO standards, including proof of use in commerce for registration.',
+                category: 'Key Territory',
               },
               {
                 title: 'China',
                 description: 'Involves careful subclass selection under the Nice Classification for effective trademark protection.',
+                category: 'Emerging Market',
               },
               {
                 title: 'India',
                 description: 'Allows international filings based on a national trademark application or registration.',
+                category: 'Growing Economy',
               },
               {
                 title: 'Japan',
                 description: 'Requires distinctiveness checks and may involve local representation for objections.',
+                category: 'Advanced Market',
               },
               {
                 title: 'Australia',
                 description: 'Offers efficient protection with examination by IP Australia for compliance.',
+                category: 'Pacific Region',
               },
-            ].map((country, index) => (
-              <motion.div
-                key={country.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{country.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{country.description}</p>
-              </motion.div>
-            ))}
+            ].map((item, index) => {
+              const countryImages = [
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
+              ];
+              const bgImg = countryImages[index % countryImages.length];
+              return (
+                <motion.div
+                  key={item.country}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: 'multiply',
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <h3 className="text-xl font-bold text-white mb-3">
+                      {item.country}
+                    </h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Filing Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">How to File via</span>{' '}
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">How to File via</span>{' '}
               <span className="text-[#00ADB5]">Madrid Protocol</span>
             </h2>
           </div>
@@ -341,99 +354,179 @@ export default function InternationalTrademarkFilingPage() {
               {
                 step: '1. Establish Base Application',
                 description: 'File or secure a trademark registration in your home country to serve as the foundation for international filing.',
+                category: 'Step 1',
               },
               {
                 step: '2. Submit International Application',
                 description: 'File the application through your national trademark office, specifying the target countries for protection.',
+                category: 'Step 2',
               },
               {
                 step: '3. WIPO Examination',
                 description: 'WIPO reviews the application for formalities and forwards it to the designated countries.',
+                category: 'Step 3',
               },
               {
                 step: '4. National Review',
                 description: 'Each designated country examines the application based on its trademark laws, potentially issuing refusals.',
+                category: 'Step 4',
               },
               {
                 step: '5. Grant of Protection',
                 description: 'Approved countries grant trademark protection, allowing use of the mark in those jurisdictions.',
+                category: 'Step 5',
               },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
+            ].map((step, index) => {
+              const processImages = [
+                "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&w=600&q=80"
+              ];
+              const bgImg = processImages[index % processImages.length];
+              return (
+                <motion.div
+                  key={step.step}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: 'multiply',
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                      Step {index + 1}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">
+                      {step.step}
+                    </h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Eligibility and Requirements Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      {/* Eligibility Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Eligibility &</span>{' '}
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Eligibility &</span>{' '}
               <span className="text-[#00ADB5]">Requirements</span>
             </h2>
           </div>
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Individuals with a national trademark application/registration</li>
-              <li>Businesses with a registered office in a Madrid Protocol member country</li>
-              <li>Partnership firms with a base trademark</li>
-              <li>Companies incorporated in a member country</li>
-              <li>Trusts or associations with a national trademark</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents vary by applicant but generally include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Copy of the national trademark application/registration</li>
-              <li>Details of the mark (word, logo, or figurative elements)</li>
-              <li>List of goods/services under Nice Classification</li>
-              <li>Applicant’s details (name, address, nationality)</li>
-              <li>Power of Attorney (if filed through an agent)</li>
-              <li>Proof of payment of WIPO and national fees</li>
-            </ul>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <motion.div
+              className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+              style={{
+                borderRadius: 0,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80)`,
+                backgroundBlendMode: 'multiply',
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -8 }}
+            >
+              <div className="flex flex-col gap-5 relative z-10">
+                <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                  Eligibility
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Who Can Apply?
+                </h3>
+                <div className="text-[#e0e0e0] text-base leading-relaxed space-y-2">
+                  <p>• Individuals with a national trademark application/registration</p>
+                  <p>• Businesses with a registered office in a Madrid Protocol member country</p>
+                  <p>• Partnership firms with a base trademark</p>
+                  <p>• Companies incorporated in a member country</p>
+                  <p>• Trusts or associations with a national trademark</p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+            </motion.div>
+
+            <motion.div
+              className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+              style={{
+                borderRadius: 0,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80)`,
+                backgroundBlendMode: 'multiply',
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -8 }}
+            >
+              <div className="flex flex-col gap-5 relative z-10">
+                <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                  Documentation
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Required Documents
+                </h3>
+                <div className="text-[#e0e0e0] text-base leading-relaxed space-y-2">
+                  <p className="mb-4">Documents vary by applicant but generally include:</p>
+                  <p>• Copy of the national trademark application/registration</p>
+                  <p>• Details of the mark (word, logo, or figurative elements)</p>
+                  <p>• List of goods/services under Nice Classification</p>
+                  <p>• Applicant's details (name, address, nationality)</p>
+                  <p>• Power of Attorney (if filed through an agent)</p>
+                  <p>• Proof of payment of WIPO and national fees</p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-white relative overflow-hidden">
+        <div className="max-w-6xl mx-auto relative">
+          {/* Abstract curvy shape in center with image */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              clipPath: 'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)'
+            }}
+          >
+            <div 
+              className="w-full h-96 opacity-15"
+              style={{
+                backgroundImage: 'url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1000&q=80")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                clipPath: 'ellipse(60% 40% at 50% 50%)'
+              }}
+            />
+          </div>
+
           <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
+            className="relative max-w-3xl mx-auto px-8 text-center z-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
             <h2 className="text-4xl font-bold mb-4">
               <span className="text-[#00ADB5]">Ready to Go</span>{' '}
               <span className="text-[#393E46]">Global?</span>
             </h2>
             <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Secure your trademark internationally with BrandSecure’s expert Madrid Protocol filing services. Start today to protect your brand across global markets.
+              Secure your trademark internationally with BrandSecure's expert Madrid Protocol filing services. Start today to protect your brand across global markets.
             </p>
             <Link
               href="/contact-us"
@@ -448,15 +541,113 @@ export default function InternationalTrademarkFilingPage() {
         </div>
       </section>
 
-      {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
+      {/* Enhanced Cool Popup Modal */}
+      {showPopup && selectedInfo && (
+        <motion.div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={closePopup}
         >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+          <motion.div
+            className="bg-gradient-to-br from-white to-gray-50 max-w-3xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-gray-200/50 relative"
+            initial={{ scale: 0.8, opacity: 0, rotateX: -15 }}
+            animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+            exit={{ scale: 0.8, opacity: 0, rotateX: 15 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{ borderRadius: 0 }}
+          >
+            {/* Header with background image */}
+            <div 
+              className="relative p-8 bg-cover bg-center"
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,173,181,0.9) 100%), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80)`,
+              }}
+            >
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <div className="px-3 py-1 text-xs font-medium bg-white/20 text-white w-fit uppercase tracking-wider mb-4" style={{ borderRadius: 0 }}>
+                    {selectedInfo.category}
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-3 leading-tight">{selectedInfo.title}</h3>
+                  <p className="text-white/90 text-lg leading-relaxed">{selectedInfo.description}</p>
+                </div>
+                <button
+                  onClick={closePopup}
+                  className="ml-4 p-2 text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300 group"
+                  style={{ borderRadius: 0 }}
+                >
+                  <X size={28} className="group-hover:rotate-90 transition-transform duration-300" />
+                </button>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5" style={{ clipPath: 'polygon(100% 0, 100% 60%, 40% 0)' }} />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#00ADB5]/20" style={{ clipPath: 'polygon(0 100%, 0 40%, 60% 100%)' }} />
+            </div>
+
+            {/* Content */}
+            <div className="p-8 max-h-[50vh] overflow-y-auto">
+              <div className="space-y-4">
+                <h4 className="text-xl font-semibold text-[#222831] mb-4 flex items-center">
+                  <div className="w-1 h-6 bg-[#00ADB5] mr-3"></div>
+                  Detailed Information
+                </h4>
+                
+                <div className="text-[#393E46] leading-relaxed space-y-3">
+                  {selectedInfo.detailedContent.split('•').filter(item => item.trim()).map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start space-x-3 p-3 bg-gray-50/50 hover:bg-gray-100/50 transition-colors duration-200"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      style={{ borderRadius: 0 }}
+                    >
+                      <div className="w-2 h-2 bg-[#00ADB5] mt-2 flex-shrink-0" style={{ borderRadius: 0 }}></div>
+                      <p className="flex-1">{item.trim()}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="px-8 py-6 bg-gray-50/80 border-t border-gray-200/50">
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-[#393E46]/70">
+                  Need more information? Contact our experts.
+                </p>
+                <div className="flex space-x-3">
+                  <button
+                    onClick={closePopup}
+                    className="px-4 py-2 text-[#393E46] hover:bg-gray-200 transition-colors duration-200"
+                    style={{ borderRadius: 0 }}
+                  >
+                    Close
+                  </button>
+                  <Link
+                    href="/contact-us"
+                    onClick={closePopup}
+                    className="px-6 py-2 bg-[#00ADB5] text-white hover:bg-[#222831] transition-colors duration-200 inline-flex items-center"
+                    style={{ borderRadius: 0 }}
+                  >
+                    Contact Us
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Back to Home Link */}
+    
     </div>
   );
 }
