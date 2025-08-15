@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -65,7 +64,7 @@ const customsWatchInfo: CustomsWatchInfo[] = [
     category: 'Global Integration',
     detailedContent: `
       • Collaborates with customs in key jurisdictions (e.g., US, EU, China).
-      • Uses global databases like WCO’s CEN for monitoring.
+      • Uses global databases like WCO's CEN for monitoring.
       • Aligns with treaties like TRIPS for IP enforcement.
       • Streamlines registration across multiple countries.
       • Enhances cross-border coordination for seizures.
@@ -103,19 +102,7 @@ export default function CustomsWatchListingInternationalMarketsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
-        }}
-      />
-
+    <div className="min-h-screen bg-black relative font-sans overflow-hidden">
       {/* Popup */}
       {showPopup && selectedInfo && (
         <motion.div
@@ -165,247 +152,434 @@ export default function CustomsWatchListingInternationalMarketsPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[90vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://imgs.search.brave.com/ypi-tsMrVcWWTsF6aNYYKNnkRmZzB4eRReqeXfsQn2k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE5/ODEwNjc4Mi9waG90/by9qdWRnZS1oYW5k/c2hha2UtYW5kLWxh/d3llci1pbi1vZmZp/Y2Utd2l0aC1nYXZl/bC1vbi10YWJsZS1m/b3ItbGVnYWwtYWdy/ZWVtZW50LWF0dG9y/bmV5LndlYnA_YT0x/JmI9MSZzPTYxMng2/MTImdz0wJms9MjAm/Yz1qWm1oeDBKeWw3/dTcxbG1faUF5VHJQ/QVBwdzB0ZlNlMWRL/UVRUUlJQeDdVPQ)`,
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-extrabold text-white relative inline-block tracking-tight">
             Customs Watch Listing
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-8 text-xl text-white/90 max-w-2xl mx-auto font-light">
             Stop Counterfeits at the Border
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative bg-white px-4 py-28 md:px-16 lg:px-24">
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Protect Your IP</span>{' '}
-                <span className="text-[#393E46]">at Borders</span>
-              </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                Customs watch listing is a critical tool for businesses to prevent counterfeit goods from crossing international borders. At BrandSecure, we register your IP with customs authorities, enabling effective monitoring and seizure of fake products, safeguarding your brand and supply chain in global markets.
-              </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
-                </a>{' '}
-                to secure your borders today.
-              </p>
+            <div className="relative flex items-center flex-col lg:flex-row">
+              <div
+                className="relative w-full lg:w-3/5 z-20 mb-8 lg:mb-0 lg:mr-[-120px] ml-[-10px]"
+                style={{ filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.12))" }}
+              >
+                <div
+                  className="bg-white/98 p-8 md:p-10"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}
+                >
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                      <span className="text-[#00ADB5]">Protect Your IP</span>{" "}
+                      <span className="text-[#393E46]">at Borders</span>
+                    </h2>
+                    <p className="text-base sm:text-lg text-[#393E46] leading-relaxed">
+                      Customs watch listing is a critical tool for businesses to prevent counterfeit goods from crossing international borders. At BrandSecure, we register your IP with customs authorities, enabling effective monitoring and seizure of fake products, safeguarding your brand and supply chain in global markets.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[#393E46] text-lg font-medium mb-4">
+                      📩 Contact us at{" "}
+                      <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                        info@brandsecure.in
+                      </a>{" "}
+                      to secure your borders today.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative z-10 h-[420px] w-full lg:w-2/5">
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    src="https://imgs.search.brave.com/b6xsmTJnizuGckX75x7IQLm3rh9qUR1VDt1OsEBmhYw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9sZWdh/bC1jb250cmFjdC0x/OTI1NTE4Ni5qcGc"
+                    alt="Customs watch listing visual"
+                    className="h-full w-full object-cover object-right"
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Customs Watch Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 bg-black lg:px-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Customs Watch</span>{' '}
+              <span className="text-[#eeeeee]">Customs Watch</span>{" "}
               <span className="text-[#00ADB5]">Essentials</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {customsWatchInfo.map((info: CustomsWatchInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
+            {customsWatchInfo.map((info: CustomsWatchInfo, index: number) => {
+              const images = [
+                "https://imgs.search.brave.com/Rt3k-BNsyGXkwgypyD3pYjn0Y_YCTU4dYIOqEn4jGxA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5zaHV0dGVyc3Rv/Y2suY29tL2ltYWdl/LXBob3RvL2xhd3ll/ci1sZWdhbC1jb3Vu/c2VsLXByZXNlbnRz/LWNsaWVudC00NTB3/LTI0OTk1MDU2MzEu/anBn",
+                "https://imgs.search.brave.com/x1UvdSxP-vApS4C1Wt3lO-bPeRBViXpp1wgHQ7Zi-OU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9sZWdhbC1jb3Vu/c2VsLWlzLWRpc2N1/c3NpbmctbGF3LWNv/bmNlcHQtbGVnYWwt/anVzdGljZV8xMDE2/Njc1LTU1OTQuanBn/P3NlbXQ9YWlzX2h5/YnJpZCZ3PTc0MA",
+                "https://imgs.search.brave.com/8UwOmASCt8cEisGuUVeL34op1DQD6OjzPAU0omdLBpM/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTMv/MTA1LzI1OS9zbWFs/bC9idXNpbmVzcy1h/bmQtbGF3eWVycy1k/aXNjdXNzaW5nLWNv/bnRyYWN0LXBhcGVy/cy13aXRoLWJyYXNz/LXNjYWxlLW9uLWRl/c2staW4tb2ZmaWNl/LWxhdy1sZWdhbC1z/ZXJ2aWNlcy1hZHZp/Y2UtanVzdGljZS1h/bmQtbGF3LWNvbmNl/cHQtcGljdHVyZS13/aXRoLWZpbG0tZ3Jh/aW4tZWZmZWN0LWZy/ZWUtcGhvdG8uanBn",
+                "https://imgs.search.brave.com/bpxzmOTIeccZOYJSvx07Up03bdN9rRzNBpApyBo7xH0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTIv/MDAyLzYyMC9zbWFs/bC9jb25zdWx0YXRp/b24tb2YtYnVzaW5l/c3NtYW4tb3ItbGF3/eWVyLXRlYW0tbWVl/dGluZy13aXRoLWNs/aWVudC1sYXctYW5k/LWxlZ2FsLXNlcnZp/Y2VzLWNvbmNlcHQt/Z29vZC1zZXJ2aWNl/LWNvb3BlcmF0aW9u/LWhhbmRzLXVzaW5n/LXRhYmxldC1hbmQt/bGFwdG9wLXBob3Rv/LmpwZw",
+                "https://imgs.search.brave.com/bpxzmOTIeccZOYJSvx07Up03bdN9rRzNBpApyBo7xH0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTIv/MDAyLzYyMC9zbWFs/bC9jb25zdWx0YXRp/b24tb2YtYnVzaW5l/c3NtYW4tb3ItbGF3/eWVyLXRlYW0tbWVl/dGluZy13aXRoLWNs/aWVudC1sYXctYW5k/LWxlZ2FsLXNlcnZp/Y2VzLWNvbmNlcHQt/Z29vZC1zZXJ2aWNl/LWNvb3BlcmF0aW9u/LWhhbmRzLXVzaW5n/LXRhYmxldC1hbmQt/bGFwdG9wLXBob3Rv/LmpwZw",
+              ]
+              const bgImg = images[index % images.length]
+              return (
+                <motion.div
+                  key={info.id}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {info.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{info.title}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{info.description}</p>
+                    <button
+                      onClick={() => handleExploreClick(info)}
+                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group"
+                    >
+                      Explore
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Key Services Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#000000]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Key Customs Watch</span>{' '}
+              <span className="text-[#eeeeee]">Key Customs Watch</span>{" "}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
             {[
-              { title: 'IP Registration', description: 'Register trademarks and patents with customs authorities globally.' },
-              { title: 'Customs Training', description: 'Train officials to identify and seize counterfeit goods effectively.' },
-              { title: 'Border Monitoring', description: 'Monitor imports/exports for suspicious shipments in key markets.' },
-              { title: 'Seizure Coordination', description: 'Coordinate with customs for inspections and seizures of fakes.' },
-              { title: 'Legal Support', description: 'Pursue legal actions against counterfeiters post-seizure.' },
-              { title: 'Reporting and Analytics', description: 'Provide reports on seizures and trends for strategic planning.' },
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
-              </motion.div>
-            ))}
+              { 
+                title: 'IP Registration', 
+                description: 'Register trademarks and patents with customs authorities globally.',
+                category: 'Registration'
+              },
+              { 
+                title: 'Customs Training', 
+                description: 'Train officials to identify and seize counterfeit goods effectively.',
+                category: 'Training'
+              },
+              { 
+                title: 'Border Monitoring', 
+                description: 'Monitor imports/exports for suspicious shipments in key markets.',
+                category: 'Monitoring'
+              },
+              { 
+                title: 'Seizure Coordination', 
+                description: 'Coordinate with customs for inspections and seizures of fakes.',
+                category: 'Enforcement'
+              },
+              { 
+                title: 'Legal Support', 
+                description: 'Pursue legal actions against counterfeiters post-seizure.',
+                category: 'Legal'
+              },
+              { 
+                title: 'Reporting and Analytics', 
+                description: 'Provide reports on seizures and trends for strategic planning.',
+                category: 'Analytics'
+              },
+            ].map((service, index) => {
+              const images = [
+                "https://imgs.search.brave.com/qVhJK5wQbD0aVCEbcnyPWmDspm6ZFVCMFyck47YfRfg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTg0/NzgxNDA5Mi9waG90/by9idXNpbmVzc21h/bi1hbmQtbGF3eWVy/LWRpc2N1c3MtYW5k/LWFkdmljZS1vbi1j/b250cmFjdC1kb2N1/bWVudHMtbGVnYWwt/dHJlYXR5LWFncmVl/bWVudC53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9akc4NWc2Tzdh/Y0VJbEdRNEZxXzk4/YURrNU9McG1zcXlY/ZTVRd3RtZzl6ST0",
+                "https://imgs.search.brave.com/b8X8fwcNystVc1jRrdY5zOmr29SKwCvZQYHF6koUOEk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9sZWdh/bC0zNTk5OTEwLmpw/Zw",
+                "https://imgs.search.brave.com/qVhJK5wQbD0aVCEbcnyPWmDspm6ZFVCMFyck47YfRfg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTg0/NzgxNDA5Mi9waG90/by9idXNpbmVzc21h/bi1hbmQtbGF3eWVy/LWRpc2N1c3MtYW5k/LWFkdmljZS1vbi1j/b250cmFjdC1kb2N1/bWVudHMtbGVnYWwt/dHJlYXR5LWFncmVl/bWVudC53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9akc4NWc2Tzdh/Y0VJbEdRNEZxXzk4/YURrNU9McG1zcXlY/ZTVRd3RtZzl6ST0",
+                "https://imgs.search.brave.com/K6ICzmAoS6vRNVTf7SZa_Z2-O98dkIKLTM5CS9FPx7k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9wZW4t/c2lnbmluZy1sZWdh/bC1kb2N1bWVudC1n/b2xkLWJhbGxwb2lu/dC00OTE5Mjk3OC5q/cGc",
+                "https://imgs.search.brave.com/qVhJK5wQbD0aVCEbcnyPWmDspm6ZFVCMFyck47YfRfg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTg0/NzgxNDA5Mi9waG90/by9idXNpbmVzc21h/bi1hbmQtbGF3eWVy/LWRpc2N1c3MtYW5k/LWFkdmljZS1vbi1j/b250cmFjdC1kb2N1/bWVudHMtbGVnYWwt/dHJlYXR5LWFncmVl/bWVudC53ZWJwP2E9/MSZiPTEmcz02MTJ4/NjEyJnc9MCZrPTIw/JmM9akc4NWc2Tzdh/Y0VJbEdRNEZxXzk4/YURrNU9McG1zcXlY/ZTVRd3RtZzl6ST0",
+                "https://imgs.search.brave.com/K6ICzmAoS6vRNVTf7SZa_Z2-O98dkIKLTM5CS9FPx7k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9wZW4t/c2lnbmluZy1sZWdh/bC1kb2N1bWVudC1n/b2xkLWJhbGxwb2lu/dC00OTE5Mjk3OC5q/cGc",
+              ]
+              const bgImg = images[index % images.length]
+              return (
+                <motion.div
+                  key={service.title}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {service.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{service.description}</p>
+                    <button className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group">
+                      Learn More
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Customs Watch Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">How Customs Watch</span>{' '}
+              <span className="text-[#eeeeee]">How Customs Watch</span>{" "}
               <span className="text-[#00ADB5]">Listing Works</span>
             </h2>
           </div>
-          <div className="space-y-8">
+          <div className="flex flex-col gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
             {[
-              { step: '1. IP Registration', description: 'Register IP assets with customs authorities in target markets.' },
-              { step: '2. Training Programs', description: 'Train customs officials to recognize counterfeit goods.' },
-              { step: '3. Border Surveillance', description: 'Monitor shipments for potential counterfeit activity.' },
-              { step: '4. Seizure Execution', description: 'Coordinate inspections and seizures of counterfeit goods.' },
-              { step: '5. Follow-Up Actions', description: 'Report seizures and pursue legal actions against violators.' },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
+              {
+                step: "1. IP Registration",
+                description: "Register IP assets with customs authorities in target markets.",
+                category: "Step 1",
+              },
+              {
+                step: "2. Training Programs",
+                description: "Train customs officials to recognize counterfeit goods.",
+                category: "Step 2",
+              },
+              {
+                step: "3. Border Surveillance",
+                description: "Monitor shipments for potential counterfeit activity.",
+                category: "Step 3",
+              },
+              {
+                step: "4. Seizure Execution",
+                description: "Coordinate inspections and seizures of counterfeit goods.",
+                category: "Step 4",
+              },
+              {
+                step: "5. Follow-Up Actions",
+                description: "Report seizures and pursue legal actions against violators.",
+                category: "Step 5",
+              },
+            ].map((step, index) => {
+              const images = [
+                "https://imgs.search.brave.com/AtQSxMJJtSVAtxb9zFCNJSImLYScG1YLxy76ECQq7Nk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTEv/MzQwLzE2NS9zbWFs/bC9idXNpbmVzcy1h/bmQtbGF3eWVycy1k/aXNjdXNzaW5nLWNv/bnRyYWN0LXBhcGVy/cy13aXRoLWJyYXNz/LXNjYWxlLW9uLWRl/c2staW4tb2ZmaWNl/LWxhdy1sZWdhbC1z/ZXJ2aWNlcy1hZHZp/Y2UtanVzdGljZS1h/bmQtbGF3LWNvbmNl/cHQtcGljdHVyZS13/aXRoLWZpbG0tZ3Jh/aW4tZWZmZWN0LXBo/b3RvLmpwZw",
+                "https://imgs.search.brave.com/XEy6WxexowUgUh1mBR_NfFkE6sqfh1uNMPESpysI0N4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDIv/MDIyLzY5Ni9zbWFs/bC9jb25jZXB0LW9m/LWxlZ2FsLWNvdXJ0/LWdhdmVsLW9uLWFz/c29ydGVkLWNhc2gt/Y2xvc2UtdXAtcGhv/dG8uanBn",
+                "https://imgs.search.brave.com/jEvdSucqq8LRZZ_Q6raXyN105WbO71LKk_deEE9CZZU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTcy/ODE3MDM2MC9waG90/by90aGUtc3RhdHVl/LW9mLWp1c3RpY2Ut/bGVnYWwtbGF3LWNv/bmNlcHQtaW1hZ2Uu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PTZsZGJCR3RDZDZV/ZDMtZkhYUDFQSDhf/ajFZOThkYjlEMHBU/RFpYNTV1bkE9",
+                "https://imgs.search.brave.com/W37Y8GUn7BsHVNNWshr5WASzOIQ6DtFpqqRffe44HmU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE4/OTc0MDgzNS9waG90/by9nYXZlbC13aXRo/LWV1cm8tYmFua25v/dGVzLWFuZC1jb2lu/cy1zeW1ib2xzLW9m/LWZpbmFuY2lhbC1h/bmQtbGVnYWwtbWF0/dGVycy5qcGc_Yj0x/JnM9NjEyeDYxMiZ3/PTAmaz0yMCZjPWY5/NEdwS2tpYnZiTW9Q/Rmh6RW9JNEhVRW5V/cVRjX2lTaE9oVXBW/TXd5d1U9",
+                "https://imgs.search.brave.com/FcQCJKxbb-yGic-2LFPWK7ZphVJKr_UeHYko8YVLpRY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi90aW1l/LWxlZ2FsLWFpZC0y/MjY4NDc2Mi5qcGc",
+              ]
+              const bgImg = images[index % images.length]
+              return (
+                <motion.div
+                  key={step.step}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {step.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{step.step}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{step.description}</p>
+                    <button className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group">
+                      Learn More
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#000000]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Who Can</span>{' '}
-              <span className="text-[#00ADB5]">Benefit?</span>
+              <span className="text-[#eeeeee]">Who Can</span> <span className="text-[#00ADB5]">Benefit?</span>
             </h2>
           </div>
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Eligible Clients</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Businesses with IP assets in international markets</li>
-              <li>Brands in consumer goods, luxury, or tech sectors</li>
-              <li>Companies facing counterfeiting risks at borders</li>
-              <li>Multinationals seeking supply chain protection</li>
-              <li>Exporters/importers needing customs enforcement</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Requirements for Engagement</h3>
-            <p className="text-[#393E46]/80 mb-4">Requirements vary by case but generally include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Inventory of IP assets (trademarks, patents, etc.)</li>
-              <li>Details of target markets for customs monitoring</li>
-              <li>Business objectives for border protection</li>
-              <li>Documentation of existing IP registrations</li>
-            </ul>
-          </motion.div>
+          <div className="grid grid-cols-1 gap-6 px-2 sm:px-4 md:px-16">
+            <motion.div
+              className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+              style={{
+                borderRadius: 0,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://imgs.search.brave.com/ppM_ARXSu59Ax7zskQwlVG57eRxv--ZR2rWdJ5kWe5E/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTEv/MzI5LzMxNC9zbWFs/bC9idXNpbmVzcy1h/bmQtbGF3eWVycy1k/aXNjdXNzaW5nLWNv/bnRyYWN0LXBhcGVy/cy13aXRoLWJyYXNz/LXNjYWxlLW9uLWRl/c2staW4tb2ZmaWNl/LWxhdy1sZWdhbC1z/ZXJ2aWNlcy1hZHZp/Y2UtanVzdGljZS1h/bmQtbGF3LWNvbmNl/cHQtcGljdHVyZS13/aXRoLWZpbG0tZ3Jh/aW4tZWZmZWN0LXBo/b3RvLmpwZw)`,
+                backgroundBlendMode: "multiply",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -8 }}
+            >
+              <div className="flex flex-col gap-5 relative z-10">
+                <div
+                  className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                  style={{ borderRadius: 0 }}
+                >
+                  Eligibility
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Eligible Clients</h3>
+                <ul className="text-[#e0e0e0] list-disc list-inside mb-6">
+                  <li>Businesses with IP assets in international markets</li>
+                  <li>Brands in consumer goods, luxury, or tech sectors</li>
+                  <li>Companies facing counterfeiting risks at borders</li>
+                  <li>Multinationals seeking supply chain protection</li>
+                  <li>Exporters/importers needing customs enforcement</li>
+                </ul>
+                <h3 className="text-xl font-bold text-white mb-3">Requirements for Engagement</h3>
+                <p className="text-[#e0e0e0] mb-4">Requirements vary by case but generally include:</p>
+                <ul className="text-[#e0e0e0] list-disc list-inside">
+                  <li>Inventory of IP assets (trademarks, patents, etc.)</li>
+                  <li>Details of target markets for customs monitoring</li>
+                  <li>Business objectives for border protection</li>
+                  <li>Documentation of existing IP registrations</li>
+                </ul>
+              </div>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black relative overflow-hidden">
         <div className="max-w-6xl mx-auto">
+          {/* Left Diagonal Image */}
+          <div
+            className="absolute left-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://imgs.search.brave.com/7UkfHAkSoc0sjJQn0WXcUoUmQTnxMG8tKSvifn7SrfA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTcy/NjU3NjQ1L3Bob3Rv/L2NvdXJ0aG91c2Ut/ZGV0YWlsLWxhdy1s/ZWdhbC1jb3VydC5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/cVRyT1dqMU9XVVJx/Mm1NdVZxQVF1aFpq/ZE5vTlNIT3NOV28x/TUdHazdrUT0)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              clipPath: "polygon(0 0, 100% 0, 80% 100%, 0 100%)",
+              opacity: 0.1,
+            }}
+          />
+
+          {/* Right Diagonal Image */}
+          <div
+            className="absolute right-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://imgs.search.brave.com/-QUsZ9qaGWiO0ZbNMIg2OjMmchiwEXEQIAbBF9LJZKk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjIv/NTk2LzI4Ny9zbWFs/bC9qdWRnZS1nYXZl/bC13aXRoLWp1c3Rp/Y2UtbGF3eWVycy1o/YXZpbmctdGVhbS1t/ZWV0aW5nLWF0LWxh/dy1maXJtLWluLWJh/Y2tncm91bmQtY29u/Y2VwdHMtb2YtbGF3/LWdlbmVyYXRpdmUt/YWktcGhvdG8uanBn)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0 100%)",
+              opacity: 0.1,
+            }}
+          />
+
           <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
+            className="relative max-w-3xl mx-auto px-8 text-center z-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Secure</span>{' '}
-              <span className="text-[#393E46]">Your Borders?</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Secure <br />
+              <span className="text-[#00ADB5]">Your Borders?</span>
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Partner with BrandSecure for expert customs watch listing services to protect your IP and prevent counterfeits from crossing international borders. Start today to safeguard your brand’s integrity.
+            <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] leading-relaxed mb-8">
+              Partner with BrandSecure for expert customs watch listing services to protect your IP and prevent counterfeits from crossing international borders. Start today to safeguard your brand's integrity.
             </p>
             <Link
               href="/contact-us"
-              className="inline-flex items-center px  px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+              className="inline-flex items-center px-8 py-4 bg-[#00ADB5] text-white font-medium hover:bg-[#222831] transition-colors duration-300 group"
+              style={{ borderRadius: 0 }}
             >
               Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -414,14 +588,7 @@ export default function CustomsWatchListingInternationalMarketsPage() {
       </section>
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+     
     </div>
   );
 }

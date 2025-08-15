@@ -103,7 +103,7 @@ export default function InternationalTrademarkFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f3460] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#0f3460] relative  font-montserrat overflow-hidden">
       {/* Hero Section */}
       <motion.section
         className="relative h-[95vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"

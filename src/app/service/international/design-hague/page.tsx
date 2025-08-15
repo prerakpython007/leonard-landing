@@ -102,20 +102,372 @@ export default function InternationalDesignProtectionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none"
+    <div className="min-h-screen bg-[#0f3460] relative font-montserrat overflow-hidden">
+      {/* Hero Section */}
+      <motion.section
+        className="relative h-[95vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1500&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
-      />
+      >
+        <div className="absolute inset-0 bg-[#0f3460]/80" />
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto text-center relative z-10"
+        >
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-white relative inline-block tracking-tight drop-shadow-lg">
+            Design Protection
+          </h1>
+          <p className="mt-8 text-xl text-white/90 max-w-2xl mx-auto font-light drop-shadow">
+            Safeguard Your Industrial Designs Globally
+          </p>
+        </motion.div>
+      </motion.section>
 
-      {/* Popup */}
+      {/* Introduction Section */}
+      <section className="relative bg-white px-4 py-28 md:px-16 lg:px-24">
+        <div className="relative mx-auto max-w-7xl">
+          <motion.div
+            className="mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative flex items-center flex-col lg:flex-row">
+              <div
+                className="relative w-full lg:w-3/5 z-20 mb-8 lg:mb-0 lg:mr-[-120px] ml-[-10px]"
+                style={{ filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.12))" }}
+              >
+                <div
+                  className="bg-white/98 p-8 md:p-10"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}
+                >
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                      <span className="text-[#00ADB5]">Protect Your Designs</span>{' '}
+                      <span className="text-[#393E46]">Worldwide</span>
+                    </h2>
+                    <p className="text-base sm:text-lg text-[#393E46] leading-relaxed">
+                      The Hague System simplifies the process of registering industrial designs internationally, allowing creators and businesses to secure protection in multiple countries through a single application. At BrandSecure, we provide expert guidance to navigate the Hague System, ensuring your designs are protected efficiently across global markets.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[#393E46] text-lg font-medium mb-4">
+                      📩 Contact us at{' '}
+                      <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                        info@brandsecure.in
+                      </a>{' '}
+                      to secure your designs today.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative z-10 h-[420px] w-full lg:w-2/5">
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1400"
+                    alt="Design protection visual"
+                    className="h-full w-full object-cover object-right"
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Hague System Info Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Hague System</span>{' '}
+              <span className="text-[#00ADB5]">Essentials</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
+            {hagueSystemInfo.map((info: HagueSystemInfo, index: number) => {
+              const images = [
+                "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80",
+              ];
+              const bgImg = images[index % images.length];
+              return (
+                <motion.div
+                  key={info.id}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: 'multiply',
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                      {info.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">
+                      {info.title}
+                    </h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">
+                      {info.description}
+                    </p>
+                    <button
+                      onClick={() => handleExploreClick(info)}
+                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group"
+                    >
+                      Explore
+                      <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Hague System Member Countries Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Key Hague System</span>{' '}
+              <span className="text-[#00ADB5]">Member Countries</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+            {[
+              { 
+                country: 'European Union', 
+                description: 'Covers all EU member states through a single designation via the EUIPO.',
+                bgImage: 'https://images.unsplash.com/photo-1519503609398-dd5f5b3b3c9f?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'United States', 
+                description: 'Requires compliance with USPTO design patent standards and detailed reproductions.',
+                bgImage: 'https://images.unsplash.com/photo-1569097143433-1ef3866ab2e9?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'Japan', 
+                description: 'JPO examines designs for novelty and may require local representation for refusals.',
+                bgImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'South Korea', 
+                description: 'KIPO ensures designs meet aesthetic and originality requirements.',
+                bgImage: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'United Kingdom', 
+                description: 'UKIPO provides design protection post-Brexit with straightforward examination.',
+                bgImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'Canada', 
+                description: 'CIPO processes Hague applications with focus on design originality.',
+                bgImage: 'https://images.unsplash.com/photo-1503614472-8c93d56cd72b?auto=format&fit=crop&w=600&q=80'
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.country}
+                className="bg-cover bg-center p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+                style={{
+                  backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.75)), url(${item.bgImage})`,
+                  backgroundBlendMode: 'multiply',
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-3">{item.country}</h3>
+                  <p className="text-[#e0e0e0] text-base leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Design Registration Process Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">How to Register Designs</span>{' '}
+              <span className="text-[#00ADB5]">via the Hague System</span>
+            </h2>
+          </div>
+          <div className="space-y-8">
+            {[
+              { 
+                step: '1. Prepare Design Application', 
+                description: 'Create high-quality reproductions of the design and specify designated countries.',
+                bgImage: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '2. File with WIPO', 
+                description: 'Submit the international application directly to WIPO or through a national office.',
+                bgImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '3. WIPO Formalities Check', 
+                description: 'WIPO reviews the application for compliance with formal requirements.',
+                bgImage: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '4. National Examination', 
+                description: 'Designated countries examine the design based on their laws, with possible refusals.',
+                bgImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '5. Grant of Protection', 
+                description: 'Approved countries grant design protection, allowing enforcement of rights.',
+                bgImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80'
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="bg-cover bg-center p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+                style={{
+                  backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.75)), url(${step.bgImage})`,
+                  backgroundBlendMode: 'multiply',
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-3">{step.step}</h3>
+                  <p className="text-[#e0e0e0] text-base leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Eligibility and Requirements Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              <span className="text-white">Eligibility and</span>{' '}
+              <span className="text-[#00ADB5]">Requirements</span>
+            </h2>
+          </div>
+          <motion.div
+            className="bg-cover bg-center p-8 shadow-md border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+            style={{
+              backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.87) 80%, rgba(0,0,0,0.82)), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80)`,
+              backgroundBlendMode: 'multiply',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative z-10">
+              <h3 className="text-xl font-bold text-white mb-3">Who Can Apply?</h3>
+              <ul className="text-[#e0e0e0] list-disc list-inside mb-6">
+                <li>Creators of original industrial or ornamental designs</li>
+                <li>Businesses with a registered office in a Hague member country</li>
+                <li>Individuals with residency or nationality in a member country</li>
+                <li>Assignees or successors of a design creator</li>
+                <li>Entities with a commercial establishment in a member country</li>
+              </ul>
+              <h3 className="text-xl font-bold text-white mb-3">Required Documents</h3>
+              <p className="text-[#e0e0e0] mb-4">Documents vary by application but generally include:</p>
+              <ul className="text-[#e0e0e0] list-disc list-inside">
+                <li>High-quality reproductions of the design (drawings/photos)</li>
+                <li>Application form specifying designated countries</li>
+                <li>Applicant's details (name, address, nationality)</li>
+                <li>Description of the design (optional in some cases)</li>
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black relative overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          {/* Left Diagonal Image */}
+          <div 
+            className="absolute left-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0 100%)',
+              opacity: 0.1
+            }}
+          />
+          
+          {/* Right Diagonal Image */}
+          <div 
+            className="absolute right-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)',
+              opacity: 0.1
+            }}
+          />
+
+          <motion.div
+            className="relative max-w-3xl mx-auto px-8 text-center z-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Protect <br />
+              <span className="text-[#00ADB5]">Your Designs Globally?</span>
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] leading-relaxed mb-8">
+              Secure your industrial designs worldwide with BrandSecure's expert Hague System registration services. Start today to safeguard your creative assets and ensure global market protection.
+            </p>
+            <Link
+              href="/contact-us"
+              className="inline-flex items-center px-8 py-4 bg-[#00ADB5] text-white font-medium hover:bg-[#222831] transition-colors duration-300 group"
+              style={{ borderRadius: 0 }}
+            >
+              Get Started
+              <svg className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Enhanced Popup Modal */}
       {showPopup && selectedInfo && (
         <motion.div
           className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-6"
@@ -162,267 +514,8 @@ export default function InternationalDesignProtectionPage() {
         </motion.div>
       )}
 
-      {/* Hero Section */}
-      <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center"
-        >
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
-            Design Protection
-            <span className="absolute top-1/2 -left-4 sm:-left-8 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-4 sm:-right-8 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-2xl sm:text-3xl md:text-5xl animate-pulse opacity-50">✦</span>
-          </h1>
-          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light px-2">
-            Safeguard Your Industrial Designs Globally
-          </p>
-        </motion.div>
-      </motion.section>
-
-      {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="relative max-w-3xl mx-auto px-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <div className="text-center space-y-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Protect Your Designs</span>{' '}
-                <span className="text-[#393E46]">Worldwide</span>
-              </h2>
-              <p className="text-base sm:text-lg text-[#393E46] leading-relaxed">
-                The Hague System simplifies the process of registering industrial designs internationally, allowing creators and businesses to secure protection in multiple countries through a single application. At BrandSecure, we provide expert guidance to navigate the Hague System, ensuring your designs are protected efficiently across global markets.
-              </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
-                </a>{' '}
-                to secure your designs today.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Hague System Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Hague System</span>{' '}
-              <span className="text-[#00ADB5]">Essentials</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-4 md:px-8">
-            {hagueSystemInfo.map((info: HagueSystemInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-sm sm:text-base md:text-lg text-[#393E46]/80 leading-relaxed">
-                    {info.description}
-                  </p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Hague System Member Countries Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Key Hague System</span>{' '}
-              <span className="text-[#00ADB5]">Member Countries</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {[
-              { country: 'European Union', description: 'Covers all EU member states through a single designation via the EUIPO.' },
-              { country: 'United States', description: 'Requires compliance with USPTO design patent standards and detailed reproductions.' },
-              { country: 'Japan', description: 'JPO examines designs for novelty and may require local representation for refusals.' },
-              { country: 'South Korea', description: 'KIPO ensures designs meet aesthetic and originality requirements.' },
-              { country: 'United Kingdom', description: 'UKIPO provides design protection post-Brexit with straightforward examination.' },
-              { country: 'Canada', description: 'CIPO processes Hague applications with focus on design originality.' },
-            ].map((item, index) => (
-              <motion.div
-                key={item.country}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{item.country}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Design Registration Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">How to Register Designs</span>{' '}
-              <span className="text-[#00ADB5]">via the Hague System</span>
-            </h2>
-          </div>
-          <div className="space-y-8">
-            {[
-              { step: '1. Prepare Design Application', description: 'Create high-quality reproductions of the design and specify designated countries.' },
-              { step: '2. File with WIPO', description: 'Submit the international application directly to WIPO or through a national office.' },
-              { step: '3. WIPO Formalities Check', description: 'WIPO reviews the application for compliance with formal requirements.' },
-              { step: '4. National Examination', description: 'Designated countries examine the design based on their laws, with possible refusals.' },
-              { step: '5. Grant of Protection', description: 'Approved countries grant design protection, allowing enforcement of rights.' },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility and Requirements Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Eligibility and</span>{' '}
-              <span className="text-[#00ADB5]">Requirements</span>
-            </h2>
-          </div>
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Apply?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Creators of original industrial or ornamental designs</li>
-              <li>Businesses with a registered office in a Hague member country</li>
-              <li>Individuals with residency or nationality in a member country</li>
-              <li>Assignees or successors of a design creator</li>
-              <li>Entities with a commercial establishment in a member country</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Required Documents</h3>
-            <p className="text-[#393E46]/80 mb-4">Documents vary by application but generally include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>High-quality reproductions of the design (drawings/photos)</li>
-              <li>Application form specifying designated countries</li>
-              <li>Applicant’s details (name, address, nationality)</li>
-              <li>Description of the design (optional in some cases)</li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Protect</span>{' '}
-              <span className="text-[#393E46]">Your Designs Globally?</span>
-            </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Secure your industrial designs worldwide with BrandSecure’s expert Hague System registration services. Start today to safeguard your creative assets and ensure global market protection.
-            </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
-            >
-              Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+  
     </div>
   );
 }

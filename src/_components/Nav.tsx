@@ -159,7 +159,7 @@ const Nav: React.FC = () => {
           title: "About Our Firm",
           items: [
             { label: "About Us", href: "/about-us" },
-            { label: "Our Team", href: "/about-us#team" },
+            { label: "Our Team", href: "/our-team" },
             { label: "Contact Us", href: "/contact-us" },
           ]
         }
@@ -293,7 +293,7 @@ const Nav: React.FC = () => {
                         transition={{ duration: 0.18 }}
                         className="absolute left-0 top-full pt-3 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]"
                       >
-                        <div className="bg-white border border-gray-100 shadow-lg rounded-lg p-4">
+                        <div className="bg-white border border-gray-100 shadow-lg p-4">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {item.dropdown.map((column, idx) => (
                               <div key={idx}>
@@ -392,7 +392,7 @@ const Nav: React.FC = () => {
                         transition={{ duration: 0.18 }}
                         className="absolute right-0 top-full pt-3 w-[300px] sm:w-[380px] md:w-[420px] lg:w-[480px] max-w-[calc(100vw-16px)] z-[9999]"
                       >
-                        <div className="bg-white border border-gray-100 shadow-lg rounded-lg p-4">
+                        <div className="bg-white border border-gray-100 shadow-lg  p-4">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {item.dropdown.map((column, idx) => (
                               <div key={idx}>

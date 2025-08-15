@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -6,7 +5,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { X } from 'lucide-react';
 
-// Define the interface for Cease & Desist + Enforcement info
 interface EnforcementInfo {
   id: number;
   title: string;
@@ -103,19 +101,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[170px] font-montserrat overflow-hidden">
-      {/* Grid Pattern Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '30px 30px',
-        }}
-      />
-
+    <div className="min-h-screen bg-black relative font-sans overflow-hidden">
       {/* Popup */}
       {showPopup && selectedInfo && (
         <motion.div
@@ -165,247 +151,434 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative h-[80vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
+        className="relative h-[90vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80)`,
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Corner Angles */}
-        <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-extrabold text-white relative inline-block tracking-tight">
             Cease & Desist
-            <span className="absolute top-1/2 -left-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-16 -translate-y-1/2 text-[#00ADB5] text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-8 text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
+          <p className="mt-8 text-xl text-white/90 max-w-2xl mx-auto font-light">
             Protect Your IP Globally
           </p>
         </motion.div>
       </motion.section>
 
       {/* Introduction Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative bg-white px-4 py-28 md:px-16 lg:px-24">
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="relative max-w-3xl mx-auto px-8"
+            className="mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <div className="text-center space-y-6">
-              <h2 className="text-4xl font-bold mb-4">
-                <span className="text-[#00ADB5]">Enforce Your IP</span>{' '}
-                <span className="text-[#393E46]">Worldwide</span>
-              </h2>
-              <p className="text-[#393E46] text-lg leading-relaxed">
-                Protecting intellectual property in foreign jurisdictions requires swift and strategic action. At BrandSecure, we specialize in issuing cease and desist notices and pursuing enforcement actions to stop IP infringements, recover damages, and safeguard your brand across international markets.
-              </p>
-              <p className="text-[#393E46] text-lg font-medium">
-                📩 Contact us at{' '}
-                <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
-                  info@brandsecure.in
-                </a>{' '}
-                to enforce your IP rights today.
-              </p>
+            <div className="relative flex items-center flex-col lg:flex-row">
+              <div
+                className="relative w-full lg:w-3/5 z-20 mb-8 lg:mb-0 lg:mr-[-120px] ml-[-10px]"
+                style={{ filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.12))" }}
+              >
+                <div
+                  className="bg-white/98 p-8 md:p-10"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}
+                >
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                      <span className="text-[#00ADB5]">Enforce Your IP</span>{" "}
+                      <span className="text-[#393E46]">Worldwide</span>
+                    </h2>
+                    <p className="text-base sm:text-lg text-[#393E46] leading-relaxed">
+                      Protecting intellectual property in foreign jurisdictions requires swift and strategic action. At BrandSecure, we specialize in issuing cease and desist notices and pursuing enforcement actions to stop IP infringements, recover damages, and safeguard your brand across international markets.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[#393E46] text-lg font-medium mb-4">
+                      📩 Contact us at{" "}
+                      <a href="mailto:info@brandsecure.in" className="text-[#00ADB5] hover:underline">
+                        info@brandsecure.in
+                      </a>{" "}
+                      to enforce your IP rights today.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative z-10 h-[420px] w-full lg:w-2/5">
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1400"
+                    alt="Legal team discussing documents"
+                    className="h-full w-full object-cover object-right"
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Enforcement Info Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 bg-black lg:px-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Enforcement</span>{' '}
+              <span className="text-[#eeeeee]">Enforcement</span>{" "}
               <span className="text-[#00ADB5]">Essentials</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
-            {enforcementInfo.map((info: EnforcementInfo, index: number) => (
-              <motion.div
-                key={info.id}
-                className="group bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10 relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <span className="absolute top-4 right-4 text-[#00ADB5] text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                <div className="flex flex-col gap-5 relative z-10">
-                  <div className="px-3 py-1 text-xs font-medium bg-[#00ADB5]/10 text-[#00ADB5] rounded-full w-fit">
-                    {info.category}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
+            {enforcementInfo.map((info: EnforcementInfo, index: number) => {
+              const legalImages = [
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Legal documents
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Courtroom
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Judge's gavel
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Lawyer working
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Contract signing
+              ]
+              const bgImg = legalImages[index % legalImages.length]
+              return (
+                <motion.div
+                  key={info.id}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {info.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{info.title}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{info.description}</p>
+                    <button
+                      onClick={() => handleExploreClick(info)}
+                      className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group"
+                    >
+                      Explore
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
-                  <h3 className="text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-base leading-relaxed line-clamp-3">{info.description}</p>
-                  <button
-                    onClick={() => handleExploreClick(info)}
-                    className="inline-flex items-center text-[#00ADB5] font-medium hover:text-[#222831] transition-colors duration-300 mt-4 cursor-pointer"
-                  >
-                    Explore
-                    <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00ADB5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </motion.div>
-            ))}
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Key Services Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#000000]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Key Enforcement</span>{' '}
+              <span className="text-[#eeeeee]">Key Enforcement</span>{" "}
               <span className="text-[#00ADB5]">Services</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
             {[
-              { title: 'Cease and Desist Notices', description: 'Draft and issue notices to stop IP infringements in foreign markets.' },
-              { title: 'Litigation Support', description: 'Pursue lawsuits or injunctions to enforce IP rights internationally.' },
-              { title: 'Negotiation Services', description: 'Negotiate settlements to resolve IP disputes efficiently.' },
-              { title: 'Local Collaboration', description: 'Work with local authorities and law firms for effective enforcement.' },
-              { title: 'Evidence Collection', description: 'Gather robust evidence to support legal actions abroad.' },
-              { title: 'Compliance Monitoring', description: 'Monitor infringers to ensure compliance post-enforcement.' },
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{service.title}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{service.description}</p>
-              </motion.div>
-            ))}
+              { 
+                title: 'Cease and Desist Notices', 
+                description: 'Draft and issue notices to stop IP infringements in foreign markets.',
+                category: 'Legal Notices'
+              },
+              { 
+                title: 'Litigation Support', 
+                description: 'Pursue lawsuits or injunctions to enforce IP rights internationally.',
+                category: 'Court Actions'
+              },
+              { 
+                title: 'Negotiation Services', 
+                description: 'Negotiate settlements to resolve IP disputes efficiently.',
+                category: 'Resolution'
+              },
+              { 
+                title: 'Local Collaboration', 
+                description: 'Work with local authorities and law firms for effective enforcement.',
+                category: 'Global Network'
+              },
+              { 
+                title: 'Evidence Collection', 
+                description: 'Gather robust evidence to support legal actions abroad.',
+                category: 'Investigation'
+              },
+              { 
+                title: 'Compliance Monitoring', 
+                description: 'Monitor infringers to ensure compliance post-enforcement.',
+                category: 'Ongoing Protection'
+              },
+            ].map((service, index) => {
+              const serviceImages = [
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Document signing
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Court building
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Lawyer meeting
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Legal books
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Evidence
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Compliance
+              ]
+              const bgImg = serviceImages[index % serviceImages.length]
+              return (
+                <motion.div
+                  key={service.title}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {service.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{service.description}</p>
+                    <button className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group">
+                      Learn More
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Enforcement Process Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">How Enforcement</span>{' '}
+              <span className="text-[#eeeeee]">How Enforcement</span>{" "}
               <span className="text-[#00ADB5]">Works</span>
             </h2>
           </div>
-          <div className="space-y-8">
+          <div className="flex flex-col gap-6 sm:gap-10 md:gap-12 px-2 sm:px-4 md:px-16">
             {[
-              { step: '1. Infringement Detection', description: 'Identify and document IP violations in foreign markets.' },
-              { step: '2. Cease and Desist', description: 'Issue formal notices demanding cessation of infringing activities.' },
-              { step: '3. Negotiation', description: 'Engage infringers to negotiate settlements or compliance.' },
-              { step: '4. Legal Action', description: 'Pursue lawsuits or injunctions in foreign courts if needed.' },
-              { step: '5. Compliance Monitoring', description: 'Ensure ongoing compliance and address repeat violations.' },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
+              {
+                step: "1. Infringement Detection",
+                description: "Identify and document IP violations in foreign markets.",
+                category: "Step 1",
+              },
+              {
+                step: "2. Cease and Desist",
+                description: "Issue formal notices demanding cessation of infringing activities.",
+                category: "Step 2",
+              },
+              {
+                step: "3. Negotiation",
+                description: "Engage infringers to negotiate settlements or compliance.",
+                category: "Step 3",
+              },
+              {
+                step: "4. Legal Action",
+                description: "Pursue lawsuits or injunctions in foreign courts if needed.",
+                category: "Step 4",
+              },
+              {
+                step: "5. Compliance Monitoring",
+                description: "Ensure ongoing compliance and address repeat violations.",
+                category: "Step 5",
+              },
+            ].map((step, index) => {
+              const processImages = [
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Investigation
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Notice
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Negotiation
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Court
+                "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80", // Monitoring
+              ]
+              const bgImg = processImages[index % processImages.length]
+              return (
+                <motion.div
+                  key={step.step}
+                  className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+                  style={{
+                    borderRadius: 0,
+                    backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(${bgImg})`,
+                    backgroundBlendMode: "multiply",
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <div className="flex flex-col gap-5 relative z-10">
+                    <div
+                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                      style={{ borderRadius: 0 }}
+                    >
+                      {step.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{step.step}</h3>
+                    <p className="text-[#e0e0e0] text-base leading-relaxed">{step.description}</p>
+                    <button className="inline-flex items-center text-[#00ADB5] font-medium hover:text-white transition-colors duration-300 mt-4 cursor-pointer group">
+                      Learn More
+                      <svg
+                        className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Eligibility and Requirements Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#F7F7F7]">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-[#000000]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-[#222831]">Who Can</span>{' '}
-              <span className="text-[#00ADB5]">Benefit?</span>
+              <span className="text-[#eeeeee]">Who Can</span> <span className="text-[#00ADB5]">Benefit?</span>
             </h2>
           </div>
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Eligible Clients</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Businesses with IP assets in international markets</li>
-              <li>Brands facing trademark or patent infringements</li>
-              <li>Companies in tech, luxury, or consumer goods sectors</li>
-              <li>Multinationals needing cross-border enforcement</li>
-              <li>Startups protecting IP during global expansion</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Requirements for Engagement</h3>
-            <p className="text-[#393E46]/80 mb-4">Requirements vary by case but generally include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Inventory of IP assets (trademarks, patents, etc.)</li>
-              <li>Details of infringements and target jurisdictions</li>
-              <li>Business objectives for enforcement actions</li>
-              <li>Documentation of existing IP registrations</li>
-            </ul>
-          </motion.div>
+          <div className="grid grid-cols-1 gap-6 px-2 sm:px-4 md:px-16">
+            <motion.div
+              className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
+              style={{
+                borderRadius: 0,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80)`,
+                backgroundBlendMode: "multiply",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -8 }}
+            >
+              <div className="flex flex-col gap-5 relative z-10">
+                <div
+                  className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider"
+                  style={{ borderRadius: 0 }}
+                >
+                  Eligibility
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Eligible Clients</h3>
+                <ul className="text-[#e0e0e0] list-disc list-inside mb-6">
+                  <li>Businesses with IP assets in international markets</li>
+                  <li>Brands facing trademark or patent infringements</li>
+                  <li>Companies in tech, luxury, or consumer goods sectors</li>
+                  <li>Multinationals needing cross-border enforcement</li>
+                  <li>Startups protecting IP during global expansion</li>
+                </ul>
+                <h3 className="text-xl font-bold text-white mb-3">Requirements for Engagement</h3>
+                <p className="text-[#e0e0e0] mb-4">Requirements vary by case but generally include:</p>
+                <ul className="text-[#e0e0e0] list-disc list-inside">
+                  <li>Inventory of IP assets (trademarks, patents, etc.)</li>
+                  <li>Details of infringements and target jurisdictions</li>
+                  <li>Business objectives for enforcement actions</li>
+                  <li>Documentation of existing IP registrations</li>
+                </ul>
+              </div>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300 pointer-events-none" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-32 px-4 md:px-16 lg:px-24">
+      <section className="py-32 px-4 md:px-16 lg:px-24 bg-black relative overflow-hidden">
         <div className="max-w-6xl mx-auto">
+          {/* Left Diagonal Image - Courtroom */}
+          <div
+            className="absolute left-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              clipPath: "polygon(0 0, 100% 0, 80% 100%, 0 100%)",
+              opacity: 0.1,
+            }}
+          />
+
+          {/* Right Diagonal Image - Legal documents */}
+          <div
+            className="absolute right-0 top-0 w-[45%] h-full"
+            style={{
+              backgroundImage: `url(https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0 100%)",
+              opacity: 0.1,
+            }}
+          />
+
           <motion.div
-            className="relative max-w-3xl mx-auto px-8 text-center"
+            className="relative max-w-3xl mx-auto px-8 text-center z-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-8 -left-8 w-8 h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-8 -right-8 w-8 h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -left-8 w-8 h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-8 -right-8 w-8 h-8 border-b-2 border-r-2 border-[#00ADB5]" />
-
-            <h2 className="text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Ready to Enforce</span>{' '}
-              <span className="text-[#393E46]">Your IP Rights?</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Enforce <br />
+              <span className="text-[#00ADB5]">Your IP Rights?</span>
             </h2>
-            <p className="text-[#393E46] text-lg leading-relaxed mb-6">
-              Partner with BrandSecure for expert cease and desist and enforcement services to protect your IP and combat infringements in foreign jurisdictions. Start today to safeguard your brand’s integrity.
+            <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] leading-relaxed mb-8">
+              Partner with BrandSecure for expert cease and desist and enforcement services to protect your IP and combat infringements in foreign jurisdictions. Start today to safeguard your brand's integrity.
             </p>
             <Link
               href="/contact-us"
-              className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300"
+              className="inline-flex items-center px-8 py-4 bg-[#00ADB5] text-white font-medium hover:bg-[#222831] transition-colors duration-300 group"
+              style={{ borderRadius: 0 }}
             >
               Get Started
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -414,14 +587,7 @@ export default function CeaseAndDesistEnforcementForeignJurisdictionsPage() {
       </section>
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+   
     </div>
   );
 }

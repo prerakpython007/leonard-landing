@@ -24,7 +24,7 @@ const berneConventionInfo: BerneConventionInfo[] = [
       • Administered by the World Intellectual Property Organization (WIPO).
       • Covers over 180 member countries.
       • Grants automatic copyright protection without registration.
-      • Ensures protection for at least 50 years after the author’s death.
+      • Ensures protection for at least 50 years after the author's death.
       • Recognizes moral and economic rights of creators.
       • Facilitates cross-border copyright enforcement.
     `,
@@ -102,7 +102,7 @@ export default function GlobalCopyrightFilingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f3460] relative rounded-b-[50px] sm:rounded-b-[100px] lg:rounded-b-[170px] font-montserrat overflow-hidden">
+    <div className="min-h-screen bg-[#0f3460] relative  font-montserrat overflow-hidden">
       {/* Hero Section - Keep existing but update background */}
       <motion.section
         className="relative h-[95vh] flex items-center justify-center px-4 md:px-16 lg:px-24 overflow-hidden"
@@ -259,23 +259,54 @@ export default function GlobalCopyrightFilingPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4 md:px-16">
             {[
-              { country: 'United States', description: 'Offers voluntary copyright registration through the US Copyright Office for enhanced legal benefits.' },
-              { country: 'European Union', description: 'Provides automatic protection across EU member states with harmonized copyright laws.' },
-              { country: 'India', description: 'Grants automatic protection but allows voluntary registration for evidentiary purposes.' },
-              { country: 'Japan', description: 'Ensures automatic copyright protection with strong enforcement mechanisms.' },
-              { country: 'Australia', description: 'Provides automatic protection under the Berne Convention with no formal registration required.' },
-              { country: 'Brazil', description: 'Offers automatic copyright protection with optional registration for legal clarity.' },
+              { 
+                country: 'United States', 
+                description: 'Offers voluntary copyright registration through the US Copyright Office for enhanced legal benefits.',
+                bgImage: 'https://images.unsplash.com/photo-1569097143433-1ef3866ab2e9?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'European Union', 
+                description: 'Provides automatic protection across EU member states with harmonized copyright laws.',
+                bgImage: 'https://images.unsplash.com/photo-1519503609398-dd5f5b3b3c9f?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'India', 
+                description: 'Grants automatic protection but allows voluntary registration for evidentiary purposes.',
+                bgImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'Japan', 
+                description: 'Ensures automatic copyright protection with strong enforcement mechanisms.',
+                bgImage: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'Australia', 
+                description: 'Provides automatic protection under the Berne Convention with no formal registration required.',
+                bgImage: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=600&q=80'
+              },
+              { 
+                country: 'Brazil', 
+                description: 'Offers automatic copyright protection with optional registration for legal clarity.',
+                bgImage: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=600&q=80'
+              },
             ].map((item, index) => (
               <motion.div
                 key={item.country}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                className="bg-cover bg-center p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+                style={{
+                  backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.75)), url(${item.bgImage})`,
+                  backgroundBlendMode: 'multiply',
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{item.country}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{item.description}</p>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-3">{item.country}</h3>
+                  <p className="text-[#e0e0e0] text-base leading-relaxed">{item.description}</p>
+                </div>
+
               </motion.div>
             ))}
           </div>
@@ -293,22 +324,49 @@ export default function GlobalCopyrightFilingPage() {
           </div>
           <div className="space-y-8">
             {[
-              { step: '1. Create and Fix the Work', description: 'Produce an original work and fix it in a tangible medium (e.g., written, recorded).' },
-              { step: '2. Automatic Protection', description: 'Gain automatic copyright protection in Berne member countries upon creation.' },
-              { step: '3. Consider Voluntary Registration', description: 'Optionally register in countries like the US or India for legal advantages.' },
-              { step: '4. Submit Registration Application', description: 'File an application with the national copyright office, including work copies and fees.' },
-              { step: '5. Enforce Your Rights', description: 'Monitor and enforce your copyright through legal action or licensing agreements.' },
+              { 
+                step: '1. Create and Fix the Work', 
+                description: 'Produce an original work and fix it in a tangible medium (e.g., written, recorded).',
+                bgImage: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '2. Automatic Protection', 
+                description: 'Gain automatic copyright protection in Berne member countries upon creation.',
+                bgImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '3. Consider Voluntary Registration', 
+                description: 'Optionally register in countries like the US or India for legal advantages.',
+                bgImage: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '4. Submit Registration Application', 
+                description: 'File an application with the national copyright office, including work copies and fees.',
+                bgImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80'
+              },
+              { 
+                step: '5. Enforce Your Rights', 
+                description: 'Monitor and enforce your copyright through legal action or licensing agreements.',
+                bgImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80'
+              },
             ].map((step, index) => (
               <motion.div
                 key={step.step}
-                className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/10"
+                className="bg-cover bg-center p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+                style={{
+                  backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.75)), url(${step.bgImage})`,
+                  backgroundBlendMode: 'multiply',
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <h3 className="text-xl font-bold text-[#222831] mb-3">{step.step}</h3>
-                <p className="text-[#393E46]/80 text-base leading-relaxed">{step.description}</p>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-3">{step.step}</h3>
+                  <p className="text-[#e0e0e0] text-base leading-relaxed">{step.description}</p>
+                </div>
+
               </motion.div>
             ))}
           </div>
@@ -325,27 +383,34 @@ export default function GlobalCopyrightFilingPage() {
             </h2>
           </div>
           <motion.div
-            className="bg-white rounded-xl p-8 shadow-md border border-[#00ADB5]/10"
+            className="bg-cover bg-center p-8 shadow-md border border-[#00ADB5]/40 hover:border-[#00ADB5] relative overflow-hidden group"
+            style={{
+              backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.87) 80%, rgba(0,0,0,0.82)), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80)`,
+              backgroundBlendMode: 'multiply',
+            }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Who Can Claim Copyright?</h3>
-            <ul className="text-[#393E46]/80 list-disc list-inside mb-6">
-              <li>Creators of original literary, artistic, or musical works</li>
-              <li>Businesses or organizations owning copyrighted works</li>
-              <li>Assignees or licensees of copyrighted works</li>
-              <li>Individuals or entities in Berne member countries</li>
-              <li>Collaborators or joint authors of creative works</li>
-            </ul>
-            <h3 className="text-xl font-bold text-[#222831] mb-3">Requirements for Protection</h3>
-            <p className="text-[#393E46]/80 mb-4">Requirements vary by country but generally include:</p>
-            <ul className="text-[#393E46]/80 list-disc list-inside">
-              <li>Original work fixed in a tangible medium</li>
-              <li>Copy of the work for registration (if applicable)</li>
-              <li>Creator’s details (name, nationality, address)</li>
-              <li>Application form for voluntary registration</li>
-            </ul>
+            <div className="relative z-10">
+              <h3 className="text-xl font-bold text-white mb-3">Who Can Claim Copyright?</h3>
+              <ul className="text-[#e0e0e0] list-disc list-inside mb-6">
+                <li>Creators of original literary, artistic, or musical works</li>
+                <li>Businesses or organizations owning copyrighted works</li>
+                <li>Assignees or licensees of copyrighted works</li>
+                <li>Individuals or entities in Berne member countries</li>
+                <li>Collaborators or joint authors of creative works</li>
+              </ul>
+              <h3 className="text-xl font-bold text-white mb-3">Requirements for Protection</h3>
+              <p className="text-[#e0e0e0] mb-4">Requirements vary by country but generally include:</p>
+              <ul className="text-[#e0e0e0] list-disc list-inside">
+                <li>Original work fixed in a tangible medium</li>
+                <li>Copy of the work for registration (if applicable)</li>
+                <li>Creator's details (name, nationality, address)</li>
+                <li>Application form for voluntary registration</li>
+              </ul>
+            </div>
+
           </motion.div>
         </div>
       </section>
@@ -453,14 +518,7 @@ export default function GlobalCopyrightFilingPage() {
       )}
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
-      </div>
+      
     </div>
   );
 }
