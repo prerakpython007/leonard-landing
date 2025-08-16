@@ -539,13 +539,11 @@ export default function InternationalPatentFilingPage() {
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#00ADB5 #222831' }}
           >
             <style>{`
               ::-webkit-scrollbar { width: 8px; }
-              ::-webkit-scrollbar-track { background: #222831; border-radius: 4px; }
               ::-webkit-scrollbar-thumb { background: #00ADB5; border-radius: 4px; }
-              ::-webkit-scrollbar-thumb:hover { background: #008b91; }
+              ::-webkit-scrollbar-track { background: #222831; }
             `}</style>
             <button
               onClick={closePopup}
@@ -574,3 +572,4 @@ export default function InternationalPatentFilingPage() {
     </div>
   );
 }
+

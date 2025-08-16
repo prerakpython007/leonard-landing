@@ -301,18 +301,19 @@ export default function InternationalTrademarkFilingPage() {
                 category: 'Pacific Region',
               },
             ].map((item, index) => {
+              // Add countryImages array here
               const countryImages = [
                 "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
               ];
               const bgImg = countryImages[index % countryImages.length];
               return (
                 <motion.div
-                  key={item.country}
+                  key={item.title}
                   className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
                   style={{
                     borderRadius: 0,
@@ -326,7 +327,7 @@ export default function InternationalTrademarkFilingPage() {
                 >
                   <div className="flex flex-col gap-5 relative z-10">
                     <h3 className="text-xl font-bold text-white mb-3">
-                      {item.country}
+                      {item.title}
                     </h3>
                     <p className="text-[#e0e0e0] text-base leading-relaxed">
                       {item.description}
@@ -432,7 +433,7 @@ export default function InternationalTrademarkFilingPage() {
               className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
               style={{
                 borderRadius: 0,
-                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80)`,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,173,181,0.9) 100%), url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80)`,
                 backgroundBlendMode: 'multiply',
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -441,7 +442,7 @@ export default function InternationalTrademarkFilingPage() {
               whileHover={{ y: -8 }}
             >
               <div className="flex flex-col gap-5 relative z-10">
-                <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                <div className="px-3 py-1 text-xs font-medium bg-white/20 text-white w-fit uppercase tracking-wider mb-4" style={{ borderRadius: 0 }}>
                   Eligibility
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">
@@ -462,7 +463,7 @@ export default function InternationalTrademarkFilingPage() {
               className="group bg-cover bg-center p-8 shadow-md hover:shadow-2xl transition-all duration-300 border border-[#222]/40 hover:border-[#00ADB5] relative overflow-hidden"
               style={{
                 borderRadius: 0,
-                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80)`,
+                backgroundImage: `linear-gradient(120deg, rgba(0,0,0,0.85) 80%, rgba(0,173,181,0.9) 100%), url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80)`,
                 backgroundBlendMode: 'multiply',
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -471,7 +472,7 @@ export default function InternationalTrademarkFilingPage() {
               whileHover={{ y: -8 }}
             >
               <div className="flex flex-col gap-5 relative z-10">
-                <div className="px-3 py-1 text-xs font-medium bg-white/10 text-white w-fit uppercase tracking-wider" style={{ borderRadius: 0 }}>
+                <div className="px-3 py-1 text-xs font-medium bg-white/20 text-white w-fit uppercase tracking-wider mb-4" style={{ borderRadius: 0 }}>
                   Documentation
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">
