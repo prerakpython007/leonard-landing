@@ -77,7 +77,7 @@ const Landing = () => {
   }, [handleMouseMove])
 
   return (
-    <div className="bg-[#000000] relative overflow-x-hidden">
+    <div className="bg-[#eeeeee] relative overflow-x-hidden">
       {/* Hero Section with Enhanced Interactive Parallax */}
       <section ref={containerRef} className="relative min-h-screen flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-4 w-full">

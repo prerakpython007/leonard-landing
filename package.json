@@ -20,6 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.7",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tabler/icons-react": "^3.34.1",
     "@types/react-leaflet": "^3.0.0",

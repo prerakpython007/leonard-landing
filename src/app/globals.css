@@ -114,3 +114,18 @@ button:hover ~ .custom-cursor {
   background-color: #00ADB5;
   border-radius: 20px;
 }
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
