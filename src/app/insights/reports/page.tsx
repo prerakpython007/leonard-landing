@@ -380,13 +380,13 @@ export default function ReportsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Report Type</label>
-                <select className="w-full px-4 py-2 border-0 border-b-2 border-gray-200 focus:border-blue-500 outline-none transition-colors bg-transparent">
-                  <option className="bg-white text-black">IP Portfolio Analysis</option>
-                  <option className="bg-white text-black">Market Competition Report</option>
-                  <option className="bg-white text-black">Technology Landscape</option>
-                  <option className="bg-white text-black">Risk Assessment</option>
-                  <option className="bg-white text-black">Licensing Strategy</option>
-                  <option className="bg-white text-black">Custom Analysis</option>
+                <select className="w-full px-4 py-2 border-0 border-b-2 border-gray-200 focus:border-blue-500 outline-none transition-colors bg-transparent [&>*]:bg-blue-600 [&>*]:text-white">
+                  <option>IP Portfolio Analysis</option>
+                  <option>Market Competition Report</option>
+                  <option>Technology Landscape</option>
+                  <option>Risk Assessment</option>
+                  <option>Licensing Strategy</option>
+                  <option>Custom Analysis</option>
                 </select>
               </div>
               <div>

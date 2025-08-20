@@ -603,6 +603,8 @@ const ScrollImageTextSection = () => {
     offset: ["start start", "end end"],
   });
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+
   const stages = [
     {
       image: "./who-are-we.png",
@@ -624,8 +626,8 @@ const ScrollImageTextSection = () => {
   const totalStages = stages.length;
 
   return (
-    <div ref={sectionRef} className="relative h-[300vh] md:h-[400vh] w-full bg-[#0a0b0b]">
-      <div className="sticky top-0 h-screen w-full flex flex-col md:flex-row">
+    <div ref={sectionRef} className="relative h-[200vh] sm:h-[300vh] md:h-[400vh] w-full bg-[#0a0b0b]">
+      <div className="sticky top-0 h-[90vh] sm:h-screen w-full flex flex-col md:flex-row">
         {/* Left Side - Images (hidden on mobile in favor of top section) */}
         <div className="hidden md:block w-full md:w-1/2 h-full relative overflow-hidden">
           {stages.map((stage, index) => {

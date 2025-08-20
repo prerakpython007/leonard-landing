@@ -79,25 +79,25 @@ const Landing = () => {
   return (
     <div className="bg-[#eeeeee] relative overflow-x-hidden">
       {/* Hero Section with Enhanced Interactive Parallax */}
-      <section ref={containerRef} className="relative min-h-screen flex items-center justify-center">
+      <section ref={containerRef} className="relative lg:min-h-screen  h-[80vh] flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-4 w-full">
           <motion.div
             style={{ y: textY }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col -mt-16"
+            className="flex flex-col -mt-8 sm:-mt-16"
           >
-            <span className="text-[#00ADB5] my-7  text-xl font-medium tracking-wide block mb-6 md:text-base md:mb-4 text-center">
-              Welcome to <span className="font-extrabold" style={{ fontFamily: 'EduNSWACTCursive, cursive', fontWeight: 'normal' }}> Leonard Solutions</span>
+            <span className="text-[#00ADB5] my-4 sm:my-7 text-2xl sm:text-4xl md:text-5xl font-medium tracking-wide block mb-4 sm:mb-6 text-center">
+              Welcome to <span className="font-extrabold block sm:inline" style={{ fontFamily: 'EduNSWACTCursive, cursive', fontWeight: 'normal' }}> Leonard Solutions</span>
             </span>
 
-            <div className="text-left mb-6">
-              <div className="flex items-baseline gap-4">
-                <h1 className="text-4xl sm:text-3xl md:text-3xl font-black text-black m-0 leading-none uppercase tracking-wider">
+            <div className="text-center mb-6">
+              <div className="flex items-baseline justify-center gap-4">
+                <h1 className="text-4xl sm:text-5xl md:text-5xl font-black text-black m-0 leading-none uppercase tracking-wider">
                   IPR
                 </h1>
-                <div className="text-lg sm:text-xl md:text-2xl text-black font-normal">is our</div>
+                <div className="text-2xl sm:text-3xl md:text-3xl text-black font-normal">is our</div>
               </div>
             </div>
 
@@ -168,7 +168,7 @@ const Landing = () => {
                   viewport={{ once: true }}
                 >
                   <h1
-                    className="text-[#ffffff] text-[5rem] sm:text-[7rem] md:text-[3rem] lg:text-[13rem] xl:text-[16rem] 2xl:text-[18rem] font-extrabold text-center relative z-10 will-change-transform leading-[0.8] sm:leading-[0.85] md:leading-[0.9] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] lg:tracking-[0.35em]"
+                    className="text-[#ffffff] text-[3.5rem] sm:text-[7rem] md:text-[8rem] lg:text-[13rem] xl:text-[16rem] 2xl:text-[18rem] font-extrabold text-center relative z-10 will-change-transform leading-[0.8] sm:leading-[0.85] md:leading-[0.9] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] lg:tracking-[0.35em]"
                     style={{
                       textShadow:
                         "-2px 0px 0px rgba(100, 100, 100, 0.8), -4px 2px 0px rgba(80, 80, 80, 0.6), -6px 4px 0px rgba(60, 60, 60, 0.4), -8px 6px 0px rgba(40, 40, 40, 0.3), -10px 8px 0px rgba(20, 20, 20, 0.2)",
@@ -186,9 +186,9 @@ const Landing = () => {
             </h2>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center px-4 sm:px-0">
               <motion.button
-                className="bg-gradient-to-r from-[#00ADB5] to-[#009ca3] text-[#EEEEEE] px-6 py-3 rounded-lg text-sm font-semibold inline-flex items-center justify-center shadow-lg shadow-[#00ADB5]/15 transition-all duration-300 hover:from-[#009ca3] hover:to-[#00ADB5] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#00ADB5]/25"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#00ADB5] to-[#009ca3] text-[#EEEEEE] px-6 py-3 rounded-lg text-sm font-semibold inline-flex items-center justify-center shadow-lg shadow-[#00ADB5]/15 transition-all duration-300 hover:from-[#009ca3] hover:to-[#00ADB5] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#00ADB5]/25"
                 onClick={() => router.push("/contact-us")}
               >
                 Start Consultation

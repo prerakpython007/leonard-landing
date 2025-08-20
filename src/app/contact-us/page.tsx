@@ -154,8 +154,8 @@ export default function ContactPage() {
       <div className="relative z-10 space-y-12 sm:space-y-16 md:space-y-24">
         {/* Hero Section */}
         <motion.section className="relative min-h-[70vh] flex items-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-          <div className="w-full flex items-center">
-            <motion.div className="w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+          <div className="w-full flex flex-col md:flex-row items-center">
+            <motion.div className="w-full md:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 mb-8 md:mb-0" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               <div className="max-w-2xl">
                 <motion.h1
                   className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-left relative z-10"
@@ -179,8 +179,8 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            <motion.div className="w-1/2" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
-              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
+            <motion.div className="w-full md:w-1/2" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+              <div className="relative h-[250px] sm:h-[300px] md:h-[400px] w-full">
                 <WorldMap
                   dots={[
                     { start: { lat: 19.076, lng: 72.8777 }, end: { lat: 40.7128, lng: -74.006 } },
@@ -197,18 +197,18 @@ export default function ContactPage() {
 
         {/* Head Office & Contact Form Section */}
         <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
-          <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
+          <div className="max-w-7xl mx-auto space-y-8 sm:space-y-16 md:space-y-32">
             {/* Head Office */}
-            <motion.div className="grid md:grid-cols-2 gap-16 items-start" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
               <div className="space-y-6">
-                <div className="relative h-[500px] overflow-hidden shadow-xl">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden shadow-xl">
                   <div className="absolute inset-0 bg-[#00ADB5]/10 transform rotate-3" />
                   <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" alt="Our Office" fill className="object-cover" />
                 </div>
               </div>
 
               <div className="relative">
-                <h2 className="text-4xl font-bold text-[#222831] mb-6">Head Office (Mumbai)</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-[#222831] mb-4 sm:mb-6">Head Office (Mumbai)</h2>
                 <div className="space-y-8">
                   {contactDetails.map((detail, index) => (
                     <motion.div key={detail.title} className="group flex items-start gap-4" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }}>
@@ -276,70 +276,104 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* ---------- FULL WIDTH STATS SECTION ---------- */}
-        <section className="relative">
-  {/* Title */}
-  <div className="text-center py-8 px-4">
-    <motion.h2
-      className="text-[#000000] text-3xl sm:text-4xl md:text-5xl font-extrabold"
-      style={{
-        letterSpacing: "0.2em",
-        textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
-      }}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-    >
-      OUR GLOBAL REACH
-    </motion.h2>
-    <p className="text-lg text-[#393E46] mt-4">
-      Serving clients worldwide from our Mumbai headquarters
-    </p>
-  </div>
+        {/* ---------- FIXED FULL WIDTH STATS SECTION FOR MOBILE ---------- */}
+        <section className="relative py-12 md:py-0">
+          {/* Title */}
+          <div className="text-center px-4 mb-8 md:mb-12">
+            <motion.h2
+              className="text-[#000000] text-2xl sm:text-4xl md:text-5xl font-extrabold"
+              style={{
+                letterSpacing: "0.1em",
+                textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6), -2px 1px 0px rgba(80, 80, 80, 0.4)",
+              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              OUR GLOBAL REACH
+            </motion.h2>
+            <p className="text-lg text-[#393E46] mt-4 max-w-2xl mx-auto">
+              Serving clients worldwide from our Mumbai headquarters
+            </p>
+          </div>
 
-  {/* Full Width Stats */}
-  <div className="w-full">
-    <div className="flex h-screen overflow-hidden">
-      {stats.map((s) => {
-        const isSupport = s.id === "support";
-        const display = isSupport ? s.staticValue : `${s.target}${s.suffix}`;
-
-        return (
-          <article
-            key={s.id}
-            className="relative flex-1 group hover:flex-[2] flex transition-[flex] duration-500 ease-out"
-          >
-            <div className="absolute inset-0">
-              <Image src={s.img} alt={s.title} fill className="object-cover" />
+          {/* Mobile: Grid layout */}
+          <div className="block md:hidden">
+            <div className="grid grid-cols-2 gap-4 px-4">
+              {stats.map((s) => {
+                const isSupport = s.id === "support";
+                const display = isSupport ? s.staticValue : `${s.target}${s.suffix}`;
+                
+                return (
+                  <div 
+                    key={s.id} 
+                    className="relative h-48 rounded-xl overflow-hidden shadow-lg group"
+                  >
+                    <Image 
+                      src={s.img} 
+                      alt={s.title} 
+                      fill 
+                      className="object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
+                    
+                    <div className="relative z-10 flex flex-col justify-center items-center h-full p-4 text-white">
+                      <h3 className="text-xs tracking-wider uppercase font-medium opacity-90 mb-2 text-center">
+                        {s.title}
+                      </h3>
+                      <div className="text-2xl font-extrabold text-[#00ADB5] leading-none mb-2">
+                        {display}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
+          </div>
 
-            <div className="relative z-10 flex flex-col justify-center h-full p-6 md:p-8 text-white">
-              <div className="text-center">
-                <h3 className="text-sm md:text-base tracking-wider uppercase font-medium opacity-90 mb-3">
-                  {s.title}
-                </h3>
+          {/* Desktop: Full Width Stats */}
+          <div className="hidden md:block">
+            <div className="flex flex-col sm:flex-row h-[400px] sm:h-screen overflow-hidden">
+              {stats.map((s) => {
+                const isSupport = s.id === "support";
+                const display = isSupport ? s.staticValue : `${s.target}${s.suffix}`;
 
-                <div className="text-4xl md:text-6xl font-extrabold text-[#00ADB5] leading-none mb-4">
-                  {display}
-                </div>
+                return (
+                  <article
+                    key={s.id}
+                    className="relative flex-1 group hover:flex-[2] flex transition-[flex] duration-500 ease-out"
+                  >
+                    <div className="absolute inset-0">
+                      <Image src={s.img} alt={s.title} fill className="object-cover" />
+                    </div>
+                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
 
-                <p className="text-sm md:text-base text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {s.id === "countries" && "We advise clients across Asia, Europe, and the Americas."}
-                  {s.id === "clients" && "From startups to multinational corporations."}
-                  {s.id === "cases" && "Corporate, IP, tax, and litigation matters resolved."}
-                  {s.id === "support" && "Round-the-clock assistance for urgent needs."}
-                </p>
-              </div>
+                    <div className="relative z-10 flex flex-col justify-center h-full p-6 md:p-8 text-white">
+                      <div className="text-center">
+                        <h3 className="text-sm md:text-base tracking-wider uppercase font-medium opacity-90 mb-3">
+                          {s.title}
+                        </h3>
+
+                        <div className="text-4xl md:text-6xl font-extrabold text-[#00ADB5] leading-none mb-4">
+                          {display}
+                        </div>
+
+                        <p className="text-sm md:text-base text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {s.id === "countries" && "We advise clients across Asia, Europe, and the Americas."}
+                          {s.id === "clients" && "From startups to multinational corporations."}
+                          {s.id === "cases" && "Corporate, IP, tax, and litigation matters resolved."}
+                          {s.id === "support" && "Round-the-clock assistance for urgent needs."}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="absolute right-0 top-0 h-full w-[1px] bg-white/20" />
+                  </article>
+                );
+              })}
             </div>
-            <div className="absolute right-0 top-0 h-full w-[1px] bg-white/20" />
-          </article>
-        );
-      })}
-    </div>
-  </div>
-</section>
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -229,17 +229,17 @@ export default function AboutPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="w-full flex items-center">
-            {/* Left Side - About Us Text (Centered Vertically) */}
+          <div className="w-full flex flex-col md:flex-row items-center">
+            {/* Left Side - About Us Text (Centered) */}
             <motion.div
-              className="w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12"
+              className="w-full md:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 mb-8 md:mb-0 text-center md:text-left"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="max-w-xl">
                 <motion.h1
-                  className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-left relative z-10"
+                  className="text-[#000000] text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-center md:text-left relative z-10"
                   style={{
                     letterSpacing: "0.3em",
                     textShadow:
@@ -257,7 +257,7 @@ export default function AboutPage() {
                     Discover Our Expertise and Commitment to Excellence in Intellectual Property & Corporate Law
                   </p>
                   <div className="flex items-center space-x-2 text-[#00ADB5]">
-                    <span className="text-sm font-medium tracking-wider uppercase">Since 2008</span>
+                    <span className="text-sm font-medium  tracking-wider uppercase">Since 2008</span>
                   </div>
                 </div>
               </div>
@@ -265,12 +265,12 @@ export default function AboutPage() {
 
             {/* Right Side - Horizontal Rectangle Image */}
             <motion.div
-              className="w-1/2"
+              className="w-full md:w-1/2"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="relative h-[300px] sm:h-[350px] md:h-[400px] w-full">
+              <div className="relative h-[250px] sm:h-[300px] md:h-[400px] w-full">
                 <div className="relative h-full w-full overflow-hidden">
                   <Image
                     src="/office.png"
@@ -299,16 +299,16 @@ export default function AboutPage() {
               >
                 {/* Text content with improved line spacing */}
                 <div className="space-y-8">
-                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
+                  <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose px-2 sm:px-0">
                     <strong>Leonard Corporate Solutions Pvt. Ltd.</strong> is a leading Indian law firm headquartered in <strong>Mumbai</strong>, specializing exclusively in <strong>Intellectual Property Rights (IPR)</strong>, <strong>Company Law</strong>, and <strong>Taxation</strong>. Since <strong>2008</strong>, we've been the trusted legal partner for <strong>startups</strong>, <strong>SMEs</strong>, and <strong>multinational companies</strong>, helping them safeguard their innovations and navigate complex legal landscapes.
                   </p>
-                  <p className="text-[#393E46] text-base sm:text-lg leading-loose">
+                  <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose mt-4 px-2 sm:px-0">
                     With a highly skilled team of <strong>IP attorneys</strong>, <strong>corporate law experts</strong>, and <strong>legal consultants</strong>, we deliver tailored legal solutions across all areas of intellectual property law — from <strong>trademark and patent registration</strong> to <strong>copyright protection</strong> and <strong>licensing agreements</strong>.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
-                  <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl space-y-2 shadow-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+                  <div className="bg-white/50 backdrop-blur-sm p-4 sm:p-6 rounded-xl space-y-2 shadow-lg">
                     <div
                       ref={yearsRef}
                       className="flex items-baseline "
@@ -386,13 +386,24 @@ export default function AboutPage() {
               </div>
               
               <div className="relative">
-                <h2 className="text-4xl font-bold text-[#222831] mb-6">Our Vision</h2>
+                 <motion.h1
+        className="text-[#000000] text-3xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
+        style={{
+          letterSpacing: "0.3em",
+          textShadow:
+            "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+      >Our Vision</motion.h1>
                 <div className="text-lg text-[#393E46] leading-loose space-y-8">
                   <h3 className="text-2xl font-bold text-[#222831]">Shaping the Future of Intellectual Property & Corporate Law</h3>
-                  <p>
+                  <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose px-2 sm:px-0">
                     At <strong>Leonard Corporate Solutions Pvt. Ltd.</strong>, our vision is to be recognized as <strong>India's most trusted</strong> and <strong>globally acclaimed Intellectual Property and Corporate Law Firm</strong>. We aim to empower businesses of all sizes — from <strong>startups to Fortune 500s</strong> — to secure, protect, and monetize their <strong>intellectual property assets</strong> with confidence.
                   </p>
-                  <p>
+                  <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose px-2 sm:px-0">
                     We're building a future where <strong>legal innovation meets technology</strong>, making it seamless for companies to navigate the complexities of <strong>IP rights</strong>, <strong>corporate compliance</strong>, and <strong>global legal standards</strong>. Our commitment lies in delivering legal solutions driven by <strong>excellence</strong>, <strong>integrity</strong>, and <strong>forward-thinking strategies</strong>.
                   </p>
                 </div>
@@ -457,10 +468,21 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <div className="relative z-10">
-                <h2 className="text-4xl font-bold text-[#222831] mb-6">Our Mission</h2>
+                <motion.h1
+        className="text-[#000000] text-3xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
+        style={{
+          letterSpacing: "0.3em",
+          textShadow:
+            "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+        }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+      >Our Mission</motion.h1>
                 <div className="text-lg text-[#393E46] leading-loose space-y-8">
                   <h3 className="text-2xl font-bold text-[#222831]">Delivering Excellence in IP & Corporate Legal Services</h3>
-                  <p>
+                  <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose px-2 sm:px-0">
                     At <strong>Leonard Corporate Solutions Pvt. Ltd.</strong>, our mission is to provide <strong>exceptional legal services</strong> by combining <strong>deep legal expertise</strong> with <strong>innovative, tech-enabled solutions</strong>. We are committed to helping clients <strong>protect, manage, and scale</strong> their intellectual property assets — all while upholding the highest standards of <strong>integrity and professionalism</strong>.
                   </p>
                   <p>
@@ -481,14 +503,14 @@ export default function AboutPage() {
 
             {/* What Drives Us Section - Single big box with 4 sections */}
             <motion.div 
-              className="flex flex-col items-center py-16"
+              className="flex flex-col items-center py-8 sm:py-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
               <motion.h1
-        className="text-[#000000] text-4xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
+        className="text-[#000000] text-3xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
         style={{
           letterSpacing: "0.3em",
           textShadow:
@@ -503,7 +525,7 @@ export default function AboutPage() {
       </motion.h1>
 
               <div className="max-w-5xl w-full">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-2">
                   {missionPoints.map((item, index) => (
                     <motion.div
                       key={item.id}
@@ -555,7 +577,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <motion.h1
-        className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-24 relative z-10 px-4"
+        className="text-[#000000] text-3xl sm:text-5xl md:text-xl lg:text-3xl font-extrabold text-center mb-24  relative z-10 px-4"
         style={{
           letterSpacing: "0.3em",
           textShadow:
@@ -575,7 +597,7 @@ Meet Our Team
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
               {TEAM_MEMBERS.map((member, index) => {
                 // Different light background colors for variety
                 const bgColors = [

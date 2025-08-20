@@ -24,9 +24,7 @@ const serviceCards = [
     description:
       "Full-service filing and prosecution to secure your brand identity across classes and territories.",
     route: "/service/trademark/registration",
-    // legal / documents / filing
-    image:
-      "/trademark.jpg",
+    image: "/trademark.jpg",
     category: "Registration",
   },
   {
@@ -35,7 +33,6 @@ const serviceCards = [
     description:
       "Keep protection active with our renewal reminders and filing management.",
     route: "/service/trademark/renewal",
-    // calendar / reminders
     image:
       "https://chithragupta.com/cdn/shop/products/TMrenewal-1280x720_2508be5a-7151-4758-a132-350c7fd39a1a.jpg?v=1594191997",
     category: "Maintenance",
@@ -46,7 +43,6 @@ const serviceCards = [
     description:
       "Professional responses and arguments to overcome examiner objections.",
     route: "/service/trademark/objection",
-    // legal review / documents
     image:
       "https://www.legalwiz.in/wp-content/uploads/imgpsh_fullsize_anim-2-1.jpeg",
     category: "Enforcement",
@@ -57,7 +53,6 @@ const serviceCards = [
     description:
       "Representation and strategy for opposition proceedings and disputes.",
     route: "/service/trademark/opposition",
-    // courtroom / gavel
     image:
       "https://www.indiafilings.com/learn/wp-content/uploads/2024/02/Trademark-Opposition-vs.-Litigation.jpg",
     category: "Enforcement",
@@ -68,7 +63,6 @@ const serviceCards = [
     description:
       "Securely transfer trademark ownership with clear documentation and filings.",
     route: "/service/trademark/assignment",
-    // signing documents
     image:
       "https://www.kanakkupillai.com/learn/wp-content/uploads/2024/06/How-Do-I-Record-a-Trademark-Assignment.jpg",
     category: "Maintenance",
@@ -79,7 +73,6 @@ const serviceCards = [
     description:
       "Search and clearance opinions to reduce registration risk for new logos.",
     route: "/service/trademark/logo-design",
-    // design / logo / creative
     image:
       "https://t4.ftcdn.net/jpg/00/82/10/21/360_F_82102162_tki5BtuUPJ0LWLQmV1phpPFHHVEufJ8O.jpg",
     category: "Design",
@@ -90,7 +83,6 @@ const serviceCards = [
     description:
       "Register related marks in a series to protect variations of your brand.",
     route: "/service/trademark/series",
-    // multiple products / packaging
     image:
       "https://depenning.com/wp-content/uploads/2024/05/associated-and-series-trademarks-in-india-1170x612-1.jpg",
     category: "Registration",
@@ -101,7 +93,6 @@ const serviceCards = [
     description:
       "Complementary copyright registration for creative assets tied to your brand.",
     route: "/service/copyright/registration",
-    // creative / copyright
     image:
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200",
     category: "Registration",
@@ -145,38 +136,38 @@ export default function TrademarkPage() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-10 mx-auto max-w-6xl h-full flex flex-col justify-center items-center text-center px-6"
+          className="relative z-10 mx-auto max-w-6xl h-full flex flex-col justify-center items-center text-center px-4 sm:px-6"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight">
             Trademark Services
           </h1>
-          <p className="mt-6 max-w-3xl text-base sm:text-lg md:text-xl text-white/90 font-light">
+          <p className="mt-4 sm:mt-6 max-w-3xl text-base sm:text-lg md:text-xl text-white/90 font-light px-4">
             Protect what makes your business distinct — names, logos, slogans and more. We provide end-to-end trademark services tailored to Indian and global markets.
           </p>
         </motion.div>
       </section>
 
       {/* Overview Section */}
-      <section className="relative bg-white px-4 py-32 md:px-16 lg:px-24">
+      <section className="relative bg-white px-4 py-16 md:px-16 lg:px-24 md:py-32">
         <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="mb-24"
+            className="mb-16 md:mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative flex items-center">
+            <div className="relative flex flex-col lg:flex-row items-center">
               <div
-                className="relative w-3/5 z-20 mr-[-150px] ml-[-100px]"
+                className="relative w-full lg:w-3/5 z-20 lg:mr-[-150px] lg:ml-[-100px] mb-8 lg:mb-0"
                 style={{
                   filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.25))",
                 }}
               >
-                <div className="bg-white/95 p-12" style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}>
-                  <div className="space-y-6">
+                <div className="bg-white/95 p-6 md:p-8 lg:p-12" style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}>
+                  <div className="space-y-4 md:space-y-6">
                     <motion.h1
-                      className="text-[#000000] text-4xl sm:text-5xl md:text-6xl font-extrabold relative z-10 px-4"
+                      className="text-[#000000] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold relative z-10 px-2 md:px-4"
                       style={{
                         letterSpacing: "0.1em",
                         textShadow:
@@ -190,13 +181,13 @@ export default function TrademarkPage() {
                       Trademark Overview
                     </motion.h1>
 
-                    <p className="text-lg leading-relaxed text-[#393E46]">
-                      A trademark protects your brand’s distinct signs — words, logos, shapes, or combinations. Registration grants exclusive rights and remedies against unauthorised use.
+                    <p className="text-base md:text-lg leading-relaxed text-[#393E46]">
+                      A trademark protects your brand's distinct signs — words, logos, shapes, or combinations. Registration grants exclusive rights and remedies against unauthorised use.
                     </p>
-                    <p className="text-lg leading-relaxed text-[#393E46]">
+                    <p className="text-base md:text-lg leading-relaxed text-[#393E46]">
                       We assist with searches, filing, prosecution, renewals, assignments, and enforcement — giving brands legal certainty.
                     </p>
-                    <p className="text-lg font-medium text-[#393E46]">
+                    <p className="text-base md:text-lg font-medium text-[#393E46]">
                       📩 For tailored advice, reach out:{" "}
                       <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">info@leonardsolutions.in</a>
                     </p>
@@ -204,7 +195,7 @@ export default function TrademarkPage() {
                 </div>
               </div>
 
-              <div className="relative z-10 h-[520px] w-4/5">
+              <div className="relative z-10 h-64 md:h-96 lg:h-[520px] w-full lg:w-4/5">
                 <div className="absolute inset-0">
                   <img src="/trademark.jpg" alt="Trademark visual" className="h-full w-full object-cover object-right" />
                 </div>
@@ -215,11 +206,11 @@ export default function TrademarkPage() {
       </section>
 
       {/* ---------- Services Section — MATCHED TO NATIONAL PAGE ---------- */}
-      <section className="relative px-4 bg-[#000000] py-16 md:px-16 lg:px-24">
+      <section className="relative px-4 bg-[#000000] py-12 md:py-16 lg:py-24 md:px-16 lg:px-24">
         <div className="relative mx-auto max-w-7xl">
-          <div className="mb-16 text-center">
+          <div className="mb-8 md:mb-12 lg:mb-16 text-center">
             <motion.h1
-              className="text-[#eeeeee] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center my-10 relative z-10 px-4"
+              className="text-[#eeeeee] text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold text-center my-6 md:my-8 lg:my-10 relative z-10 px-2 sm:px-4"
               style={{
                 letterSpacing: "0.3em",
                 textShadow:
@@ -236,7 +227,7 @@ export default function TrademarkPage() {
 
           {/* Search and Filter Section */}
           <motion.div
-            className="mb-12 space-y-6"
+            className="mb-8 md:mb-12 space-y-4 md:space-y-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -245,38 +236,38 @@ export default function TrademarkPage() {
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 md:h-5 md:w-5" />
                 <input
                   type="text"
                   placeholder="Search services..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 bg-white/90 backdrop-blur-sm focus:border-[#00ADB5] focus:outline-none text-gray-700 placeholder-gray-400 text-lg shadow-lg"
+                  className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 rounded-xl md:rounded-2xl border-2 border-gray-200 bg-white/90 backdrop-blur-sm focus:border-[#00ADB5] focus:outline-none text-gray-700 placeholder-gray-400 text-sm md:text-base lg:text-lg shadow-lg"
                 />
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm("")}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-4 w-4 md:h-5 md:w-5" />
                   </button>
                 )}
               </div>
             </div>
 
             {/* Filter Toggle and Categories */}
-            <div className="flex flex-col items-center space-y-4">
+            <div className="flex flex-col items-center space-y-3 md:space-y-4">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center space-x-2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-[#00ADB5] transition-colors shadow-lg"
+                className="flex items-center space-x-2 px-4 py-2 md:px-6 md:py-3 bg-white/90 backdrop-blur-sm rounded-lg md:rounded-xl border-2 border-gray-200 hover:border-[#00ADB5] transition-colors shadow-lg text-sm md:text-base"
               >
-                <Filter className="h-5 w-5 text-[#00ADB5]" />
+                <Filter className="h-4 w-4 md:h-5 md:w-5 text-[#00ADB5]" />
                 <span className="text-gray-700 font-medium">Filter by Category</span>
               </button>
 
               {/* Category Filters */}
               <motion.div
-                className={`flex flex-wrap justify-center gap-3 transition-all duration-300 ${
+                className={`flex flex-wrap justify-center gap-2 md:gap-3 transition-all duration-300 ${
                   showFilters ? "opacity-100 max-h-40" : "opacity-0 max-h-0 overflow-hidden"
                 }`}
               >
@@ -284,7 +275,7 @@ export default function TrademarkPage() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    className={`px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
                         ? "bg-[#00ADB5] text-white shadow-lg"
                         : "bg-white/90 text-gray-600 hover:bg-gray-100 border border-gray-200"
@@ -298,7 +289,7 @@ export default function TrademarkPage() {
 
             {/* Results Counter */}
             <div className="text-center">
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm md:text-base">
                 Showing <span className="font-bold text-[#00ADB5]">{filteredServices.length}</span> of <span className="font-bold">{serviceCards.length}</span> services
                 {searchTerm && <span> for "{searchTerm}"</span>}
                 {selectedCategory !== "All" && <span> in {selectedCategory}</span>}
@@ -308,7 +299,7 @@ export default function TrademarkPage() {
 
           {/* Services Grid */}
           <motion.div
-            className="grid grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:gap-10 md:px-16 lg:grid-cols-3"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -323,7 +314,7 @@ export default function TrademarkPage() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <motion.div
-                  className="relative h-80 overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105"
+                  className="relative h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -337,18 +328,18 @@ export default function TrademarkPage() {
                   </div>
 
                   {/* Service Name - Center */}
-                  <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">{service.title}</h3>
+                  <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight">{service.title}</h3>
                   </div>
 
                   {/* Category Badge - Top Right */}
-                  <div className="absolute top-4 right-4 opacity-80">
-                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/90 text-gray-800">{service.category}</span>
+                  <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-80">
+                    <span className="px-2 py-1 text-xs font-semibold rounded-full bg-white/90 text-gray-800">{service.category}</span>
                   </div>
 
                   {/* Know More - Bottom on Hover */}
-                  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                    <div className="bg-[#00ADB5] text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg">Know more</div>
+                  <div className="absolute bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                    <div className="bg-[#00ADB5] text-white px-4 py-1 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg">Know more</div>
                   </div>
 
                   {/* Animated border on hover */}
@@ -360,18 +351,18 @@ export default function TrademarkPage() {
 
           {/* No Results Message */}
           {filteredServices.length === 0 && (
-            <motion.div className="text-center py-16" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="h-12 w-12 text-gray-400" />
+            <motion.div className="text-center py-12 md:py-16" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+              <div className="w-16 h-16 md:w-24 md:h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <Search className="h-8 w-8 md:h-12 md:w-12 text-gray-400" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-600 mb-4">No services found</h3>
-              <p className="text-gray-500 mb-6">Try adjusting your search terms or filter criteria</p>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-600 mb-3 md:mb-4">No services found</h3>
+              <p className="text-gray-500 mb-4 md:mb-6 text-sm md:text-base">Try adjusting your search terms or filter criteria</p>
               <button
                 onClick={() => {
                   setSearchTerm("");
                   setSelectedCategory("All");
                 }}
-                className="px-6 py-3 bg-[#00ADB5] text-white rounded-xl hover:bg-[#00959c] transition-colors"
+                className="px-4 py-2 md:px-6 md:py-3 bg-[#00ADB5] text-white rounded-lg md:rounded-xl hover:bg-[#00959c] transition-colors text-sm md:text-base"
               >
                 Clear All Filters
               </button>
@@ -379,18 +370,15 @@ export default function TrademarkPage() {
           )}
 
           {/* Closing Message */}
-          <motion.div className="relative mx-auto mt-32 max-w-3xl px-8" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-            <div className="relative rounded-2xl py-12 backdrop-blur-sm">
-              <p className="text-center text-lg leading-relaxed text-[#eeeeee]">
+          <motion.div className="relative mx-auto mt-16 md:mt-24 lg:mt-32 max-w-3xl px-4 md:px-8" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+            <div className="relative rounded-xl md:rounded-2xl py-8 md:py-12 backdrop-blur-sm">
+              <p className="text-center text-base md:text-lg leading-relaxed text-[#eeeeee]">
                 At Leonard Corporate Solutions, our trademark services protect your brand through proactive advice, meticulous filings, and robust enforcement.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
-
-      {/* Extra informational blocks with rectangular images + text containers (no rounding) */}
-      
     </div>
   );
 }

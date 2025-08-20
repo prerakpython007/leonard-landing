@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Linkedin, Twitter, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const tickerVariants = {
   animate: {
@@ -18,16 +19,29 @@ const tickerVariants = {
 };
 
 export default function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <footer className="relative overflow-hidden" style={{ background: "#EEEEEE" }}>
       {/* CONNECT block */}
-      <div className="container mx-auto px-4 sm:px-6 py-20 md:px-12 lg:px-24 relative z-20">
-        <div className="flex flex-col items-center text-center py-12 sm:py-16">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 md:px-12 lg:px-24 relative z-20">
+        <div className="flex flex-col items-center text-center py-8 sm:py-12">
           <h2
-            className="font-extrabold text-[200px] text-white "
+            className="font-extrabold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] text-white"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              letterSpacing: "0.35em",
+              letterSpacing: "0.2em",
+              lineHeight: "1",
          
           textShadow: "2px 2px 8px rgba(0,0,0,0.10)",
               
@@ -63,7 +77,7 @@ export default function Footer() {
         {/* Big faded LEONARD background */}
         <div
           aria-hidden
-          className="absolute inset-0 flex text-[380px]  justify-center items-center pointer-events-none"
+          className="absolute inset-0 flex text-[120px] xs:text-[160px] sm:text-[240px] md:text-[320px] lg:text-[380px] justify-center items-center pointer-events-none"
         >
           <span
             style={{
@@ -79,7 +93,7 @@ export default function Footer() {
                 "linear-gradient(90deg, black 0%, black 55%, transparent 100%)",
             }}
           >
-            LEONARD
+            {isMobile ? 'L\nEONARD' : 'LEONARD'}
           </span>
         </div>
 
@@ -206,11 +220,11 @@ export default function Footer() {
         >
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex items-center">
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tighter">
+              <span className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter">
                 <span className="text-[#00ADB5]">IPR IS OUR  </span>
                 <span className="text-[#000000]">GAME</span>
               </span>
-              <span className="text-[#00ADB5] text-4xl sm:text-5xl md:text-6xl lg:text-7xl mx-6 sm:mx-8 md:mx-12">✦</span>
+              <span className="text-[#00ADB5] text-2xl sm:text-4xl md:text-6xl lg:text-7xl mx-4 sm:mx-6 md:mx-8 lg:mx-12">✦</span>
             </div>
           ))}
         </motion.div>

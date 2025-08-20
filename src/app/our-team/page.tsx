@@ -47,7 +47,7 @@ export default function OurTeamPage() {
 	return (
 		<div className="relative font-montserrat">
 			{/* Hero Section */}
-			<section ref={heroRef} className="relative h-[90vh] flex items-center justify-center bg-white overflow-hidden">
+			<section ref={heroRef} className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] flex items-center justify-center bg-white overflow-hidden">
 				{/* Sharper, bigger, more angular L-shaped blue gradients */}
 				<motion.div
 					className="absolute inset-0 pointer-events-none z-0"
@@ -74,20 +74,20 @@ export default function OurTeamPage() {
 				</motion.div>
 				<motion.div
 					className="absolute inset-0 w-full h-full z-10"
-					style={{ y, scale: imgScale }}
+					style={{ y, scale: imgScale, transform: `scale(${typeof window !== 'undefined' && window.innerWidth <= 640 ? 1.5 : 1})` }}
 				>
 					<img
 						src="/our-team.png"
 						alt="Our Team"
 						className="object-cover w-full h-full"
-						style={{ objectPosition: 'center 85%' }}
+						style={{ objectPosition: typeof window !== 'undefined' && window.innerWidth <= 640 ? 'center 55%' : 'center 85%' }}
 					/>
 				</motion.div>
 				<div className="text-center px-4 relative z-20 flex flex-col items-center justify-center w-full">
 					<motion.h1
-						className="font-montserrat text-white font-extrabold mb-6 tracking-[0.22em]"
+						className="font-montserrat text-white font-extrabold mb-6 tracking-[0.15em] sm:tracking-[0.22em]"
 						style={{
-							fontSize: 'clamp(5rem, 18vw, 15rem)',
+							fontSize: 'clamp(2.5rem, 12vw, 15rem)',
 							textShadow:
 								'0 4px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.35), 0 1px 1px rgba(0,0,0,0.25)',
 							letterSpacing: '0.22em',
@@ -103,14 +103,14 @@ export default function OurTeamPage() {
 			</section>
 
 			{/* Info Section */}
-			<section className="relative bg-white px-4 py-36 md:px-16 lg:px-24 overflow-visible">
-				<div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 relative">
+			<section className="relative bg-white px-4 py-16 sm:py-24 md:py-36 md:px-16 lg:px-24 overflow-visible">
+				<div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20 relative">
 					{/* Left: Big paragraph */}
 					<div className="flex-1 z-10">
 						<h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#00ADB5] mb-8 font-montserrat leading-tight drop-shadow-lg">
 							Who We Are
 						</h2>
-						<p className="text-2xl text-[#393E46] font-light max-w-2xl leading-relaxed">
+						<p className="text-lg sm:text-xl md:text-2xl text-[#393E46] font-light max-w-2xl leading-relaxed">
 							We are a diverse team of legal professionals, strategists, and innovators
 							dedicated to delivering exceptional results for our clients. Our expertise
 							spans intellectual property, corporate law, litigation, and more. <br /><br />
@@ -143,7 +143,7 @@ export default function OurTeamPage() {
 					</div>
 					{/* Right: Bigger question mark image */}
 					<div className="flex-1 flex justify-center items-center z-10 mt-12 lg:mt-0">
-						<div className="relative w-full max-w-[600px] h-[600px]">
+						<div className="relative w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] h-[400px] sm:h-[500px] lg:h-[600px]">
 							<img
 								src="/question-mark.jpg"
 								alt="Who We Are"
@@ -167,7 +167,7 @@ export default function OurTeamPage() {
 						viewport={{ once: true }}
 					>
 						<motion.h1
-							className="font-montserrat text-[#ffffff] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-24 relative z-10 px-4"
+							className="font-montserrat text-[#ffffff] text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-12 sm:mb-24 relative z-10 px-2 sm:px-4 whitespace-nowrap overflow-hidden"
 							style={{
 								letterSpacing: '0.3em',
 								textShadow:
@@ -189,7 +189,6 @@ export default function OurTeamPage() {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
 						{TEAM_MEMBERS.map((member, index) => {
-							// ...existing code for team cards...
 							const bgColors = [
 								'from-blue-50/80 to-blue-100/80',
 								'from-green-50/80 to-green-100/80',
@@ -283,5 +282,3 @@ export default function OurTeamPage() {
 		</div>
 	);
 }
-
-
