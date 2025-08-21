@@ -88,13 +88,13 @@ const Landing = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col -mt-8 sm:-mt-16"
           >
-            <span className="text-[#00ADB5] my-4 sm:my-7 text-2xl sm:text-4xl md:text-5xl font-medium tracking-wide block mb-4 sm:mb-6 text-center">
+            <span className="text-[#00ADB5] my-4 sm:my-7 text-2xl sm:text-4xl md:text-3xl font-medium tracking-wide block mb-4 sm:mb-6 text-center">
               Welcome to <span className="font-extrabold block sm:inline" style={{ fontFamily: 'EduNSWACTCursive, cursive', fontWeight: 'normal' }}> Leonard Solutions</span>
             </span>
 
             <div className="text-center mb-6">
               <div className="flex items-baseline justify-center gap-4">
-                <h1 className="text-4xl sm:text-5xl md:text-5xl font-black text-black m-0 leading-none uppercase tracking-wider">
+                <h1 className="text-4xl sm:text-5xl md:text-4xl font-black text-black m-0 leading-none uppercase tracking-wider">
                   IPR
                 </h1>
                 <div className="text-2xl sm:text-3xl md:text-3xl text-black font-normal">is our</div>

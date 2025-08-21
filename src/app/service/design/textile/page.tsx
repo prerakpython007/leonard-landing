@@ -1,170 +1,322 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Palette, ShieldCheck, FilePenLine } from 'lucide-react';
+import { Palette, ShieldCheck, FilePenLine, Search, FileText, Shield, X } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
+
+// Define the interface for textile design info
+interface TextileDesignInfo {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  detailedContent: string;
+}
+
+
+
+const textileServices = [
+  {
+    icon: Search,
+    title: 'Design Analysis',
+    description: 'We assess the novelty and registrability of your textile designs.',
+    image: "https://5.imimg.com/data5/SELLER/Default/2024/2/386747830/KB/OD/WP/71489247/digital-textile-design-500x500.jpg",
+    category: "Analysis",
+  },
+  {
+    icon: FileText,
+    title: 'Registration Strategy',
+    description: 'We develop tailored plans for design registration and protection.',
+    image: "https://5.imimg.com/data5/SELLER/Default/2024/2/386747961/FZ/OG/OX/71489247/digital-textile-design-500x500.jpg",
+    category: "Strategy",
+  },
+  {
+    icon: Shield,
+    title: 'Enforcement Support',
+    description: 'We help protect your designs against infringement and copying.',
+    image: "https://5.imimg.com/data5/SELLER/Default/2024/2/386740732/CM/WC/UJ/71489247/digital-fabric-design-services-500x500.jpg",
+    category: "Protection",
+  },
+];
+
+const benefits = [
+  'Make informed decisions with expert design protection guidance',
+  'Optimize protection with tailored registration strategies',
+  'Maximize value through strategic design management',
+];
 
 export default function TextileDesignsPage() {
-  const features = [
-    {
-      icon: Palette,
-      title: 'Textile Pattern Registration',
-      description: 'Protect your unique textile patterns, prints, and weaves with registration.',
-    },
-    {
-      icon: ShieldCheck,
-      title: 'Design Enforcement',
-      description: 'Defend your textile designs against infringement and unauthorized reproduction.',
-    },
-    {
-      icon: FilePenLine,
-      title: 'Design Portfolio Strategy',
-      description: 'Develop a strategy to manage and expand your textile design portfolio.',
-    },
-  ];
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedInfo, setSelectedInfo] = useState<TextileDesignInfo | null>(null);
+
+  const handleExploreClick = (info: TextileDesignInfo) => {
+    setSelectedInfo(info);
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelectedInfo(null);
+  };
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] relative rounded-b-[50px] sm:rounded-b-[100px] md:rounded-b-[170px] font-montserrat overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12">
-      {/* Grid Pattern */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: '20px 20px sm:30px 30px',
-        }}
-      />
+    <div className="font-montserrat relative min-h-screen overflow-hidden bg-[#EEEEEE]">
+      {/* Popup */}
+      {showPopup && selectedInfo && (
+        <motion.div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-4 sm:p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={closePopup}
+        >
+          <motion.div
+            className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-md relative"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+            style={{ scrollbarWidth: 'thin', scrollbarColor: '#00ADB5 #222831' }}
+          >
+            <style>{`
+              ::-webkit-scrollbar { width: 8px; }
+              ::-webkit-scrollbar-track { background: #222831; border-radius: 4px; }
+              ::-webkit-scrollbar-thumb { background: #00ADB5; border-radius: 4px; }
+              ::-webkit-scrollbar-thumb:hover { background: #008b91; }
+            `}</style>
+            <button
+              onClick={closePopup}
+              className="absolute top-4 right-4 p-2 text-[#393E46] hover:text-[#00ADB5] hover:bg-[#00ADB5]/10 rounded-full"
+            >
+              <X size={24} />
+            </button>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222831] mb-4 sm:mb-6">{selectedInfo.title}</h2>
+            <ul className="text-[#393E46]/85 text-sm sm:text-base leading-relaxed space-y-2">
+              {selectedInfo.detailedContent.split('\n').map((line, index) => {
+                line = line.trim();
+                if (!line) return null;
+                return (
+                  <li key={index} className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:text-[#00ADB5]">
+                    {line.replace(/^•\s*/, '')}
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        </motion.div>
+      )}
 
-      {/* Hero Section */}
-      <motion.section
-        className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Corner Angles */}
-        <div className="absolute top-4 left-4 w-8 h-8 sm:top-6 sm:left-6 sm:w-10 sm:h-10 md:top-8 md:left-8 md:w-12 md:h-12 border-t-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute top-4 right-4 w-8 h-8 sm:top-6 sm:right-6 sm:w-10 sm:h-10 md:top-8 md:right-8 md:w-12 md:h-12 border-t-2 border-r-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-4 left-4 w-8 h-8 sm:bottom-6 sm:left-6 sm:w-10 sm:h-10 md:bottom-8 md:left-8 md:w-12 md:h-12 border-b-2 border-l-2 border-[#00ADB5] hidden lg:block" />
-        <div className="absolute bottom-4 right-4 w-8 h-8 sm:bottom-6 sm:right-6 sm:w-10 sm:h-10 md:bottom-8 md:right-8 md:w-12 md:h-12 border-b-2 border-r-2 border-[#00ADB5] hidden lg:block" />
+      {/* HERO */}
+      <section className="relative h-[70vh] md:h-[80vh] lg:h-[90vh] overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/5fdab69ae938ca7a7d20c7f8/1692548156729-37XY7HSVEMGX5H5L28TY/image-asset.jpeg"
+            alt="Textile Designs hero"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/45" />
+        </div>
 
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-7xl mx-auto text-center px-4"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative z-10 mx-auto max-w-6xl h-full flex flex-col justify-center items-center text-center px-4 sm:px-6"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#222831] relative inline-block tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight">
             Textile Designs
-            <span className="absolute top-1/2 -left-8 sm:-left-12 md:-left-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
-            <span className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 -translate-y-1/2 text-[#00ADB5] text-3xl sm:text-4xl md:text-5xl animate-pulse opacity-50">✦</span>
           </h1>
-          <p className="mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-[#393E46]/80 max-w-2xl mx-auto font-light">
-            Secure Your Textile Patterns and Prints
+          <p className="mt-4 sm:mt-6 max-w-3xl text-base sm:text-lg md:text-xl text-white/90 font-light px-4">
+            Expert design protection services to safeguard your textile creations, from fabric patterns and prints to unique weaves and surface designs.
           </p>
         </motion.div>
-      </motion.section>
+      </section>
 
-      {/* Main Content */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 md:space-y-24 lg:space-y-32">
-          {/* Overview */}
+      {/* Overview Section */}
+      <section className="relative bg-white px-4 py-16 md:px-16 lg:px-24 md:py-32">
+        <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8"
+            className="mb-16 md:mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="relative flex flex-col lg:flex-row items-center">
+              <div
+                className="relative w-full lg:w-3/5 z-20 lg:mr-[-150px] lg:ml-[-100px] mb-8 lg:mb-0"
+                style={{
+                  filter: "drop-shadow(0 25px 80px rgba(0, 0, 0, 0.25))",
+                }}
+              >
+                <div className="bg-white/95 p-6 md:p-8 lg:p-12" style={{ clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%)" }}>
+                  <div className="space-y-4 md:space-y-6">
+                    <motion.h1
+                      className="text-[#000000] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold relative z-10 px-2 md:px-4"
+                      style={{
+                        letterSpacing: "0.1em",
+                        textShadow:
+                          "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6), -10px 4px 0px rgba(60, 60, 60, 0.4)",
+                      }}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7 }}
+                      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                    >
+                      Textile Design Protection Overview
+                    </motion.h1>
 
-            <div className="text-[#393E46] space-y-4 sm:space-y-6 text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#222831]">
-                <span className="text-[#00ADB5]">Protect</span> Your Textile Creations
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                Secure protection for patterns, prints, and weaves used in textiles and fabrics. At Leonard Corporate Solutions, we help you protect your textile designs, ensuring their originality is legally safeguarded in India and international markets.
-              </p>
+                    <p className="text-base md:text-lg leading-relaxed text-[#393E46]">
+                      At Leonard Corporate Solutions, we specialize in textile design protection to safeguard your unique fabric creations. Our skilled team provides expert advice on design registration, enforcement, and management.
+                    </p>
+                    <p className="text-base md:text-lg leading-relaxed text-[#393E46]">
+                      Our design protection services include design analysis, registration strategy, enforcement support, and strategic planning to ensure your textile designs are protected effectively.
+                    </p>
+                    <p className="text-base md:text-lg font-medium text-[#393E46]">
+                      📩 For tailored advice, reach out:{" "}
+                      <a href="mailto:info@leonardsolutions.in" className="text-[#00ADB5] hover:underline">info@leonardsolutions.in</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative z-10 h-64 md:h-96 lg:h-[520px] w-full lg:w-4/5">
+                <div className="absolute inset-0">
+                  <img src="https://study.com/cimages/multimages/16/textile_designs8662834373381706224.jpg" alt="Textile Designs visual" className="h-full w-full object-cover object-right" />
+                </div>
+              </div>
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Services Section */}
-          <div className="space-y-6 sm:space-y-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
-              <span className="text-[#222831]">Our Textile Design</span> <span className="text-[#00ADB5]">Services</span>
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-              {features.map((feature, index) => (
+      {/* Services Section */}
+      <section className="relative px-4 bg-[#000000] py-12 md:py-16 lg:py-24 md:px-16 lg:px-24">
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mt-16 md:mt-24 lg:mt-32">
+            <motion.h2
+              className="text-[#eeeeee] text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center mb-8 md:mb-12 lg:mb-16"
+              style={{
+                letterSpacing: "0.2em",
+                textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6), -3px 1px 0px rgba(80, 80, 80, 0.4)",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              Our Design Services
+            </motion.h2>
+
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {textileServices.map((service, index) => (
                 <motion.div
-                  key={feature.title}
-                  className="bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden group border border-[#00ADB5]/10"
+                  key={service.title}
+                  className="relative h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8 }}
                 >
-                  <span className="absolute top-4 right-4 text-[#00ADB5] text-lg sm:text-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300">✦</span>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00ADB5] rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#222831] mb-3 group-hover:text-[#00ADB5] transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[#393E46]/80 text-sm sm:text-base">{feature.description}</p>
+
+                  {/* Service Name - Center */}
+                  <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight">{service.title}</h3>
+                  </div>
+
+                  {/* Category Badge - Top Right */}
+                  <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-80">
+                    <span className="px-2 py-1 text-xs font-semibold rounded-full bg-white/90 text-gray-800">{service.category}</span>
+                  </div>
+
+                  {/* Learn More - Bottom on Hover */}
+                 
+
+                  {/* Animated border on hover */}
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#00ADB5] transition-colors duration-300" />
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
-          {/* Call to Action */}
-          <motion.div
-            className="relative max-w-3xl mx-auto px-4 sm:px-6 md:px-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          {/* Benefits Section */}
+          <motion.div 
+            className="relative mx-auto mt-16 md:mt-24 lg:mt-32 max-w-3xl px-4 md:px-8" 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8 }} 
             viewport={{ once: true }}
           >
-            {/* Corner Angles */}
-            <div className="absolute -top-4 -left-4 w-6 h-6 sm:-top-6 sm:-left-6 sm:w-8 sm:h-8 border-t-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -top-4 -right-4 w-6 h-6 sm:-top-6 sm:-right-6 sm:w-8 sm:h-8 border-t-2 border-r-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 sm:-bottom-6 sm:-left-6 sm:w-8 sm:h-8 border-b-2 border-l-2 border-[#00ADB5]" />
-            <div className="absolute -bottom-4 -right-4 w-6 h-6 sm:-bottom-6 sm:-right-6 sm:w-8 sm:h-8 border-b-2 border-r-2 border-[#00ADB5]" />
+            <div className="relative rounded-xl md:rounded-2xl py-8 md:py-12 backdrop-blur-sm">
+              <h2 className="text-[#eeeeee] text-2xl md:text-3xl lg:text-4xl font-extrabold text-center mb-6 md:mb-8"
+                  style={{
+                    letterSpacing: "0.1em",
+                    textShadow: "-1px 0px 0px rgba(100, 100, 100, 0.6)",
+                  }}>
+                Why Design Registration?
+              </h2>
+              <ul className="space-y-4 list-none text-[#eeeeee]">
+                {benefits.map((benefit, index) => (
+                  <li key={index} className="relative pl-6 text-sm sm:text-base md:text-lg before:content-['•'] before:absolute before:left-0 before:text-[#00ADB5] before:text-lg">
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#00ADB5]">Secure</span> Your Textile Designs
-            </h2>
-            <p className="text-[#393E46] text-sm sm:text-base md:text-lg leading-relaxed mb-6">
-              Secure your textile patterns and weaves. Contact us for textile design protection services today!
-            </p>
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-[#222831] transition-colors duration-300 text-sm sm:text-base"
-              aria-label="Contact us for textile design protection"
-            >
-              Contact Us
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+          {/* Closing Message */}
+          <motion.div 
+            className="relative mx-auto mt-16 md:mt-24 lg:mt-32 max-w-3xl px-4 md:px-8" 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8 }} 
+            viewport={{ once: true }}
+          >
+            <div className="relative rounded-xl md:rounded-2xl py-8 md:py-12 backdrop-blur-sm text-center">
+              <p className="text-center text-base md:text-lg leading-relaxed text-[#eeeeee] mb-6">
+                At Leonard Corporate Solutions, our design protection services ensure your textile creations are protected with strategic guidance and comprehensive expertise.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center px-6 py-3 bg-[#00ADB5] text-white font-medium rounded-full hover:bg-white hover:text-[#00ADB5] transition-all duration-300 text-sm sm:text-base shadow-lg"
+              >
+                Start Your Design Registration
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Back to Home Link */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base"
-          aria-label="Back to home"
-        >
-          <span className="mr-2">←</span> Back to Home
-        </Link>
+      <div className="bg-[#EEEEEE] px-4 sm:px-6 md:px-16 lg:px-24 py-8">
+        <div className="max-w-7xl mx-auto">
+          <Link
+            href="/"
+            className="inline-flex items-center text-[#393E46] hover:text-[#00ADB5] transition-colors text-sm sm:text-base font-medium"
+          >
+            <span className="mr-2">←</span> Back to Home
+          </Link>
+        </div>
       </div>
     </div>
   );

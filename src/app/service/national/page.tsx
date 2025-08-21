@@ -154,6 +154,7 @@ export default function NationalServices() {
     "All",
     ...Array.from(new Set(nationalServices.map((service) => service.category))),
   ];
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const filteredServices = useMemo(() => {
     return nationalServices.filter((service) => {
@@ -185,7 +186,7 @@ export default function NationalServices() {
             playsInline
             className="h-full w-full object-cover"
           >
-            <source src="/indian-flag.mp4" type="video/mp4" />
+            <source src="./indian-flag.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
