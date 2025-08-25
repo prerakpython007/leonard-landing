@@ -136,6 +136,11 @@ const Ticker = () => {
         >
           OUR CLIENTS
         </motion.h1>
+    
+
+<p></p>
+
+
       </div>
 
       {/* Main Orbit Container */}

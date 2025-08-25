@@ -7,7 +7,8 @@ import { useState } from 'react';
 
 // Define the interface for design service info
 interface DesignServiceInfo {
-  id: number;
+  id?: number;
+  icon?: any;
   title: string;
   description: string;
   category: string;
@@ -15,7 +16,7 @@ interface DesignServiceInfo {
   detailedContent: string;
 }
 
-const designServices = [
+const designServices: DesignServiceInfo[] = [
   {
     icon: Briefcase,
     title: 'Comprehensive Registration',
@@ -242,7 +243,7 @@ export default function DesignServicesPage() {
               {designServices.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className="relative h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 group"
+                  className="relative h-64 sm:h-72 md:h-80 overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 group cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -267,7 +268,11 @@ export default function DesignServicesPage() {
                   </div>
 
                   {/* Learn More - Bottom on Hover */}
-                  
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-center">
+                      <span className="text-sm font-medium text-white">Click to learn more</span>
+                    </div>
+                  </div>
 
                   {/* Animated border on hover */}
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#00ADB5] transition-colors duration-300" />

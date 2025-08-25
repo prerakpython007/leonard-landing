@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const aboutText = [
   "India's Leading Intellectual Property & Corporate Law Firm",
-  "Leonard Corporate Solutions Pvt. Ltd. is a top-tier legal firm based in Mumbai, Maharashtra, specializing exclusively in Intellectual Property Rights (IPR), Corporate Law, and Taxation ,With over a decade of legal excellence, we have earned a reputation as one of India's most trusted names in the field of IP law and business legal advisory.",
+  "Leonard Corporate Solutions Pvt. Ltd. is a top-tier legal firm based in Mumbai, Maharashtra, specializing exclusively in Intellectual Property Rights (IPR), Corporate Law, and Taxation ,With over a decade of legal excellence, we have earned a reputation as one of India's most trusted names in the field of IP law and business legal advisory.  Our mission is simple yet powerful — to help innovators, creators, and companies protect and maximize the value of their intellectual property and technology assets. We serve a diverse clientele ranging from multinational corporations to fast-growing startups and domestic enterprises, delivering tailored legal strategies that drive growth, compliance, and competitive advantage. Whether it’s trademark registration, patent protection, copyright enforcement, or corporate legal compliance, we provide end-to-end legal solutions that ensure your ideas stay yours — and thrive.",
 ];
 
 // Animated Counter Component

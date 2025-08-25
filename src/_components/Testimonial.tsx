@@ -9,7 +9,7 @@ const testimonials = [
     position: "CEO, Wilson Enterprises",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
     rating: 5,
-    text: "The legal expertise and strategic insight provided by Leonard Corporate Solutions was exceptional. Their team managed our corporate litigation with professionalism, precision, and efficiency.",
+    text: "The legal expertise and strategic insight provided by Leonard Corporate Solutions was exceptional.Their team managed our corporate litigation with professionalism, precision, and efficiency.",
     tag: "Corporate Law Services"
   },
   { 
@@ -137,10 +137,19 @@ const TestimonialsSection = () => {
             TESTIMONIALS
           </h1>
 
-          <p className="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
-            Trusted by Industry Leaders for Exceptional Legal Services<br/>
-            
-          </p>
+            <h1 
+  className='text-white' 
+  style={{
+    fontSize: '3.5rem',
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: '900',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.1)'
+  }}
+>
+  What Our Clients Say About Leonard Corporate Solutions.
+</h1>
+<p>Trusted by industry leaders, startups, <br /> and global businesses for intellectual property, corporate, and
+international legal services.</p>
         </div>
 
         {/* Testimonials Grid */}
