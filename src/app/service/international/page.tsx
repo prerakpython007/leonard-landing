@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+// import { internationalServices } from "~/lib/serviceData";
 import {
   BookOpen,
   FileText,
@@ -18,6 +19,7 @@ import {
   Search,
   Filter,
   X,
+  Utensils, // Added for FSSAI icon
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useMemo } from "react";
@@ -151,6 +153,25 @@ export default function InternationalServices() {
       category: "Compliance",
       image:
         "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=800",
+    },
+    // New cards added below
+    {
+      name: "Extended Legal Support",
+      icon: Gavel,
+      description: "Comprehensive legal assistance for international business operations and compliance.",
+      route: "service/international/extended-legal-support",
+      category: "Legal Support",
+      image:
+        "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      name: "FSSAI Licensing & Compliance",
+      icon: Utensils,
+      description: "Legal assistance for obtaining food licenses and staying compliant in the F&B industry internationally.",
+      route: "service/international/fssai-licensing-compliance",
+      category: "Compliance",
+      image:
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800",
     },
   ];
 
@@ -351,7 +372,7 @@ export default function InternationalServices() {
             {filteredServices.map((service, index) => (
               <Link
                 key={service.name}
-                href={service.route}
+               href={`/service/international/${service.route.split('/').pop()}`}
                 className="group relative"
                 onMouseEnter={() => setHoveredCard(service.name)}
                 onMouseLeave={() => setHoveredCard(null)}

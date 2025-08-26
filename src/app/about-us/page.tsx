@@ -1,101 +1,104 @@
 "use client"
+import { TEAM_MEMBERS } from "~/lib/teamData";
+
 
 import { useState, useEffect, useRef } from "react"
+
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { ArrowRight, BookOpen, Building, Globe, MapPin, Shield, Users } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-const TEAM_MEMBERS = [
-  // Leadership
-  {
-    name: "Manisha Sidhpura",
-    position: "Founder & Principal Associate – Advocate",
-    image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
-    role: "Leadership"
-  },
-  {
-    name: "Rohit Sidhpura",
-    position: "COO – Business Head, Managing Partner",
-    image: "/rohitbhai.webp",
-    role: "Leadership"
-  },
-  // Legal & Taxation
-  {
-    name: "Dr. Farrukh Khan",
-    position: "Advocate, Senior Associate",
-    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
-    role: "Legal"
-  },
-  {
-    name: "Dr. Paresh Dave",
-    position: "Patent Agent, Senior Associate",
-    image: "https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg",
-    role: "Legal"
-  },
-  {
-    name: "Chirag Chanani",
-    position: "Advocate, Senior Associate",
-    image: "https://images.pexels.com/photos/2381071/pexels-photo-2381071.jpeg",
-    role: "Legal"
-  },
-  {
-    name: "Nabendu Bhattacharya",
-    position: "Advocate, Senior Associate",
-    image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
-    role: "Legal"
-  },
-  {
-    name: "R.R. Padmanabhan",
-    position: "Advocate, Senior Associate",
-    image: "https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg",
-    role: "Legal"
-  },
-  // Strategy & Operations
-  {
-    name: "Prabodhan Makwana",
-    position: "CFO – Taxation, Senior Associate",
-    image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
-    role: "Strategy"
-  },
-  {
-    name: "Urvee Sidhpura",
-    position: "VP – Human Resources, Senior Associate",
-    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
-    role: "Strategy"
-  },
-  {
-    name: "Kaynat Dandekar",
-    position: "VP – Operations, Senior Associate",
-    image: "https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg",
-    role: "Strategy"
-  },
-  {
-    name: "Satyam Patel",
-    position: "VP – Business Development, Associate",
-    image: "https://images.pexels.com/photos/2381071/pexels-photo-2381071.jpeg",
-    role: "Strategy"
-  },
-  // Administrative & Support
-  {
-    name: "Prachi Jadhav",
-    position: "Administrative Manager, Senior Associate",
-    image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
-    role: "Administrative"
-  },
-  {
-    name: "Abhijeet Powar",
-    position: "Foreign Filing Paralegal, Senior Associate",
-    image: "https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg",
-    role: "Administrative"
-  },
-  {
-    name: "Vijay Bhattarai",
-    position: "Licensing Coordinator, Associate",
-    image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
-    role: "Administrative"
-  }
-]
+// const TEAMMEMBERS = [
+//   // Leadership
+//   {
+//     name: "Manisha Sidhpura",
+//     position: "Founder & Principal Associate – Advocate",
+//     image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
+//     role: "Leadership"
+//   },
+//   {
+//     name: "Rohit Sidhpura",
+//     position: "COO – Business Head, Managing Partner",
+//     image: "/rohitbhai.webp",
+//     role: "Leadership"
+//   },
+//   // Legal & Taxation
+//   {
+//     name: "Dr. Farrukh Khan",
+//     position: "Advocate, Senior Associate",
+//     image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
+//     role: "Legal"
+//   },
+//   {
+//     name: "Dr. Paresh Dave",
+//     position: "Patent Agent, Senior Associate",
+//     image: "https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg",
+//     role: "Legal"
+//   },
+//   {
+//     name: "Chirag Chanani",
+//     position: "Advocate, Senior Associate",
+//     image: "https://images.pexels.com/photos/2381071/pexels-photo-2381071.jpeg",
+//     role: "Legal"
+//   },
+//   {
+//     name: "Nabendu Bhattacharya",
+//     position: "Advocate, Senior Associate",
+//     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+//     role: "Legal"
+//   },
+//   {
+//     name: "R.R. Padmanabhan",
+//     position: "Advocate, Senior Associate",
+//     image: "https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg",
+//     role: "Legal"
+//   },
+//   // Strategy & Operations
+//   {
+//     name: "Prabodhan Makwana",
+//     position: "CFO – Taxation, Senior Associate",
+//     image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
+//     role: "Strategy"
+//   },
+//   {
+//     name: "Urvee Sidhpura",
+//     position: "VP – Human Resources, Senior Associate",
+//     image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
+//     role: "Strategy"
+//   },
+//   {
+//     name: "Kaynat Dandekar",
+//     position: "VP – Operations, Senior Associate",
+//     image: "https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg",
+//     role: "Strategy"
+//   },
+//   {
+//     name: "Satyam Patel",
+//     position: "VP – Business Development, Associate",
+//     image: "https://images.pexels.com/photos/2381071/pexels-photo-2381071.jpeg",
+//     role: "Strategy"
+//   },
+//   // Administrative & Support
+//   {
+//     name: "Prachi Jadhav",
+//     position: "Administrative Manager, Senior Associate",
+//     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+//     role: "Administrative"
+//   },
+//   {
+//     name: "Abhijeet Powar",
+//     position: "Foreign Filing Paralegal, Senior Associate",
+//     image: "https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg",
+//     role: "Administrative"
+//   },
+//   {
+//     name: "Vijay Bhattarai",
+//     position: "Licensing Coordinator, Associate",
+//     image: "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
+//     role: "Administrative"
+//   }
+// ]
 
 // Add counting animation hook
 const useCountAnimation = (target: number, duration: number = 2000) => {
@@ -362,7 +365,7 @@ export default function AboutPage() {
         </section>
 
         {/* Vision & Mission Sections with EEEEEE background */}
-        <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
+     <section className="pt-8 sm:pt-2 pb-16 sm:pb-24 px-4 md:px-16 lg:px-24 relative bg-[#EEEEEE]">
           <div className="max-w-7xl mx-auto space-y-16 sm:space-y-32">
             {/* Vision Section */}
             <motion.div 
@@ -409,53 +412,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Navigation moved here */}
-                <div className="mt-8">
-                  <div className="bg-white/80 w-[70%] p-4 mx-auto">
-                    <div className="flex flex-col text-center space-y-2">
-                      <h1  className="text-[#000000] text-center font-medium  py-2 px-3 rounded-lg text-sm">
-                        About Leonard Solutions
-                      </h1>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/service" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        What We Do
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/service#what-to-expect" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        What To Expect
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/case-studies" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        Case Victories
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/awards" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        Awards & Press
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/community" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        Community Involvement
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <Link href="/careers" className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm">
-                        Careers
-                      </Link>
-                      <div className="h-px bg-gray-300"></div>
-                      <button 
-                        onClick={() => {
-                          const testimonialsSection = document.getElementById('testimonials');
-                          if (testimonialsSection) {
-                            testimonialsSection.scrollIntoView({ behavior: 'smooth' });
-                          } else {
-                            window.location.href = '/#testimonials';
-                          }
-                        }}
-                        className="text-[#00ADB5] font-medium hover:text-[#222831] transition-colors py-2 px-3 rounded-lg hover:bg-white/50 text-sm"
-                      >
-                        Testimonials
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </motion.div>
 
@@ -503,7 +460,7 @@ export default function AboutPage() {
 
             {/* What Drives Us Section - Single big box with 4 sections */}
             <motion.div 
-              className="flex flex-col items-center py-8 sm:py-16"
+              className="flex flex-col items-center "
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -567,7 +524,7 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section with better grid layout */}
-        <section className="py-16 sm:py-32 px-4 md:px-16 lg:px-24 relative">
+        <section className=" px-4 md:px-16 lg:px-24 relative">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-12 sm:mb-16 relative"
@@ -600,6 +557,7 @@ Meet Our Team
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
               {TEAM_MEMBERS.map((member, index) => {
                 // Different light background colors for variety
+                console.log(member.name, member.slug); 
                 const bgColors = [
                   'from-blue-50/80 to-blue-100/80',
                   'from-green-50/80 to-green-100/80', 
@@ -668,11 +626,13 @@ Meet Our Team
                             <p className="text-lg font-bold">Corporate Law</p>
                           </div>
                         </div>
-                        <div className="text-center">
-                          <p className="text-lg font-semibold  cursor-pointer hover:underline">
-                            [Read full bio]
-                          </p>
-                        </div>
+                       
+<button className="flex-1 border border-[#00ADB5] text-[#00ADB5] py-2 px-3 text-xs font-medium hover:bg-[#00ADB5]/10 transition-colors duration-200">
+<Link href={`/about-us/${member.slug}`}>
+  <p>Read Full Bio</p>
+</Link>
+
+</button>
                       </div>
                     </motion.div>
 

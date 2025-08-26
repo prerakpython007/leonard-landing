@@ -62,16 +62,13 @@ const Faq = () => {
           {/* Left side - Image with Parallax */}
           <motion.div
             className="relative flex items-center justify-center"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={{ y: y1 }}
+            
+            style={{ y: y2 }}
           >
             <img
-              src="/attorney-desk.jpg"
-              alt="Attorney Desk"
-              className="w-full h-auto"
+              src="/faq.png"
+              alt="FAQ"
+              className="w-full  h-auto"
             />
           </motion.div>
 

@@ -102,85 +102,61 @@ class UnevenMountain {
     this.drawTravelingPulses()
   }
 
-  drawUnevenMountain() {
-    // Mountain that goes uphill with peak on the right side and steep descent - more uneven
-    this.ctx.strokeStyle = "#00ADB5"
-    this.ctx.lineWidth = 4
-    this.ctx.lineCap = "round"
-    this.ctx.lineJoin = "round"
+drawUnevenMountain() {
+  // Mountain that goes uphill with peak on the right side - no downhill section
+  this.ctx.strokeStyle = "#00ADB5"
+  this.ctx.lineWidth = 4
+  this.ctx.lineCap = "round"
+  this.ctx.lineJoin = "round"
 
-    // Create much stronger gradient for more subtle fade at both ends
-    const fadeGradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
-    fadeGradient.addColorStop(0, "rgba(0, 173, 181, 0.01)")
-    fadeGradient.addColorStop(0.01, "rgba(0, 173, 181, 0.03)")
-    fadeGradient.addColorStop(0.03, "rgba(0, 173, 181, 0.08)")
-    fadeGradient.addColorStop(0.06, "rgba(0, 173, 181, 0.2)")
-    fadeGradient.addColorStop(0.12, "rgba(0, 173, 181, 0.6)")
-    fadeGradient.addColorStop(0.18, "rgba(0, 173, 181, 1)")
-    fadeGradient.addColorStop(0.82, "rgba(0, 173, 181, 1)")
-    fadeGradient.addColorStop(0.88, "rgba(0, 173, 181, 0.6)")
-    fadeGradient.addColorStop(0.94, "rgba(0, 173, 181, 0.2)")
-    fadeGradient.addColorStop(0.97, "rgba(0, 173, 181, 0.08)")
-    fadeGradient.addColorStop(0.99, "rgba(0, 173, 181, 0.03)")
-    fadeGradient.addColorStop(1, "rgba(0, 173, 181, 0.01)")
+  // Create gradient that fades out on both left and right sides
+  const fadeGradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
+  fadeGradient.addColorStop(0, "rgba(0, 173, 181, 0.01)")
+  fadeGradient.addColorStop(0.01, "rgba(0, 173, 181, 0.03)")
+  fadeGradient.addColorStop(0.03, "rgba(0, 173, 181, 0.08)")
+  fadeGradient.addColorStop(0.06, "rgba(0, 173, 181, 0.2)")
+  fadeGradient.addColorStop(0.12, "rgba(0, 173, 181, 0.6)")
+  fadeGradient.addColorStop(0.18, "rgba(0, 173, 181, 1)")
+  fadeGradient.addColorStop(0.82, "rgba(0, 173, 181, 1)")  // Keep full opacity in the middle
+  fadeGradient.addColorStop(0.88, "rgba(0, 173, 181, 0.6)")
+  fadeGradient.addColorStop(0.94, "rgba(0, 173, 181, 0.2)")
+  fadeGradient.addColorStop(0.97, "rgba(0, 173, 181, 0.08)")
+  fadeGradient.addColorStop(0.99, "rgba(0, 173, 181, 0.03)")
+  fadeGradient.addColorStop(1, "rgba(0, 173, 181, 0.01)")
 
-    this.ctx.strokeStyle = fadeGradient
+  this.ctx.strokeStyle = fadeGradient
 
-    // Store mountain path for pulse animation - more uneven with additional points
-    this.mountainPath = [
-      { x: this.width * 0.05, y: this.height * 0.9 },
-      { x: this.width * 0.12, y: this.height * 0.85 },
-      { x: this.width * 0.15, y: this.height * 0.8 },
-      { x: this.width * 0.18, y: this.height * 0.83 },
-      { x: this.width * 0.2, y: this.height * 0.82 },
-      { x: this.width * 0.25, y: this.height * 0.78 },
-      { x: this.width * 0.3, y: this.height * 0.65 },
-      { x: this.width * 0.33, y: this.height * 0.67 },
-      { x: this.width * 0.35, y: this.height * 0.68 },
-      { x: this.width * 0.38, y: this.height * 0.62 },
-      { x: this.width * 0.42, y: this.height * 0.5 },
-      { x: this.width * 0.45, y: this.height * 0.45 },
-      { x: this.width * 0.48, y: this.height * 0.42 },
-      { x: this.width * 0.52, y: this.height * 0.38 },
-      { x: this.width * 0.55, y: this.height * 0.35 },
-      { x: this.width * 0.58, y: this.height * 0.32 },
-      { x: this.width * 0.62, y: this.height * 0.28 },
-      { x: this.width * 0.65, y: this.height * 0.25 },
-      { x: this.width * 0.68, y: this.height * 0.22 },
-      { x: this.width * 0.72, y: this.height * 0.18 },
-      { x: this.width * 0.75, y: this.height * 0.15 },
-      { x: this.width * 0.77, y: this.height * 0.12 },
-      { x: this.width * 0.8, y: this.height * 0.08 },
-      { x: this.width * 0.82, y: this.height * 0.15 },
-      { x: this.width * 0.85, y: this.height * 0.35 },
-      { x: this.width * 0.87, y: this.height * 0.45 },
-      { x: this.width * 0.9, y: this.height * 0.65 },
-      { x: this.width * 0.92, y: this.height * 0.72 },
-      { x: this.width * 0.95, y: this.height * 0.8 }
-    ]
+  // Store mountain path for pulse animation - only uphill
+  this.mountainPath = [
+    { x: this.width * 0.05, y: this.height * 0.9 },
+    { x: this.width * 0.12, y: this.height * 0.85 },
+    { x: this.width * 0.15, y: this.height * 0.8 },
+    { x: this.width * 0.18, y: this.height * 0.83 },
+    { x: this.width * 0.2, y: this.height * 0.82 },
+    { x: this.width * 0.25, y: this.height * 0.78 },
+    { x: this.width * 0.3, y: this.height * 0.65 },
+    { x: this.width * 0.33, y: this.height * 0.67 },
+    { x: this.width * 0.35, y: this.height * 0.68 },
+    { x: this.width * 0.38, y: this.height * 0.62 },
+    { x: this.width * 0.42, y: this.height * 0.5 },
+    { x: this.width * 0.45, y: this.height * 0.45 },
+    { x: this.width * 0.48, y: this.height * 0.42 },
+    { x: this.width * 0.52, y: this.height * 0.38 },
+    { x: this.width * 0.55, y: this.height * 0.35 },
+    { x: this.width * 0.58, y: this.height * 0.32 },
+    { x: this.width * 0.62, y: this.height * 0.28 },
+    { x: this.width * 0.65, y: this.height * 0.25 },
+    { x: this.width * 0.68, y: this.height * 0.22 },
+    { x: this.width * 0.72, y: this.height * 0.18 },
+    { x: this.width * 0.75, y: this.height * 0.15 },
+    { x: this.width * 0.77, y: this.height * 0.12 },
+    { x: this.width * 0.8, y: this.height * 0.08 },
+    // Removed the downhill section
+  ]
 
-    // Draw mountain path
-    this.ctx.beginPath()
-    if (this.mountainPath.length > 0 && this.mountainPath[0]) {
-      if (this.mountainPath[0]) {
-        this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
-        for (let i = 1; i < this.mountainPath.length; i++) {
-          const point = this.mountainPath[i]
-          if (point !== undefined) {
-            this.ctx.lineTo(point.x, point.y)
-          }
-        }
-      }
-    }
-    this.ctx.stroke()
-
-    // Mountain fill with updated path
-    const gradient = this.ctx.createLinearGradient(0, this.height * 0.08, 0, this.height * 0.9)
-    gradient.addColorStop(0, "rgba(0, 173, 181, 0.25)")
-    gradient.addColorStop(1, "rgba(0, 173, 181, 0.08)")
-    
-    this.ctx.fillStyle = gradient
-    this.ctx.beginPath()
+  // Draw mountain path
+  this.ctx.beginPath()
+  if (this.mountainPath.length > 0 && this.mountainPath[0]) {
     if (this.mountainPath[0]) {
       this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
       for (let i = 1; i < this.mountainPath.length; i++) {
@@ -189,12 +165,39 @@ class UnevenMountain {
           this.ctx.lineTo(point.x, point.y)
         }
       }
-      this.ctx.lineTo(this.width * 0.95, this.height)
-      this.ctx.lineTo(this.width * 0.05, this.height)
+    }
+  }
+  this.ctx.stroke()
+
+  // Mountain fill with updated path - add right side fade to fill too
+  const fillGradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
+  fillGradient.addColorStop(0, "rgba(0, 173, 181, 0.08)")
+  fillGradient.addColorStop(0.2, "rgba(0, 173, 181, 0.25)")
+  fillGradient.addColorStop(0.8, "rgba(0, 173, 181, 0.25)")
+  fillGradient.addColorStop(1, "rgba(0, 173, 181, 0.08)")
+  
+  this.ctx.fillStyle = fillGradient
+  this.ctx.beginPath()
+  if (this.mountainPath.length > 0 && this.mountainPath[0]) {
+    this.ctx.moveTo(this.mountainPath[0].x, this.mountainPath[0].y)
+    for (let i = 1; i < this.mountainPath.length; i++) {
+      const point = this.mountainPath[i]
+      if (point !== undefined) {
+        this.ctx.lineTo(point.x, point.y)
+      }
+    }
+    // Connect to the right edge at the same height as the last point
+    // Fixed: Check if the last point exists before accessing its y property
+    const lastPoint = this.mountainPath[this.mountainPath.length - 1]
+    if (lastPoint) {
+      this.ctx.lineTo(this.width, lastPoint.y)
+      this.ctx.lineTo(this.width, this.height)
+      this.ctx.lineTo(0, this.height)
       this.ctx.closePath()
       this.ctx.fill()
     }
   }
+}
 
   drawTravelingPulses() {
     // Draw 2 slower pulses with curved heads and trails
@@ -404,7 +407,7 @@ function HoverCard({ milestone, isVisible }: HoverCardProps) {
 
   return (
     <div
-      className="fixed z-[9999] bg-white rounded-xl shadow-2xl overflow-hidden w-80 border-2 border-[#00ADB5]/20 pointer-events-none"
+      className="fixed z-[9999]  rounded-xl shadow-2xl overflow-hidden w-80 border-2 border-[#00ADB5]/20 pointer-events-none"
       style={{
         left: (milestone.mouseX ?? 0) + 15,
         top: (milestone.mouseY ?? 0) - 140,
@@ -418,7 +421,7 @@ function HoverCard({ milestone, isVisible }: HoverCardProps) {
           backgroundImage: `url(${backgroundImages[milestone.number]})`
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+   
         <div className="absolute top-3 right-3 w-8 h-8 bg-[#00ADB5] rounded-full flex items-center justify-center text-white font-bold text-sm">
           {milestone.number}
         </div>
@@ -494,7 +497,7 @@ const Experience = () => {
   }
 
   return (
-    <section className="w-full min-h-screen bg-[#EEEEEE] py-16 md:py-24 relative">
+    <section className="w-full pb-10 bg-[#000000] pt-10   relative">
       <div className="w-full px-0">
         {/* Header */}
         <motion.div
@@ -505,7 +508,7 @@ const Experience = () => {
           viewport={{ once: true }}
         >
         <motion.h2
-            className="text-[#000000] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center mb-12 md:mb-20 relative z-10 px-4"
+            className="text-[#eeeeee] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center mb-12 md:mb-20 relative z-10 px-4"
             style={{
               letterSpacing: "0.2em",
               textShadow: "-2px 0px 0px rgba(100, 100, 100, 0.8), -6px 2px 0px rgba(80, 80, 80, 0.6)"
@@ -517,14 +520,14 @@ const Experience = () => {
           >
             Our Experience
           </motion.h2>
-          <p className="text-lg text-[#393E46] max-w-2xl mx-auto">
+          <p className="text-lg text-[#eeeeee] max-w-2xl mx-auto">
             Navigate through challenges, scale new heights, and reach the peak of legal success
           </p>
         </motion.div>
 
         {/* Mountain Visualization - Full Width */}
         <motion.div
-          className="w-full mb-16"
+          className="w-full "
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -580,4 +583,3 @@ const Experience = () => {
 }
 
 export default Experience
-

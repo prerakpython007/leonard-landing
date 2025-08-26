@@ -1,0 +1,386 @@
+// app/service/[category]/[service]/page.jsx
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowLeft, Calendar, Clock, Users, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
+// Service data - this would ideally come from a database or CMS
+const serviceData = {
+  "international": {
+    "trademark-filing": {
+      title: "International Trademark Filing",
+      description: "File trademarks via Madrid Protocol or national filings in USA, EU, UK, UAE, Australia, and more.",
+      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800",
+      content: {
+        overview: "Our international trademark filing service helps businesses protect their brands globally through the Madrid Protocol system and direct national filings. We streamline the complex process of securing trademark protection across multiple jurisdictions.",
+        benefits: [
+          "Single application for multiple countries",
+          "Cost-effective compared to individual filings",
+          "Centralized management of your international portfolio",
+          "Expert guidance on country-specific requirements"
+        ],
+        process: [
+          {
+            step: "1",
+            title: "Trademark Search",
+            description: "Comprehensive search to ensure availability and avoid conflicts"
+          },
+          {
+            step: "2",
+            title: "Strategy Session",
+            description: "Determine the best filing strategy for your target markets"
+          },
+          {
+            step: "3",
+            title: "Application Preparation",
+            description: "Drafting and filing your international trademark application"
+          },
+          {
+            step: "4",
+            title: "Monitoring & Management",
+            description: "Ongoing monitoring of your application through registration"
+          }
+        ],
+        timeline: "6-18 months depending on jurisdictions",
+        deliverables: [
+          "International trademark application",
+          "Official filing receipts",
+          "Monitoring reports",
+          "Registration certificates"
+        ]
+      }
+    },
+    // Add other services similarly...
+    "commercial-contracts": {
+      title: "Commercial Contracts",
+      description: "Draft, negotiate, and vet business contracts with airtight legal precision.",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+      content: {
+        overview: "Our commercial contracts service provides comprehensive legal support for drafting, reviewing, and negotiating business agreements that protect your interests and ensure compliance with international laws.",
+        benefits: [
+          "Risk mitigation through precise contract language",
+          "Customized agreements tailored to your business needs",
+          "International legal compliance assurance",
+          "Expert negotiation support"
+        ],
+        process: [
+          {
+            step: "1",
+            title: "Needs Assessment",
+            description: "Understanding your business objectives and contract requirements"
+          },
+          {
+            step: "2",
+            title: "Drafting/Review",
+            description: "Creating or analyzing contract terms to protect your interests"
+          },
+          {
+            step: "3",
+            title: "Negotiation Support",
+            description: "Guiding you through the negotiation process"
+          },
+          {
+            step: "4",
+            title: "Finalization & Execution",
+            description: "Preparing the final document and advising on execution"
+          }
+        ],
+        timeline: "1-4 weeks depending on complexity",
+        deliverables: [
+          "Legally sound contract documents",
+          "Negotiation guidance notes",
+          "Risk assessment report",
+          "Compliance checklist"
+        ]
+      }
+    },
+    "fssai-licensing-compliance": {
+      title: "FSSAI Licensing & Compliance",
+      description: "Legal assistance for obtaining food licenses and staying compliant in the F&B industry internationally.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800",
+      content: {
+        overview: "We provide end-to-end assistance for FSSAI licensing and compliance for food businesses operating internationally. Our experts help you navigate complex food safety regulations across different jurisdictions.",
+        benefits: [
+          "Expert guidance on international food safety standards",
+          "Streamlined licensing process",
+          "Ongoing compliance monitoring",
+          "Multi-jurisdictional regulatory expertise"
+        ],
+        process: [
+          {
+            step: "1",
+            title: "Regulatory Assessment",
+            description: "Analysis of applicable food safety regulations in target markets"
+          },
+          {
+            step: "2",
+            title: "Document Preparation",
+            description: "Compiling necessary documentation for license applications"
+          },
+          {
+            step: "3",
+            title: "Application Submission",
+            description: "Filing applications with relevant authorities"
+          },
+          {
+            step: "4",
+            title: "Compliance Setup",
+            description: "Establishing ongoing compliance processes and monitoring"
+          }
+        ],
+        timeline: "2-6 months depending on jurisdictions",
+        deliverables: [
+          "License applications",
+          "Compliance manuals",
+          "Training materials",
+          "Ongoing compliance alerts"
+        ]
+      }
+    }
+  }
+};
+
+export default function ServiceDetailPage() {
+  const params = useParams();
+  const category = params.category;
+  const service = params.service;
+
+  const serviceInfo = serviceData[category]?.[service];
+
+  if (!serviceInfo) {
+    return (
+      <div className="min-h-screen bg-[#EEEEEE] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Service Not Found</h1>
+          <Link href="/international-services" className="text-[#00ADB5] hover:underline">
+            Return to Services
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#EEEEEE] font-montserrat">
+      {/* Back Button */}
+      <div className="container mx-auto px-4 md:px-16 lg:px-24 pt-8">
+        <Link 
+          href="/international-services" 
+          className="inline-flex items-center text-[#00ADB5] hover:text-[#00959c] transition-colors mb-8"
+        >
+          <ArrowLeft className="mr-2 h-5 w-5" />
+          Back to International Services
+        </Link>
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative h-96">
+        <div className="absolute inset-0">
+          <img 
+            src={serviceInfo.image} 
+            alt={serviceInfo.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        <div className="relative container mx-auto px-4 md:px-16 lg:px-24 h-full flex items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-white max-w-3xl"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              {serviceInfo.title}
+            </h1>
+            <p className="text-xl opacity-90">
+              {serviceInfo.description}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-16 lg:px-24">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="mb-12"
+              >
+                <h2 className="text-3xl font-bold text-[#393E46] mb-6">Service Overview</h2>
+                <p className="text-lg leading-relaxed text-[#393E46] mb-8">
+                  {serviceInfo.content.overview}
+                </p>
+
+                <div className="bg-[#00ADB5]/10 p-6 rounded-xl mb-8">
+                  <h3 className="text-xl font-semibold text-[#00ADB5] mb-4">Key Benefits</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {serviceInfo.content.benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start">
+                        <CheckCircle className="h-6 w-6 text-[#00ADB5] mr-3 flex-shrink-0" />
+                        <span className="text-[#393E46]">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Process Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="mb-12"
+              >
+                <h2 className="text-3xl font-bold text-[#393E46] mb-6">Our Process</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {serviceInfo.content.process.map((step, index) => (
+                    <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-[#00ADB5] rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">
+                        {step.step}
+                      </div>
+                      <h3 className="text-xl font-semibold text-[#393E46] mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-[#393E46]">
+                        {step.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Deliverables Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+              >
+                <h2 className="text-3xl font-bold text-[#393E46] mb-6">What You'll Receive</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {serviceInfo.content.deliverables.map((item, index) => (
+                    <div key={index} className="flex items-center">
+                      <div className="w-8 h-8 bg-[#00ADB5] rounded-full flex items-center justify-center mr-4">
+                        <CheckCircle className="h-5 w-5 text-white" />
+                      </div>
+                      <span className="text-[#393E46] text-lg">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="sticky top-8"
+              >
+                <div className="bg-gray-50 rounded-xl p-6 shadow-lg">
+                  <h3 className="text-2xl font-bold text-[#393E46] mb-6">Service Details</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-center">
+                      <Clock className="h-6 w-6 text-[#00ADB5] mr-4" />
+                      <div>
+                        <p className="text-sm text-gray-600">Timeline</p>
+                        <p className="font-semibold text-[#393E46]">{serviceInfo.content.timeline}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center">
+                      <Users className="h-6 w-6 text-[#00ADB5] mr-4" />
+                      <div>
+                        <p className="text-sm text-gray-600">Team</p>
+                        <p className="font-semibold text-[#393E46]">Dedicated Legal Experts</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-gray-200">
+                      <h4 className="font-semibold text-[#393E46] mb-4">Ready to get started?</h4>
+                      <p className="text-sm text-gray-600 mb-4">
+                        Contact us to discuss your specific requirements and get a personalized quote.
+                      </p>
+                      <a
+                        href="mailto:info@leonardsolutions.in"
+                        className="block w-full bg-[#00ADB5] text-white text-center py-3 px-6 rounded-xl hover:bg-[#00959c] transition-colors font-semibold"
+                      >
+                        Get in Touch
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional Services */}
+                <div className="mt-8 bg-white rounded-xl p-6 shadow-lg">
+                  <h3 className="text-xl font-bold text-[#393E46] mb-4">Related Services</h3>
+                  <div className="space-y-3">
+                    <Link 
+                      href="/service/international/trademark-filing" 
+                      className="block text-[#00ADB5] hover:text-[#00959c] transition-colors"
+                    >
+                      International Trademark Filing
+                    </Link>
+                    <Link 
+                      href="/service/international/patent-filing" 
+                      className="block text-[#00ADB5] hover:text-[#00959c] transition-colors"
+                    >
+                      International Patent Filing
+                    </Link>
+                    <Link 
+                      href="/service/international/commercial-contracts" 
+                      className="block text-[#00ADB5] hover:text-[#00959c] transition-colors"
+                    >
+                      Commercial Contracts
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-[#00ADB5]">
+        <div className="container mx-auto px-4 md:px-16 lg:px-24 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Protect Your Business Internationally?
+            </h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+              Our team of international legal experts is ready to help you navigate global regulations and protect your business interests worldwide.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="mailto:info@leonardsolutions.in"
+                className="bg-white text-[#00ADB5] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Schedule Consultation
+              </a>
+              <a
+                href="tel:+911234567890"
+                className="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors"
+              >
+                Call Now: +91 123 456 7890
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}

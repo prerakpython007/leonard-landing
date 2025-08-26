@@ -137,17 +137,7 @@ const TestimonialsSection = () => {
             TESTIMONIALS
           </h1>
 
-            <h1 
-  className='text-white' 
-  style={{
-    fontSize: '3.5rem',
-    fontFamily: 'Montserrat, sans-serif',
-    fontWeight: '900',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.1)'
-  }}
->
-  What Our Clients Say About Leonard Corporate Solutions.
-</h1>
+            
 <p>Trusted by industry leaders, startups, <br /> and global businesses for intellectual property, corporate, and
 international legal services.</p>
         </div>
