@@ -2,7 +2,9 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState, useMemo } from "react";
+import {useRouter} from "next/navigation"
 import { ArrowUpRight } from "lucide-react";
+import router from "next/router";
 
 const aboutText  =[
   "India's Leading Intellectual Property & Corporate Law Firm",
@@ -51,6 +53,7 @@ const AnimatedCounter = ({ target, suffix = "", duration = 2 }: { target: number
 };
 
 const About = () => {
+   const router = useRouter()
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -253,7 +256,7 @@ const About = () => {
 const ImageContentSection = () => {
   return (
     <motion.div
-      className="w-full lg:w-1/2 h-[400px] md:h-[600px] lg:h-full lg:absolute lg:left-0 -ml-4 md:-ml-8 lg:-ml-20"
+      className="w-full lg:w-1/2 font-sans h-[400px] md:h-[600px] lg:h-full lg:absolute lg:left-0 -ml-4 md:-ml-8 lg:-ml-20"
       initial={{ opacity: 0, x: -200 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
@@ -309,7 +312,7 @@ const ContentTextSection = () => {
         ))}
       </div>
 
-      <div className="bg-[#080909] p-4 md:p-6 rounded-xl border-l-4 border-[#00ADB5] mb-4 md:mb-6">
+      <div className="bg-[#080909] p-4 md:p-6  mb-4 md:mb-6">
         <p className="text-[#EEEEEE] opacity-90 leading-relaxed text-sm md:text-base">
           Hiring a lawyer at Leonard Solutions from our Vancouver, Surrey or Chilliwack branch means you have hired all of our lawyers because we have morning meetings in which we discuss all of our cases and together, and come up with the best strategy to resolve your case.
         </p>
@@ -324,15 +327,19 @@ const ContentTextSection = () => {
           We are down to earth and our first priority is helping the client. That is why we are successful. We believe that law must conform and change as we change and for this reason, we constantly challenge the core and limits of law.
         </p>
       </div>
+       <motion.button
+                      className="group relative bg-white text-[#000000] border-2 border-black px-6 py-3 text-sm cursor-pointer transition-all duration-300 overflow-hidden hover:border-black"
+                      onClick={() => router.push("/about-us")}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="absolute inset-0 bg-[#00ADB5] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out origin-bottom" />
+                      <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                        Learn More About Our Lawyers
+                      </span>
+                    </motion.button>
 
-      <motion.button
-        className="bg-[#00ADB5] text-white px-6 py-3 md:px-8 md:py-4 rounded-lg font-semibold hover:bg-[#009ca3] transition-colors duration-300 shadow-lg text-sm md:text-base mt-6"
-        whileHover={{ y: -2, boxShadow: "0 10px 25px rgba(0, 173, 181, 0.3)" }}
-        whileTap={{ y: 0 }}
-        onClick={() => { window.location.href = '/about-us#meet-our-team'; }}
-      >
-        Learn More About Our Lawyers
-      </motion.button>
+    
     </motion.div>
   );
 };

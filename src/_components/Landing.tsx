@@ -13,19 +13,13 @@ const Landing = () => {
     offset: ["start start", "end start"],
   })
 
-  // Parallax transforms
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
-  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"])
-  const gameTextScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
-  const gameTextOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5])
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
+  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
 
   return (
     <div className="bg-[#eeeeee] relative overflow-x-hidden">
       {/* Hero Section */}
-      <section 
-        ref={containerRef} 
-        className="relative lg:min-h-screen h-[80vh] flex items-center justify-center"
-      >
+      <section ref={containerRef} className="relative lg:min-h-screen h-[80vh] flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-4 w-full">
           <motion.div
             style={{ y: textY }}
@@ -37,9 +31,9 @@ const Landing = () => {
             {/* Welcome text */}
             <span className="text-[#00ADB5] my-4 sm:my-7 md:my-10 text-2xl sm:text-4xl md:text-2xl font-medium tracking-wide block mb-4 sm:mb-6 md:mb-4 text-center">
               Welcome to{" "}
-              <span 
+              <span
                 className="font-extrabold block sm:inline mt-1 md:mt-0 italic"
-                style={{ fontFamily: 'Playfair Display, serif' }}
+                style={{ fontFamily: "Playfair Display, serif" }}
               >
                 Leonard Solutions
               </span>
@@ -81,10 +75,6 @@ const Landing = () => {
               {/* GAME Text */}
               <div className="flex justify-center items-center w-full relative z-10">
                 <motion.div
-                  style={{
-                    scale: gameTextScale,
-                    opacity: gameTextOpacity,
-                  }}
                   className="relative inline-block will-change-transform md:scale-90"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +85,7 @@ const Landing = () => {
                     className="text-[#ffffff] text-[3.5rem] sm:text-[7rem] md:text-[6rem] lg:text-[13rem] xl:text-[16rem] 2xl:text-[18rem] font-extrabold text-center relative z-10 leading-[0.8] sm:leading-[0.85] md:leading-[0.9] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.2em] lg:tracking-[0.35em]"
                     style={{
                       textShadow:
-                        "-2px 0px 0px rgba(100, 100, 100, 0.8), -4px 2px 0px rgba(80, 80, 80, 0.6), -6px 4px 0px rgba(60, 60, 60, 0.4), -8px 6px 0px rgba(40, 40, 40, 0.3), -10px 8px 0px rgba(20, 20, 20, 0.2)",
+                        "-2px 0px 0px rgba(100, 100, 100, 0.8), -4px 2px 0px rgba(80, 80, 80, 0.6), -6px 4px 0px rgba(60, 60, 60, 0.4)",
                     }}
                   >
                     GAME
@@ -112,17 +102,25 @@ const Landing = () => {
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center px-4 sm:px-0">
               <motion.button
-                className="w-full sm:w-auto bg-gradient-to-r from-[#00ADB5] to-[#009ca3] text-[#EEEEEE] px-6 py-3 rounded-lg text-sm font-semibold inline-flex items-center justify-center shadow-lg shadow-[#00ADB5]/15 transition-all duration-300 hover:from-[#009ca3] hover:to-[#00ADB5] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#00ADB5]/25"
+                className="group w-full sm:w-auto bg-gradient-to-r from-[#00ADB5] to-[#009ca3] text-[#EEEEEE] px-6 py-3 text-sm font-semibold inline-flex items-center justify-center shadow-lg shadow-[#00ADB5]/15 transition-all duration-300 cursor-pointer relative overflow-hidden hover:shadow-xl hover:shadow-[#00ADB5]/25"
                 onClick={() => router.push("/contact-us")}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Start Consultation
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00d4dd] to-[#00b8c4] scale-0 group-hover:scale-150 transition-transform duration-500 ease-out rounded-full" />
+                <span className="relative z-10">Start Consultation</span>
               </motion.button>
+
               <motion.button
-                className="bg-transparent text-[#222831] border-2 border-[#222831] px-6 py-3 rounded-lg text-sm cursor-pointer transition-all duration-300 hover:bg-[#222831] hover:text-[#EEEEEE]"
-                whileHover={{ backgroundColor: "rgba(0, 173, 181, 0.1)" }}
+                className="group relative text-[#000000] border-2 border-black px-6 py-3 text-sm cursor-pointer transition-all duration-300 overflow-hidden hover:border-black"
                 onClick={() => router.push("/about-us")}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Learn More →
+                <div className="absolute inset-0 bg-black scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out origin-bottom" />
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                  Learn More →
+                </span>
               </motion.button>
             </div>
           </motion.div>

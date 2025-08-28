@@ -7,36 +7,21 @@ import Link from "next/link";
 import { blogPosts } from "~/lib/blogData";
 import { useState } from "react";
 
-// Type definitions for better type safety
+// Types
 interface BlogPost {
   id: string;
   title: string;
   image: string;
   topic: string;
-  summary: string;
-  readTime: string;
+  summary?: string;
+  readTime?: string;
 }
 
 export default function BlogPage() {
   const [videoError, setVideoError] = useState(false);
-  
-  // Validate blogPosts exists and is an array
-  const validBlogPosts = Array.isArray(blogPosts) ? blogPosts : [];
-  
-  // Get featured blog posts with proper validation
-  const featuredBlogs = validBlogPosts.slice(0, 4);
-  const featuredArticle = validBlogPosts[4] || validBlogPosts[0]; // Fallback to first article
-  const largeArticles = [
-    validBlogPosts[5] || validBlogPosts[1] || validBlogPosts[0], // Multiple fallbacks
-    validBlogPosts[6] || validBlogPosts[2] || validBlogPosts[0]
-  ].filter(Boolean); // Remove any undefined values
-  
-  const latestInsights = validBlogPosts.length > 7 
-    ? validBlogPosts.slice(7, 10) 
-    : validBlogPosts.slice(0, Math.min(3, validBlogPosts.length));
 
-  // If no blog posts exist, show empty state
-  if (validBlogPosts.length === 0) {
+  const validBlogPosts: BlogPost[] = Array.isArray(blogPosts) ? blogPosts : [];
+  if (!validBlogPosts.length) {
     return (
       <div className="min-h-screen bg-[#0f3460] font-montserrat flex items-center justify-center">
         <div className="text-white text-xl">No blog posts available</div>
@@ -44,72 +29,97 @@ export default function BlogPage() {
     );
   }
 
-  // Handle video error
-  const handleVideoError = () => {
-    setVideoError(true);
+  // Blog data sectioning
+  const featuredBlogs = validBlogPosts.slice(0, 4);
+  const featuredArticle = validBlogPosts[4] || validBlogPosts[0];
+  const largeArticles = [
+    validBlogPosts[5] || validBlogPosts[1],
+    validBlogPosts[6] || validBlogPosts[2],
+  ].filter(Boolean);
+  const latestInsights = validBlogPosts.slice(
+    validBlogPosts.length > 7 ? 7 : 0,
+    validBlogPosts.length > 7 ? 10 : Math.min(3, validBlogPosts.length)
+  );
+
+  // Helpers
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    (e.target as HTMLImageElement).src = "/placeholder-blog.jpg";
   };
+  const shareArticle = (title: string, id: string) =>
+    navigator.share?.({ title, url: `/blogs/${id}` });
+  const handleVideoError = () => setVideoError(true);
+
+  // Motion defaults
+  const fadeInLeft = (index = 0) => ({
+    initial: { opacity: 0, x: -20 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.5, delay: index * 0.1 },
+  });
+  const fadeInRight = (index = 0) => ({
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.5, delay: index * 0.1 },
+  });
+  const fadeInUp = (index = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: index * 0.1 },
+    viewport: { once: true },
+  });
 
   return (
     <div className="min-h-screen bg-[#0f3460] font-montserrat">
-      {/* Main Blog Layout */}
+      {/* Main Layout */}
       <section className="pt-16 px-4 md:px-16 lg:px-24 bg-black">
         <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left Column - Blog Posts */}
+
+          {/* Left Column - Latest Posts */}
           <div className="lg:col-span-4 space-y-8">
             <h2 className="text-2xl font-bold text-white mb-8">Latest Posts</h2>
-            {featuredBlogs.slice(0, 2).map((blog, index) => (
-              blog && blog.id ? (
-                <motion.div
-                  key={blog.id}
-                  className="group cursor-pointer"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
-                    <div className="relative h-40 mb-4 overflow-hidden rounded-lg">
-                      <Image
-                        src={blog.image}
-                        alt={blog.title || 'Blog post image'}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => {
-                          // Handle image load error
-                          const target = e.target as HTMLImageElement;
-                          target.src = '/placeholder-blog.jpg'; // Add a fallback image
-                        }}
-                      />
-                    </div>
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-[#00ADB5] text-sm">{blog.topic || 'General'}</span>
-                      <button 
-                        className="text-gray-400 hover:text-[#00ADB5] transition-colors"
-                        aria-label="Share this article"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          // Add share functionality here
-                          navigator.share?.({
-                            title: blog.title,
-                            url: `/blogs/${blog.id}`
-                          });
-                        }}
-                      >
-                        <Share2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <h3 className="text-white text-base font-semibold group-hover:text-[#00ADB5] transition-colors">
-                      {blog.title || 'Untitled Article'}
-                    </h3>
-                  </Link>
-                </motion.div>
-              ) : null
-            ))}
+            {featuredBlogs.slice(0, 2).map(
+              (blog, index) =>
+                blog?.id && (
+                  <motion.div
+                    key={blog.id}
+                    className="group cursor-pointer"
+                    {...fadeInLeft(index)}
+                  >
+                    <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
+                      <div className="relative h-40 mb-4 overflow-hidden">
+                        <Image
+                          src={blog.image}
+                          alt={blog.title || "Blog post image"}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          onError={handleImageError}
+                        />
+                      </div>
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-[#00ADB5] text-sm">{blog.topic || "General"}</span>
+                        <button
+                          className="text-gray-400 hover:text-[#00ADB5] transition-colors"
+                          aria-label="Share"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            shareArticle(blog.title, blog.id);
+                          }}
+                        >
+                          <Share2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <h3 className="text-white text-base font-semibold group-hover:text-[#00ADB5] transition-colors">
+                        {blog.title || "Untitled Article"}
+                      </h3>
+                    </Link>
+                  </motion.div>
+                )
+            )}
           </div>
 
-          {/* Center Column - Featured Blog with Earth Video */}
+          {/* Middle Column - Featured Article with Video */}
           <div className="lg:col-span-4">
-            {featuredArticle && (
+            {featuredArticle?.id && (
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, y: 20 }}
@@ -117,8 +127,7 @@ export default function BlogPage() {
                 transition={{ duration: 0.6 }}
               >
                 <Link href={`/blogs/${featuredArticle.id}`} aria-label={`Read featured article: ${featuredArticle.title}`}>
-                  <div className="relative h-[800px] mb-6 rounded-xl overflow-hidden">
-                    {/* Earth Video with proper error handling */}
+                  <div className="relative h-[800px] mb-6 overflow-hidden">
                     {!videoError ? (
                       <video
                         autoPlay
@@ -128,12 +137,8 @@ export default function BlogPage() {
                         className="w-full h-full object-cover"
                         poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80"
                         onError={handleVideoError}
-                      >
-                        <source src="https://cdn.pixabay.com/video/2022/01/13/102255-667115339_large.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
+                      />
                     ) : (
-                      // Fallback image if video fails
                       <Image
                         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80"
                         alt="Earth from space"
@@ -148,7 +153,7 @@ export default function BlogPage() {
                         <div className="max-w-xl">
                           <span className="text-[#00ADB5] text-sm mb-4 inline-block">Featured Article</span>
                           <h2 className="text-white text-3xl md:text-4xl font-bold">
-                            {featuredArticle.title || 'Featured Article'}
+                            {featuredArticle.title}
                           </h2>
                           {featuredArticle.summary && (
                             <p className="text-gray-300 mt-4 text-lg leading-relaxed">
@@ -156,15 +161,12 @@ export default function BlogPage() {
                             </p>
                           )}
                         </div>
-                        <button 
+                        <button
                           className="text-white hover:text-[#00ADB5] transition-colors"
-                          aria-label="Share featured article"
+                          aria-label="Share"
                           onClick={(e) => {
                             e.preventDefault();
-                            navigator.share?.({
-                              title: featuredArticle.title,
-                              url: `/blogs/${featuredArticle.id}`
-                            });
+                            shareArticle(featuredArticle.title, featuredArticle.id);
                           }}
                         >
                           <Share2 className="w-5 h-5 md:w-6 md:h-6" />
@@ -177,113 +179,95 @@ export default function BlogPage() {
             )}
           </div>
 
-          {/* Right Column - Blog Posts */}
+          {/* Right Column - Popular Posts */}
           <div className="lg:col-span-4 space-y-8">
             <h2 className="text-2xl font-bold text-white mb-8">Popular Posts</h2>
-            {featuredBlogs.slice(2, 4).map((blog, index) => (
-              blog && blog.id ? (
-                <motion.div
-                  key={blog.id}
-                  className="group cursor-pointer"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
-                    <div className="relative h-40 mb-4 overflow-hidden rounded-lg">
-                      <Image
-                        src={blog.image}
-                        alt={blog.title || 'Blog post image'}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = '/placeholder-blog.jpg';
-                        }}
-                      />
-                    </div>
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-[#00ADB5] text-sm">{blog.topic || 'General'}</span>
-                      <button 
-                        className="text-gray-400 hover:text-[#00ADB5] transition-colors"
-                        aria-label="Share this article"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          navigator.share?.({
-                            title: blog.title,
-                            url: `/blogs/${blog.id}`
-                          });
-                        }}
-                      >
-                        <Share2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <h3 className="text-white text-base font-semibold group-hover:text-[#00ADB5] transition-colors">
-                      {blog.title || 'Untitled Article'}
-                    </h3>
-                  </Link>
-                </motion.div>
-              ) : null
-            ))}
+            {featuredBlogs.slice(2, 4).map(
+              (blog, index) =>
+                blog?.id && (
+                  <motion.div
+                    key={blog.id}
+                    className="group cursor-pointer"
+                    {...fadeInRight(index)}
+                  >
+                    <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
+                      <div className="relative h-40 mb-4 overflow-hidden">
+                        <Image
+                          src={blog.image}
+                          alt={blog.title || "Blog post image"}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          onError={handleImageError}
+                        />
+                      </div>
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-[#00ADB5] text-sm">{blog.topic || "General"}</span>
+                        <button
+                          className="text-gray-400 hover:text-[#00ADB5] transition-colors"
+                          aria-label="Share"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            shareArticle(blog.title, blog.id);
+                          }}
+                        >
+                          <Share2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <h3 className="text-white text-base font-semibold group-hover:text-[#00ADB5] transition-colors">
+                        {blog.title || "Untitled Article"}
+                      </h3>
+                    </Link>
+                  </motion.div>
+                )
+            )}
           </div>
         </div>
       </section>
 
-      {/* Large Blog with Summary Section */}
+      {/* Large Articles */}
       {largeArticles.length >= 2 && (
         <section className="py-32 px-4 md:px-16 lg:px-24 bg-black">
-          <div className="max-w-[1920px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {largeArticles.slice(0, 2).map((article, index) => (
-                article && article.id ? (
+          <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {largeArticles.slice(0, 2).map(
+              (article, index) =>
+                article?.id && (
                   <motion.div
                     key={article.id}
                     className="group cursor-pointer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                    viewport={{ once: true }}
+                    {...fadeInUp(index)}
                   >
-                    <Link href={`/blogs/${article.id}`} aria-label={`Read article: ${article.title}`}>
-                      <div className="relative h-[600px] mb-8 rounded-xl overflow-hidden">
+                    <Link href={`/blogs/{article.id}`} aria-label={`Read article: ${article.title}`}>
+                      <div className="relative h-[600px] mb-8 overflow-hidden">
                         <Image
                           src={article.image}
-                          alt={article.title || 'Featured article image'}
+                          alt={article.title || "Featured article image"}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = '/placeholder-blog.jpg';
-                          }}
+                          onError={handleImageError}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                       </div>
                       <span className="text-[#00ADB5] text-sm">
-                        {index === 0 ? 'FEATURED ARTICLE' : (article.topic || 'GENERAL').toUpperCase()}
+                        {index === 0 ? "FEATURED ARTICLE" : (article.topic || "GENERAL").toUpperCase()}
                       </span>
                       <h2 className="text-white text-3xl font-bold mt-4 mb-4 group-hover:text-[#00ADB5] transition-colors">
-                        {article.title || 'Untitled Article'}
+                        {article.title}
                       </h2>
                       {article.summary && (
-                        <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                          {article.summary}
-                        </p>
+                        <p className="text-gray-400 text-lg leading-relaxed mb-6">{article.summary}</p>
                       )}
                       <div className="flex items-center justify-between">
                         <span className="text-gray-500">
-                          Read Time: {article.readTime || '5 min read'}
+                          Read Time: {article.readTime || "5 min read"}
                         </span>
-                        <button 
+                        <button
                           className="text-gray-400 group-hover:text-[#00ADB5] transition-colors"
-                          aria-label="Share this article"
+                          aria-label="Share"
                           onClick={(e) => {
                             e.preventDefault();
-                            navigator.share?.({
-                              title: article.title,
-                              url: `/blogs/${article.id}`
-                            });
+                            shareArticle(article.title, article.id);
                           }}
                         >
                           <Share2 className="w-6 h-6" />
@@ -291,53 +275,45 @@ export default function BlogPage() {
                       </div>
                     </Link>
                   </motion.div>
-                ) : null
-              ))}
-            </div>
+                )
+            )}
           </div>
         </section>
       )}
 
-      {/* Bottom Blog Cards */}
-      {latestInsights.length > 0 && (
-        <section className="py-20 px-4 md:px-16 lg:px-24 bg-black">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-white">
-              Latest <span className="text-[#00ADB5]">Insights</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {latestInsights.map((blog, index) => (
-                blog && blog.id ? (
-                  <motion.div
-                    key={blog.id}
-                    className="group cursor-pointer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
-                      <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
-                        <Image
-                          src={blog.image}
-                          alt={blog.title || 'Blog post image'}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = '/placeholder-blog.jpg';
-                          }}
-                        />
-                      </div>
-                      <span className="text-[#00ADB5] text-sm">{blog.topic || 'General'}</span>
-                      <h3 className="text-white text-xl font-semibold mt-2 group-hover:text-[#00ADB5] transition-colors">
-                        {blog.title || 'Untitled Article'}
-                      </h3>
-                    </Link>
-                  </motion.div>
-                ) : null
-              ))}
+      {/* Latest Insights */}
+      {!!latestInsights.length && (
+        <section className="py-20  bg-black">
+          <div className="w-[1370px] mx-auto">
+           
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {latestInsights.map(
+                (blog, index) =>
+                  blog?.id && (
+                    <motion.div
+                      key={blog.id}
+                      className="group cursor-pointer"
+                      {...fadeInUp(index)}
+                    >
+                      <Link href={`/blogs/${blog.id}`} aria-label={`Read article: ${blog.title}`}>
+                        <div className="relative h-64 mb-4 overflow-hidden">
+                          <Image
+                            src="/blog-3.webp"
+                            alt={blog.title || "Blog post image"}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            onError={handleImageError}
+                          />
+                        </div>
+                        <span className="text-[#00ADB5] text-sm">{blog.topic || "General"}</span>
+                        <h3 className="text-white text-xl font-semibold mt-2 group-hover:text-[#00ADB5] transition-colors">
+                          {blog.title}
+                        </h3>
+                      </Link>
+                    </motion.div>
+                  )
+              )}
             </div>
           </div>
         </section>
